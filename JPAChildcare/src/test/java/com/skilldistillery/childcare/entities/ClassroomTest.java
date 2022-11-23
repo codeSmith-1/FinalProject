@@ -43,7 +43,7 @@ public class ClassroomTest {
 	@Test
 	void test() {
 		assertNotNull(cr);
-		assertEquals("asdf", cr.getRoomName());
+		assertEquals("Fancy Sunshine", cr.getRoomName());
 	}
 
 }

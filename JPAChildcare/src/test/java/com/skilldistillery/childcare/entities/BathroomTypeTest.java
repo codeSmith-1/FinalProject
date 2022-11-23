@@ -43,7 +43,7 @@ class BathroomTypeTest {
 	@Test
 	void test() {
 		assertNotNull(bathType);
-		assertEquals(" ", bathType.getStatus());
+		assertEquals("BM", bathType.getStatus());
 	}
 
 }

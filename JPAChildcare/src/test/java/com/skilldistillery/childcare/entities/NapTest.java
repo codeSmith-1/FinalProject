@@ -42,7 +42,7 @@ class NapTest {
 	@Test
 	void test() {
 		assertNotNull(nap);
-		assertEquals(" ", nap.getClass());
+		assertEquals("2022-11-20T14:51:32", nap.getTimeFinish().toString());
 	}
 
 }
