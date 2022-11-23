@@ -1,5 +1,6 @@
 package com.skilldistillery.childcare.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Kid {
@@ -31,6 +33,9 @@ public class Kid {
 	@JoinColumn(name="classroom_id")
 	@ManyToOne
 	private Classroom classroom;
+	
+	@OneToMany(mappedBy = "kid")
+	private List<Guardian> guardians;
 
 	public int getId() {
 		return id;
@@ -38,6 +43,15 @@ public class Kid {
 
 	public Classroom getClassroom() {
 		return classroom;
+	}
+
+	
+	public List<Guardian> getGuardians() {
+		return guardians;
+	}
+
+	public void setGuardians(List<Guardian> guardians) {
+		this.guardians = guardians;
 	}
 
 	public void setClassroom(Classroom classroom) {

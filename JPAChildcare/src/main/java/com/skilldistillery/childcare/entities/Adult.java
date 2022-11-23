@@ -1,5 +1,6 @@
 package com.skilldistillery.childcare.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,7 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 
 @Entity
 public class Adult {
@@ -32,6 +35,10 @@ public class Adult {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@OneToMany(mappedBy ="adult")
+	private List<Guardian> guardians;
+	
+	
 	@OneToOne
 	@JoinColumn(name ="address_id")
 	private Address address;
@@ -41,6 +48,16 @@ public class Adult {
 	}
 	
 	
+	public List<Guardian> getGuardians() {
+		return guardians;
+	}
+
+
+	public void setGuardians(List<Guardian> guardians) {
+		this.guardians = guardians;
+	}
+
+
 	public Address getAddress() {
 		return address;
 	}

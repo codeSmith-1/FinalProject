@@ -45,5 +45,11 @@ public class AdultTest {
 		assertEquals("Darlene", adult.getFirstName());
 		assertEquals("Englewood", adult.getAddress().getCity());
 	}
+	
+	@Test
+	void test_guardian_mapping() {
+		assertNotNull(adult);
+		assertEquals(1, adult.getGuardians().size());
+	}
 
 }

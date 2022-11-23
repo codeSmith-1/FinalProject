@@ -4,6 +4,9 @@ import java.util.Objects;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 @Entity
 public class Guardian {
@@ -12,6 +15,17 @@ public class Guardian {
 	private GuardianId id;
 	
 	private String relationship;
+	
+	@ManyToOne
+	@MapsId(value = "adultId")
+	@JoinColumn(name="adult_id")
+	private Adult adult;
+	
+	@ManyToOne
+	@MapsId(value = "kidId")
+	@JoinColumn(name="kid_id")
+	private Kid kid;
+	
 
 	public Guardian() {
 		super();
