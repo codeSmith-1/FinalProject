@@ -4,10 +4,25 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Staff {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Column(name = "first_name")
 	private String firstName;
 	@Column(name = "last_name")
@@ -54,7 +69,7 @@ public class Staff {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(firstName, imageUrl, lastName);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -66,9 +81,8 @@ public class Staff {
 		if (getClass() != obj.getClass())
 			return false;
 		Staff other = (Staff) obj;
-		return Objects.equals(firstName, other.firstName) && Objects.equals(imageUrl, other.imageUrl)
-				&& Objects.equals(lastName, other.lastName);
+		return id == other.id;
 	}
-	
+	 
 
 }

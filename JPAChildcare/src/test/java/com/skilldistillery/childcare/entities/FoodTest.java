@@ -43,7 +43,7 @@ class FoodTest {
 	@Test
 	void test() {
 		assertNotNull(food);
-		assertEquals(" ", food.getLunch());
+		assertEquals("Cheez Its, Cantelope, Grapes", food.getAmSnack());
 	}
 
 	
