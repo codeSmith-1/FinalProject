@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-public class Guardian {
+public class Adult {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -20,58 +20,62 @@ public class Guardian {
 	private String relationship;
 	@Column(name = "phone_number")
 	private int phoneNumber;
-
-	@Override
-	public String toString() {
-		return "Guardian [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", relationship="
-				+ relationship + ", phoneNumber=" + phoneNumber + "]";
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getRelationship() {
-		return relationship;
-	}
-
-	public void setRelationship(String relationship) {
-		this.relationship = relationship;
-	}
-
-	public int getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
+	@Column(name ="image_url")
+	private String imageUrl;
+	@Column(name = "emergency_contact")
+	private boolean emergencyContact;
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getRelationship() {
+		return relationship;
+	}
+	public void setRelationship(String relationship) {
+		this.relationship = relationship;
+	}
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	public boolean isEmergencyContact() {
+		return emergencyContact;
+	}
+	public void setEmergencyContact(boolean emergencyContact) {
+		this.emergencyContact = emergencyContact;
+	}
+	@Override
+	public String toString() {
+		return "Adult [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", relationship="
+				+ relationship + ", phoneNumber=" + phoneNumber + ", imageUrl=" + imageUrl + ", emergencyContact="
+				+ emergencyContact + "]";
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -80,8 +84,9 @@ public class Guardian {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Guardian other = (Guardian) obj;
+		Adult other = (Adult) obj;
 		return id == other.id;
 	}
+
 
 }
