@@ -21,6 +21,8 @@ public class ReportImage {
 	
 	@Column(name="created_at")
 	private LocalDateTime createdAt;
+	
+	
 
 	public int getId() {
 		return id;
