@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Bathroom {
@@ -20,6 +22,22 @@ public class Bathroom {
 	@Column(name="bathroom_time")
 	private String bathroomTime;
 
+	@JoinColumn(name="bathroom_type_id")
+	@ManyToOne
+	private BathroomType type;
+	
+	@JoinColumn(name="day_id")
+	@ManyToOne
+	private DailyReport day;
+	
+	@JoinColumn(name="staff_id")
+	@ManyToOne
+	private Staff staff;
+	
+	public Bathroom() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -43,6 +61,30 @@ public class Bathroom {
 	public void setBathroomTime(String bathroomTime) {
 		this.bathroomTime = bathroomTime;
 	}
+	
+	public BathroomType getType() {
+		return type;
+	}
+
+	public void setType(BathroomType type) {
+		this.type = type;
+	}
+
+	public DailyReport getDay() {
+		return day;
+	}
+
+	public void setDay(DailyReport day) {
+		this.day = day;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
 
 	@Override
 	public String toString() {
@@ -64,18 +106,5 @@ public class Bathroom {
 			return false;
 		Bathroom other = (Bathroom) obj;
 		return id == other.id;
-	}
-	
-	//@ManyToOne day_id
-	//Todo
-	
-	//@ManyToOne staff_id
-	//Todo
-	
-	//@ManyToOne bathroom_type_id
-	//Todo
-	
-	public Bathroom() {
-		
 	}
 }

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Nap {
@@ -22,7 +24,9 @@ public class Nap {
 	@Column(name = "time_finish")
 	private LocalDateTime timeFinish;
 
-	// day
+	@JoinColumn(name="day_id")
+	@OneToOne
+	private DailyReport day;
 	
 	public Nap() {
 		super();
@@ -51,6 +55,14 @@ public class Nap {
 
 	public void setTimeFinish(LocalDateTime timeFinish) {
 		this.timeFinish = timeFinish;
+	}
+	
+	public DailyReport getDay() {
+		return day;
+	}
+
+	public void setDay(DailyReport day) {
+		this.day = day;
 	}
 
 	@Override

@@ -39,12 +39,16 @@ class NapTest {
 		em.close();
 		nap = null;
 	}
+//	@Test
+//	void test_nap_entity_mapping() {
+//		assertNotNull(nap);
+//		assertEquals("2022-11-20T14:51:32", nap.getTimeFinish().toString());
+//	}
+	
 	@Test
-	void test() {
-		assertNotNull(nap);
-
-		assertEquals("2022-11-20T14:51:32", nap.getTimeFinish().toString());
-
+	void test_nap_daily_report_mapping() {
+		assertNotNull(nap.getDay());
+		assertEquals(1, nap.getDay().getId());
 	}
 
 }
