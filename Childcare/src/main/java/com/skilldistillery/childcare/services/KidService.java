@@ -6,13 +6,13 @@ import com.skilldistillery.childcare.entities.Kid;
 
 public interface KidService {
 	
-	List<Kid> listAllExercises();
+	List<Kid> listAllKids(String username);
 
-	Kid showExercise(int id);
+	Kid showKid(String username, int id);
 
-	Kid create(Kid kid);
+	Kid create(String username, Kid kid);
 
-	Kid update(int kidId, Kid kid);
+	Kid update(String username, int kidId, Kid kid);
 
-	boolean delete(int kidId);
+	boolean delete(String username, int kidId);
 }

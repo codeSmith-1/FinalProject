@@ -6,13 +6,13 @@ import com.skilldistillery.childcare.entities.Staff;
 
 public interface StaffService {
 
-	List<Staff> listAllStaff();
+	List<Staff> listAllStaff(String username);
 
-	Staff showStaffById(int id);
+	Staff showStaffById(String username, int id);
 
-	Staff create(Staff staff);
+	Staff create(String username, Staff staff);
 
-	Staff update(int staffId, Staff staff);
+	Staff update(String username, int staffId, Staff staff);
 
-	boolean delete(int staffId);
+	boolean delete(String username, int staffId);
 }

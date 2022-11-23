@@ -6,13 +6,13 @@ import com.skilldistillery.childcare.entities.User;
 
 public interface UserService {
 	
-	List<User> listAllUsers();
+	List<User> listAllUsers(String username);
 
-	User showUserById(int id);
+	User showUserById(String username, int id);
 
-	User create(User user);
+	User create(String username, User user);
 
-	User update(int userId, User user);
+	User update(String username, int userId, User user);
 
-	boolean delete(int userId);
+	boolean delete(String username, int userId);
 }

@@ -22,7 +22,7 @@ public class AdultServiceImpl implements AdultService {
 	@Override
 	public List<Adult> listAllAdults(String username) {
 		User user = userRepo.findByUsername(username);
-		if (user.getRole() == "staff") {
+		if (user.getRole().equals("staff")) {
 			return adultRepo.findAll();
 		} else {
 			return null;
@@ -30,38 +30,55 @@ public class AdultServiceImpl implements AdultService {
 	}
 
 	@Override
-	public Adult showAdultById(int id) {
-		// TODO Auto-generated method stub
-		return adultRepo.queryById(id);
-	}
-
-	@Override
-	public Adult create(Adult adult) {
-		if (adult != null) {
-			adultRepo.saveAndFlush(adult);
+	public Adult showAdultById(String username, int id) {
+		User user = userRepo.findByUsername(username);
+		if (user.getRole().equals("staff")) {
+			return adultRepo.queryById(id);
+		} else {
+			return null;
 		}
-		return adult;
 	}
 
 	@Override
-	public Adult update(int adultId, Adult adult) {
-		Adult adultToUpdate = adultRepo.queryById(adultId);
-		adultToUpdate.setFirstName(adult.getFirstName());
-		adultToUpdate.setLastName(adult.getLastName());
-		adultToUpdate.setAddress(adult.getAddress());
-		adultToUpdate.setPhoneNumber(adult.getPhoneNumber());
-		adultToUpdate.setImageUrl(adult.getImageUrl());
-		adultToUpdate.setEmergencyContact(adult.isEmergencyContact());
-		adultRepo.saveAndFlush(adultToUpdate);
-		return adultToUpdate;
+	public Adult create(String username, Adult adult) {
+		User user = userRepo.findByUsername(username);
+		if (user.getRole().equals("staff")) {
+			if (adult != null) {
+				adultRepo.saveAndFlush(adult);
+			}
+			return adult;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
-	public boolean delete(int adultId) {
-		Adult adultToDelete = adultRepo.queryById(adultId);
-		if (adultToDelete != null) {
-			adultRepo.delete(adultToDelete);
-			return true;
+	public Adult update(String username, int adultId, Adult adult) {
+		User user = userRepo.findByUsername(username);
+		if (user.getRole().equals("staff")) {
+			Adult adultToUpdate = adultRepo.queryById(adultId);
+			adultToUpdate.setFirstName(adult.getFirstName());
+			adultToUpdate.setLastName(adult.getLastName());
+			adultToUpdate.setAddress(adult.getAddress());
+			adultToUpdate.setPhoneNumber(adult.getPhoneNumber());
+			adultToUpdate.setImageUrl(adult.getImageUrl());
+			adultToUpdate.setEmergencyContact(adult.isEmergencyContact());
+			adultRepo.saveAndFlush(adultToUpdate);
+			return adultToUpdate;
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public boolean delete(String username, int adultId) {
+		User user = userRepo.findByUsername(username);
+		if (user.getRole().equals("staff")) {
+			Adult adultToDelete = adultRepo.queryById(adultId);
+			if (adultToDelete != null) {
+				adultRepo.delete(adultToDelete);
+				return true;
+			}
 		}
 		return false;
 	}

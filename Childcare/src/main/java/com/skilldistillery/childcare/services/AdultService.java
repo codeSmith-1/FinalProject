@@ -8,11 +8,11 @@ public interface AdultService {
 
 	List<Adult> listAllAdults(String username);
 
-	Adult showAdultById(int id);
+	Adult showAdultById(String username, int id);
 
-	Adult create(Adult adult);
+	Adult create(String username, Adult adult);
 
-	Adult update(int adultId, Adult adult);
+	Adult update(String username, int adultId, Adult adult);
 
-	boolean delete(int adultId);
+	boolean delete(String username, int adultId);
 }
