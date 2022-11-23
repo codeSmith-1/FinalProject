@@ -44,5 +44,11 @@ public class MoodTest {
 		assertNotNull(mood);
 		assertEquals("Happy", mood.getDescription());
 	}
+	
+	@Test
+	void mapping_moodEntry() {
+		assertEquals(1, mood.getMoodEntries().size());
+	}
+
 
 }

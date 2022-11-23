@@ -33,6 +33,26 @@ public class MoodEntry {
 	private Mood mood;
 
 
+	public DailyReport getDailyReport() {
+		return dailyReport;
+	}
+
+
+	public void setDailyReport(DailyReport dailyReport) {
+		this.dailyReport = dailyReport;
+	}
+
+
+	public Mood getMood() {
+		return mood;
+	}
+
+
+	public void setMood(Mood mood) {
+		this.mood = mood;
+	}
+
+
 	public MoodId getId() {
 		return id;
 	}
