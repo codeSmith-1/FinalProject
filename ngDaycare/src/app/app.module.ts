@@ -8,8 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { StaffHomeComponent } from './components/staff-home/staff-home.component';
 import { GuardianHomeComponent } from './components/guardian-home/guardian-home.component';
-
-
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HomeComponent } from './components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +17,8 @@ import { GuardianHomeComponent } from './components/guardian-home/guardian-home.
     LogoutComponent,
     StaffHomeComponent,
     GuardianHomeComponent,
+    NotFoundComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

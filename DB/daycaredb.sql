@@ -443,12 +443,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (1, 'null', 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (2, 'null', 'staff', 'c3RhZmY6d29tYmF0Mg==', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (3, 'null', 'staff1', 'c3RhZmYxOndvbWJhdDM=', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (4, 'null', 'staff2', 'c3RhZmYyOndvbWJhdDQ=', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (5, 'null', 'parent', 'cGFyZW50OndvbWJhdDE=', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (6, 'null', 'parent1', 'cGFyZW50Mjp3b21iYXQy', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (1, 'staff', 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (2, 'staff', 'staff', 'c3RhZmY6d29tYmF0Mg==', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (3, 'staff', 'staff1', 'c3RhZmYxOndvbWJhdDM=', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (4, 'staff', 'staff2', 'c3RhZmYyOndvbWJhdDQ=', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (5, 'user', 'parent', 'cGFyZW50OndvbWJhdDE=', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (6, 'user', 'parent1', 'cGFyZW50Mjp3b21iYXQy', 1);
 
 COMMIT;
 
