@@ -41,7 +41,7 @@ class AddressTest {
 	@Test
 	void test() {
 		assertNotNull(addr);
-		assertEquals("Denver", addr.getCity());
+		assertEquals("Englewood", addr.getCity());
 	}
 
 }
