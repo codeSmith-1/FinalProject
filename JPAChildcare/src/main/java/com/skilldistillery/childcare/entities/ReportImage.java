@@ -1,5 +1,6 @@
 package com.skilldistillery.childcare.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,22 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Kid {
+public class ReportImage {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "first_name")
-	private String firstName;
-	
-	@Column(name= "last_name")
-	private String lastName;
-	
-	private String birthday;
-	
-	@Column(name= "image_url")
+	@Column(name="image_url")
 	private String imageUrl;
+	
+	@Column(name="created_at")
+	private LocalDateTime createdAt;
 
 	public int getId() {
 		return id;
@@ -34,36 +30,20 @@ public class Kid {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-
 	public String getImageUrl() {
 		return imageUrl;
 	}
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	@Override
@@ -79,21 +59,22 @@ public class Kid {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Kid other = (Kid) obj;
+		ReportImage other = (ReportImage) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "Kid [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday
-				+ ", imageUrl=" + imageUrl + "]";
+		return "ReportImage [id=" + id + ", imageUrl=" + imageUrl + ", createdAt=" + createdAt + "]";
 	}
 	
-	public Kid() {
-		
-	};
+	//OneToMany dailyReportId
+	//Todo
 	
+	//ManyToOne staffId
+	//Todo
 	
+	public ReportImage () {}
 	
-	
+
 }
