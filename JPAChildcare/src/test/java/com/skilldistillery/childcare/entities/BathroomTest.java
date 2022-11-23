@@ -42,7 +42,7 @@ class BathroomTest {
 	@Test
 	void test() {
 		assertNotNull(br);
-		assertEquals("asdf", br.getDescription());
+		assertEquals("2022-11-20 09:17:48", br.getBathroomTime());
 	}
 
 

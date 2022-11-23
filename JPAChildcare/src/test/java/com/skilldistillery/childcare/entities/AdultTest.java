@@ -42,7 +42,7 @@ public class AdultTest {
 	@Test
 	void test() {
 		assertNotNull(adult);
-		assertEquals("asdf", adult.getFirstName());
+		assertEquals("Darlene", adult.getFirstName());
 	}
 
 }
