@@ -42,7 +42,7 @@ class NapTest {
 	@Test
 	void test() {
 		assertNotNull(nap);
-		assertEquals(" ", nap.getClass());
+		assertEquals(1, nap.getId());
 	}
 
 }

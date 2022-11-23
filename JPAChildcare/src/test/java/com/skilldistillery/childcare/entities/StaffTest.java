@@ -42,7 +42,7 @@ public class StaffTest {
 	@Test
 	void test() {
 		assertNotNull(s);
-		assertEquals("asdf", s.getFirstName());
+		assertEquals("Rob", s.getFirstName());
 	}
 
 }
