@@ -45,5 +45,17 @@ public class ReportImageTest {
 		assertNotNull(ri);
 		assertEquals("https://cloudfront-us-east-1.images.arcpublishing.com/coindesk/WMXJCFJ3ERCETA6TJNZ5NQPNKA.webp", ri.getImageUrl());
 	}
+	
+	@Test
+	void test_join_mappingsDailyReport() {
+		assertNotNull(ri);
+		assertEquals(1, ri.getDailyReport().getId());
+	}
+	
+	@Test
+	void test_join_mappingsStaff() {
+		assertNotNull(ri);
+		assertEquals(2, ri.getStaff().getId());
+	}
 
 }

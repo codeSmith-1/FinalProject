@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +26,31 @@ public class ReportImage {
 	@Column(name="created_at")
 	private LocalDateTime createdAt;
 	
+	@ManyToOne
+	@JoinColumn(name="daily_report_id")
+	private DailyReport dailyReport;
 	
+	@ManyToOne
+	@JoinColumn(name="staff_id")
+	private Staff Staff;
+	
+	
+	
+	public DailyReport getDailyReport() {
+		return dailyReport;
+	}
+
+	public void setDailyReport(DailyReport dailyReport) {
+		this.dailyReport = dailyReport;
+	}
+
+	public Staff getStaff() {
+		return Staff;
+	}
+
+	public void setStaff(Staff staff) {
+		Staff = staff;
+	}
 
 	public int getId() {
 		return id;
@@ -72,8 +98,7 @@ public class ReportImage {
 		return "ReportImage [id=" + id + ", imageUrl=" + imageUrl + ", createdAt=" + createdAt + "]";
 	}
 	
-	//OneToMany dailyReportId
-	//Todo
+	
 	
 	//ManyToOne staffId
 	//Todo

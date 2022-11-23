@@ -24,6 +24,7 @@
 		<class>com.skilldistillery.childcare.entities.ReportImage</class>
 		<class>com.skilldistillery.childcare.entities.Staff</class>
 		<class>com.skilldistillery.childcare.entities.User</class>
+		<class>com.skilldistillery.childcare.entities.MoodId</class>
 
 		<!-- end entities -->
 

@@ -1,11 +1,14 @@
 package com.skilldistillery.childcare.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Mood {
@@ -15,6 +18,18 @@ public class Mood {
 	private int id;
 	
 	private String description;
+	
+	@OneToMany(mappedBy="mood")
+	private List<MoodEntry> moodEntries;
+	
+
+	public List<MoodEntry> getMoodEntries() {
+		return moodEntries;
+	}
+
+	public void setMoodEntries(List<MoodEntry> moodEntries) {
+		this.moodEntries = moodEntries;
+	}
 
 	public Mood() {
 		super();
@@ -57,6 +72,13 @@ public class Mood {
 	public String toString() {
 		return "Mood [id=" + id + ", description=" + description + "]";
 	}
+
+
+
+
+
+
+
 	
 	
 	

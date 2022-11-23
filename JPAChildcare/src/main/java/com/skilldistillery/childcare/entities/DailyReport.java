@@ -2,6 +2,7 @@ package com.skilldistillery.childcare.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,6 +42,17 @@ public class DailyReport {
 	@Column(name = "report_date")
 	private LocalDate reportDate;
 	
+	@OneToMany(mappedBy="daily_report")
+	private List<MoodEntry> moodEntries;
+	
+	public List<MoodEntry> getMoodEntries() {
+		return moodEntries;
+	}
+
+	public void setMoodEntries(List<MoodEntry> moodEntries) {
+		this.moodEntries = moodEntries;
+	}
+
 	public DailyReport() {
 		super();
 	}
