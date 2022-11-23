@@ -42,7 +42,7 @@ public class DailyReport {
 	@Column(name = "report_date")
 	private LocalDate reportDate;
 	
-	@OneToMany(mappedBy="daily_report")
+	@OneToMany(mappedBy="dailyReport")
 	private List<MoodEntry> moodEntries;
 	
 	public List<MoodEntry> getMoodEntries() {

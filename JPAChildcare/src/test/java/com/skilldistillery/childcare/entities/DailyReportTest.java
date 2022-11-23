@@ -47,7 +47,7 @@ public class DailyReportTest {
 	
 	@Test
 	void mapping_moodEntry() {
-		assertEquals(2, dr.getMoodEntries().size());
+		assertEquals(1, dr.getMoodEntries().size());
 	}
 
 }

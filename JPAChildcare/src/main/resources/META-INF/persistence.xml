@@ -26,6 +26,8 @@
 		<class>com.skilldistillery.childcare.entities.User</class>
 		<class>com.skilldistillery.childcare.entities.Guardian</class>
 		<class>com.skilldistillery.childcare.entities.GuardianId</class>
+		<class>com.skilldistillery.childcare.entities.MoodId</class>
+		<class>com.skilldistillery.childcare.entities.MoodEntry</class>
 
 		<!-- end entities -->
 

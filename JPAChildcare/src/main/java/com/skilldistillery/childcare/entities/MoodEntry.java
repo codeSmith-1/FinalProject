@@ -23,7 +23,7 @@ public class MoodEntry {
 	private LocalDateTime enteredAt;
 	
 	@ManyToOne
-	@JoinColumn(name="daily_report")
+	@JoinColumn(name="daily_report_id")
 	@MapsId(value="dailyReportId")
 	private DailyReport dailyReport;
 	
