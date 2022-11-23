@@ -402,13 +402,38 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `daily_report`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `daily_report` (`id`, `time_in`, `time_out`, `diaper_low`, `wipes_low`, `activities`, `notes`, `child_id`, `report_date`) VALUES (1, '2022-11-20T07:31:21', '2022-11-20T15:28:24', 0, 0, 'Circle Time, Arts & Crafts, Outside Time', 'None', 1, '2022-11-20');
+INSERT INTO `daily_report` (`id`, `time_in`, `time_out`, `diaper_low`, `wipes_low`, `activities`, `notes`, `child_id`, `report_date`) VALUES (2, '2022-11-20T07:33:21', '2022-11-20T14:37:21', 0, 1, 'Circle Time, Arts & Crafts, Outside Time', 'N/A', 2, '2022-11-20');
+INSERT INTO `daily_report` (`id`, `time_in`, `time_out`, `diaper_low`, `wipes_low`, `activities`, `notes`, `child_id`, `report_date`) VALUES (3, '2022-11-21T07:29:21', '2022-11-21T16:01:21', 1, 0, 'Circle Time, Arts & Crafts, Outside Time', 'Nothing special today', 1, '2022-11-21');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `food`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (1, NULL, 'Cheez Its, Cantelope, Grapes', NULL, NULL, 1);
+INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (2, 'Sloppy Joe, Chips, Carrots', NULL, NULL, NULL, 1);
+INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (3, NULL, NULL, 'Celery, Peanut Butter, Carrots', NULL, 1);
+INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (4, NULL, 'Apple Slices, Wheat Thins', NULL, NULL, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `nap`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
 INSERT INTO `nap` (`id`, `time_start`, `time_finish`, `day_id`) VALUES (1, '2022-11-20T12:01:32', '2022-11-20T12:51:32', 1);
-INSERT INTO `nap` (`id`, `time_start`, `time_finish`, `day_id`) VALUES (2, '2022-11-20T12:01:32', '2022-11-20T13:15:32', 1);
-INSERT INTO `nap` (`id`, `time_start`, `time_finish`, `day_id`) VALUES (3, '2022-11-21T12:00:15', '2022-11-21T12:45:12', 2);
+INSERT INTO `nap` (`id`, `time_start`, `time_finish`, `day_id`) VALUES (2, '2022-11-20T12:01:32', '2022-11-20T13:15:32', 2);
+INSERT INTO `nap` (`id`, `time_start`, `time_finish`, `day_id`) VALUES (3, '2022-11-21T12:00:15', '2022-11-21T12:45:12', 3);
 
 COMMIT;
 
@@ -419,6 +444,11 @@ COMMIT;
 START TRANSACTION;
 USE `daycaredb`;
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (1, 'null', 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (2, 'null', 'staff', 'c3RhZmY6d29tYmF0Mg==', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (3, 'null', 'staff1', 'c3RhZmYxOndvbWJhdDM=', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (4, 'null', 'staff2', 'c3RhZmYyOndvbWJhdDQ=', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (5, 'null', 'parent', 'cGFyZW50OndvbWJhdDE=', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (6, 'null', 'parent1', 'cGFyZW50Mjp3b21iYXQy', 1);
 
 COMMIT;
 
@@ -476,8 +506,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (1, 'Darlene', 'Franklin', 303-992-0473, 1, 1, NULL, 1);
-INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (2, 'Guillermo', 'Rodriguez', 720-552-9462, 2, 2, NULL, 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (1, 'Darlene', 'Franklin', 303-992-0473, 5, 1, NULL, 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (2, 'Guillermo', 'Rodriguez', 720-552-9462, 6, 2, NULL, 1);
 
 COMMIT;
 
@@ -502,6 +532,38 @@ START TRANSACTION;
 USE `daycaredb`;
 INSERT INTO `guardian` (`guardian_id`, `kid_id`, `relationship`) VALUES (1, 2, 'Mother');
 INSERT INTO `guardian` (`guardian_id`, `kid_id`, `relationship`) VALUES (2, 1, 'Father');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `mood_entry`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `mood_entry` (`mood_id`, `daily_report_id`, `entered_at`) VALUES (1, 1, '2022-11-20T12:34:20');
+INSERT INTO `mood_entry` (`mood_id`, `daily_report_id`, `entered_at`) VALUES (2, 2, '2022-11-20T13:01:11');
+INSERT INTO `mood_entry` (`mood_id`, `daily_report_id`, `entered_at`) VALUES (3, 3, '2022-11-21T10:10:10');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `report_image`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `report_image` (`id`, `image_url`, `daily_report_id`, `staff_id`, `created_at`) VALUES (1, 'https://cloudfront-us-east-1.images.arcpublishing.com/coindesk/WMXJCFJ3ERCETA6TJNZ5NQPNKA.webp', 1, 2, '2022-11-20T08:45:12');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `message` (`id`, `message_date`, `content`, `sender_id`, `recipient_id`) VALUES (1, '2022-11-20', 'Hello', 1, 2);
 
 COMMIT;
 
