@@ -1,6 +1,5 @@
 package com.skilldistillery.childcare.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.junit.jupiter.api.Test;
+
 
 
 @Entity
