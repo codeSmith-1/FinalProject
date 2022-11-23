@@ -43,11 +43,25 @@ public class DailyReport {
 	private LocalDate reportDate;
 	
 	@OneToMany(mappedBy="dailyReport")
+	private List<ReportImage> images;
+	
+	@OneToMany(mappedBy="dailyReport")
 	private List<MoodEntry> moodEntries;
 	
 	public List<MoodEntry> getMoodEntries() {
 		return moodEntries;
 	}
+	
+
+	public List<ReportImage> getImages() {
+		return images;
+	}
+
+
+	public void setImages(List<ReportImage> images) {
+		this.images = images;
+	}
+
 
 	public void setMoodEntries(List<MoodEntry> moodEntries) {
 		this.moodEntries = moodEntries;
