@@ -40,9 +40,20 @@ public class StaffTest {
 	}
 
 	@Test
-	void test() {
+	void test_staff_mapping() {
 		assertNotNull(s);
 		assertEquals("Rob", s.getFirstName());
 	}
-
+	
+	@Test
+	void test_staff_classroom_mapping() {
+		assertNotNull(s);
+		assertEquals("Fancy Sunshine", s.getClassroom().getRoomName());
+	}
+	
+	@Test
+	void test_staff_to_user_mapping() {
+		assertNotNull(s);
+		assertEquals("admin", s.getUser().getUsername());
+	}
 }

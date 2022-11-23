@@ -6,6 +6,7 @@ import com.skilldistillery.childcare.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
-	User findByUsername(String uswername);
+	User findByUsername(String username);
+	public User queryById(int id);
 
 }
