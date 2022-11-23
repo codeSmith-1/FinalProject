@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Kid {
@@ -25,9 +27,21 @@ public class Kid {
 	
 	@Column(name= "image_url")
 	private String imageUrl;
+	
+	@JoinColumn(name="classroom_id")
+	@ManyToOne
+	private Classroom classroom;
 
 	public int getId() {
 		return id;
+	}
+
+	public Classroom getClassroom() {
+		return classroom;
+	}
+
+	public void setClassroom(Classroom classroom) {
+		this.classroom = classroom;
 	}
 
 	public void setId(int id) {

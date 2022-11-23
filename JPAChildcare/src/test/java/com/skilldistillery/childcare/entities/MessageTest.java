@@ -39,10 +39,5 @@ public class MessageTest {
 		msg = null;
 	}
 
-	@Test
-	void test() {
-		assertNotNull(msg);
-		assertEquals("Hello", msg.getContent());
-	}
 
 }

@@ -43,7 +43,7 @@ public class AdultTest {
 	void test() {
 		assertNotNull(adult);
 		assertEquals("Darlene", adult.getFirstName());
-		assertEquals("parent", adult.getAddress().getCity());
+		assertEquals("Englewood", adult.getAddress().getCity());
 	}
 
 }
