@@ -45,6 +45,12 @@ class FoodTest {
 		assertNotNull(food);
 		assertEquals("Cheez Its, Cantelope, Grapes", food.getAmSnack());
 	}
+	
+	@Test
+	void test_ManyToOne_mapping() {
+		assertNotNull(food);
+		assertEquals(1, food.getDailyReport().getId());
+	}
 
 	
 }
