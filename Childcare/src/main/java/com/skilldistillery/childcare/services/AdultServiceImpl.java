@@ -6,17 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.childcare.entities.Adult;
+import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.repositories.AdultRepository;
+import com.skilldistillery.childcare.repositories.UserRepository;
 
 @Service
 public class AdultServiceImpl implements AdultService {
-	
+
 	@Autowired
 	public AdultRepository adultRepo;
 
+	@Autowired
+	public UserRepository userRepo;
+
 	@Override
-	public List<Adult> listAllAdults() {
-		return adultRepo.findAll();
+	public List<Adult> listAllAdults(String username) {
+		User user = userRepo.findByUsername(username);
+		if (user.getRole() == "staff") {
+			return adultRepo.findAll();
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -27,7 +37,7 @@ public class AdultServiceImpl implements AdultService {
 
 	@Override
 	public Adult create(Adult adult) {
-		if(adult != null) {
+		if (adult != null) {
 			adultRepo.saveAndFlush(adult);
 		}
 		return adult;
@@ -49,7 +59,7 @@ public class AdultServiceImpl implements AdultService {
 	@Override
 	public boolean delete(int adultId) {
 		Adult adultToDelete = adultRepo.queryById(adultId);
-		if(adultToDelete != null) {
+		if (adultToDelete != null) {
 			adultRepo.delete(adultToDelete);
 			return true;
 		}

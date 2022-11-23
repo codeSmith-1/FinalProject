@@ -6,7 +6,7 @@ import com.skilldistillery.childcare.entities.Adult;
 
 public interface AdultService {
 
-	List<Adult> listAllAdults();
+	List<Adult> listAllAdults(String username);
 
 	Adult showAdultById(int id);
 
