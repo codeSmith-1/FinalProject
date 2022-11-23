@@ -34,6 +34,8 @@ public class ReportImage {
 	@JoinColumn(name="staff_id")
 	private Staff Staff;
 	
+
+	
 	
 	
 	public DailyReport getDailyReport() {
