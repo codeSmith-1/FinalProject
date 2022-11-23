@@ -6,15 +6,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class Picture {
-
+public class Classroom {
+	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="picutre_url")
-	private String pictureUrl;
+	@Column(name="room_name")
+	private String roomName;
 
 	public int getId() {
 		return id;
@@ -24,17 +26,17 @@ public class Picture {
 		this.id = id;
 	}
 
-	public String getPictureUrl() {
-		return pictureUrl;
+	public String getRoomName() {
+		return roomName;
 	}
 
-	public void setPictureUrl(String pictureUrl) {
-		this.pictureUrl = pictureUrl;
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
 	@Override
 	public String toString() {
-		return "Picture [id=" + id + ", pictureUrl=" + pictureUrl + "]";
+		return "Classroom [id=" + id + ", roomName=" + roomName + "]";
 	}
 
 	@Override
@@ -50,13 +52,10 @@ public class Picture {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Picture other = (Picture) obj;
+		Classroom other = (Classroom) obj;
 		return id == other.id;
 	}
 	
-	// child
-	// guardian
-	//staff
-	
-	
+	public Classroom() {};
+
 }
