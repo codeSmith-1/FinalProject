@@ -44,5 +44,8 @@ public class KidTest {
 		assertNotNull(k);
 		assertEquals("Javier", k.getFirstName());
 	}
+	void test_classroom_mapping() {
+		assertEquals("Fancy Sunshine", k.getClassroom().getRoomName());
+	}
 
 }
