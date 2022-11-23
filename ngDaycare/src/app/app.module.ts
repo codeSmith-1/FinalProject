@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { StaffHomeComponent } from './components/staff-home/staff-home.component';
+import { GuardianHomeComponent } from './components/guardian-home/guardian-home.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { StaffHomeComponent } from './components/staff-home/staff-home.component
     LoginComponent,
     LogoutComponent,
     StaffHomeComponent,
+    GuardianHomeComponent,
   ],
   imports: [
     BrowserModule,

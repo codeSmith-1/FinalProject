@@ -1,1 +1,7 @@
-<p>login works!</p>
+<form>
+  <div class="row">
+    <input class="col form-control" placeholder="username" type="text" name="username" [(ngModel)]="loginUser.username"><br>
+    <input class="col form-control" type="text" placeholder="password" name="password" [(ngModel)]="loginUser.password"><br>
+    <button class="col btn btn-primary" (click)="login(loginUser)">Login</button>
+  </div>
+</form>
