@@ -10,6 +10,19 @@
     </provider>
 
 		<!-- entities -->
+		<class>com.skilldistillery.childcare.entities.Address</class>
+		<class>com.skilldistillery.childcare.entities.Adult</class>
+		<class>com.skilldistillery.childcare.entities.Bathroom</class>
+		<class>com.skilldistillery.childcare.entities.BathroomType</class>
+		<class>com.skilldistillery.childcare.entities.Classroom</class>
+		<class>com.skilldistillery.childcare.entities.DailyReport</class>
+		<class>com.skilldistillery.childcare.entities.Food</class>
+		<class>com.skilldistillery.childcare.entities.Kid</class>
+		<class>com.skilldistillery.childcare.entities.Message</class>
+		<class>com.skilldistillery.childcare.entities.Mood</class>
+		<class>com.skilldistillery.childcare.entities.Nap</class>
+		<class>com.skilldistillery.childcare.entities.ReportImage</class>
+		<class>com.skilldistillery.childcare.entities.Staff</class>
 		<class>com.skilldistillery.childcare.entities.User</class>
 
 		<!-- end entities -->
