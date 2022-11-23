@@ -39,15 +39,15 @@ public class DailyReportTest {
 		dr = null;
 	}
 
-//	@Test
-//	void test() {
-//		assertNotNull(dr);
-//		assertEquals("Circle Time, Arts & Crafts, Outside Time", dr.getActivities());
-//	}
+	@Test
+	void test() {
+		assertNotNull(dr);
+		assertEquals("Circle Time, Arts & Crafts, Outside Time", dr.getActivities());
+	}
 	
 	@Test
 	void mapping_moodEntry() {
-		assertEquals(2, dr.getMoodEntries().size());
+		assertEquals(1, dr.getMoodEntries().size());
 	}
 
 }

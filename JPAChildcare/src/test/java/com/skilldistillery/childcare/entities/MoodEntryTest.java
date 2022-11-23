@@ -43,5 +43,10 @@ class MoodEntryTest {
 		assertEquals("2022-11-20T12:34:20", moodEntry.getEnteredAt().toString());
 		
 	}
+	
+	@Test
+	void mapping_mood_entry() {
+		assertEquals(1, moodEntry.getDailyReport().getId());
+	}
 
 }

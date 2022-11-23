@@ -23,7 +23,7 @@ public class MoodEntry {
 	private LocalDateTime enteredAt;
 	
 	@ManyToOne
-	@JoinColumn(name="daily_report")
+	@JoinColumn(name="daily_report_id")
 	@MapsId(value="dailyReportId")
 	private DailyReport dailyReport;
 	
@@ -31,6 +31,26 @@ public class MoodEntry {
 	@JoinColumn(name="mood_id")
 	@MapsId(value="moodId")
 	private Mood mood;
+
+
+	public DailyReport getDailyReport() {
+		return dailyReport;
+	}
+
+
+	public void setDailyReport(DailyReport dailyReport) {
+		this.dailyReport = dailyReport;
+	}
+
+
+	public Mood getMood() {
+		return mood;
+	}
+
+
+	public void setMood(Mood mood) {
+		this.mood = mood;
+	}
 
 
 	public MoodId getId() {
