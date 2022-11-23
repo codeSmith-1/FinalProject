@@ -1,6 +1,5 @@
 package com.skilldistillery.childcare.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -13,10 +12,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AdultTest {
+class GuardianTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Adult adult;
+	private Guardian guardian;
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPAChildcare");
@@ -26,30 +27,26 @@ public class AdultTest {
 	static void tearDownAfterClass() throws Exception {
 		emf.close();
 	}
-
+	
 	@BeforeEach
 	void setUp() throws Exception {
-	em = emf.createEntityManager();
-	adult = em.find(Adult.class, 1);
+		em = emf.createEntityManager();
+		GuardianId gid = new GuardianId();
+//		gid.setAdultId(1);
+//		gid.setKidId(2);
+		guardian = em.find(Guardian.class, new GuardianId(2, 1));
 	}
-
+	
 	@AfterEach
-	void tearDown() throws Exception {
+	void tearDown() {
 		em.close();
-		adult = null;
-	}
-
-	@Test
-	void test() {
-		assertNotNull(adult);
-		assertEquals("Darlene", adult.getFirstName());
-		assertEquals("Englewood", adult.getAddress().getCity());
+		guardian = null;
 	}
 	
 	@Test
-	void test_guardian_mapping() {
-		assertNotNull(adult);
-		assertEquals(1, adult.getGuardians().size());
+	void test() {
+		assertNotNull("Mother", guardian.getRelationship());
 	}
-
+	
 }
+

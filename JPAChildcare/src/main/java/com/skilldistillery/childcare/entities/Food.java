@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Food {
@@ -24,7 +26,21 @@ public class Food {
 	private String other;
 	//day
 	
+	@ManyToOne
+	@JoinColumn(name="day_id")
+	private DailyReport dailyReport;
 	
+	
+	public DailyReport getDailyReport() {
+		return dailyReport;
+	}
+
+
+	public void setDailyReport(DailyReport dailyReport) {
+		this.dailyReport = dailyReport;
+	}
+
+
 	public int getId() {
 		return id;
 	}
