@@ -43,7 +43,7 @@ public class ReportImageTest {
 	@Test
 	void test() {
 		assertNotNull(ri);
-		assertEquals("asdf", ri.getImageUrl());
+		assertEquals("https://cloudfront-us-east-1.images.arcpublishing.com/coindesk/WMXJCFJ3ERCETA6TJNZ5NQPNKA.webp", ri.getImageUrl());
 	}
 
 }

@@ -42,7 +42,7 @@ public class DailyReportTest {
 	@Test
 	void test() {
 		assertNotNull(dr);
-		assertEquals("asdf", dr.getTimeIn());
+		assertEquals("Circle Time, Arts & Crafts, Outside Time", dr.getActivities());
 	}
 
 }

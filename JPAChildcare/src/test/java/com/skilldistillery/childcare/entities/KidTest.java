@@ -42,7 +42,7 @@ public class KidTest {
 	@Test
 	void test() {
 		assertNotNull(k);
-		assertEquals("asdf", k.getFirstName());
+		assertEquals("Javier", k.getFirstName());
 	}
 
 }

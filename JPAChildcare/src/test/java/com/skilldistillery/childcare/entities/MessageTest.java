@@ -42,7 +42,7 @@ public class MessageTest {
 	@Test
 	void test() {
 		assertNotNull(msg);
-		assertEquals("asdf", msg.getMessageDate());
+		assertEquals("Hello", msg.getContent());
 	}
 
 }
