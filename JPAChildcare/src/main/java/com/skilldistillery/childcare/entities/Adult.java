@@ -49,12 +49,6 @@ public class Adult {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getRelationship() {
-		return relationship;
-	}
-	public void setRelationship(String relationship) {
-		this.relationship = relationship;
-	}
 	public int getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -75,8 +69,7 @@ public class Adult {
 	}
 	@Override
 	public String toString() {
-		return "Adult [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", relationship="
-				+ relationship + ", phoneNumber=" + phoneNumber + ", imageUrl=" + imageUrl + ", emergencyContact="
+		return "Adult [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", imageUrl=" + imageUrl + ", emergencyContact="
 				+ emergencyContact + "]";
 	}
 	@Override
