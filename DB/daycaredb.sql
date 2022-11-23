@@ -269,14 +269,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `guardian` ;
 
 CREATE TABLE IF NOT EXISTS `guardian` (
-  `guardian_id` INT NOT NULL,
+  `adult_id` INT NOT NULL,
   `kid_id` INT NOT NULL,
   `relationship` VARCHAR(45) NULL,
-  PRIMARY KEY (`guardian_id`, `kid_id`),
+  PRIMARY KEY (`adult_id`, `kid_id`),
   INDEX `fk_guardian_has_child_child1_idx` (`kid_id` ASC),
-  INDEX `fk_guardian_has_child_guardian1_idx` (`guardian_id` ASC),
+  INDEX `fk_guardian_has_child_guardian1_idx` (`adult_id` ASC),
   CONSTRAINT `fk_guardian_has_child_guardian1`
-    FOREIGN KEY (`guardian_id`)
+    FOREIGN KEY (`adult_id`)
     REFERENCES `adult` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -530,8 +530,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `guardian` (`guardian_id`, `kid_id`, `relationship`) VALUES (1, 2, 'Mother');
-INSERT INTO `guardian` (`guardian_id`, `kid_id`, `relationship`) VALUES (2, 1, 'Father');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (1, 2, 'Mother');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (2, 1, 'Father');
 
 COMMIT;
 

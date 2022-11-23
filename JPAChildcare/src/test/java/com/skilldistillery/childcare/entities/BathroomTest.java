@@ -39,11 +39,29 @@ class BathroomTest {
 		br = null;
 	}
 
-	@Test
-	void test() {
-		assertNotNull(br);
-		assertEquals("2022-11-20 09:17:48", br.getBathroomTime());
-	}
+//	@Test
+//	void test() {
+//		assertNotNull(br);
+//		assertEquals("2022-11-20 09:17:48", br.getBathroomTime());
+//	}
 
+	@Test
+	void test_bathroom_to_type_mapping() {
+		assertNotNull(br);
+		assertEquals("Dry", br.getType().getStatus());
+	}
+	
+	@Test
+	void test_bathroom_to_staff_mapping() {
+		assertNotNull(br);
+		assertEquals("William", br.getStaff().getFirstName());
+	}
+	
+	@Test
+	void test_bathroom_to_daily_report_mapping() {
+		assertNotNull(br);
+		assertEquals(1, br.getDay().getId());
+	}
+	
 
 }
