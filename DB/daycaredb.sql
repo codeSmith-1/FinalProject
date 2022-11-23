@@ -22,22 +22,23 @@ DROP TABLE IF EXISTS `classroom` ;
 
 CREATE TABLE IF NOT EXISTS `classroom` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `room_name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `child`
+-- Table `kid`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `child` ;
+DROP TABLE IF EXISTS `kid` ;
 
-CREATE TABLE IF NOT EXISTS `child` (
+CREATE TABLE IF NOT EXISTS `kid` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `birthday` DATE NOT NULL,
   `classroom_id` INT NOT NULL,
-  `child_guarding_many_to_many_id` INT NOT NULL,
+  `image_url` VARCHAR(1500) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_child_classroom1_idx` (`classroom_id` ASC),
   CONSTRAINT `fk_child_classroom1`
@@ -49,37 +50,38 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `day`
+-- Table `daily_report`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `day` ;
+DROP TABLE IF EXISTS `daily_report` ;
 
-CREATE TABLE IF NOT EXISTS `day` (
+CREATE TABLE IF NOT EXISTS `daily_report` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `time_in` DATETIME(1) NULL,
-  `time_out` DATETIME(1) NULL,
-  `diaper_low` TINYINT(1) NULL,
-  `wipes_low` TINYINT(1) NULL,
+  `time_in` DATETIME NULL,
+  `time_out` DATETIME NULL,
+  `diaper_low` TINYINT NULL,
+  `wipes_low` TINYINT NULL,
   `activities` VARCHAR(700) NULL,
-  `notes` VARCHAR(1500) NULL,
+  `notes` TEXT NULL,
   `child_id` INT NOT NULL,
+  `report_date` DATE NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_day_child1_idx` (`child_id` ASC),
   CONSTRAINT `fk_day_child1`
     FOREIGN KEY (`child_id`)
-    REFERENCES `child` (`id`)
+    REFERENCES `kid` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meals`
+-- Table `food`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meals` ;
+DROP TABLE IF EXISTS `food` ;
 
-CREATE TABLE IF NOT EXISTS `meals` (
+CREATE TABLE IF NOT EXISTS `food` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `meal` VARCHAR(250) NULL,
+  `lunch` VARCHAR(250) NULL,
   `am_snack` VARCHAR(250) NULL,
   `pm_snack` VARCHAR(250) NULL,
   `other` VARCHAR(250) NULL,
@@ -88,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `meals` (
   INDEX `fk_meals_day_idx` (`day_id` ASC),
   CONSTRAINT `fk_meals_day`
     FOREIGN KEY (`day_id`)
-    REFERENCES `day` (`id`)
+    REFERENCES `daily_report` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -101,14 +103,14 @@ DROP TABLE IF EXISTS `nap` ;
 
 CREATE TABLE IF NOT EXISTS `nap` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `time_start` DATETIME(1) NULL,
-  `time_finish` DATETIME(1) NULL,
+  `time_start` DATETIME NULL,
+  `time_finish` DATETIME NULL,
   `day_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_nap_day1_idx` (`day_id` ASC),
   CONSTRAINT `fk_nap_day1`
     FOREIGN KEY (`day_id`)
-    REFERENCES `day` (`id`)
+    REFERENCES `daily_report` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -141,6 +143,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `last_name` VARCHAR(45) NOT NULL,
   `user_id` INT NOT NULL,
   `classroom_id` INT NOT NULL,
+  `image_url` VARCHAR(1500) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_staff_user1_idx` (`user_id` ASC),
   INDEX `fk_staff_classroom1_idx` (`classroom_id` ASC),
@@ -158,38 +161,80 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `address`
+-- Table `bathroom_type`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `address` ;
+DROP TABLE IF EXISTS `bathroom_type` ;
 
-CREATE TABLE IF NOT EXISTS `address` (
-  `id` INT NOT NULL,
-  `address` VARCHAR(200) NOT NULL,
+CREATE TABLE IF NOT EXISTS `bathroom_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `status` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bathroom`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bathroom` ;
+
+CREATE TABLE IF NOT EXISTS `bathroom` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(150) NULL,
+  `bathroom_time` DATETIME NULL,
+  `day_id` INT NOT NULL,
   `staff_id` INT NOT NULL,
+  `bathroom_type_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_address_staff1_idx` (`staff_id` ASC),
-  CONSTRAINT `fk_address_staff1`
+  INDEX `fk_bathroom_day1_idx` (`day_id` ASC),
+  INDEX `fk_bathroom_staff1_idx` (`staff_id` ASC),
+  INDEX `fk_bathroom_bathroom_type1_idx` (`bathroom_type_id` ASC),
+  CONSTRAINT `fk_bathroom_day1`
+    FOREIGN KEY (`day_id`)
+    REFERENCES `daily_report` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bathroom_staff1`
     FOREIGN KEY (`staff_id`)
     REFERENCES `staff` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bathroom_bathroom_type1`
+    FOREIGN KEY (`bathroom_type_id`)
+    REFERENCES `bathroom_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `guardian`
+-- Table `address`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `guardian` ;
+DROP TABLE IF EXISTS `address` ;
 
-CREATE TABLE IF NOT EXISTS `guardian` (
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` INT NOT NULL,
+  `street` VARCHAR(200) NOT NULL,
+  `city` VARCHAR(45) NULL,
+  `state` VARCHAR(45) NULL,
+  `zip` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `adult`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `adult` ;
+
+CREATE TABLE IF NOT EXISTS `adult` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `relationship` VARCHAR(45) NOT NULL,
   `phone_number` INT(9) NOT NULL,
   `user_id` INT NOT NULL,
-  `child_guarding_many_to_many_id` INT NOT NULL,
   `address_id` INT NOT NULL,
+  `image_url` VARCHAR(1500) NULL,
+  `emergency_contact` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_guardian_user1_idx` (`user_id` ASC),
   INDEX `fk_guardian_address1_idx` (`address_id` ASC),
@@ -207,119 +252,87 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Payment`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `Payment` ;
-
-CREATE TABLE IF NOT EXISTS `Payment` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `current` TINYINT(1) NULL,
-  `guardian_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_Payment_guardian1_idx` (`guardian_id` ASC),
-  CONSTRAINT `fk_Payment_guardian1`
-    FOREIGN KEY (`guardian_id`)
-    REFERENCES `guardian` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `bathroom`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bathroom` ;
-
-CREATE TABLE IF NOT EXISTS `bathroom` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `wet` VARCHAR(45) NULL,
-  `dry` VARCHAR(45) NULL,
-  `bm` VARCHAR(45) NULL,
-  `time` DATETIME(1) NULL,
-  `day_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_bathroom_day1_idx` (`day_id` ASC),
-  CONSTRAINT `fk_bathroom_day1`
-    FOREIGN KEY (`day_id`)
-    REFERENCES `day` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `mood`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mood` ;
 
 CREATE TABLE IF NOT EXISTS `mood` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `happy` TINYINT(1) NULL,
-  `fussy` TINYINT(1) NULL,
-  `quiet` TINYINT(1) NULL,
-  `sad` TINYINT(1) NULL,
-  `sleepy` TINYINT(1) NULL,
-  `day_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_mood_day1_idx` (`day_id` ASC),
-  CONSTRAINT `fk_mood_day1`
-    FOREIGN KEY (`day_id`)
-    REFERENCES `day` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `description` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `guardian_has_child`
+-- Table `guardian`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `guardian_has_child` ;
+DROP TABLE IF EXISTS `guardian` ;
 
-CREATE TABLE IF NOT EXISTS `guardian_has_child` (
+CREATE TABLE IF NOT EXISTS `guardian` (
   `guardian_id` INT NOT NULL,
-  `child_id` INT NOT NULL,
-  PRIMARY KEY (`guardian_id`, `child_id`),
-  INDEX `fk_guardian_has_child_child1_idx` (`child_id` ASC),
+  `kid_id` INT NOT NULL,
+  `relationship` VARCHAR(45) NULL,
+  PRIMARY KEY (`guardian_id`, `kid_id`),
+  INDEX `fk_guardian_has_child_child1_idx` (`kid_id` ASC),
   INDEX `fk_guardian_has_child_guardian1_idx` (`guardian_id` ASC),
   CONSTRAINT `fk_guardian_has_child_guardian1`
     FOREIGN KEY (`guardian_id`)
-    REFERENCES `guardian` (`id`)
+    REFERENCES `adult` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_guardian_has_child_child1`
-    FOREIGN KEY (`child_id`)
-    REFERENCES `child` (`id`)
+    FOREIGN KEY (`kid_id`)
+    REFERENCES `kid` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `picture`
+-- Table `mood_entry`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `picture` ;
+DROP TABLE IF EXISTS `mood_entry` ;
 
-CREATE TABLE IF NOT EXISTS `picture` (
-  `id` INT NOT NULL,
-  `picture_url` VARCHAR(400) NULL,
-  `child_id` INT NOT NULL,
-  `guardian_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `mood_entry` (
+  `mood_id` INT NOT NULL,
+  `daily_report_id` INT NOT NULL,
+  `entered_at` DATETIME NULL,
+  PRIMARY KEY (`mood_id`, `daily_report_id`),
+  INDEX `fk_mood_has_daily_report_daily_report1_idx` (`daily_report_id` ASC),
+  INDEX `fk_mood_has_daily_report_mood1_idx` (`mood_id` ASC),
+  CONSTRAINT `fk_mood_has_daily_report_mood1`
+    FOREIGN KEY (`mood_id`)
+    REFERENCES `mood` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_mood_has_daily_report_daily_report1`
+    FOREIGN KEY (`daily_report_id`)
+    REFERENCES `daily_report` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `report_image`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `report_image` ;
+
+CREATE TABLE IF NOT EXISTS `report_image` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image_url` VARCHAR(1500) NULL,
+  `daily_report_id` INT NOT NULL,
   `staff_id` INT NOT NULL,
+  `created_at` DATETIME NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_picture_child1_idx` (`child_id` ASC),
-  INDEX `fk_picture_guardian1_idx` (`guardian_id` ASC),
-  INDEX `fk_picture_staff1_idx` (`staff_id` ASC),
-  CONSTRAINT `fk_picture_child1`
-    FOREIGN KEY (`child_id`)
-    REFERENCES `child` (`id`)
+  INDEX `fk_report_image_daily_report1_idx` (`daily_report_id` ASC),
+  INDEX `fk_report_image_staff1_idx` (`staff_id` ASC),
+  CONSTRAINT `fk_report_image_daily_report1`
+    FOREIGN KEY (`daily_report_id`)
+    REFERENCES `daily_report` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_picture_guardian1`
-    FOREIGN KEY (`guardian_id`)
-    REFERENCES `guardian` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_picture_staff1`
+  CONSTRAINT `fk_report_image_staff1`
     FOREIGN KEY (`staff_id`)
     REFERENCES `staff` (`id`)
     ON DELETE NO ACTION
@@ -328,24 +341,27 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `user_has_day`
+-- Table `message`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_has_day` ;
+DROP TABLE IF EXISTS `message` ;
 
-CREATE TABLE IF NOT EXISTS `user_has_day` (
-  `user_id` INT NOT NULL,
-  `day_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `day_id`),
-  INDEX `fk_user_has_day_day1_idx` (`day_id` ASC),
-  INDEX `fk_user_has_day_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_user_has_day_user1`
-    FOREIGN KEY (`user_id`)
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `message_date` DATETIME NULL,
+  `content` TEXT NULL,
+  `sender_id` INT NOT NULL,
+  `recipient_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_message_user1_idx` (`sender_id` ASC),
+  INDEX `fk_message_user2_idx` (`recipient_id` ASC),
+  CONSTRAINT `fk_message_user1`
+    FOREIGN KEY (`sender_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_has_day_day1`
-    FOREIGN KEY (`day_id`)
-    REFERENCES `day` (`id`)
+  CONSTRAINT `fk_message_user2`
+    FOREIGN KEY (`recipient_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -362,11 +378,130 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `classroom`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `classroom` (`id`, `room_name`) VALUES (1, 'Fancy Sunshine');
+INSERT INTO `classroom` (`id`, `room_name`) VALUES (2, 'Sugar Dash');
+INSERT INTO `classroom` (`id`, `room_name`) VALUES (3, 'Midnight Sparkle');
+INSERT INTO `classroom` (`id`, `room_name`) VALUES (4, 'Twinkle Wish');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `kid`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (1, 'Javier', 'Rodriguez', '2018-07-15', 1, NULL);
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (2, 'Joe', 'Franklin', '2019-03-06', 2, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `nap`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `nap` (`id`, `time_start`, `time_finish`, `day_id`) VALUES (1, '2022-11-20T12:01:32', '2022-11-20T12:51:32', 1);
+INSERT INTO `nap` (`id`, `time_start`, `time_finish`, `day_id`) VALUES (2, '2022-11-20T12:01:32', '2022-11-20T13:15:32', 1);
+INSERT INTO `nap` (`id`, `time_start`, `time_finish`, `day_id`) VALUES (3, '2022-11-21T12:00:15', '2022-11-21T12:45:12', 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (1, 'null', 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `staff`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (1, 'Rob', 'Roselius', 1, 1, NULL);
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (2, 'Anthony', 'King', 2, 2, NULL);
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (3, 'Jeremy', 'Botta', 3, 3, NULL);
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (4, 'William', 'Slaunwhite', 4, 4, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `bathroom_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `bathroom_type` (`id`, `status`) VALUES (1, 'BM');
+INSERT INTO `bathroom_type` (`id`, `status`) VALUES (2, 'Wet diaper');
+INSERT INTO `bathroom_type` (`id`, `status`) VALUES (3, 'Dry');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `bathroom`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `bathroom` (`id`, `description`, `bathroom_time`, `day_id`, `staff_id`, `bathroom_type_id`) VALUES (1, 'N/A', '2022-11-20T09:17:48', 1, 4, 3);
+INSERT INTO `bathroom` (`id`, `description`, `bathroom_time`, `day_id`, `staff_id`, `bathroom_type_id`) VALUES (2, 'Blowout', '2022-11-21T14:55:12', 2, 2, 1);
+INSERT INTO `bathroom` (`id`, `description`, `bathroom_time`, `day_id`, `staff_id`, `bathroom_type_id`) VALUES (3, 'N/A', '2022-11-21T15:02:55', 2, 1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (1, '379 Washington St.', 'Englewood', 'CO', '80110');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (2, '1413 Downing St.', 'Denver', 'CO', '80209');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `adult`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (1, 'Darlene', 'Franklin', 303-992-0473, 1, 1, NULL, 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (2, 'Guillermo', 'Rodriguez', 720-552-9462, 2, 2, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `mood`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `mood` (`id`, `description`) VALUES (1, 'Happy');
+INSERT INTO `mood` (`id`, `description`) VALUES (2, 'Fussy');
+INSERT INTO `mood` (`id`, `description`) VALUES (3, 'Tired');
+INSERT INTO `mood` (`id`, `description`) VALUES (4, 'Quiet');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `guardian`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `guardian` (`guardian_id`, `kid_id`, `relationship`) VALUES (1, 2, 'Mother');
+INSERT INTO `guardian` (`guardian_id`, `kid_id`, `relationship`) VALUES (2, 1, 'Father');
 
 COMMIT;
 
