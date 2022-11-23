@@ -4,13 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StaffComponent } from './models/staff/staff.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { StaffHomeComponent } from './components/staff-home/staff-home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StaffComponent
+    LoginComponent,
+    LogoutComponent,
+    StaffHomeComponent,
   ],
   imports: [
     BrowserModule,
