@@ -11,29 +11,46 @@ import com.skilldistillery.childcare.repositories.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {
 
-		@Autowired
-		private UserRepository userRepo;
+	@Autowired
+	private UserRepository userRepo;
 
-		@Override
-		public List<User> listAllUsers() {
+	@Override
+	public List<User> listAllUsers(String username) {
+		User user = userRepo.findByUsername(username);
+		if (user.getRole().equals("staff")) {
 			return userRepo.findAll();
+		} else {
+			return null;
 		}
+	}
 
-		@Override
-		public User showUserById(int id) {
+	@Override
+	public User showUserById(String username, int id) {
+		User user = userRepo.findByUsername(username);
+		if (user.getRole().equals("staff")) {
 			return userRepo.queryById(id);
+		} else {
+			return null;
 		}
+	}
 
-		@Override
-		public User create(User user) {
-			if(user != null) {
+	@Override
+	public User create(String username, User user) {
+		User userCheck = userRepo.findByUsername(username);
+		if (userCheck.getRole().equals("staff")) {
+			if (user != null) {
 				userRepo.saveAndFlush(user);
 			}
 			return user;
+		} else {
+			return null;
 		}
+	}
 
-		@Override
-		public User update(int userId, User user) {
+	@Override
+	public User update(String username, int userId, User user) {
+		User userCheck = userRepo.findByUsername(username);
+		if (userCheck.getRole().equals("staff")) {
 			User userToUpdate = userRepo.queryById(userId);
 			userToUpdate.setUsername(user.getUsername());
 			userToUpdate.setPassword(user.getPassword());
@@ -41,15 +58,21 @@ public class UserServiceImpl implements UserService {
 			userToUpdate.setEnabled(user.getEnabled());
 			userRepo.saveAndFlush(userToUpdate);
 			return userToUpdate;
+		} else {
+			return null;
 		}
+	}
 
-		@Override
-		public boolean delete(int userId) {
+	@Override
+	public boolean delete(String username, int userId) {
+		User user = userRepo.findByUsername(username);
+		if (user.getRole().equals("staff")) {
 			User userToDelete = userRepo.queryById(userId);
-			if(userToDelete != null) {
+			if (userToDelete != null) {
 				userRepo.delete(userToDelete);
 				return true;
 			}
-			return false;
 		}
+		return false;
+	}
 }
