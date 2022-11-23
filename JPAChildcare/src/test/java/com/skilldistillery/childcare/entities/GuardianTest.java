@@ -32,9 +32,9 @@ class GuardianTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		GuardianId gid = new GuardianId();
-		gid.setAdultId(1);
-		gid.setKidId(1);
-		guardian = em.find(Guardian.class, gid);
+//		gid.setAdultId(1);
+//		gid.setKidId(2);
+		guardian = em.find(Guardian.class, new GuardianId(2, 1));
 	}
 	
 	@AfterEach
@@ -45,7 +45,7 @@ class GuardianTest {
 	
 	@Test
 	void test() {
-		assertNotNull("", guardian.getRelationship());
+		assertNotNull("Mother", guardian.getRelationship());
 	}
 	
 }
