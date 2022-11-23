@@ -17,10 +17,15 @@ public class Staff {
 	private String imageUrl;
 	//user
 	//classroom
+	
 
 	@Override
 	public String toString() {
 		return "Staff [firstName=" + firstName + ", lastName=" + lastName + ", imageUrl=" + imageUrl + "]";
+	}
+
+	public Staff() {
+		super();
 	}
 
 	public String getFirstName() {

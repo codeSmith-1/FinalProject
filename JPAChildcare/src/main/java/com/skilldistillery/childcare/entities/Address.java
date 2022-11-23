@@ -16,6 +16,12 @@ public class Address {
 	private String city;
 	private String state;
 	private String zip;
+	
+	
+	
+	public Address() {
+		super();
+	}
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip

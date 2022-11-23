@@ -24,6 +24,12 @@ public class Adult {
 	private String imageUrl;
 	@Column(name = "emergency_contact")
 	private boolean emergencyContact;
+	
+	
+	
+	public Adult() {
+		super();
+	}
 	public int getId() {
 		return id;
 	}
