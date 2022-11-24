@@ -10,6 +10,8 @@ import { StaffHomeComponent } from './components/staff-home/staff-home.component
 import { GuardianHomeComponent } from './components/guardian-home/guardian-home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +21,14 @@ import { HomeComponent } from './components/home/home.component';
     GuardianHomeComponent,
     NotFoundComponent,
     HomeComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

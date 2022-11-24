@@ -6,4 +6,5 @@ import com.skilldistillery.childcare.entities.ReportImage;
 
 public interface ReportImageRepository extends JpaRepository<ReportImage, Integer> {
 	ReportImage queryById(int id);
+	
 }

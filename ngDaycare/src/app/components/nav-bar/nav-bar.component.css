@@ -1,0 +1,22 @@
+.navbar-brand {
+  letter-spacing: 3px;
+  color: #c24244;
+}
+
+.navbar-brand:hover {
+	color: #c24244;
+}
+
+.navbar-scroll .nav-link,
+.navbar-scroll .fa-bars {
+  color: #7f4722;
+}
+
+.navbar-scrolled .nav-link,
+.navbar-scrolled .fa-bars {
+  color: #7f4722;
+}
+
+.navbar-scrolled {
+  background-color: #ffede7;
+}

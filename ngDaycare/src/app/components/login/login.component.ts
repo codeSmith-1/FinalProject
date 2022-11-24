@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginUser: User = new User();
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(loginUser.username, loginUser.password).subscribe({
       next:(loggedInUser)=> {
         // add logic for user type
+        console.log(loggedInUser.username);
         if (loggedInUser.role == ("staff") || loggedInUser.role == ("admin")){
         this.router.navigateByUrl('/staffHome');
         } else if (loggedInUser.role == ("user")){
