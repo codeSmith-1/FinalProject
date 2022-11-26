@@ -13,10 +13,10 @@
           <a class="nav-link" [routerLink]="['/contact']">Contact</a>
         </li>
         <li *ngIf="loggedIn()" class="nav-item">
-          <a class="nav-link" [routerLink]="['/guardian-home']">Login</a>
+          <a class="nav-link" style="float:right" [routerLink]="['/guardian-home']">Login</a>
         </li>
         <li class="nav-item" *ngIf="!loggedIn()">
-          <a class="nav-link" [routerLink]="['/register']">Register</a>
+          <a class="nav-link" style="float:right" [routerLink]="['/register']">Register</a>
         </li>
         <li *ngIf="!loggedIn()">
           <app-login></app-login>
