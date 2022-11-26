@@ -1,7 +1,25 @@
 <form>
   <div class="row">
-    <input class="col form-control" placeholder="username" type="text" name="username" [(ngModel)]="loginUser.username"><br>
-    <input class="col form-control" type="text" placeholder="password" name="password" [(ngModel)]="loginUser.password"><br>
-    <button class="col btn btn-primary" (click)="login(loginUser)">Login</button>
+    <div class="col-auto">
+      <input
+        class="form-control"
+        type="text"
+        name="Username"
+        [(ngModel)]="loginUser.username"
+        placeholder="username"
+      />
+    </div>
+    <div class="col-auto">
+      <input
+        class="col form-control"
+        type="password"
+        name="password"
+        [(ngModel)]="loginUser.password"
+        placeholder="password"
+      />
+    </div>
+    <div class="col-auto">
+      <button class="col form-control" (click)="login(loginUser)">Login</button>
+    </div>
   </div>
 </form>

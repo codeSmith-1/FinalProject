@@ -444,11 +444,11 @@ COMMIT;
 START TRANSACTION;
 USE `daycaredb`;
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (1, 'staff', 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (2, 'staff', 'staff', 'c3RhZmY6d29tYmF0Mg==', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (3, 'staff', 'staff1', 'c3RhZmYxOndvbWJhdDM=', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (4, 'staff', 'staff2', 'c3RhZmYyOndvbWJhdDQ=', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (5, 'user', 'parent', 'cGFyZW50OndvbWJhdDE=', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (6, 'user', 'parent1', 'cGFyZW50Mjp3b21iYXQy', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (2, 'staff', 'robros', '$2a$10$4/QJZV7S7wNYeh3CvcHhTOAQ8mIQtf8QlKK4qhZpZBj0Ux3WsL44G', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (3, 'staff', 'anthonyk', '$2a$10$044zw.QPqNMBlzkqOJ4unORvy1DQc2jY/YPCKFMoxWZ/S/5o2cTu6', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (4, 'staff', 'jeremyw', '$2a$10$nmsfDgaAqIkIz2v9T9kau.m9B1yL3uxOUX2URusIGbuOezhCOal/i', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (5, 'user', 'darlenef', '$2a$10$4QG1VKu2HEFKPbMc6Kyb1uZN18A452vJNmyzE8wAbYu306ObgJh.G', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (6, 'user', 'guillermor', '$2a$10$OQyN5W8eDCecBT9PHdJ4wOw1u.kVzZig4VttBjkz0bKs4pVYeh2s.', 1);
 
 COMMIT;
 
@@ -458,10 +458,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (1, 'Rob', 'Roselius', 1, 1, NULL);
-INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (2, 'Anthony', 'King', 2, 2, NULL);
-INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (3, 'Jeremy', 'Botta', 3, 3, NULL);
-INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (4, 'William', 'Slaunwhite', 4, 4, NULL);
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (1, 'Rob', 'Roselius', 2, 1, NULL);
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (2, 'Anthony', 'King', 3, 2, NULL);
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (3, 'Jeremy', 'Botta', 4, 3, NULL);
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (4, 'William', 'Slaunwhite', 1, 4, NULL);
 
 COMMIT;
 

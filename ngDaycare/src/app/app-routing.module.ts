@@ -7,10 +7,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { StaffHomeComponent } from './components/staff-home/staff-home.component';
 
 const routes: Routes = [
- { path: '', pathMatch: 'full', redirectTo: 'login' },
- { path: 'login', component: LoginComponent },
+ { path: '', pathMatch: 'full', redirectTo: 'home' },
+ { path: 'home', component: HomeComponent },
  { path: 'staffHome', component: StaffHomeComponent },
- { path: 'guardianHome', component: GuardianHomeComponent},
+ { path: 'guardianHome', component: StaffHomeComponent },
  { path: '**', component: NotFoundComponent }
 ];
 
