@@ -6,24 +6,26 @@
 <input type="text" name="password" [(ngModel)]="newUser.password"><br>
 
 
-<label for="email">First </label>
+<label for="firstName">First </label>
 <input type="text" name="firstName" [(ngModel)]="newAdult.firstName"><br>
-<label for="email">Last </label>
+<label for="lastName">Last </label>
 <input type="text" name="lastName" [(ngModel)]="newAdult.lastName"><br>
-<label for="email">Image </label>
+<label for="imageUrl">Image </label>
 <input type="text" name="imageUrl" [(ngModel)]="newAdult.imageUrl"><br>
-<label for="email">Phone </label>
-<input type="text" name="phone" [(ngModel)]="newAdult.phoneNumber"><br>
+<label for="phoneNumber">Phone </label>
+<input type="text" name="phoneNumber" [(ngModel)]="newAdult.phoneNumber"><br>
 <!-- toggle button for e-contact boolean -->
-<label for="email">Emergency Contact </label>
+<label for="emergencyContact">Emergency Contact </label>
 <input type="text" name="phone" [(ngModel)]="newAdult.emergencyContact"><br>
 
 
+<label for="street">Street </label>
+<input type="text" name="street" [(ngModel)]="newAddress.street"><br>
 <label for="email">First </label>
-<input type="text" name="firstName" [(ngModel)]="newAdult.firstName"><br>
+<input type="text" name="firstName" [(ngModel)]="newAddress.city"><br>
 <label for="email">First </label>
-<input type="text" name="firstName" [(ngModel)]="newAdult.firstName"><br>
-<label for="email">First </label>
-<input type="text" name="firstName" [(ngModel)]="newAdult.firstName"><br>
+<input type="text" name="firstName" [(ngModel)]="newAddress.state"><br>
+<label for="zip">Zip </label>
+<input type="text" name="zip" [(ngModel)]="newAddress.zip"><br>
 
-<button (click)="registerAdult(newAdult, newUser)">Register</button>
+<button (click)="registerAdult(newAdult, newUser, newAddress)">Register</button>

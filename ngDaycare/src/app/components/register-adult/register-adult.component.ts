@@ -11,7 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './register-adult.component.html',
   styleUrls: ['./register-adult.component.css']
 })
+
 export class RegisterAdultComponent implements OnInit {
+
   constructor(private auth: AuthService, private adultSvc: AdultService, private router: Router) {}
 
   newUser: User = new User();
@@ -20,4 +22,5 @@ export class RegisterAdultComponent implements OnInit {
   ngOnInit(): void {}
 
   registerAdult(newAdult: Adult, newUser: User){}
+
 }
