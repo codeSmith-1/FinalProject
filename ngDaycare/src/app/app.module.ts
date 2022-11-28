@@ -13,7 +13,11 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RegisterStaffComponent } from './components/register-staff/register-staff.component';
+<<<<<<< HEAD
 import { RegisterAdultComponent } from './components/register-adult/register-adult.component';
+=======
+import { SuccessComponent } from './components/success/success.component';
+>>>>>>> 8f256aa88e905df0efcefb973b4cf22f5abdcaf5
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +29,11 @@ import { RegisterAdultComponent } from './components/register-adult/register-adu
     HomeComponent,
     NavBarComponent,
     RegisterStaffComponent,
+<<<<<<< HEAD
     RegisterAdultComponent,
+=======
+    SuccessComponent,
+>>>>>>> 8f256aa88e905df0efcefb973b4cf22f5abdcaf5
   ],
   imports: [
     BrowserModule,

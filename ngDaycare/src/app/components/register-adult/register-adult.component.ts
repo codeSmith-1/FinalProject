@@ -19,4 +19,5 @@ export class RegisterAdultComponent implements OnInit {
   newAddress: Address = new Address();
   ngOnInit(): void {}
 
+  registerAdult(newAdult: Adult, newUser: User){}
 }
