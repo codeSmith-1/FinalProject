@@ -18,11 +18,11 @@ export class AdultService {
   // create adult
   // update adult
 
-  create(adult: Adult, registeredUser: User): Observable<Adult> {
+  create(adult: Adult, newUser: User): Observable<Adult> {
     // Create POST request to register a new account
     let credentials = this.auth.generateBasicAuthCredentials(
-      registeredUser.username,
-      registeredUser.password
+      newUser.username,
+      newUser.password
     );
     let httpOptions = { headers: { Authorization: `Basic ${credentials}`}};
     console.log(httpOptions);
