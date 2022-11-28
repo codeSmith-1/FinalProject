@@ -10,7 +10,7 @@ public interface AdultService {
 
 	Adult showAdultById(String username, int id);
 
-	Adult create(String username, Adult adult);
+	Adult create(Adult adult);
 
 	Adult update(String username, int adultId, Adult adult);
 

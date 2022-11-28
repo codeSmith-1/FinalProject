@@ -3,9 +3,14 @@ package com.skilldistillery.childcare.controllers;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +29,20 @@ public class AdultController {
 	public List<Adult> listAdults(Principal principal){
 		return null;
 		
+	}
+	
+	@PostMapping("adults")
+	public Adult create(@RequestBody Adult adult, HttpServletResponse res, HttpServletRequest req) {
+		try {
+			adult = adultService.create(adult);
+			res.setStatus(201);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(404);
+			adult = null;
+		}
+		
+		return adult;
 	}
 
 }

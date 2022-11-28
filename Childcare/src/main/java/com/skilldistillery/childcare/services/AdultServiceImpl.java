@@ -40,16 +40,14 @@ public class AdultServiceImpl implements AdultService {
 	}
 
 	@Override
-	public Adult create(String username, Adult adult) {
-		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
+	public Adult create(Adult adult) {
 			if (adult != null) {
+				System.err.println(adult.getUser().getUsername());
 				adultRepo.saveAndFlush(adult);
+			} else {
+				adult = null;
 			}
 			return adult;
-		} else {
-			return null;
-		}
 	}
 
 	@Override
