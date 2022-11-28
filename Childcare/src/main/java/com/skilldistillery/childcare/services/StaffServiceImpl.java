@@ -39,8 +39,9 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public Staff create(String username, Staff staff) {
-		User user = userRepo.findByUsername(username);
+	public Staff create(Staff staff) {
+		User user = userRepo.findByUsername(staff.getUser().getUsername());
+		System.err.println(staff.getUser().getUsername());
 		if (user.getRole().equals("staff")) {
 			if (staff != null) {
 				staffRepo.saveAndFlush(staff);

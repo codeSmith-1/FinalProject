@@ -10,7 +10,7 @@ public interface StaffService {
 
 	Staff showStaffById(String username, int id);
 
-	Staff create(String username, Staff staff);
+	Staff create(Staff staff);
 
 	Staff update(String username, int staffId, Staff staff);
 
