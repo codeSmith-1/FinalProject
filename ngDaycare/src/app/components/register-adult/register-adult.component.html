@@ -1,29 +1,33 @@
 <p>register-adult works!</p>
-<label for="username">Username </label>
+<form>
+<label for="username">Username: </label>
 <input type="text" name="username" [(ngModel)]="newUser.username"><br>
 
-<label for="password">Password </label>
+<label for="password">Password: </label>
 <input type="text" name="password" [(ngModel)]="newUser.password"><br>
 
 
-<label for="firstName">First </label>
+<label for="firstName">First Name: </label>
 <input type="text" name="firstName" [(ngModel)]="newAdult.firstName"><br>
-<label for="lastName">Last </label>
+<label for="lastName">Last Name</label>
 <input type="text" name="lastName" [(ngModel)]="newAdult.lastName"><br>
-<label for="imageUrl">Image </label>
+<label for="imageUrl">Image: </label>
 <input type="text" name="imageUrl" [(ngModel)]="newAdult.imageUrl"><br>
-<label for="phoneNumber">Phone </label>
+<label for="phoneNumber">Phone: </label>
 <input type="text" name="phoneNumber" [(ngModel)]="newAdult.phoneNumber"><br>
 <!-- toggle button for e-contact boolean -->
-<mat-slide-toggle name="emergencyContact" [(ngModel)]="newAdult.emergencyContact">Are you the emergency Contact? {{newAdult.emergencyContact}}</mat-slide-toggle>
 
-<label for="street">Street </label>
+
+<input type="checkbox" name="emergencyContact" [(ngModel)]="newAdult.emergencyContact"> Are you the emergency contact? <br>
+
+
+<label for="street">Street: </label>
 <input type="text" name="street" [(ngModel)]="newAddress.street"><br>
-<label for="email">First </label>
-<input type="text" name="firstName" [(ngModel)]="newAddress.city"><br>
-<label for="email">First </label>
-<input type="text" name="firstName" [(ngModel)]="newAddress.state"><br>
-<label for="zip">Zip </label>
+<label for="email">City: </label>
+<input type="text" name="city" [(ngModel)]="newAddress.city"><br>
+<label for="email">State: </label>
+<input type="text" name="state" [(ngModel)]="newAddress.state"><br>
+<label for="zip">Zip: </label>
 <input type="text" name="zip" [(ngModel)]="newAddress.zip"><br>
-
 <button (click)="registerAdult(newAdult, newUser, newAddress)">Register</button>
+</form>
