@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `user_id` INT NOT NULL,
-  `classroom_id` INT NOT NULL,
+  `classroom_id` INT NULL,
   `image_url` VARCHAR(1500) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_staff_user1_idx` (`user_id` ASC),
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `adult` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `phone_number` INT(9) NOT NULL,
+  `phone_number` VARCHAR(12) NOT NULL,
   `user_id` INT NOT NULL,
   `address_id` INT NOT NULL,
   `image_url` VARCHAR(1500) NULL,
@@ -506,8 +506,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (1, 'Darlene', 'Franklin', 303-992-0473, 5, 1, NULL, 1);
-INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (2, 'Guillermo', 'Rodriguez', 720-552-9462, 6, 2, NULL, 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (1, 'Darlene', 'Franklin', '303-992-0473', 5, 1, NULL, 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (2, 'Guillermo', 'Rodriguez', '720-552-9462', 6, 2, NULL, 1);
 
 COMMIT;
 
