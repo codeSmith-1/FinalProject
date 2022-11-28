@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RegisterStaffComponent } from './components/register-staff/register-staff.component';
+import { SuccessComponent } from './components/success/success.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { RegisterStaffComponent } from './components/register-staff/register-sta
     HomeComponent,
     NavBarComponent,
     RegisterStaffComponent,
+    SuccessComponent,
   ],
   imports: [
     BrowserModule,
