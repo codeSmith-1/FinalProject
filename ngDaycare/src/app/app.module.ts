@@ -16,6 +16,8 @@ import { RegisterStaffComponent } from './components/register-staff/register-sta
 import { RegisterAdultComponent } from './components/register-adult/register-adult.component';
 import { SuccessComponent } from './components/success/success.component';
 import { UpdateAccountComponent } from './components/update-account/update-account.component';
+import { KidCRUDComponent } from './components/kid-crud/kid-crud.component';
+import { ContactComponent } from './components/contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,8 @@ import { UpdateAccountComponent } from './components/update-account/update-accou
     RegisterAdultComponent,
     SuccessComponent,
     UpdateAccountComponent,
+    KidCRUDComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
