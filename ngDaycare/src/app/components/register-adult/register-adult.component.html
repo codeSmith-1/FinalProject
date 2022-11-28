@@ -15,9 +15,7 @@
 <label for="phoneNumber">Phone </label>
 <input type="text" name="phoneNumber" [(ngModel)]="newAdult.phoneNumber"><br>
 <!-- toggle button for e-contact boolean -->
-<label for="emergencyContact">Emergency Contact </label>
-<input type="text" name="phone" [(ngModel)]="newAdult.emergencyContact"><br>
-
+<mat-slide-toggle name="emergencyContact" [(ngModel)]="newAdult.emergencyContact">Are you the emergency Contact? {{newAdult.emergencyContact}}</mat-slide-toggle>
 
 <label for="street">Street </label>
 <input type="text" name="street" [(ngModel)]="newAddress.street"><br>
