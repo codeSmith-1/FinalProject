@@ -12,6 +12,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { RegisterStaffComponent } from './components/register-staff/register-staff.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     NotFoundComponent,
     HomeComponent,
     NavBarComponent,
+    RegisterStaffComponent,
   ],
   imports: [
     BrowserModule,

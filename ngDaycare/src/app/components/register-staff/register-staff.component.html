@@ -1,0 +1,18 @@
+<p>register-staff works!</p>
+<label for="username">Username </label>
+<input type="text" name="username" [(ngModel)]="newUser.username"><br>
+
+<label for="password">Password </label>
+<input type="text" name="password" [(ngModel)]="newUser.password"><br>
+
+
+<label for="email">First </label>
+<input type="text" name="email" [(ngModel)]="newStaff.firstName"><br>
+<label for="email">Last </label>
+<input type="text" name="email" [(ngModel)]="newStaff.lastName"><br> -->
+<label for="email">Image </label>
+<input type="text" name="email" [(ngModel)]="newStaff.imageUrl"><br> -->
+
+
+<button (click)="registerStaff(newStaff, newUser)">Register</button>
+
