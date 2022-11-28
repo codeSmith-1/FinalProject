@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Classroom } from 'src/app/models/classroom';
 import { Staff } from 'src/app/models/staff';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,7 +16,24 @@ export class RegisterStaffComponent implements OnInit {
 
   newUser: User = new User();
   newStaff: Staff = new Staff();
-  ngOnInit(): void {}
+  classroom: Classroom = new Classroom();
+  classrooms: Classroom[] = [];
+
+  ngOnInit(): void {
+  }
+
+  // get list of classrooms
+  reload() {
+    this.staff.index().subscribe({
+      next: (data) => {
+        this.classrooms = data;
+      },
+      error: (fail) => {
+        console.error('RegisterStaffComponent.reload: error getting classrooms');
+        console.error(fail);
+      },
+    });
+  }
 
   // register(newUser: User): void {
   //   console.log('Registering user:');
@@ -44,12 +62,13 @@ export class RegisterStaffComponent implements OnInit {
   //   });
   // }
 
-  registerStaff(newStaff: Staff, newUser: User) {
+  registerStaff(newStaff: Staff, newUser: User, classroom: Classroom) {
     this.auth.register(newUser).subscribe({
       next: (registeredUser) => {
         newStaff.user = registeredUser;
+        newStaff.classroom = this.classroom;
         // staff svc create
-        this.staff.create(newStaff).subscribe({
+        this.staff.create(newStaff, newUser).subscribe({
           next: (createdStaff) => {
             // route to success page
             this.router.navigateByUrl('/success');
