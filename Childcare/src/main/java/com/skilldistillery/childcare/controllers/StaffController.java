@@ -26,8 +26,7 @@ public class StaffController {
 	@Autowired
 	private StaffService staffSvc;
 	
-	@Autowired
-	private ClassroomService crSvc;
+
 
 	@PostMapping("staff")
 	public Staff registerStaff(@RequestBody Staff staff, HttpServletResponse res) {
@@ -42,8 +41,8 @@ public class StaffController {
 		return staff;
 	}
 	
-	@GetMapping("staff/classrooms")
-	public List<Classroom> showAll(Principal principal){
-		return crSvc.index(principal.getName());
-	}
+//	@GetMapping("staff/classrooms")
+//	public List<Classroom> showAll(Principal principal){
+//		return crSvc.index(principal.getName());
+//	}
 }

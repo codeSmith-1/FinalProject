@@ -4,6 +4,7 @@ import { Observable, catchError, throwError, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import {Buffer} from 'buffer';
+import { Staff } from '../models/staff';
 
 @Injectable({
   providedIn: 'root'

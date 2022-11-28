@@ -7,6 +7,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterAdultComponent } from './components/register-adult/register-adult.component';
 import { RegisterStaffComponent } from './components/register-staff/register-staff.component';
 import { StaffHomeComponent } from './components/staff-home/staff-home.component';
+import { SuccessComponent } from './components/success/success.component';
+import { UpdateAccountComponent } from './components/update-account/update-account.component';
 
 const routes: Routes = [
  { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -15,6 +17,8 @@ const routes: Routes = [
  { path: 'guardianHome', component: StaffHomeComponent },
  { path: 'registerAdult', component: RegisterAdultComponent },
  { path: 'registerStaff', component: RegisterStaffComponent },
+ { path: 'success', component: SuccessComponent},
+ { path: 'updateAccount', component: UpdateAccountComponent},
  { path: '**', component: NotFoundComponent }
 ];
 

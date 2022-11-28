@@ -8,5 +8,8 @@ public interface AdultRepository extends JpaRepository<Adult, Integer> {
 	
 	public Adult queryById(int id);
 	
+	public Adult findByUserId(int id);
+	public Adult findByUser_Username(String username);
+	
 
 }

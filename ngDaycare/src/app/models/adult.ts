@@ -6,13 +6,13 @@ export class Adult {
   id: number;
   firstName: string | undefined;
   lastName: string | undefined;
-  phoneNumber: number | null;
+  phoneNumber: string | null;
   imageUrl: string | undefined;
   emergencyContact: Boolean | undefined;
   user: User | undefined;
   address: Address | undefined;
 
-  constructor(id: number=0, firstName: string="", lastName: string='', phoneNumber: number=0, imageUrl: string='', emergencyContact: boolean = true, user?: User, address?: Address){
+  constructor(id: number=0, firstName: string="", lastName: string='', phoneNumber: string='', imageUrl: string='', emergencyContact: boolean = true, user?: User, address?: Address){
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;

@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 export class AdultService {
   private baseUrl = 'http://localhost:8089/';
   url = environment.baseUrl + "api/adults";
+
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   // create adult
@@ -35,4 +36,27 @@ export class AdultService {
       })
     );
   }
+
+  show(): Observable<Adult>{
+    return this.http.get<Adult>(this.url +"/loggedInAdult", this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('AdultService.show(): error retrieving Adult: ' + err)
+        );
+      })
+    );
+  }
+
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
+
+
 }

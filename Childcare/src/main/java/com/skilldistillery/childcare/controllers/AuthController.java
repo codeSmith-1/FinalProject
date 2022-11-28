@@ -3,6 +3,7 @@ package com.skilldistillery.childcare.controllers;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,13 +33,16 @@ public class AuthController {
 	}
 	 
 	@GetMapping("authenticate")
-	public User authenticate(Principal principal, HttpServletResponse res) {
+	public User authenticate(Principal principal, HttpSession session, HttpServletResponse res) {
 	  if (principal == null) { // no Authorization header sent
 	     res.setStatus(401);
 	     res.setHeader("WWW-Authenticate", "Basic");
 	     return null;
 	  }
-	  return authService.getUserByUsername(principal.getName());
+	  User loggedInUser = authService.getUserByUsername(principal.getName());
+	  session.setAttribute("loggedInUser", loggedInUser);
+	  return loggedInUser;
 	}
+	
 	
 }

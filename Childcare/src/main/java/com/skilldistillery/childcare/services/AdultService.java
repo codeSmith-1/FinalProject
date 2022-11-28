@@ -15,4 +15,8 @@ public interface AdultService {
 	Adult update(String username, int adultId, Adult adult);
 
 	boolean delete(String username, int adultId);
+	
+	Adult showAdultByUserId(int id);
+	
+	Adult showAdultByUsername(String username);
 }

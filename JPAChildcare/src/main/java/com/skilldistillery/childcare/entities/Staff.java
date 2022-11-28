@@ -40,7 +40,6 @@ public class Staff {
 	
 	@JoinColumn(name="user_id")
 	@OneToOne
-	
 	private User user;
 	
 	@Override

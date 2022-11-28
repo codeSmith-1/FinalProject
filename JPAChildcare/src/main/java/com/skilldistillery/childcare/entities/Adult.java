@@ -25,7 +25,7 @@ public class Adult {
 	@Column(name = "last_name")
 	private String lastName;
 	@Column(name = "phone_number")
-	private int phoneNumber;
+	private String phoneNumber;
 	@Column(name ="image_url")
 	private String imageUrl;
 	@Column(name = "emergency_contact")
@@ -96,12 +96,7 @@ public class Adult {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public int getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+	
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -114,6 +109,18 @@ public class Adult {
 	public void setEmergencyContact(boolean emergencyContact) {
 		this.emergencyContact = emergencyContact;
 	}
+	
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Adult [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", imageUrl=" + imageUrl + ", emergencyContact="

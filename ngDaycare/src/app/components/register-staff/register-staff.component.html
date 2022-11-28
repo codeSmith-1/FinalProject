@@ -1,4 +1,5 @@
 <p>register-staff works!</p>
+<form>
 <label for="username">Username </label>
 <input type="text" name="username" [(ngModel)]="newUser.username"><br>
 
@@ -7,12 +8,13 @@
 
 
 <label for="email">First </label>
-<input type="text" name="email" [(ngModel)]="newStaff.firstName"><br>
+<input type="text" name="firstName" [(ngModel)]="newStaff.firstName"><br>
 <label for="email">Last </label>
-<input type="text" name="email" [(ngModel)]="newStaff.lastName"><br>
+<input type="text" name="lastName" [(ngModel)]="newStaff.lastName"><br>
 <label for="email">Image </label>
-<input type="text" name="email" [(ngModel)]="newStaff.imageUrl"><br>
+<input type="text" name="imageUrl" [(ngModel)]="newStaff.imageUrl"><br>
 
 
-<button (click)="registerStaff(newStaff, newUser, classroom)">Register</button>
+<button (click)="registerStaff(newStaff, newUser)">Register</button>
 
+</form>

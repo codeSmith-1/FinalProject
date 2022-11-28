@@ -26,7 +26,8 @@ export class StaffService {
       newUser.password
     );
     let httpOptions = { headers: { Authorization: `Basic ${credentials}`}};
-    return this.http.post<Staff>(this.url, staff).pipe(
+    console.log(httpOptions);
+    return this.http.post<Staff>(this.url, staff, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

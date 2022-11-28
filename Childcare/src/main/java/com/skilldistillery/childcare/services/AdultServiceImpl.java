@@ -90,4 +90,14 @@ public class AdultServiceImpl implements AdultService {
 		}
 		return false;
 	}
+
+	@Override
+	public Adult showAdultByUserId(int id) {
+		return adultRepo.findByUserId(id);
+	}
+
+	@Override
+	public Adult showAdultByUsername(String username) {
+		return adultRepo.findByUser_Username(username);
+	}
 }

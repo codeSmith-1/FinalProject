@@ -62,11 +62,11 @@ export class RegisterStaffComponent implements OnInit {
   //   });
   // }
 
-  registerStaff(newStaff: Staff, newUser: User, classroom: Classroom) {
+  registerStaff(newStaff: Staff, newUser: User) {
     this.auth.register(newUser).subscribe({
       next: (registeredUser) => {
         newStaff.user = registeredUser;
-        newStaff.classroom = this.classroom;
+        // newStaff.classroom = this.classroom;
         // staff svc create
         this.staff.create(newStaff, newUser).subscribe({
           next: (createdStaff) => {
@@ -75,7 +75,7 @@ export class RegisterStaffComponent implements OnInit {
           },
           error: (problem) => {
             console.error(
-              'RegisterStaff.register(): Error logging in user:'
+              'RegisterStaff.register(): Error creating staff:'
             );
             console.error(problem);
           },
@@ -83,7 +83,7 @@ export class RegisterStaffComponent implements OnInit {
       },
       error: (fail) => {
         console.error(
-          'RegisterStaff.register(): Error registering staff'
+          'RegisterStaff.register(): Error registering user'
         );
         console.error(fail);
       },

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.childcare.entities.Adult;
+import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.services.AdultService;
 
 @RestController
@@ -45,4 +47,15 @@ public class AdultController {
 		return adult;
 	}
 
+	@GetMapping("adults/loggedInAdult")
+	public Adult show(Principal principal, HttpSession session, HttpServletResponse res) {
+		User user = (User) session.getAttribute("loggedInUser");
+		try {
+			return adultService.showAdultByUsername(principal.getName());
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

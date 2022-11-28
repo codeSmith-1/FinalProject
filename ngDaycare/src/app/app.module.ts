@@ -15,6 +15,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RegisterStaffComponent } from './components/register-staff/register-staff.component';
 import { RegisterAdultComponent } from './components/register-adult/register-adult.component';
 import { SuccessComponent } from './components/success/success.component';
+import { UpdateAccountComponent } from './components/update-account/update-account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { SuccessComponent } from './components/success/success.component';
     RegisterStaffComponent,
     RegisterAdultComponent,
     SuccessComponent,
+    UpdateAccountComponent,
   ],
   imports: [
     BrowserModule,
