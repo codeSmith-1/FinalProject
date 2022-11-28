@@ -26,8 +26,8 @@ export class RegisterAdultComponent implements OnInit {
       next: (registeredUser) => {
         newAdult.user = registeredUser;
         newAdult.address = newAddress;
-        // staff svc create
-        this.adultSvc.create(newAdult).subscribe({
+        // adult svc create
+        this.adultSvc.create(newAdult, newUser).subscribe({
           next: (createdAdult) => {
             // route to success page
             this.router.navigateByUrl('/success');
