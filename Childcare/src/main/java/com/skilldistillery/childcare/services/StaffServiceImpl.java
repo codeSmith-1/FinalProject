@@ -44,6 +44,7 @@ public class StaffServiceImpl implements StaffService {
 		System.err.println(staff.getUser().getUsername());
 		if (user.getRole().equals("staff")) {
 			if (staff != null) {
+				staff.setUser(user);
 				staffRepo.saveAndFlush(staff);
 			}
 			return staff;

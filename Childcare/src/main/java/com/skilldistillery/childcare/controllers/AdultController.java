@@ -18,7 +18,7 @@ import com.skilldistillery.childcare.entities.Adult;
 import com.skilldistillery.childcare.services.AdultService;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/")
 @CrossOrigin({"*", "http://localhost/"})
 public class AdultController {
 	
@@ -38,7 +38,7 @@ public class AdultController {
 			res.setStatus(201);
 		} catch (Exception e) {
 			e.printStackTrace();
-			res.setStatus(404);
+			res.setStatus(400);
 			adult = null;
 		}
 		

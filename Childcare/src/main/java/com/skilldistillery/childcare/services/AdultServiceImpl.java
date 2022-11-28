@@ -1,12 +1,14 @@
 package com.skilldistillery.childcare.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.childcare.entities.Adult;
 import com.skilldistillery.childcare.entities.User;
+import com.skilldistillery.childcare.repositories.AddressRepository;
 import com.skilldistillery.childcare.repositories.AdultRepository;
 import com.skilldistillery.childcare.repositories.UserRepository;
 
@@ -18,6 +20,9 @@ public class AdultServiceImpl implements AdultService {
 
 	@Autowired
 	public UserRepository userRepo;
+	
+	@Autowired
+	public AddressRepository addressRepo;
 
 	@Override
 	public List<Adult> listAllAdults(String username) {
@@ -41,13 +46,18 @@ public class AdultServiceImpl implements AdultService {
 
 	@Override
 	public Adult create(Adult adult) {
-			if (adult != null) {
+		if (adult != null) {
+			Optional<User> opt = userRepo.findById(adult.getUser().getId());
+			if (opt.isPresent()) {
+				adult.setUser(opt.get());
+				addressRepo.saveAndFlush(adult.getAddress());
 				System.err.println(adult.getUser().getUsername());
 				adultRepo.saveAndFlush(adult);
-			} else {
-				adult = null;
 			}
-			return adult;
+		} else {
+			adult = null;
+		}
+		return adult;
 	}
 
 	@Override

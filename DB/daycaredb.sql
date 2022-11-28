@@ -212,7 +212,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `address` ;
 
 CREATE TABLE IF NOT EXISTS `address` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(200) NOT NULL,
   `city` VARCHAR(45) NULL,
   `state` VARCHAR(45) NULL,
