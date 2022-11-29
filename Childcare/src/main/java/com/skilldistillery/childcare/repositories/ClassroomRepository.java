@@ -6,4 +6,5 @@ import com.skilldistillery.childcare.entities.Classroom;
 
 public interface ClassroomRepository extends JpaRepository<Classroom, Integer>{
 
+
 }

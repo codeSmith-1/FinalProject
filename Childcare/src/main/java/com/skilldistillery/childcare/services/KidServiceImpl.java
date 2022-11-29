@@ -27,6 +27,7 @@ public class KidServiceImpl implements KidService {
 			return null;
 		}
 	}
+	
 
 	@Override
 	public Kid showKid(String username, int id) {
@@ -80,5 +81,13 @@ public class KidServiceImpl implements KidService {
 		}
 		return false;
 	}
+
+
+	@Override
+	public List<Kid> listByClassroom(String roomName) {
+		return kidRepo.findByClassroom_roomName(roomName);
+	}
+	
+	
 
 }
