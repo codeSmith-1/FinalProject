@@ -1,12 +1,40 @@
+<form>
+<label for="firstName">First Name: </label>
+<input type="text" name="firstName" required [(ngModel)]="inSessionAdult.firstName"><br>
+<label for="lastName">Last Name</label>
+<input type="text" name="lastName" required [(ngModel)]="inSessionAdult.lastName"><br>
+<label for="imageUrl">Image: </label>
+<input type="text" name="imageUrl" [(ngModel)]="inSessionAdult.imageUrl"><br>
+<label for="phoneNumber">Phone: </label>
+<input type="text" name="phoneNumber" required [(ngModel)]="inSessionAdult.phoneNumber"><br>
+<!-- toggle button for e-contact boolean -->
+
+<label for="emergencyContact">Are you the emergency contact? </label>
+<input type="checkbox" required name="emergencyContact" [(ngModel)]="inSessionAdult.emergencyContact"> <br>
+
+
+<label for="street">Street: </label>
+<input type="text" name="street" required [(ngModel)]="inSessionAdult.address.street"><br>
+<label for="email">City: </label>
+<input type="text" name="city" required [(ngModel)]="inSessionAdult.address.city"><br>
+<label for="email">State: </label>
+<input type="text" name="state" required [(ngModel)]="inSessionAdult.address.state"><br>
+<label for="zip">Zip: </label>
+<input type="text" name="zip" required [(ngModel)]="inSessionAdult.address.zip"><br>
+<button (click)="updateAdult(inSessionAdult)">Update</button>
+</form>
+<!-- notify on save, easily done with modal -->
+
+
 <ng-template #content let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Update Account</h4>
+		<h4 class="modal-title" id="modal-basic-title">New Memory</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
 		<form>
 			<div class="mb-3">
-        <label for="Country">Adult</label>
+        <label for="Country">Country</label>
         <div class="input-group">
           <div>
           <input type="text" name="Country" placeholder="Country" [(ngModel)]="inSessionAdult.firstName">
@@ -18,21 +46,6 @@
           <input type="text" name="City" placeholder="City" [(ngModel)]="inSessionAdult.lastName">
         </div>
         </div>
-        <label for="image">Image</label>
-        <div class="input-group">
-          <div>
-          <input type="img" name="image" placeholder="image"[(ngModel)]="inSessionAdult.phoneNumber">
-				</div>
-        </div>
-        <label for="City">Note</label>
-        <div class="input-group">
-        <div>
-          <input type="text" name="note" placeholder="note" [(ngModel)]="inSessionAdult.imageUrl">
-        </div>
-        </div>
-        <div>
-          <input type="checkbox" name="emergencyContact" [(ngModel)]="inSessionAdult.emergencyContact"> Are you the emergency contact? <br>
-        </div>
         </div>
 		</form>
 	</div>
@@ -40,3 +53,4 @@
 		<button type="button" class="btn btn-outline-dark" (click)="updateAdult(inSessionAdult)" (click)="modal.close('Save click')">Save</button>
 	</div>
 </ng-template>
+

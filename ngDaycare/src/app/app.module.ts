@@ -20,6 +20,7 @@ import { KidCRUDComponent } from './components/kid-crud/kid-crud.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 import { ViewDailyReportComponent } from './components/view-daily-report/view-daily-report.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,13 +38,15 @@ import { ViewDailyReportComponent } from './components/view-daily-report/view-da
     KidCRUDComponent,
     ContactComponent,
     ViewDailyReportComponent,
+    UpdateAccountComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
