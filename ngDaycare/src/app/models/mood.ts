@@ -5,7 +5,7 @@ export class Mood {
   description: string | undefined;
   moodEntry: MoodEntry;
 
-  constructor(id: number = 0, description: string, moodEntry: MoodEntry){
+  constructor(id: number = 0, description: string = "", moodEntry: MoodEntry = new MoodEntry()){
     this.id = id;
     this.description = description;
     this.moodEntry = moodEntry;

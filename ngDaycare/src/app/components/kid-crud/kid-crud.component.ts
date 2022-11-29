@@ -66,15 +66,15 @@ export class KidCRUDComponent implements OnInit {
     return this.kids.length;
   }
 
-  //   getKidsByRoom(roomName: string) {
-  //     this.kids.forEach(kid => {
-  //       if(kid.classroom.roomName === roomName)
-  //       {
-  //         return this.filteredKids;
-  //       }
-  //  //else?
-  //     });
-  //   }
+    getKidsByRoom(roomName: string) {
+      for(let i = 0; i <= this.kids.length; i++) {
+        if(this.kids[i].classroom.roomName === roomName)
+        {
+          this.filteredKids.push(this.kids[i]);
+        }
+      }
+      return this.filteredKids;
+    }
 
   updateKid(id: number, kid: Kid) {
     this.kidService.update(id, kid).subscribe({
