@@ -6,4 +6,5 @@ import com.skilldistillery.childcare.entities.Staff;
 
 public interface StaffRepository extends JpaRepository<Staff, Integer> {
 	public Staff queryById(int id);
+	public Staff findByUser_Username(String username);
 }

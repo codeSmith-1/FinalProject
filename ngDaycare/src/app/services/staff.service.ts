@@ -48,6 +48,16 @@ export class StaffService {
     );
   }
 
+  update(staff: Staff){
+    return this.http.put<Staff>(this.url, staff, this.getHttpOptions()).pipe(
+      catchError((err: any)=> {
+        console.error(err);
+        return throwError(
+          () => new Error('StaffSvc.update(): error updating Staff: ' + err)
+        );
+      })
+    );
+  }
 
 
 

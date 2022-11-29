@@ -29,10 +29,10 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public Staff showStaffById(String username, int id) {
+	public Staff showStaffByUsername(String username) {
 		User user = userRepo.findByUsername(username);
 		if (user.getRole().equals("staff")) {
-			return staffRepo.queryById(id);
+			return staffRepo.findByUser_Username(username);
 		} else {
 			return null;
 		}
@@ -54,10 +54,10 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public Staff update(String username, int staffId, Staff staff) {
+	public Staff update(String username, Staff staff) { 
 		User user = userRepo.findByUsername(username);
+		Staff staffToUpdate = staffRepo.findByUser_Username(username);
 		if (user.getRole().equals("staff")) {
-			Staff staffToUpdate = staffRepo.queryById(staffId);
 			staffToUpdate.setFirstName(staff.getFirstName());
 			staffToUpdate.setLastName(staff.getLastName());
 			staffToUpdate.setClassroom(staff.getClassroom());
@@ -82,4 +82,7 @@ public class StaffServiceImpl implements StaffService {
 		}
 		return false;
 	}
+
+
+	
 }

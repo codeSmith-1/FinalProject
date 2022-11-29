@@ -29,52 +29,16 @@
 
 <div *ngIf="inSessionUser.role === 'staff'">
   <form>
-    <label for="username">Username </label>
-    <input type="text" name="username" [(ngModel)]="inSessionUser.role"><br>
 
-    <label for="password">Password </label>
-    <input type="text" name="password" [(ngModel)]="inSessionUser.role"><br>
+    <label for="firstName">First </label>
+    <input type="text" name="firstName" [(ngModel)]="inSessionStaff.firstName"><br>
+    <label for="lastName">Last </label>
+    <input type="text" name="lastName" [(ngModel)]="inSessionStaff.lastName"><br>
+    <label for="imageUrl">Image </label>
+    <input type="text" name="imageUrl" [(ngModel)]="inSessionStaff.imageUrl"><br>
 
-
-    <label for="email">First </label>
-    <input type="text" name="firstName" [(ngModel)]="inSessionUser.role"><br>
-    <label for="email">Last </label>
-    <input type="text" name="lastName" [(ngModel)]="inSessionUser.role"><br>
-    <label for="email">Image </label>
-    <input type="text" name="imageUrl" [(ngModel)]="inSessionUser.role"><br>
-
-
-    <button (click)="updateStaff(inSessionStaff)">Register</button>
-
+    <button (click)="updateStaff(inSessionStaff)">Update</button>
     </form>
     </div>
 
-
-<ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">New Memory</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-		<form>
-			<div class="mb-3">
-        <label for="Country">Country</label>
-        <div class="input-group">
-          <div>
-          <input type="text" name="Country" placeholder="Country" [(ngModel)]="inSessionAdult.firstName">
-          </div>
-        </div>
-          <label for="City">City</label>
-        <div class="input-group">
-        <div>
-          <input type="text" name="City" placeholder="City" [(ngModel)]="inSessionAdult.lastName">
-        </div>
-        </div>
-        </div>
-		</form>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="updateAdult(inSessionAdult)" (click)="modal.close('Save click')">Save</button>
-	</div>
-</ng-template>
 

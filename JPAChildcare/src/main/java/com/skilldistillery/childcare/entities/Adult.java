@@ -35,6 +35,7 @@ public class Adult {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	// guardian holds
 	@OneToMany(mappedBy ="adult")
 	private List<Guardian> guardians;
 	
