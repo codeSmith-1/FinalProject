@@ -76,17 +76,17 @@ export class KidCRUDComponent implements OnInit {
       return this.filteredKids;
     }
 
-  updateKid(id: number, kid: Kid) {
-    this.kidService.update(id, kid).subscribe({
-      next: (kid) => {
-        this.reload();
-        this.selected = kid;
-        this.editKid = null;
-      },
-      error: (fail) => {
-        console.error('Kid-crud updateKid(): error updating kid record:');
-        console.error(fail);
-      },
-    });
-  }
+  // updateKid(id: number, kid: Kid) {
+  //   this.kidService.update(id, kid).subscribe({
+  //     next: (kid) => {
+  //       this.reload();
+  //       this.selected = kid;
+  //       this.editKid = null;
+  //     },
+  //     error: (fail) => {
+  //       console.error('Kid-crud updateKid(): error updating kid record:');
+  //       console.error(fail);
+  //     },
+  //   });
+  // }
 }

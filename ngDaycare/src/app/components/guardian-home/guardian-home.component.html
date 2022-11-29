@@ -1,52 +1,96 @@
 <p>guardian-home works!</p>
 
-
-  <button class="btn btn-outline-primary btn-rounded btn-icon" (click)="open(content)">+</button>
-
-<img   class="rounded-4 shadow-4-strong" src="https://images.unsplash.com/photo-1630304565761-d6f8d5a0facd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y3V0ZSUyMGJhYnl8ZW58MHx8MHx8&w=1000&q=80" />
-
-
-
-
-
-
+<div *ngFor="let kid of kids">
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{kid.imageUrl}}" alt="Card image cap">
+  <div class="card-body">
+    <h2 class="card-title">{{kid.firstName}} {{kid.lastName}}</h2>
+    <p class="card-text">{{inSessionAdult.firstName}} {{inSessionAdult.lastName}}, {{inSessionAdult.phoneNumber}}</p>
+    <a href="#" class="btn btn-primary">Link to daily</a>
+    <a href="#" class="btn btn-primary" (click)="open(content); selected=kid">Update</a>
+  </div>
+</div>
+</div>
+<br>
+<button class="btn btn-outline-primary btn-rounded btn-icon" (click)="open(content); selected=null">Add Child</button>
 
 <ng-template #content let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">New Memory</h4>
+		<h4 *ngIf="selected" class="modal-title" id="modal-basic-title">Edit Child</h4>
+    <h4 *ngIf="!selected" class="modal-title" id="modal-basic-title">Add Child</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-		<form>
+		<form *ngIf="selected">
+			<div class="mb-3">
+        <label for="firstName">First Name: </label>
+        <div class="input-group">
+          <div>
+          <input type="text" name="firstName" placeholder="Country" [(ngModel)]="selected.firstName">
+          </div>
+        </div>
+          <label for="lastName">Last Name:</label>
+        <div class="input-group">
+        <div>
+          <input type="text" name="lastName" placeholder="lastName" [(ngModel)]="selected.lastName">
+        </div>
+        </div>
+        <label for="birthday">birthday</label>
+        <div class="input-group">
+          <div>
+          <input type="img" name="birthday" placeholder="birthday"[(ngModel)]="selected.birthday">
+				</div>
+        </div>
+        <label for="imageUrl">Image</label>
+        <div class="input-group">
+        <div>
+          <input type="text" name="imageUrl" placeholder="image" [(ngModel)]="selected.imageUrl">
+        </div>
+        </div>
+        </div>
+		</form>
+
+
+    <form *ngIf="!selected">
 			<div class="mb-3">
         <label for="Country">Country</label>
         <div class="input-group">
           <div>
-          <input type="text" name="Country" placeholder="Country" [(ngModel)]="newKid">
+          <input type="text" name="Country" placeholder="Country" [(ngModel)]="newKid.firstName">
           </div>
         </div>
           <label for="City">City</label>
         <div class="input-group">
         <div>
-          <input type="text" name="City" placeholder="City" [(ngModel)]="newKid">
+          <input type="text" name="City" placeholder="City" [(ngModel)]="newKid.lastName">
         </div>
         </div>
-        <label for="image">Image</label>
+        <label for="image">birthday</label>
         <div class="input-group">
           <div>
-          <input type="img" name="image" placeholder="image"[(ngModel)]="newKid">
+          <input type="img" name="image" placeholder="image"[(ngModel)]="newKid.birthday">
 				</div>
         </div>
-        <label for="City">Note</label>
+        <label for="City">Image</label>
         <div class="input-group">
         <div>
-          <input type="text" name="note" placeholder="note" [(ngModel)]="newKid">
+          <input type="text" name="note" placeholder="note" [(ngModel)]="newKid.imageUrl">
         </div>
         </div>
         </div>
 		</form>
+
+
+
 	</div>
+  <div *ngIf="selected">
 	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="addKid(newKid)" (click)="modal.close('Save click')">Save</button>
+		<button type="button" class="btn btn-outline-dark" (click)="updateKid(selected)" routerLinkActive="router-link-active" (click)="modal.close('Save click')">Save</button>
 	</div>
+</div>
+  <div *ngIf="!selected">
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="addKid(newKid)" (click)="modal.close('Save click')">Add Kid</button>
+	</div>
+</div>
 </ng-template>
