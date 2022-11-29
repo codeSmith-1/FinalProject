@@ -21,25 +21,23 @@ public class Food {
 	
 	@Column(name="am_snack")
 	private String amSnack;
+	
 	@Column(name="pm_snack")
 	private String pmSnack;
+	
 	private String other;
-	//day
 	
 	@ManyToOne
 	@JoinColumn(name="day_id")
 	private DailyReport dailyReport;
 	
-	
 	public DailyReport getDailyReport() {
 		return dailyReport;
 	}
 
-
 	public void setDailyReport(DailyReport dailyReport) {
 		this.dailyReport = dailyReport;
 	}
-
 
 	public int getId() {
 		return id;
