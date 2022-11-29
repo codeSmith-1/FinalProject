@@ -9,5 +9,5 @@ import com.skilldistillery.childcare.entities.Mood;
 public interface MoodRepository extends JpaRepository<Mood, Integer> {
 	Mood queryById(int id);
 	
-	List<Mood> findByDailyReportId(int reportId);
+	List<Mood> findByMoodEntries_DailyReportId(int reportId);
 }

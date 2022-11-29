@@ -16,7 +16,7 @@ public class MoodServiceImpl implements MoodService {
 	
 	@Override
 	public List<Mood> moodByReportId(int reportId) {
-		return moodRepo.findByDailyReportId(reportId);
+		return moodRepo.findByMoodEntries_DailyReportId(reportId);
 	}
 
 }

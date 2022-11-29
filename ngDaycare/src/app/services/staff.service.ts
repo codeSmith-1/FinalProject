@@ -37,6 +37,27 @@ export class StaffService {
     );
   }
 
+  show(): Observable<Staff>{
+    return this.http.get<Staff>(this.url +"/loggedInStaff", this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('StaffSvc.show(): error retrieving Staff: ' + err)
+        );
+      })
+    );
+  }
+
+  update(staff: Staff){
+    return this.http.put<Staff>(this.url, staff, this.getHttpOptions()).pipe(
+      catchError((err: any)=> {
+        console.error(err);
+        return throwError(
+          () => new Error('StaffSvc.update(): error updating Staff: ' + err)
+        );
+      })
+    );
+  }
 
 
 

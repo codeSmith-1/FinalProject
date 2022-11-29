@@ -38,7 +38,7 @@ export class AdultService {
   }
 
   update(adult: Adult){
-    return this.http.put<Location>(this.url, adult, this.getHttpOptions()).pipe(
+    return this.http.put<Adult>(this.url, adult, this.getHttpOptions()).pipe(
       catchError((err: any)=> {
         console.error(err);
         return throwError(
