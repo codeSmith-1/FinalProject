@@ -3,12 +3,14 @@ package com.skilldistillery.childcare.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.childcare.entities.Food;
 import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.repositories.FoodRepository;
 import com.skilldistillery.childcare.repositories.UserRepository;
 
+@Service
 public class FoodServiceImpl implements FoodService {
 
 	@Autowired
