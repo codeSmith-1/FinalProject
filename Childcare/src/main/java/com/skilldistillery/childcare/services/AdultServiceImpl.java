@@ -50,8 +50,7 @@ public class AdultServiceImpl implements AdultService {
 			Optional<User> opt = userRepo.findById(adult.getUser().getId());
 			if (opt.isPresent()) {
 				adult.setUser(opt.get());
-				addressRepo.saveAndFlush(adult.getAddress());
-				System.err.println(adult.getUser().getUsername());
+				adult.setAddress(addressRepo.saveAndFlush(adult.getAddress()));
 				adultRepo.saveAndFlush(adult);
 			}
 		} else {
@@ -67,7 +66,8 @@ public class AdultServiceImpl implements AdultService {
 			Adult adultToUpdate = adultRepo.findByUser_Username(username);
 			adultToUpdate.setFirstName(adult.getFirstName());
 			adultToUpdate.setLastName(adult.getLastName());
-			adultToUpdate.setAddress(adult.getAddress());
+			// save and flush address object before assigning to adult
+			adultToUpdate.setAddress(addressRepo.saveAndFlush(adult.getAddress()));
 			adultToUpdate.setPhoneNumber(adult.getPhoneNumber());
 			adultToUpdate.setImageUrl(adult.getImageUrl());
 			adultToUpdate.setEmergencyContact(adult.isEmergencyContact());
