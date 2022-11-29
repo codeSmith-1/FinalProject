@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Classroom } from 'src/app/models/classroom';
 import { Kid } from 'src/app/models/kid';
 import { KidService } from 'src/app/services/kid.service';
 
@@ -12,7 +13,9 @@ export class KidCRUDComponent implements OnInit {
   newKid: Kid = new Kid();
   editKid: null | Kid = null;
   kids: Kid[] = [];
+  filteredKids: Kid[] = [];
   selected: null | Kid = null;
+classrooms:  Classroom[] = [];
 
   ngOnInit(): void {}
 
@@ -62,6 +65,17 @@ export class KidCRUDComponent implements OnInit {
   getNumberOfKids() {
     return this.kids.length;
   }
+
+  getKidsByRoom(roomName: string) {
+    this.kids.forEach(kid => {
+      if(kid.classroom.roomName === roomName)
+      {
+        return this.filteredKids;
+      }
+ //else?
+    });
+  }
+
 
   updateKid(id: number, kid: Kid) {
     this.kidService.update(id, kid).subscribe({

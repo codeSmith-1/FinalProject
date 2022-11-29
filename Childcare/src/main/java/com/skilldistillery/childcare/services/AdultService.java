@@ -12,11 +12,13 @@ public interface AdultService {
 
 	Adult create(Adult adult);
 
-	Adult update(String username, int adultId, Adult adult);
+	Adult update(String username, Adult adult);
 
 	boolean delete(String username, int adultId);
 	
 	Adult showAdultByUserId(int id);
 	
 	Adult showAdultByUsername(String username);
+	
+	
 }

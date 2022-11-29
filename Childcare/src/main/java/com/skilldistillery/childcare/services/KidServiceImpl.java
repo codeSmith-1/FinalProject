@@ -27,11 +27,12 @@ public class KidServiceImpl implements KidService {
 			return null;
 		}
 	}
+	
 
 	@Override
 	public Kid showKid(String username, int id) {
 		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
+		if (user.getRole().equals("staff") /*place access for guardian?*/) {
 			return kidRepo.queryById(id);
 		} else {
 			return null;
@@ -80,5 +81,13 @@ public class KidServiceImpl implements KidService {
 		}
 		return false;
 	}
+
+
+	@Override
+	public List<Kid> listByClassroom(String roomName) {
+		return kidRepo.findByClassroom_roomName(roomName);
+	}
+	
+	
 
 }

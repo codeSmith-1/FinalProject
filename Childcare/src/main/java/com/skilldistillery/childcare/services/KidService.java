@@ -15,4 +15,6 @@ public interface KidService {
 	Kid update(String username, int kidId, Kid kid);
 
 	boolean delete(String username, int kidId);
+	
+	List<Kid> listByClassroom(String roomName);
 }

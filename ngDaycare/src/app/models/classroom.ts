@@ -5,6 +5,5 @@ export class Classroom {
   constructor(id: number=0, roomName: string=""){
     this.id = id;
     this.roomName = roomName;
-
   }
 }

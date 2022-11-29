@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +53,18 @@ public class AdultController {
 		User user = (User) session.getAttribute("loggedInUser");
 		try {
 			return adultService.showAdultByUsername(principal.getName());
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@PutMapping("adults")
+	public Adult update(@RequestBody Adult adult, Principal principal, HttpServletResponse res) {
+		try {
+			return adultService.update(principal.getName(), adult);
+			
 		} catch (Exception e) {
 			res.setStatus(400);
 			e.printStackTrace();

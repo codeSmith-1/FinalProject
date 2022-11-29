@@ -15,42 +15,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.childcare.entities.Kid;
-import com.skilldistillery.childcare.services.KidService;
+import com.skilldistillery.childcare.entities.Food;
+import com.skilldistillery.childcare.services.FoodService;
 
 @RestController
 @RequestMapping("api/")
-@CrossOrigin({"*", "http://localhost/"})
-public class KidController {
-	
+@CrossOrigin({ "*", "http://localhost/" })
+public class FoodController {
+
 	@Autowired
-	private KidService kidServ;
-	
-	@GetMapping("kids")
-	public List<Kid> listAllKids(String username) {
-		return kidServ.listAllKids(username);
+	private FoodService foodServ;
+
+	@GetMapping("food")
+	public List<Food> listAll(String username) {
+		return foodServ.listAllFoods(username);
 	}
-	
-	@PostMapping("kids")
-	public Kid create(@RequestBody Kid kid, String username, HttpServletResponse res, HttpServletRequest req) {
+
+	@PostMapping("foods")
+	public Food create(@RequestBody Food food, String username, HttpServletResponse res, HttpServletRequest req) {
 		try {
-			kid = kidServ.create(username, kid);
+			food = foodServ.create(username, food);
 			res.setStatus(201);
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
-			kid = null;
+			food = null;
 		}
-		
-		return kid;
+		return food;
 	}
-	
-	@PutMapping("kids")
-	public Kid update(String username,@PathVariable int kidId,@RequestBody Kid kid, HttpServletResponse res) {
+
+	@PutMapping("foods")
+	public Food update(String username, @PathVariable int foodId, @RequestBody Food food, HttpServletResponse res) {
 		try {
-			return kidServ.update(username, kidId, kid);
-		}
-		catch (Exception e) {
+			return foodServ.update(username, food, foodId);
+		} catch (Exception e) {
 			res.setStatus(400);
 			e.printStackTrace();
 		}
