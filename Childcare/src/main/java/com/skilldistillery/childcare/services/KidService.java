@@ -12,9 +12,11 @@ public interface KidService {
 
 	Kid create(String username, Kid kid);
 
-	Kid update(String username, int kidId, Kid kid);
+	Kid update(String username, Kid kid);
 
 	boolean delete(String username, int kidId);
 	
 	List<Kid> listByClassroom(String roomName);
+	
+	List<Kid> findKidsByAdultId(String username);
 }

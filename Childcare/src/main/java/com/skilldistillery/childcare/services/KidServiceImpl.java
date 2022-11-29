@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.childcare.entities.Adult;
 import com.skilldistillery.childcare.entities.Kid;
 import com.skilldistillery.childcare.entities.User;
+import com.skilldistillery.childcare.repositories.AdultRepository;
 import com.skilldistillery.childcare.repositories.KidRepository;
 import com.skilldistillery.childcare.repositories.UserRepository;
 
@@ -17,6 +19,8 @@ public class KidServiceImpl implements KidService {
 	private KidRepository kidRepo;
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private AdultRepository adultRepo;
 
 	@Override
 	public List<Kid> listAllKids(String username) {
@@ -53,10 +57,10 @@ public class KidServiceImpl implements KidService {
 	}
 
 	@Override
-	public Kid update(String username, int kidId, Kid kid) {
+	public Kid update(String username, Kid kid) {
 		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
-			Kid kidToUpdate = kidRepo.queryById(kidId);
+//		if (user != null) {
+			Kid kidToUpdate = kidRepo.queryById(kid.getId());
 			kidToUpdate.setFirstName(kid.getFirstName());
 			kidToUpdate.setLastName(kid.getLastName());
 			kidToUpdate.setBirthday(kid.getBirthday());
@@ -64,10 +68,10 @@ public class KidServiceImpl implements KidService {
 			kidToUpdate.setImageUrl(kid.getImageUrl());
 			kidRepo.saveAndFlush(kidToUpdate);
 			return kidToUpdate;
-		} else {
-			return null;
+//		} else {
+//			return null;
 		}
-	}
+//	}
 
 	@Override
 	public boolean delete(String username, int kidId) {
@@ -86,6 +90,15 @@ public class KidServiceImpl implements KidService {
 	@Override
 	public List<Kid> listByClassroom(String roomName) {
 		return kidRepo.findByClassroom_roomName(roomName);
+	}
+
+
+	@Override
+	public List<Kid> findKidsByAdultId(String username) {
+		// TODO Auto-generated method stub
+		Adult adult = adultRepo.findByUser_Username(username);
+		List<Kid> kids = kidRepo.findByGuardians_AdultId(adult.getId());
+		return kids;
 	}
 	
 	

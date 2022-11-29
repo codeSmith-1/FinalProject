@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.childcare.entities.Adult;
+import com.skilldistillery.childcare.entities.Kid;
 import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.services.AdultService;
+import com.skilldistillery.childcare.services.KidService;
 
 @RestController
 @RequestMapping("api/")
@@ -27,11 +29,24 @@ public class AdultController {
 	
 	@Autowired
 	private AdultService adultService;
+	@Autowired
+	private KidService kidService;
 	
 	@GetMapping("adults")
 	public List<Adult> listAdults(Principal principal){
 		return null;
 		
+	}
+	
+	@GetMapping("adults/kids")
+	public List<Kid> getKidsForAdult(Principal principal, HttpServletResponse res){
+		if (principal.getName().isEmpty()) {
+			res.setStatus(400);
+			return null;
+		}
+		List<Kid> kids = kidService.findKidsByAdultId(principal.getName());
+		res.setStatus(200);
+		return kids;
 	}
 	
 	@PostMapping("adults")
