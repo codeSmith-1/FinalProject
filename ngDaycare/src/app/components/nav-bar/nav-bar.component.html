@@ -24,6 +24,9 @@
         <li *ngIf="loggedIn()">
           <app-logout></app-logout>
         </li>
+        <li *ngIf="loggedIn()">
+          <a class="nav-link" [routerLink]="['/contact']">Contact</a>
+        </li>
 
       </ul>
     </div>
