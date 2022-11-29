@@ -5,6 +5,7 @@ import { AdultService } from 'src/app/services/adult.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from 'src/app/models/address';
+import { Staff } from 'src/app/models/staff';
 @Component({
   selector: 'app-update-account',
   templateUrl: './update-account.component.html',
@@ -16,6 +17,7 @@ export class UpdateAccountComponent implements OnInit {
   inSessionUser = new User();
   inSessionAdult = new Adult();
   closeResult: string = "";
+  inSessionStaff = new Staff();
 
   ngOnInit(): void {
     this.reloadUser();
@@ -59,6 +61,10 @@ export class UpdateAccountComponent implements OnInit {
           console.error(err);
         },
       });
+    }
+
+    updateStaff(inSessionStaff: Staff){
+
     }
 
     open(content: any) {

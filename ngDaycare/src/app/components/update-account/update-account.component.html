@@ -1,3 +1,4 @@
+<div *ngIf="inSessionUser.role === 'adult'">
 <form>
 <label for="firstName">First Name: </label>
 <input type="text" name="firstName" required [(ngModel)]="inSessionAdult.firstName"><br>
@@ -23,7 +24,30 @@
 <input type="text" name="zip" required [(ngModel)]="inSessionAdult.address.zip"><br>
 <button (click)="updateAdult(inSessionAdult)">Update</button>
 </form>
+</div>
 <!-- notify on save, easily done with modal -->
+
+<div *ngIf="inSessionUser.role === 'staff'">
+  <form>
+    <label for="username">Username </label>
+    <input type="text" name="username" [(ngModel)]="inSessionUser.role"><br>
+
+    <label for="password">Password </label>
+    <input type="text" name="password" [(ngModel)]="inSessionUser.role"><br>
+
+
+    <label for="email">First </label>
+    <input type="text" name="firstName" [(ngModel)]="inSessionUser.role"><br>
+    <label for="email">Last </label>
+    <input type="text" name="lastName" [(ngModel)]="inSessionUser.role"><br>
+    <label for="email">Image </label>
+    <input type="text" name="imageUrl" [(ngModel)]="inSessionUser.role"><br>
+
+
+    <button (click)="updateStaff(inSessionStaff)">Register</button>
+
+    </form>
+    </div>
 
 
 <ng-template #content let-modal>
