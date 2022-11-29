@@ -48,7 +48,7 @@ public class FoodServiceImpl implements FoodService {
 		if (user.getRole().equals("staff")) {
 			Food foodToUpdate = foodRepo.queryById(foodId);
 			foodToUpdate.setAmSnack(food.getAmSnack());
-			foodToUpdate.setLunch(foodToUpdate.getLunch());
+			foodToUpdate.setLunch(food.getLunch());
 			foodToUpdate.setPmSnack(food.getPmSnack());
 			foodRepo.saveAndFlush(foodToUpdate);
 			return foodToUpdate;
