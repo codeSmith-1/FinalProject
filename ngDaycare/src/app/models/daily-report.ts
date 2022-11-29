@@ -15,9 +15,10 @@ export class DailyReport {
   images: ReportImage[] | undefined;
   moodEntry: MoodEntry;
   food: Food;
+  kid: Kid;
 
 
-  constructor(id: number = 0, moodEntry: MoodEntry = new MoodEntry(), food: Food = new Food(), timeIn: string = "", timeOut: string = "", diapersLow: boolean = false, wipesLow: boolean = false, activities?: string, notes?: string, reportDate?:string, images?: ReportImage[] ){
+  constructor(id: number = 0, kid: Kid = new Kid(), moodEntry: MoodEntry = new MoodEntry(), food: Food = new Food(), timeIn: string = "", timeOut: string = "", diapersLow: boolean = false, wipesLow: boolean = false, activities?: string, notes?: string, reportDate?:string, images?: ReportImage[] ){
     this.id = id;
     this.timeIn = timeIn;
     this.timeOut = timeOut;
@@ -29,6 +30,7 @@ export class DailyReport {
     this.images = images;
     this.moodEntry = moodEntry;
     this.food = food;
+    this.kid = kid;
 
   }
 

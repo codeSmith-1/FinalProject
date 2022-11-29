@@ -26,7 +26,7 @@
 <button *ngIf="tableView" class="btn btn-secondary">Back to home</button>
 
 <div *ngIf="selected && reportView">
-  <h1>{{ selected.reportDate | date: "longDate" }} Daily Report</h1>
+  <h1>{{selected.kid.firstName}}'s {{ selected.reportDate | date: "longDate" }} Daily Report</h1>
   Checked in at: {{ selected.timeIn | date: "shortTime" }}<br>
   Checked out at: {{ selected.timeOut | date: "shortTime" }}<br>
   Diaper inventory: <div *ngIf="selected.diapersLow;else diapersFull"><font color="red">Low</font><br></div>
