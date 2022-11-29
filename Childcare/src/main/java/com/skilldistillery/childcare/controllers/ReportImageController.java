@@ -27,9 +27,9 @@ public class ReportImageController {
 		return images;
 	}
 	
-	@GetMapping("images/{imageId}")
-	public ReportImage showImage(@PathVariable("imageId") int imageId) {
-		return imageService.show(imageId);
+	@GetMapping("images/{reportId}")
+	public List<ReportImage> showImageByReportId(@PathVariable("reportId") int reportId) {
+		return imageService.imageByReportId(reportId);
 	}
 	
 

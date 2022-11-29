@@ -24,8 +24,8 @@ export class ReportImageService {
     );
   }
 
-  show(imageId: number): Observable<ReportImage> {
-    return this.http.get<ReportImage>(this.url + '/' + imageId, this.getHttpOptions()).pipe(
+  showByReport(reportId: number): Observable<ReportImage[]> {
+    return this.http.get<ReportImage[]>(this.url + '/' + reportId, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

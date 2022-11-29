@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let report of reports">
-      <td (click)="displayReport(report)">{{ report.reportDate }}</td>
+      <td (click)="displayReport(report); ShowImagesByReport(report)">{{ report.reportDate | date: 'longDate'}}</td>
       <td>{{ report.notes }}</td>
     </tr>
   </tbody>
@@ -17,16 +17,30 @@
 <button *ngIf="tableView" class="btn btn-secondary">Back to home</button>
 
 <div *ngIf="selected && reportView">
-  <h1>{{ selected.reportDate }} Daily Report</h1>
-  Checked in at: {{ selected.timeIn }}<br />
-  Checked out at: {{ selected.timeOut }}<br />
+  <h1>{{ selected.reportDate | date: 'longDate' }} Daily Report</h1>
+  Checked in at: {{ selected.timeIn | date: 'shortTime'}}<br />
+  Checked out at: {{ selected.timeOut | date: 'shortTime'}}<br />
   Need more diapers: {{ selected.diapersLow }}<br />
   Need more wipes: {{ selected.wipesLow }}<br />
   Daily activities: {{ selected.activities }}<br />
   Caretaker notes: {{ selected.notes }}<br />
   Child's moods: {{ selected.moodEntry }}<br />
   Food: {{ selected.food }}<br />
-  Images: {{ selected.images }}<br />
+  Images: <br/>
+  <table>
+  <thead class="table-dark">
+    <tr>
+      <th>Image</th>
+      <th>Staff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let image of images">
+      <td><img {{ image.imageUrl }}/></td>
+      <td>{{ image.staff.firstName }} + ' ' + {{image.staff.lastName}}</td>
+    </tr>
+  </tbody>
+</table>
   <button (click)="displayTable()" class="btn btn-secondary">
     Back to list
   </button>

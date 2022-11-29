@@ -36,4 +36,9 @@ public class ReportImageServiceImpl implements ReportImageService{
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public List<ReportImage> imageByReportId(int reportId) {
+		return imageRepo.findByDailyReportId(reportId);
+	}
+
 }

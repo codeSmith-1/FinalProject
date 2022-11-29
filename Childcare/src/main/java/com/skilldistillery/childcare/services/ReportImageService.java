@@ -13,4 +13,7 @@ public interface ReportImageService {
 	ReportImage create(int username, ReportImage ri, int dailyReportId);
 
 	void delete(int username, int rid);
+	
+	List<ReportImage> imageByReportId(int reportId);
+	
 }
