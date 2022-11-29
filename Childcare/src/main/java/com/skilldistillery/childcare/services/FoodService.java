@@ -12,4 +12,6 @@ public interface FoodService {
  Food update(String username, Food food, int foodId);
  
  boolean delete(String username, int foodId);
+ 
+ List<Food> foodByReportId(int reportId);
 }

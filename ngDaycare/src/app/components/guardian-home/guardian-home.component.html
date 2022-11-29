@@ -1,1 +1,52 @@
 <p>guardian-home works!</p>
+
+
+  <button class="btn btn-outline-primary btn-rounded btn-icon" (click)="open(content)">+</button>
+
+<img   class="rounded-4 shadow-4-strong" src="https://images.unsplash.com/photo-1630304565761-d6f8d5a0facd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y3V0ZSUyMGJhYnl8ZW58MHx8MHx8&w=1000&q=80" />
+
+
+
+
+
+
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">New Memory</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+        <label for="Country">Country</label>
+        <div class="input-group">
+          <div>
+          <input type="text" name="Country" placeholder="Country" [(ngModel)]="newKid">
+          </div>
+        </div>
+          <label for="City">City</label>
+        <div class="input-group">
+        <div>
+          <input type="text" name="City" placeholder="City" [(ngModel)]="newKid">
+        </div>
+        </div>
+        <label for="image">Image</label>
+        <div class="input-group">
+          <div>
+          <input type="img" name="image" placeholder="image"[(ngModel)]="newKid">
+				</div>
+        </div>
+        <label for="City">Note</label>
+        <div class="input-group">
+        <div>
+          <input type="text" name="note" placeholder="note" [(ngModel)]="newKid">
+        </div>
+        </div>
+        </div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="addKid(newKid)" (click)="modal.close('Save click')">Save</button>
+	</div>
+</ng-template>

@@ -1,9 +1,10 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DailyReport } from 'src/app/models/daily-report';
+import { Food } from 'src/app/models/food';
 import { ReportImage } from 'src/app/models/report-image';
 import { AuthService } from 'src/app/services/auth.service';
 import { DailyReportService } from 'src/app/services/daily-report.service';
+import { FoodService } from 'src/app/services/food.service';
 import { ReportImageService } from 'src/app/services/report-image.service';
 
 @Component({
@@ -19,9 +20,9 @@ export class ViewDailyReportComponent implements OnInit {
   tableView: boolean = true;
   reportView: boolean = false;
   images: ReportImage[] = [];
+  food: Food[] = [];
 
-
-  constructor(private reportService: DailyReportService, private datePipe: DatePipe, private auth: AuthService, private imageService: ReportImageService) { }
+  constructor(private foodService: FoodService, private reportService: DailyReportService, private auth: AuthService, private imageService: ReportImageService) { }
 
   ngOnInit(): void {
     this.loadReports();
@@ -49,6 +50,18 @@ export class ViewDailyReportComponent implements OnInit {
       },
       error: (error) => {
         console.error('ShowImagesByReport.view-daily-report component: error loading images'+ error);
+      },
+    })
+  }
+
+  ShowFoodByReport(selected: DailyReport){
+    this.foodService.showByReport(selected.id).subscribe({
+      next: (food) => {
+        console.log(selected.id);
+        this.food = food;
+      },
+      error: (error) => {
+        console.error('ShowFoodByReport.view-daily-report component: error loading food'+ error);
       },
     })
   }

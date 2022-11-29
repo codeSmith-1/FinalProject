@@ -8,11 +8,14 @@ public interface StaffService {
 
 	List<Staff> listAllStaff(String username);
 
-	Staff showStaffById(String username, int id);
+	Staff showStaffByUsername(String username);
 
 	Staff create(Staff staff);
 
-	Staff update(String username, int staffId, Staff staff);
+	Staff update(String username, Staff staff);
 
 	boolean delete(String username, int staffId);
+
+	
+	
 }
