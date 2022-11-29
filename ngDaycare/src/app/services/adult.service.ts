@@ -37,6 +37,17 @@ export class AdultService {
     );
   }
 
+  update(adult: Adult){
+    return this.http.put<Location>(this.url, adult, this.getHttpOptions()).pipe(
+      catchError((err: any)=> {
+        console.error(err);
+        return throwError(
+          () => new Error('AdultService.update(): error updating Adult: ' + err)
+        );
+      })
+    );
+  }
+
   show(): Observable<Adult>{
     return this.http.get<Adult>(this.url +"/loggedInAdult", this.getHttpOptions()).pipe(
       catchError((err: any) => {

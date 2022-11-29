@@ -61,10 +61,10 @@ public class AdultServiceImpl implements AdultService {
 	}
 
 	@Override
-	public Adult update(String username, int adultId, Adult adult) {
+	public Adult update(String username, Adult adult) {
 		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
-			Adult adultToUpdate = adultRepo.queryById(adultId);
+		if (user != null) {
+			Adult adultToUpdate = adultRepo.findByUser_Username(username);
 			adultToUpdate.setFirstName(adult.getFirstName());
 			adultToUpdate.setLastName(adult.getLastName());
 			adultToUpdate.setAddress(adult.getAddress());

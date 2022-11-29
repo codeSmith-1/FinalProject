@@ -1,4 +1,42 @@
-<p>update-account works!</p>
-
-<p>{{inSessionAdult | json}}</p>
-<p>{{inSessionUser | json}}</p>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Update Account</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+        <label for="Country">Adult</label>
+        <div class="input-group">
+          <div>
+          <input type="text" name="Country" placeholder="Country" [(ngModel)]="inSessionAdult.firstName">
+          </div>
+        </div>
+          <label for="City">City</label>
+        <div class="input-group">
+        <div>
+          <input type="text" name="City" placeholder="City" [(ngModel)]="inSessionAdult.lastName">
+        </div>
+        </div>
+        <label for="image">Image</label>
+        <div class="input-group">
+          <div>
+          <input type="img" name="image" placeholder="image"[(ngModel)]="inSessionAdult.phoneNumber">
+				</div>
+        </div>
+        <label for="City">Note</label>
+        <div class="input-group">
+        <div>
+          <input type="text" name="note" placeholder="note" [(ngModel)]="inSessionAdult.imageUrl">
+        </div>
+        </div>
+        <div>
+          <input type="checkbox" name="emergencyContact" [(ngModel)]="inSessionAdult.emergencyContact"> Are you the emergency contact? <br>
+        </div>
+        </div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="updateAdult(inSessionAdult)" (click)="modal.close('Save click')">Save</button>
+	</div>
+</ng-template>
