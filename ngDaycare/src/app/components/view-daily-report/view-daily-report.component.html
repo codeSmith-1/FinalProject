@@ -1,0 +1,30 @@
+<h1>Daily Reports</h1>
+
+<table *ngIf="tableView" class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Date</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let report of reports">
+      <td (click)="displayReport(report)">{{ report.reportDate }}</td>
+      <td>{{ report.notes }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="selected && reportView">
+  <h1>{{selected.reportDate}} Daily Report</h1>
+  Checked in at: {{selected.timeIn}}<br>
+  Checked out at: {{selected.timeOut}}<br>
+  Need more diapers: {{selected.diapersLow}}<br>
+  Need more wipes: {{selected.wipesLow}}<br>
+  Daily activities: {{selected.activities}}<br>
+  Caretaker notes: {{selected.notes}}<br>
+  Child's moods: {{selected.moodEntry}}<br>
+  Food: {{selected.food}}<br>
+  Images: {{selected.images}}<br>
+  <button (click)="displayTable()" class="btn btn-secondary">Back to list</button>
+</div>
