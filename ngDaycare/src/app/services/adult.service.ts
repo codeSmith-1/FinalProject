@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { environment } from 'src/environments/environment';
 import { Adult } from '../models/adult';
+import { Kid } from '../models/kid';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
 
@@ -33,6 +34,15 @@ export class AdultService {
         return throwError(
           () => new Error('AdultService.create(): error creating adult.')
         );
+      })
+    );
+  }
+
+  getKids(): Observable<Kid[]> {
+    return this.http.get<Kid[]>(this.url +'/kids', this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(() => new Error('AdultService.getKids()'));
       })
     );
   }

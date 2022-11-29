@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Staff } from 'src/app/models/staff';
 import { StaffService } from 'src/app/services/staff.service';
+import { KidService } from 'src/app/services/kid.service';
 @Component({
   selector: 'app-update-account',
   templateUrl: './update-account.component.html',
@@ -14,7 +15,7 @@ import { StaffService } from 'src/app/services/staff.service';
 export class UpdateAccountComponent implements OnInit {
   @ViewChild("content",{static:true}) content:ElementRef | undefined;
 
-  constructor(private auth: AuthService, private adultSvc: AdultService, private staffSvc: StaffService, private modalService: NgbModal) {}
+  constructor(private auth: AuthService, private adultSvc: AdultService, private kidSvc: KidService, private staffSvc: StaffService, private modalService: NgbModal) {}
 
   inSessionUser = new User();
   inSessionAdult = new Adult();
@@ -23,7 +24,6 @@ export class UpdateAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.reloadUser();
-
     }
 
     reloadUser(){
