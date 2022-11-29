@@ -37,6 +37,7 @@ public class Kid {
 	@OneToMany(mappedBy = "kid")
 	private List<Guardian> guardians;
 	
+	
 	@OneToMany(mappedBy = "kid")
 	private List<DailyReport> dailyReport;
 

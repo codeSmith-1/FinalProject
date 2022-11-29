@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "daily_report")
 @Entity
@@ -56,6 +57,7 @@ public class DailyReport {
 	@OneToMany(mappedBy="dailyReport")
 	private List<MoodEntry> moodEntries;
 	
+	@JsonIgnoreProperties({"dailyReport"})
 	@ManyToOne
 	@JoinColumn(name="kid_id")
 	private Kid kid;
