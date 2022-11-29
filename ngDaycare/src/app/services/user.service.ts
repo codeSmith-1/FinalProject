@@ -31,14 +31,14 @@ export class UserService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('TodoService.index(): error retrieving users: ' + err)
+          () => new Error('UserService.index(): error retrieving users: ' + err)
         );
       })
     );
   }
 
-  show(todoId: number): Observable<User> {
-    return this.http.get<User>(this.url + '/' + todoId, this.getHttpOptions()).pipe(
+  show(userId: number): Observable<User> {
+    return this.http.get<User>(this.url + '/' + userId, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

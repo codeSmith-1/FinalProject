@@ -8,7 +8,7 @@ export class Food {
   other: string | undefined;
   day: DailyReport;
 
-  constructor(id: number = 0, day: DailyReport, lunch?: string, amSnack?: string, pmSnack?: string, other?: string){
+  constructor(id: number = 0, day: DailyReport = new DailyReport(), lunch?: string, amSnack?: string, pmSnack?: string, other?: string){
     this.id = id;
     this.lunch = lunch;
     this.amSnack = amSnack;

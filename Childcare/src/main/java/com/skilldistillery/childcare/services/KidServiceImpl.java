@@ -32,7 +32,7 @@ public class KidServiceImpl implements KidService {
 	@Override
 	public Kid showKid(String username, int id) {
 		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
+		if (user.getRole().equals("staff") /*place access for guardian?*/) {
 			return kidRepo.queryById(id);
 		} else {
 			return null;

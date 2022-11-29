@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Table(name = "daily_report")
 @Entity
 public class DailyReport {
@@ -42,9 +44,11 @@ public class DailyReport {
 	@Column(name = "report_date")
 	private LocalDate reportDate;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="dailyReport")
 	private List<ReportImage> images;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="dailyReport")
 	private List<MoodEntry> moodEntries;
 	

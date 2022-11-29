@@ -15,7 +15,7 @@ export class KidCRUDComponent implements OnInit {
   kids: Kid[] = [];
   filteredKids: Kid[] = [];
   selected: null | Kid = null;
-classrooms:  Classroom[] = [];
+  classrooms: Classroom[] = [];
 
   ngOnInit(): void {}
 
@@ -66,16 +66,15 @@ classrooms:  Classroom[] = [];
     return this.kids.length;
   }
 
-  getKidsByRoom(roomName: string) {
-    this.kids.forEach(kid => {
-      if(kid.classroom.roomName === roomName)
-      {
-        return this.filteredKids;
+    getKidsByRoom(roomName: string) {
+      for(let i = 0; i <= this.kids.length; i++) {
+        if(this.kids[i].classroom.roomName === roomName)
+        {
+          this.filteredKids.push(this.kids[i]);
+        }
       }
- //else?
-    });
-  }
-
+      return this.filteredKids;
+    }
 
   updateKid(id: number, kid: Kid) {
     this.kidService.update(id, kid).subscribe({

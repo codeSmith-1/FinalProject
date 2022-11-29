@@ -15,8 +15,5 @@ export class Kid {
     this.lastName = lastName;
     this.birthday = birthday;
     this.imageUrl = imageUrl;
-
-
   }
-
 }

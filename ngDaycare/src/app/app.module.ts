@@ -21,6 +21,7 @@ import { ContactComponent } from './components/contact/contact.component';
 
 import { ViewDailyReportComponent } from './components/view-daily-report/view-daily-report.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FoodCrudComponent } from './components/food-crud/food-crud.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     KidCRUDComponent,
     ContactComponent,
     ViewDailyReportComponent,
-    UpdateAccountComponent
+    UpdateAccountComponent,
+    FoodCrudComponent
   ],
   imports: [
     BrowserModule,
