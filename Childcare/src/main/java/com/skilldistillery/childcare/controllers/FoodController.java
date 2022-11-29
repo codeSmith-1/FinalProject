@@ -54,5 +54,10 @@ public class FoodController {
 		}
 		return null;
 	}
-
+	@GetMapping("foods/{reportId}")
+	public List<Food> foodByReportId(@PathVariable int reportId){
+		List<Food> foods = foodServ.foodByReportId(reportId);
+		return foods;
+		
+	}
 }

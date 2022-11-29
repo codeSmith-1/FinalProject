@@ -69,6 +69,12 @@ public class FoodServiceImpl implements FoodService {
 		}
 		return false;
 	}
+
+	@Override
+	public List<Food> foodByReportId(int reportId) {
+		List<Food> food = foodRepo.findByDailyReportId(reportId);
+		return food;
+	}
 	
 	
 
