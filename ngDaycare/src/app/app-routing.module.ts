@@ -11,6 +11,7 @@ import { RegisterStaffComponent } from './components/register-staff/register-sta
 import { StaffHomeComponent } from './components/staff-home/staff-home.component';
 import { SuccessComponent } from './components/success/success.component';
 import { UpdateAccountComponent } from './components/update-account/update-account.component';
+import { ViewDailyReportComponent } from './components/view-daily-report/view-daily-report.component';
 
 const routes: Routes = [
  { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -24,6 +25,7 @@ const routes: Routes = [
  { path: 'registerStaff', component: RegisterStaffComponent },
  { path: 'success', component: SuccessComponent},
  { path: 'updateAccount', component: UpdateAccountComponent},
+ { path: 'viewReports', component: ViewDailyReportComponent},
  { path: '**', component: NotFoundComponent }
 ];
 

@@ -18,6 +18,7 @@ import { SuccessComponent } from './components/success/success.component';
 import { UpdateAccountComponent } from './components/update-account/update-account.component';
 import { KidCRUDComponent } from './components/kid-crud/kid-crud.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ViewDailyReportComponent } from './components/view-daily-report/view-daily-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { ContactComponent } from './components/contact/contact.component';
     UpdateAccountComponent,
     KidCRUDComponent,
     ContactComponent,
+    ViewDailyReportComponent,
   ],
   imports: [
     BrowserModule,
