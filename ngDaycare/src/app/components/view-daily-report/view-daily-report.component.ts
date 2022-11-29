@@ -37,17 +37,6 @@ export class ViewDailyReportComponent implements OnInit {
     });
   }
 
-  // show(reportId: number){
-  //   this.reportService.show(reportId).subscribe({
-  //     next: (report) => {
-  //       this.report = report;
-  //     },
-  //     error: (fail) => {
-  //       console.error('ViewDailyReport.show: error loading report ' + fail)
-  //     }
-  //   })
-  // }
-
   loggedIn(): boolean{
     return this.auth.checkLogin();
   }
