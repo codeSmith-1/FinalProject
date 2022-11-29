@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.skilldistillery.childcare.entities.MoodEntry;
 
-public interface MoodService {
+public interface MoodEntryService {
 
-	List<MoodEntry> moodByReportId(int reportId);
+	List<MoodEntry> findByDailyReportId(int reportId);
 
 }

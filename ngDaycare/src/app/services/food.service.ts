@@ -44,6 +44,7 @@ showByReport(reportId: number): Observable<Food[]> {
   );
 }
 
+
 update(id: number, food: Food): Observable<Food> {
   return this.http.put<Food>(this.url + '/' + id, food, this.getHttpOptions()).pipe(
     catchError((err: any) => {

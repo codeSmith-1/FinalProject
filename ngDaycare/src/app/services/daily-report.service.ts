@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DailyReport } from '../models/daily-report';
+import { Mood } from '../models/mood';
+import { MoodEntry } from '../models/mood-entry';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -36,6 +38,18 @@ export class DailyReportService {
       })
     );
   }
+
+  showMoodByReport(reportId: number): Observable<MoodEntry[]> {
+    return this.http.get<MoodEntry[]>(this.url + '/mood/' + reportId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('daily-report.service.showMoodByReport(): error retrieving mood: ' + err)
+        );
+      })
+    );
+  }
+
   getHttpOptions() {
     let options = {
       headers: {

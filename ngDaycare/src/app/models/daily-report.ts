@@ -1,11 +1,12 @@
 import { Food } from "./food";
+import { Kid } from "./kid";
 import { MoodEntry } from "./mood-entry";
 import { ReportImage } from "./report-image";
 
 export class DailyReport {
   id: number;
-  timeIn: string | undefined;
-  timeOut: string | undefined;
+  timeIn: string;
+  timeOut: string;
   diapersLow: boolean;
   wipesLow: boolean;
   activities: string | undefined;
@@ -28,4 +29,5 @@ export class DailyReport {
     this.moodEntry = moodEntry;
     this.food = food;
   }
+
 }

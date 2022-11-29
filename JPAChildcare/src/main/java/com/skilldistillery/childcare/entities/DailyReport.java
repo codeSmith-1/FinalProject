@@ -28,12 +28,14 @@ public class DailyReport {
 	@Column(name = "time_in")
 	@CreationTimestamp
 	private LocalDateTime timeIn;
+	
 	@Column(name = "time_out")
 	@CreationTimestamp
 	private LocalDateTime timeOut;
 	
 	@Column(name ="diaper_low")
-	private boolean diaperLow;
+	private boolean diapersLow;
+	
 	@Column(name ="wipes_low")
 	private boolean wipesLow;
 	
@@ -77,7 +79,7 @@ public class DailyReport {
 
 	@Override
 	public String toString() {
-		return "DailyReport [id=" + id + ", timeIn=" + timeIn + ", timeOut=" + timeOut + ", diaperLow=" + diaperLow
+		return "DailyReport [id=" + id + ", timeIn=" + timeIn + ", timeOut=" + timeOut + ", diaperLow=" + diapersLow
 				+ ", wipesLow=" + wipesLow + ", activities=" + activities + ", notes=" + notes + ", reportDate="
 				+ reportDate + "]";
 	}
@@ -106,12 +108,12 @@ public class DailyReport {
 		this.timeOut = timeOut;
 	}
 
-	public boolean isDiaperLow() {
-		return diaperLow;
+	public boolean isDiapersLow() {
+		return diapersLow;
 	}
 
-	public void setDiaperLow(boolean diaperLow) {
-		this.diaperLow = diaperLow;
+	public void setDiapersLow(boolean diaperLow) {
+		this.diapersLow = diaperLow;
 	}
 
 	public boolean isWipesLow() {

@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="mood_entry")
 public class MoodEntry {
@@ -22,11 +25,13 @@ public class MoodEntry {
 	@Column(name="entered_at")
 	private LocalDateTime enteredAt;
 	
+	@JsonIgnoreProperties({"moodEntries"})
 	@ManyToOne
 	@JoinColumn(name="daily_report_id")
 	@MapsId(value="dailyReportId")
 	private DailyReport dailyReport;
 	
+	@JsonIgnoreProperties({"moodEntries"})
 	@ManyToOne
 	@JoinColumn(name="mood_id")
 	@MapsId(value="moodId")
