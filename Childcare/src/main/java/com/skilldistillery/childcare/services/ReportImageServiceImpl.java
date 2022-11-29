@@ -2,20 +2,26 @@ package com.skilldistillery.childcare.services;
 
 import java.util.List;
 
-import com.skilldistillery.childcare.entities.ReportImage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.skilldistillery.childcare.entities.ReportImage;
+import com.skilldistillery.childcare.repositories.ReportImageRepository;
+
+@Service
 public class ReportImageServiceImpl implements ReportImageService{
+	
+	@Autowired
+	public ReportImageRepository imageRepo;
 
 	@Override
-	public List<ReportImage> showAll(int username) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ReportImage> showAll(String username) {
+		return imageRepo.findAll();
 	}
 
 	@Override
-	public ReportImage show(int username) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReportImage show(int imageId) {
+		return imageRepo.queryById(imageId);
 	}
 
 	@Override
@@ -28,13 +34,6 @@ public class ReportImageServiceImpl implements ReportImageService{
 	@Override
 	public void delete(int username, int rid) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ReportImage update(int username, ReportImage ri, int rid) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
