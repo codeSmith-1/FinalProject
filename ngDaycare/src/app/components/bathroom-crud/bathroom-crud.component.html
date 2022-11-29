@@ -1,0 +1,9 @@
+<Form>
+<H1>Add Bathroom event</H1>
+<label for="description">Description</label>
+<input type="text" name="description" [(ngModel)]="newBathroom.description"><br>
+<label for="bathroomTime">Bathroom Time</label>
+<input type="text" name="bathroomTime" [(ngModel)]="newBathroom.bathroomTime"><br>
+<button (click)="addBathroom(newBathroom)">Submit Record</button>
+
+</Form>

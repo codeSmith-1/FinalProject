@@ -10,7 +10,7 @@ export class Bathroom {
   day: DailyReport;
   staff: Staff;
 
-  constructor(id: number = 0, type: BathroomType, day: DailyReport, staff: Staff, description?: string, bathroomTime?: string){
+  constructor(id: number = 0, type: BathroomType = new BathroomType(), day: DailyReport = new DailyReport(), staff: Staff = new Staff(), description?: string, bathroomTime?: string){
     this.id = id;
     this.bathroomTime = bathroomTime;
     this.type = type;
