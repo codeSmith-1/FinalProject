@@ -62,12 +62,12 @@ CREATE TABLE IF NOT EXISTS `daily_report` (
   `wipes_low` TINYINT NULL,
   `activities` VARCHAR(700) NULL,
   `notes` TEXT NULL,
-  `child_id` INT NOT NULL,
+  `kid_id` INT NOT NULL,
   `report_date` DATE NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_day_child1_idx` (`child_id` ASC),
+  INDEX `fk_day_child1_idx` (`kid_id` ASC),
   CONSTRAINT `fk_day_child1`
-    FOREIGN KEY (`child_id`)
+    FOREIGN KEY (`kid_id`)
     REFERENCES `kid` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -406,9 +406,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `daily_report` (`id`, `time_in`, `time_out`, `diaper_low`, `wipes_low`, `activities`, `notes`, `child_id`, `report_date`) VALUES (1, '2022-11-20T07:31:21', '2022-11-20T15:28:24', 0, 0, 'Circle Time, Arts & Crafts, Outside Time', 'None', 1, '2022-11-20');
-INSERT INTO `daily_report` (`id`, `time_in`, `time_out`, `diaper_low`, `wipes_low`, `activities`, `notes`, `child_id`, `report_date`) VALUES (2, '2022-11-20T07:33:21', '2022-11-20T14:37:21', 0, 1, 'Circle Time, Arts & Crafts, Outside Time', 'N/A', 2, '2022-11-20');
-INSERT INTO `daily_report` (`id`, `time_in`, `time_out`, `diaper_low`, `wipes_low`, `activities`, `notes`, `child_id`, `report_date`) VALUES (3, '2022-11-21T07:29:21', '2022-11-21T16:01:21', 1, 0, 'Circle Time, Arts & Crafts, Outside Time', 'Nothing special today', 1, '2022-11-21');
+INSERT INTO `daily_report` (`id`, `time_in`, `time_out`, `diaper_low`, `wipes_low`, `activities`, `notes`, `kid_id`, `report_date`) VALUES (1, '2022-11-20T07:31:21', '2022-11-20T15:28:24', 0, 0, 'Circle Time, Arts & Crafts, Outside Time', 'None', 1, '2022-11-20');
+INSERT INTO `daily_report` (`id`, `time_in`, `time_out`, `diaper_low`, `wipes_low`, `activities`, `notes`, `kid_id`, `report_date`) VALUES (2, '2022-11-20T07:33:21', '2022-11-20T14:37:21', 0, 1, 'Circle Time, Arts & Crafts, Outside Time', 'N/A', 2, '2022-11-20');
+INSERT INTO `daily_report` (`id`, `time_in`, `time_out`, `diaper_low`, `wipes_low`, `activities`, `notes`, `kid_id`, `report_date`) VALUES (3, '2022-11-21T07:29:21', '2022-11-21T16:01:21', 1, 0, 'Circle Time, Arts & Crafts, Outside Time', 'Nothing special today', 1, '2022-11-21');
 
 COMMIT;
 

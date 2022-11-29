@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -53,6 +55,10 @@ public class DailyReport {
 	@JsonIgnore
 	@OneToMany(mappedBy="dailyReport")
 	private List<MoodEntry> moodEntries;
+	
+	@ManyToOne
+	@JoinColumn(name="kid_id")
+	private Kid kid;
 	
 	public List<MoodEntry> getMoodEntries() {
 		return moodEntries;
@@ -147,6 +153,17 @@ public class DailyReport {
 	public void setReportDate(LocalDate reportDate) {
 		this.reportDate = reportDate;
 	}
+	
+
+	public Kid getKid() {
+		return kid;
+	}
+
+
+	public void setKid(Kid kid) {
+		this.kid = kid;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -163,10 +180,6 @@ public class DailyReport {
 			return false;
 		DailyReport other = (DailyReport) obj;
 		return id == other.id;
-	}
-	
-	//child
-	
-	
+	}	
 
 }

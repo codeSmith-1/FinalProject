@@ -16,6 +16,7 @@ export class DailyReport {
   moodEntry: MoodEntry;
   food: Food;
 
+
   constructor(id: number = 0, moodEntry: MoodEntry = new MoodEntry(), food: Food = new Food(), timeIn: string = "", timeOut: string = "", diapersLow: boolean = false, wipesLow: boolean = false, activities?: string, notes?: string, reportDate?:string, images?: ReportImage[] ){
     this.id = id;
     this.timeIn = timeIn;
@@ -28,6 +29,7 @@ export class DailyReport {
     this.images = images;
     this.moodEntry = moodEntry;
     this.food = food;
+
   }
 
 }

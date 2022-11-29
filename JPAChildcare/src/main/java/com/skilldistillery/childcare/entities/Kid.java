@@ -36,6 +36,9 @@ public class Kid {
 	
 	@OneToMany(mappedBy = "kid")
 	private List<Guardian> guardians;
+	
+	@OneToMany(mappedBy = "kid")
+	private List<DailyReport> dailyReport;
 
 	public int getId() {
 		return id;
@@ -97,6 +100,14 @@ public class Kid {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	public List<DailyReport> getDailyReport() {
+		return dailyReport;
+	}
+
+	public void setDailyReport(List<DailyReport> dailyReport) {
+		this.dailyReport = dailyReport;
 	}
 
 	@Override
