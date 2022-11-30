@@ -1,5 +1,6 @@
 package com.skilldistillery.childcare.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -36,6 +39,7 @@ public class Adult {
 	private User user;
 	
 	// guardian holds
+	@JsonIgnore
 	@OneToMany(mappedBy ="adult")
 	private List<Guardian> guardians;
 	
@@ -46,6 +50,17 @@ public class Adult {
 	
 	public Adult() {
 		super();
+	}
+	
+	public void addGuardian(Guardian guardian) {
+		if (guardians == null) {
+			guardians = new ArrayList<>();
+
+			if (!guardians.contains(guardian)) {
+				guardians.add(guardian);
+				guardian.setAdult(this);
+			}
+		}
 	}
 	
 	

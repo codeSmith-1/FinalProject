@@ -40,9 +40,9 @@ public class KidController {
 	}
 
 	@PostMapping("kids")
-	public Kid create(@RequestBody Kid kid, String username, HttpServletResponse res, HttpServletRequest req) {
+	public Kid create(@RequestBody Kid kid, Principal principal, HttpServletResponse res, HttpServletRequest req) {
 		try {
-			kid = kidServ.create(username, kid);
+			kid = kidServ.create(principal.getName(), kid);
 			res.setStatus(201);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,5 +1,6 @@
 package com.skilldistillery.childcare.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,34 +13,49 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Kid {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name= "last_name")
+
+	@Column(name = "last_name")
 	private String lastName;
-	
+
 	private String birthday;
-	
-	@Column(name= "image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
-	@JoinColumn(name="classroom_id")
+
+	@JoinColumn(name = "classroom_id")
 	@ManyToOne
 	private Classroom classroom;
-	
+
+	@JsonIgnoreProperties({"kid"})
 	@OneToMany(mappedBy = "kid")
 	private List<Guardian> guardians;
-	
-	
+
 	@OneToMany(mappedBy = "kid")
 	private List<DailyReport> dailyReport;
+
+	public void addGuardian(Guardian guardian) {
+		if (guardians == null) {
+			guardians = new ArrayList<>();
+
+			if (!guardians.contains(guardian)) {
+				guardians.add(guardian);
+				guardian.setKid(this);
+			}
+		}
+	}
+	
+	// potentially removeGuardian
 
 	public int getId() {
 		return id;
@@ -49,7 +65,6 @@ public class Kid {
 		return classroom;
 	}
 
-	
 	public List<Guardian> getGuardians() {
 		return guardians;
 	}
@@ -128,12 +143,9 @@ public class Kid {
 		return "Kid [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday
 				+ ", imageUrl=" + imageUrl + "]";
 	}
-	
+
 	public Kid() {
-		
+
 	};
-	
-	
-	
-	
+
 }

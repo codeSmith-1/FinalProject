@@ -6,9 +6,9 @@ export class Kid {
   lastName: string | undefined;
   birthday: Date | undefined;
   imageUrl: string | undefined;
-  classroom: Classroom;
+  classroom: Classroom | null;
 
-  constructor(id: number = 0, classroom: Classroom = new Classroom(), firstName?: string, lastName?: string, birthday?: Date, imageUrl?: string){
+  constructor(id: number = 0, classroom: Classroom | null = null, firstName?: string, lastName?: string, birthday?: Date, imageUrl?: string){
     this.id = id;
     this.classroom = classroom;
     this.firstName = firstName;

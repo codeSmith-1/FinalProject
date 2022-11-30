@@ -36,7 +36,7 @@ export class KidService {
 
   create(kid: Kid): Observable<Kid> {
     return this.http
-      .post<Kid>(this.url + 'kid', kid, this.getHttpOptions())
+      .post<Kid>(this.url, kid, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);

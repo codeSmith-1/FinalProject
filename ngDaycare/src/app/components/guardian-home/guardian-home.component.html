@@ -1,4 +1,3 @@
-<p>guardian-home works!</p>
 
 <div *ngFor="let kid of kids">
 <div class="card" style="width: 18rem;">
@@ -12,7 +11,9 @@
 </div>
 </div>
 <br>
-<button class="btn btn-outline-primary btn-rounded btn-icon" (click)="open(content); selected=null">Add Child</button>
+<div>
+  <button class="btn btn-outline-primary btn-rounded btn-icon" (click)="open(content); selected=null">Add Child</button>
+  </div>
 
 <ng-template #content let-modal>
 	<div class="modal-header">
@@ -53,34 +54,38 @@
 
     <form *ngIf="!selected">
 			<div class="mb-3">
-        <label for="Country">Country</label>
+        <label for="firstName">First Name</label>
         <div class="input-group">
           <div>
-          <input type="text" name="Country" placeholder="Country" [(ngModel)]="newKid.firstName">
+          <input type="text" name="firstName" placeholder="first name" [(ngModel)]="newKid.firstName">
           </div>
         </div>
-          <label for="City">City</label>
+          <label for="lastName">Last Name</label>
         <div class="input-group">
         <div>
-          <input type="text" name="City" placeholder="City" [(ngModel)]="newKid.lastName">
+          <input type="text" name="lastName" placeholder="last name" [(ngModel)]="newKid.lastName">
         </div>
         </div>
-        <label for="image">birthday</label>
+        <label for="birthday">birthday</label>
         <div class="input-group">
           <div>
-          <input type="img" name="image" placeholder="image"[(ngModel)]="newKid.birthday">
+          <input type="img" name="birthday" placeholder="birthday"[(ngModel)]="newKid.birthday">
 				</div>
         </div>
-        <label for="City">Image</label>
+        <label for="imageUrl">Image</label>
         <div class="input-group">
         <div>
-          <input type="text" name="note" placeholder="note" [(ngModel)]="newKid.imageUrl">
+          <input type="text" name="imageUrl" placeholder="image" [(ngModel)]="newKid.imageUrl">
+        </div>
+        </div>
+        <label for="relationship">Relationship</label>
+        <div class="input-group">
+        <div>
+          <input type="text" name="relationship" placeholder="relationship" [(ngModel)]="relationship">
         </div>
         </div>
         </div>
 		</form>
-
-
 
 	</div>
   <div *ngIf="selected">
@@ -94,3 +99,5 @@
 	</div>
 </div>
 </ng-template>
+
+

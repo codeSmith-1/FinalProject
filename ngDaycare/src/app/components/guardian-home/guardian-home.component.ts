@@ -23,22 +23,23 @@ export class GuardianHomeComponent implements OnInit {
   inSessionAdult: Adult = new Adult();
   kids: Kid[] = [];
   selected: null | Kid = null;
-
+  relationship: string ='';
 
   ngOnInit(): void {
     this.reloadUser();
     this.getKids();
   }
 
+  // add relationship
 addKid(newKid: Kid){
   this.kidSvc.create(newKid).subscribe({
     next: (result) => {
       this.reloadUser();
+      this.relationship= "";
       this.router.navigateByUrl('/guardianHome');
-
     },
     error: (err) => {
-      console.error('updateAccountComponent.addKid(): error');
+      console.error('GuardianHome.addKid(): error');
       console.error(err);
     },
   });
@@ -120,9 +121,11 @@ reloadUser(){
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
       (result) => {
         this.closeResult = `Closed with: ${result}`;
+        this.router.navigateByUrl('/guardianHome');
       },
       (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.router.navigateByUrl('/guardianHome');
       },
     );
   }

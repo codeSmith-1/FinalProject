@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Guardian {
 
@@ -29,6 +31,22 @@ public class Guardian {
 
 	public Guardian() {
 		super();
+	}
+
+	public Adult getAdult() {
+		return adult;
+	}
+
+	public void setAdult(Adult adult) {
+		this.adult = adult;
+	}
+
+	public Kid getKid() {
+		return kid;
+	}
+
+	public void setKid(Kid kid) {
+		this.kid = kid;
 	}
 
 	public GuardianId getId() {
