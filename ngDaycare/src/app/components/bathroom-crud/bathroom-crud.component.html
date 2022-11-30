@@ -1,9 +1,32 @@
-<Form>
+<form>
 <H1>Add Bathroom event</H1>
 <label for="description">Description</label>
 <input type="text" name="description" [(ngModel)]="newBathroom.description"><br>
 <label for="bathroomTime">Bathroom Time</label>
 <input type="text" name="bathroomTime" [(ngModel)]="newBathroom.bathroomTime"><br>
+<input type="text" name="type" [(ngModel)]="newBathroom.type">
+<input type="text" name="day" [(ngModel)]="newBathroom.day.id">
+<input type="text" name="staff" [(ngModel)]="newBathroom.staff.id">
 <button (click)="addBathroom(newBathroom)">Submit Record</button>
+</form>
 
-</Form>
+<form>
+  <div class="row" *ngIf="editBathroom">
+    <div class="col-auto">
+    <input class="form-control" type="text" name="description" [(ngModel)]="editBathroom.description" />
+  </div>
+  <div class="col-auto">
+    <input class="form-control" type="text" name="bathroomTime" [(ngModel)]="editBathroom.bathroomTime" />
+  </div>
+  <div class="col-auto">
+    <input class="form-control" type="text" name="type" placeholder="type" [(ngModel)]="editBathroom.type" />
+  </div>
+    <div class="col-auto">
+    <input class="form-control" type="text" name="day" placeholder="ID of Report" [(ngModel)]="editBathroom.day.id" />
+  </div>
+    <!-- <input type="text" name="editTodo.completed" ngModel /> -->
+    <button (click)="editBathroom = null">Cancel</button>
+    <button (click)="updateBathroom(editBathroom.id, editBathroom)">Save</button>
+  </div>
+</form>
+
