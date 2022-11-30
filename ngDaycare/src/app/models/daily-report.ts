@@ -6,7 +6,6 @@ import { ReportImage } from "./report-image";
 
 export class DailyReport {
   id: number;
-  nap: Nap;
   timeIn: string;
   timeOut: string;
   diapersLow: boolean;
@@ -15,13 +14,14 @@ export class DailyReport {
   notes: string | undefined;
   reportDate: string | undefined;
   images: ReportImage[] | undefined;
-  moodEntry: MoodEntry;
-  food: Food;
-  kid: Kid;
+  moodEntry: MoodEntry | null;
+  food: Food | null;
+  nap: Nap | null;
+  kid: Kid | null;
 
 
 
-  constructor(id: number = 0, nap: Nap = new Nap(), kid: Kid = new Kid(), moodEntry: MoodEntry = new MoodEntry(), food: Food = new Food(), timeIn: string = "", timeOut: string = "", diapersLow: boolean = false, wipesLow: boolean = false, activities?: string, notes?: string, reportDate?:string, images?: ReportImage[] ){
+  constructor(id: number = 0, nap: Nap | null = null, kid: Kid | null = null, moodEntry: MoodEntry | null = null, food: Food | null = null, timeIn: string = "", timeOut: string = "", diapersLow: boolean = false, wipesLow: boolean = false, activities?: string, notes?: string, reportDate?:string, images?: ReportImage[] ){
     this.id = id;
     this.timeIn = timeIn;
     this.timeOut = timeOut;
