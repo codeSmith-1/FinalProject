@@ -39,6 +39,7 @@ export class StaffHomeComponent implements OnInit {
   // edit DR
 
   dailyReport(reportId: number) {
+    console.log(reportId);
     this.router.navigateByUrl('editReport/' + reportId);
   }
 
@@ -50,7 +51,7 @@ export class StaffHomeComponent implements OnInit {
           let reportDate = r.reportDate.split('-');
           let arrDate = new Date(
             +reportDate[0],
-            +reportDate[1],
+            +reportDate[1]-1,
             +reportDate[2]
           );
           if (

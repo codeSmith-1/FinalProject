@@ -18,7 +18,7 @@ export class DailyReportService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   show(id: number): Observable<DailyReport> {
-    return this.http.get<DailyReport>(this.url + '/' + id).pipe(
+    return this.http.get<DailyReport>(this.url + '/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

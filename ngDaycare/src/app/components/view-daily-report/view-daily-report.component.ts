@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Bathroom } from 'src/app/models/bathroom';
 import { DailyReport } from 'src/app/models/daily-report';
 import { Food } from 'src/app/models/food';
-import { Mood } from 'src/app/models/mood';
+// import { Mood } from 'src/app/models/mood';
 import { MoodEntry } from 'src/app/models/mood-entry';
 import { Nap } from 'src/app/models/nap';
 import { ReportImage } from 'src/app/models/report-image';
