@@ -15,7 +15,8 @@
           ShowImagesByReport(report);
           ShowFoodByReport(report);
           ShowMoodByReport(report);
-          ShowNapByReport(report)
+          ShowNapByReport(report);
+          ShowBathroomByReport(report)
         "
       >
         {{ report.reportDate | date: "longDate" }}
@@ -98,11 +99,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>{{nap.timeStart | date: "shortTime"}}</td>
-        <td>{{nap.timeFinish | date: "shortTime"}}</td>
-        <td>{{nap.timeStart | date: "shortTime"}}</td>
-        <td>{{nap.timeFinish | date: "shortTime"}}</td>
+      <tr *ngFor="let bathroom of bathrooms">
+        <td>{{ bathroom.bathroomTime| date: "shortTime" }}</td>
+        <td>{{ bathroom.description }}</td>
+        <td>{{ bathroom.type.status }}</td>
+        <td>{{ bathroom.staff.firstName }}</td>
       </tr>
     </tbody>
   </table>

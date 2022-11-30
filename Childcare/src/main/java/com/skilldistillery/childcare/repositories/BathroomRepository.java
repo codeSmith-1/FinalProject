@@ -10,5 +10,5 @@ import com.skilldistillery.childcare.entities.ReportImage;
 public interface BathroomRepository extends JpaRepository<Bathroom, Integer> {
 	Bathroom queryById(int id);
 	
-	List<Bathroom> findByDailyReportId(int reportId);
+	List<Bathroom> findByDayId(int reportId);
 }

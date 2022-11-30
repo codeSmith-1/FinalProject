@@ -74,7 +74,7 @@ public class BathroomServiceImpl implements BathroomService {
 	
 	@Override
 	public List<Bathroom> bathroomsByReportId(int reportId) {
-		List<Bathroom> bathrooms = bathroomRepo.findByDailyReportId(reportId);
+		List<Bathroom> bathrooms = bathroomRepo.findByDayId(reportId);
 		return bathrooms;
 	}
 
