@@ -3,10 +3,12 @@ import { DailyReport } from 'src/app/models/daily-report';
 import { Food } from 'src/app/models/food';
 import { Mood } from 'src/app/models/mood';
 import { MoodEntry } from 'src/app/models/mood-entry';
+import { Nap } from 'src/app/models/nap';
 import { ReportImage } from 'src/app/models/report-image';
 import { AuthService } from 'src/app/services/auth.service';
 import { DailyReportService } from 'src/app/services/daily-report.service';
 import { FoodService } from 'src/app/services/food.service';
+import { NapService } from 'src/app/services/nap.service';
 import { ReportImageService } from 'src/app/services/report-image.service';
 
 @Component({
@@ -26,8 +28,9 @@ export class ViewDailyReportComponent implements OnInit {
   images: ReportImage[] = [];
   food: Food[] = [];
   moods: MoodEntry[] = [];
+  nap: Nap = new Nap();
 
-  constructor(private foodService: FoodService, private reportService: DailyReportService, private auth: AuthService, private imageService: ReportImageService) { }
+  constructor(private foodService: FoodService, private napService: NapService, private reportService: DailyReportService, private auth: AuthService, private imageService: ReportImageService) { }
 
   ngOnInit(): void {
     this.loadReports();
@@ -37,7 +40,6 @@ export class ViewDailyReportComponent implements OnInit {
   loadReports() {
     this.reportService.index().subscribe({
       next: (reports) => {
-        console.log(reports);
         this.reports = reports;
       },
       error: (error) => {
@@ -50,7 +52,6 @@ export class ViewDailyReportComponent implements OnInit {
   ShowImagesByReport(selected: DailyReport){
     this.imageService.showByReport(selected.id).subscribe({
       next: (images) => {
-        console.log(selected.id);
         this.images = images;
       },
       error: (error) => {
@@ -59,10 +60,20 @@ export class ViewDailyReportComponent implements OnInit {
     })
   }
 
+  ShowNapByReport(selected: DailyReport){
+    this.napService.showNapsByReport(selected.id).subscribe({
+      next: (nap) => {
+        this.nap = nap;
+      },
+      error: (error) => {
+        console.error('ShowNapByReport.view-daily-report component: error loading nap'+ error);
+      },
+    })
+  }
+
   ShowFoodByReport(selected: DailyReport){
     this.foodService.showByReport(selected.id).subscribe({
       next: (food) => {
-        console.log(selected.id);
         this.food = food;
       },
       error: (error) => {
@@ -74,7 +85,6 @@ export class ViewDailyReportComponent implements OnInit {
   ShowMoodByReport(selected: DailyReport){
     this.reportService.showMoodByReport(selected.id).subscribe({
       next: (moods) => {
-        console.log(selected.id);
         this.moods = moods;
       },
       error: (error) => {

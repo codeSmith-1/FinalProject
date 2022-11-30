@@ -14,7 +14,8 @@
           displayReport(report);
           ShowImagesByReport(report);
           ShowFoodByReport(report);
-          ShowMoodByReport(report)
+          ShowMoodByReport(report);
+          ShowNapByReport(report)
         "
       >
         {{ report.reportDate | date: "longDate" }}
@@ -29,13 +30,28 @@
   <h1>{{selected.kid.firstName}}'s {{ selected.reportDate | date: "longDate" }} Daily Report</h1>
   Checked in at: {{ selected.timeIn | date: "shortTime" }}<br>
   Checked out at: {{ selected.timeOut | date: "shortTime" }}<br>
-  Diaper inventory: <div *ngIf="selected.diapersLow;else diapersFull"><font color="red">Low</font><br></div>
+  Diaper inventory: <span *ngIf="selected.diapersLow;else diapersFull"><font color="red">Low</font><br></span>
                    <ng-template #diapersFull>Full<br></ng-template>
-  Wipes inventory: <div *ngIf="selected.wipesLow;else wipesFull"><font color="red">Low</font><br></div>
+  Wipes inventory: <span *ngIf="selected.wipesLow;else wipesFull"><font color="red">Low</font><br></span>
                    <ng-template #wipesFull>Full<br></ng-template>
-  Daily activities: {{ selected.activities }}<br />
-  Caretaker notes: {{ selected.notes }}<br />
-  Child's moods: <br />
+  Daily activities: {{ selected.activities }}<br>
+  Caretaker notes: {{ selected.notes }}<br>
+  Nap Time:
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Started Nap</th>
+        <th>Woke Up</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{nap.timeStart | date: "shortTime"}}</td>
+        <td>{{nap.timeFinish | date: "shortTime"}}</td>
+      </tr>
+    </tbody>
+  </table>
+  Child's moods: <br>
   <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>
@@ -71,7 +87,7 @@
       </tr>
     </tbody>
   </table>
-  Images: <br />
+  Images: <br>
   <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>

@@ -4,11 +4,11 @@ import { DailyReport } from "./daily-report";
 
 export class Nap {
   id: number;
+  day: DailyReport | null;
   timeStart: string | undefined;
   timeFinish: string | undefined;
-  day: DailyReport;
 
-  constructor(id: number = 0, day: DailyReport, timeStart?: string, timeFinish?: string){
+  constructor(id: number = 0, day: DailyReport | null = null, timeStart: string = '', timeFinish: string = ''){
     this.id = id;
     this.day = day;
     this.timeStart = timeStart;
