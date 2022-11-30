@@ -30,6 +30,7 @@ const routes: Routes = [
  { path: 'viewReports', component: ViewDailyReportComponent},
  { path: 'bathroomCrud', component: BathroomCrudComponent},
  { path: 'foodCrud', component: FoodCrudComponent},
+//  { path: 'editReport/:id', component: EditDailyReportComponent},
  { path: '**', component: NotFoundComponent }
 ];
 

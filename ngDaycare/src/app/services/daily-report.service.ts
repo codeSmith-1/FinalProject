@@ -32,7 +32,7 @@ export class DailyReportService {
 
   create(kidId: number): Observable<DailyReport>{
     console.log(kidId);
-    return this.http.post<DailyReport>(this.url + '/' + kidId, this.getHttpOptions()).pipe(
+    return this.http.post<DailyReport>(this.url + '/' + kidId, new DailyReport(), this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -42,9 +42,16 @@ export class DailyReportService {
     );
   }
 
-  // update(dailyReport: DailyReport): Observable<DailyReport>{
-
-  // }
+  update(dailyReport: DailyReport): Observable<DailyReport>{
+    return this.http.post<DailyReport>(this.url, dailyReport, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('DailyReport.update(): error creating report: ' + err)
+        );
+      })
+    );
+  }
 
   index(): Observable<DailyReport[]> {
     return this.http.get<DailyReport[]>(this.url, this.getHttpOptions()).pipe(

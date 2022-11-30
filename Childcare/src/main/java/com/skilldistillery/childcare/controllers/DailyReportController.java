@@ -55,7 +55,7 @@ public class DailyReportController {
 	}
 	
 	@PostMapping("reports/{kidId}")
-	public DailyReport create(@PathVariable int kidId, Principal principal, HttpServletResponse res) {
+	public DailyReport create(@RequestBody DailyReport dailyreport, @PathVariable int kidId, Principal principal, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(400);
 			return null;
