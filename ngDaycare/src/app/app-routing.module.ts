@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BathroomCrudComponent } from './components/bathroom-crud/bathroom-crud.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { FoodCrudComponent } from './components/food-crud/food-crud.component';
 import { GuardianHomeComponent } from './components/guardian-home/guardian-home.component';
 import { HomeComponent } from './components/home/home.component';
 import { KidCRUDComponent } from './components/kid-crud/kid-crud.component';
@@ -26,6 +28,8 @@ const routes: Routes = [
  { path: 'success', component: SuccessComponent},
  { path: 'updateAccount', component: UpdateAccountComponent},
  { path: 'viewReports', component: ViewDailyReportComponent},
+ { path: 'bathroomCrud', component: BathroomCrudComponent},
+ { path: 'foodCrud', component: FoodCrudComponent},
  { path: '**', component: NotFoundComponent }
 ];
 
