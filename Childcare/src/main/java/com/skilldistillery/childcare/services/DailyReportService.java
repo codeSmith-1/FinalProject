@@ -7,5 +7,10 @@ import com.skilldistillery.childcare.entities.DailyReport;
 public interface DailyReportService {
 
 	List<DailyReport> listAllReports(String username);
+	
+	DailyReport create(int kidId, String username);
+	
+	DailyReport update(DailyReport dailyReport);
+	
 
 }

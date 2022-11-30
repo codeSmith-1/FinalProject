@@ -3,10 +3,15 @@ package com.skilldistillery.childcare.controllers;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +52,25 @@ public class DailyReportController {
 	public Nap showNapByReport(@PathVariable ("reportId") int reportId){
 		Nap nap = napService.napByReportId(reportId);
 		return nap;
+	}
+	
+	@PostMapping("reports/{kidId}")
+	public DailyReport create(@PathVariable int kidId, Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(400);
+			return null;
+		}
+		res.setStatus(201);
+		return reportSvc.create(kidId, principal.getName());
+	}
+	
+	@PutMapping("reports")
+	public DailyReport update(@RequestBody DailyReport dailyReport, Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(400);
+			return null;
+		}
+		return reportSvc.update(dailyReport);
 	}
 	
 	

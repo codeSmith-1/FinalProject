@@ -28,6 +28,24 @@ export class DailyReportService {
     );
   }
 
+
+
+  create(kidId: number): Observable<DailyReport>{
+    console.log(kidId);
+    return this.http.post<DailyReport>(this.url + '/' + kidId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('DailyReport.create(): error creating report: ' + err)
+        );
+      })
+    );
+  }
+
+  // update(dailyReport: DailyReport): Observable<DailyReport>{
+
+  // }
+
   index(): Observable<DailyReport[]> {
     return this.http.get<DailyReport[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
@@ -59,5 +77,6 @@ export class DailyReportService {
     };
     return options;
   }
+
 
 }

@@ -14,6 +14,7 @@ export class BathroomService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   index(): Observable<Bathroom[]> {
+    // send http Options
     return this.http.get<Bathroom[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -56,6 +57,7 @@ export class BathroomService {
   }
 
   destroy(id: number): Observable<void> {
+        // send http Options
     return this.http.delete<void>(this.url + '/' + id).pipe();
   }
 

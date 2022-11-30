@@ -6,6 +6,7 @@ import { Staff } from 'src/app/models/staff';
 import { User } from 'src/app/models/user';
 import { AdultService } from 'src/app/services/adult.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { DailyReportService } from 'src/app/services/daily-report.service';
 import { KidService } from 'src/app/services/kid.service';
 import { StaffService } from 'src/app/services/staff.service';
 
@@ -16,7 +17,7 @@ import { StaffService } from 'src/app/services/staff.service';
 })
 export class StaffHomeComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router, private kidSvc: KidService, private adultSvc: AdultService, private staffSvc: StaffService, private modalService: NgbModal) { }
+  constructor(private auth: AuthService, private router: Router, private dailySvc: DailyReportService, private kidSvc: KidService, private adultSvc: AdultService, private staffSvc: StaffService, private modalService: NgbModal) { }
   inSessionStaff: Staff = new Staff();
   inSessionUser: User = new User();
   kids: Kid[] = [];
@@ -28,7 +29,25 @@ export class StaffHomeComponent implements OnInit {
 
   }
 
+  // create DR
+  // edit DR
+
   dailyReport(kid: Kid){
+
+  }
+
+  checkIn(kidId: number){
+    console.log(kidId);
+    this.dailySvc.create(kidId).subscribe({
+      next: (report) => {
+        this.getKids();
+        this.reloadUser();
+        console.log(report);
+      },
+      error: (err) => {
+        console.error("StaffHome.checkIn(): error creating report/checking in");
+      },
+    });
 
   }
 
@@ -55,7 +74,7 @@ reloadUser(){
     },
     error: (problem) => {
       console.error(
-        'UpdateAccountnComponnet.register(): Error loading staff:'
+        'StaffHomeComp.register(): Error loading staff:'
       );
     },
   });
