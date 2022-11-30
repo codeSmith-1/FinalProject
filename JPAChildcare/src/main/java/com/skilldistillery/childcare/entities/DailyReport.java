@@ -34,7 +34,6 @@ public class DailyReport {
 	private LocalDateTime timeIn;
 	
 	@Column(name = "time_out")
-	@CreationTimestamp
 	private LocalDateTime timeOut;
 	
 	@Column(name ="diaper_low")
@@ -101,6 +100,7 @@ public class DailyReport {
 
 	public DailyReport() {
 		super();
+		reportDate = LocalDate.now();
 	}
 
 	@Override

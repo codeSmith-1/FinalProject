@@ -32,10 +32,10 @@ public class KidController {
 	private UserRepository userRepo;
 
 	@GetMapping("kids")
-	public List<Kid> listAllKids(String username) {
-		User user = userRepo.findByUsername(username);
+	public List<Kid> listAllKids(Principal principal, HttpServletResponse res) {
+		User user = userRepo.findByUsername(principal.getName());
 		if (user.getRole().equals("staff")) {
-			return kidServ.listAllKids(username);
+			return kidServ.listAllKids(principal.getName());
 		}
 		return null;
 	}
@@ -55,12 +55,12 @@ public class KidController {
 	}
 
 	@PutMapping("kids")
-	public Kid update(Principal principal, String username, @RequestBody Kid kid, HttpServletResponse res) {
+	public Kid update(Principal principal, @RequestBody Kid kid, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(400);
 			return null;
 		}
-		kid = kidServ.update(username, kid);
+		kid = kidServ.update(principal.getName(), kid);
 		res.setStatus(200);
 		return kid;
 	}

@@ -15,7 +15,7 @@ export class KidService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   index(): Observable<Kid[]> {
-    return this.http.get<Kid[]>(this.url).pipe(
+    return this.http.get<Kid[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(() => new Error('KidService.index()'));

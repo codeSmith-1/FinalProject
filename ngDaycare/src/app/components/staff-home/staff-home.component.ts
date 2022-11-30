@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Kid } from 'src/app/models/kid';
+import { Staff } from 'src/app/models/staff';
 import { User } from 'src/app/models/user';
 import { AdultService } from 'src/app/services/adult.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,9 +17,60 @@ import { StaffService } from 'src/app/services/staff.service';
 export class StaffHomeComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router, private kidSvc: KidService, private adultSvc: AdultService, private staffSvc: StaffService, private modalService: NgbModal) { }
-
+  inSessionStaff: Staff = new Staff();
   inSessionUser: User = new User();
+  kids: Kid[] = [];
+  selected: null | Kid = null;
+
   ngOnInit(): void {
+    this.reloadUser();
+    this.getKids();
+
   }
 
+  dailyReport(kid: Kid){
+
+  }
+
+  getKids(){
+    this.kidSvc.index().subscribe({
+      next: (kids) => {
+        this.kids = kids;
+        console.log(kids);
+      },
+      error: (problem) => {
+        console.error(
+          'StaffHome.getKids(): Error loading kids:'
+        );
+      },
+    });
+  }
+
+reloadUser(){
+  this.auth.getLoggedInUser().subscribe({
+    next: (loggedInUser) => {
+      // route to success page
+      this.inSessionUser = loggedInUser;
+      console.log(this.inSessionUser)
+    },
+    error: (problem) => {
+      console.error(
+        'UpdateAccountnComponnet.register(): Error loading staff:'
+      );
+    },
+  });
+
+  this.staffSvc.show().subscribe({
+    next: (loggedInStaff) => {
+      this.inSessionStaff = loggedInStaff;
+      console.log(this.inSessionStaff);
+    },
+    error: (problem) => {
+      console.error(
+        'StaffHome error(): error showing staff'
+        );
+        console.error(problem);
+      },
+    });
+  }
 }
