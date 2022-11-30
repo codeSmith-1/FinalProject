@@ -31,12 +31,12 @@ export class GuardianHomeComponent implements OnInit {
   }
 
   // add relationship
-addKid(newKid: Kid){
-  this.kidSvc.create(newKid).subscribe({
+addKid(newKid: Kid, relationship: string){
+  this.kidSvc.create(newKid, relationship).subscribe({
     next: (result) => {
       this.reloadUser();
+      this.getKids();
       this.relationship= "";
-      this.router.navigateByUrl('/guardianHome');
     },
     error: (err) => {
       console.error('GuardianHome.addKid(): error');
@@ -50,7 +50,6 @@ updateKid(selected: Kid){
     next: (kid) => {
       console.log("updateKid():" + kid)
       this.selected = null;
-      this.router.navigateByUrl('/guardianHome');
     },
     error: (problem) => {
       console.error(
@@ -121,11 +120,9 @@ reloadUser(){
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
       (result) => {
         this.closeResult = `Closed with: ${result}`;
-        this.router.navigateByUrl('/guardianHome');
       },
       (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        this.router.navigateByUrl('/guardianHome');
       },
     );
   }

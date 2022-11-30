@@ -32,19 +32,19 @@ export class KidCRUDComponent implements OnInit {
     });
   }
 
-  addKid(kid: Kid) {
-    this.kidService.create(this.newKid).subscribe({
-      next: (kid) => {
-        this.reload();
-        this.newKid = new Kid();
-      },
-      error: (fail) => {
-        console.error('Kid-crud.addKid(): error creating kid record:');
-        console.error(fail);
-      },
-    });
-    this.reload();
-  }
+  // addKid(kid: Kid) {
+  //   this.kidService.create(this.newKid).subscribe({
+  //     next: (kid) => {
+  //       this.reload();
+  //       this.newKid = new Kid();
+  //     },
+  //     error: (fail) => {
+  //       console.error('Kid-crud.addKid(): error creating kid record:');
+  //       console.error(fail);
+  //     },
+  //   });
+  //   this.reload();
+  // }
 
   deleteKid(id: number) {
     this.kidService.destroy(id).subscribe({

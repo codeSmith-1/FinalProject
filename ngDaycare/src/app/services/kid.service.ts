@@ -34,9 +34,9 @@ export class KidService {
     );
   }
 
-  create(kid: Kid): Observable<Kid> {
+  create(kid: Kid, relationship: string): Observable<Kid> {
     return this.http
-      .post<Kid>(this.url, kid, this.getHttpOptions())
+      .post<Kid>(this.url + "/relationship/" + relationship, kid, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);

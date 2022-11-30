@@ -10,7 +10,7 @@ public interface KidService {
 
 	Kid showKid(String username, int id);
 
-	Kid create(String username, Kid kid);
+	Kid create(String username, Kid kid, String relationship);
 
 	Kid update(String username, Kid kid);
 

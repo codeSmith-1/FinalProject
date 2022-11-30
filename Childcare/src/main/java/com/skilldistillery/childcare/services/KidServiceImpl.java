@@ -11,6 +11,7 @@ import com.skilldistillery.childcare.entities.GuardianId;
 import com.skilldistillery.childcare.entities.Kid;
 import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.repositories.AdultRepository;
+import com.skilldistillery.childcare.repositories.GuardianRepository;
 import com.skilldistillery.childcare.repositories.KidRepository;
 import com.skilldistillery.childcare.repositories.UserRepository;
 
@@ -23,6 +24,8 @@ public class KidServiceImpl implements KidService {
 	private UserRepository userRepo;
 	@Autowired
 	private AdultRepository adultRepo;
+	@Autowired
+	private GuardianRepository guardRepo;
 
 	@Override
 	public List<Kid> listAllKids(String username) {
@@ -46,7 +49,7 @@ public class KidServiceImpl implements KidService {
 	}
 
 	@Override
-	public Kid create(String username, Kid kid) {
+	public Kid create(String username, Kid kid, String relationship) {
 		// get relationship from front end
 		System.out.println(username);
 		Adult adult = adultRepo.findByUser_Username(username);
@@ -65,6 +68,7 @@ public class KidServiceImpl implements KidService {
 		guardian.setRelationship(relationship);
 		adult.addGuardian(guardian);
 		kid.addGuardian(guardian);
+		guardRepo.saveAndFlush(guardian);
 		adult = adultRepo.saveAndFlush(adult);
 		return kid;
 	}

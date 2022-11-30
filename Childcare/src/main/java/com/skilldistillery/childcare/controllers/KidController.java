@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,10 +40,10 @@ public class KidController {
 		return null;
 	}
 
-	@PostMapping("kids")
-	public Kid create(@RequestBody Kid kid, Principal principal, HttpServletResponse res, HttpServletRequest req) {
+	@PostMapping("kids/relationship/{relationship}")
+	public Kid create(@RequestBody Kid kid, Principal principal, @PathVariable String relationship, HttpServletResponse res, HttpServletRequest req) {
 		try {
-			kid = kidServ.create(principal.getName(), kid);
+			kid = kidServ.create(principal.getName(), kid, relationship);
 			res.setStatus(201);
 		} catch (Exception e) {
 			e.printStackTrace();
