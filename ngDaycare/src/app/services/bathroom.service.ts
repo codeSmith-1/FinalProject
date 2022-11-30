@@ -69,4 +69,15 @@ export class BathroomService {
     return options;
   }
 
+  showBathroomByReport(reportId: number): Observable<Bathroom[]> {
+    return this.http.get<Bathroom[]>(this.url + '/' + reportId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('BathroomService.showBathroomByReport: error retrieving bathrooms: ' + err)
+        );
+      })
+    );
+  }
+
 }

@@ -13,4 +13,6 @@ public interface BathroomService {
 	
 	boolean delete(String username, int bathroomId);
 
+	List<Bathroom> bathroomsByReportId(int reportId);
+
 }

@@ -15,7 +15,8 @@
           ShowImagesByReport(report);
           ShowFoodByReport(report);
           ShowMoodByReport(report);
-          ShowNapByReport(report)
+          ShowNapByReport(report);
+          ShowBathroomByReport(report)
         "
       >
         {{ report.reportDate | date: "longDate" }}
@@ -87,6 +88,25 @@
       </tr>
     </tbody>
   </table>
+  Bathroom:
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Time</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Staff</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bathroom of bathrooms">
+        <td>{{ bathroom.bathroomTime| date: "shortTime" }}</td>
+        <td>{{ bathroom.description }}</td>
+        <td>{{ bathroom.type.status }}</td>
+        <td>{{ bathroom.staff.firstName }}</td>
+      </tr>
+    </tbody>
+  </table>
   Images: <br>
   <table class="table table-striped table-hover">
     <thead class="table-dark">
@@ -98,7 +118,7 @@
     <tbody>
       <tr *ngFor="let image of images">
         <td><img src="{{ image.imageUrl }}" /></td>
-        <td>{{ image.staff.firstName }} {{ image.staff.lastName }}</td>
+        <td>{{ image.staff.firstName }} {{ image.createdAt | date: "shortTime" }}</td>
       </tr>
     </tbody>
   </table>

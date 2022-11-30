@@ -48,5 +48,7 @@ public class DailyReportController {
 		Nap nap = napService.napByReportId(reportId);
 		return nap;
 	}
+	
+	
 
 }

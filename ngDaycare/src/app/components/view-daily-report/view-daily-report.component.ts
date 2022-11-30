@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Bathroom } from 'src/app/models/bathroom';
 import { DailyReport } from 'src/app/models/daily-report';
 import { Food } from 'src/app/models/food';
 import { Mood } from 'src/app/models/mood';
@@ -6,6 +7,7 @@ import { MoodEntry } from 'src/app/models/mood-entry';
 import { Nap } from 'src/app/models/nap';
 import { ReportImage } from 'src/app/models/report-image';
 import { AuthService } from 'src/app/services/auth.service';
+import { BathroomService } from 'src/app/services/bathroom.service';
 import { DailyReportService } from 'src/app/services/daily-report.service';
 import { FoodService } from 'src/app/services/food.service';
 import { NapService } from 'src/app/services/nap.service';
@@ -29,8 +31,9 @@ export class ViewDailyReportComponent implements OnInit {
   food: Food[] = [];
   moods: MoodEntry[] = [];
   nap: Nap = new Nap();
+  bathrooms: Bathroom [] = []
 
-  constructor(private foodService: FoodService, private napService: NapService, private reportService: DailyReportService, private auth: AuthService, private imageService: ReportImageService) { }
+  constructor(private foodService: FoodService, private bathroomService: BathroomService, private napService: NapService, private reportService: DailyReportService, private auth: AuthService, private imageService: ReportImageService) { }
 
   ngOnInit(): void {
     this.loadReports();
@@ -82,13 +85,23 @@ export class ViewDailyReportComponent implements OnInit {
     })
   }
 
+  ShowBathroomByReport(selected: DailyReport){
+    this.bathroomService.showBathroomByReport(selected.id).subscribe({
+      next: (bathrooms) => {
+        this.bathrooms = bathrooms;
+      },
+      error: (error) => {
+        console.error('ShowMoodByReport.view-daily-report component: error loading mood'+ error);
+      },
+    })
+  }
   ShowMoodByReport(selected: DailyReport){
     this.reportService.showMoodByReport(selected.id).subscribe({
       next: (moods) => {
         this.moods = moods;
       },
       error: (error) => {
-        console.error('ShowMoodByReport.view-daily-report component: error loading mood'+ error);
+        console.error('ShowBathroomByReport.view-daily-report component: error loading bathroom'+ error);
       },
     })
   }
