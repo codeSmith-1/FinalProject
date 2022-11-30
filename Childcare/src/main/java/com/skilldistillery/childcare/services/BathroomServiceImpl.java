@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.childcare.entities.Bathroom;
+import com.skilldistillery.childcare.entities.Food;
 import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.repositories.BathroomRepository;
 import com.skilldistillery.childcare.repositories.UserRepository;
@@ -69,6 +70,12 @@ public class BathroomServiceImpl implements BathroomService {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public List<Bathroom> bathroomsByReportId(int reportId) {
+		List<Bathroom> bathrooms = bathroomRepo.findByDailyReportId(reportId);
+		return bathrooms;
 	}
 
 }

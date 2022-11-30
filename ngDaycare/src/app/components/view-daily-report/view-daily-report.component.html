@@ -87,6 +87,25 @@
       </tr>
     </tbody>
   </table>
+  Bathroom:
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Time</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Staff</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{nap.timeStart | date: "shortTime"}}</td>
+        <td>{{nap.timeFinish | date: "shortTime"}}</td>
+        <td>{{nap.timeStart | date: "shortTime"}}</td>
+        <td>{{nap.timeFinish | date: "shortTime"}}</td>
+      </tr>
+    </tbody>
+  </table>
   Images: <br>
   <table class="table table-striped table-hover">
     <thead class="table-dark">
@@ -98,7 +117,7 @@
     <tbody>
       <tr *ngFor="let image of images">
         <td><img src="{{ image.imageUrl }}" /></td>
-        <td>{{ image.staff.firstName }} {{ image.staff.lastName }}</td>
+        <td>{{ image.staff.firstName }} {{ image.createdAt | date: "shortTime" }}</td>
       </tr>
     </tbody>
   </table>

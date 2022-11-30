@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.childcare.entities.Bathroom;
+import com.skilldistillery.childcare.entities.MoodEntry;
 import com.skilldistillery.childcare.services.BathroomService;
 
 @RestController
@@ -26,12 +27,12 @@ public class BathroomController {
 	@Autowired
 	private BathroomService bathroomServ;
 
-	@GetMapping("bathroom")
+	@GetMapping("bathrooms")
 	public List<Bathroom> listAll(String username) {
 		return bathroomServ.listAllBathrooms(username);
 	}
 
-	@PostMapping("bathroom")
+	@PostMapping("bathrooms")
 	public Bathroom create(@RequestBody Bathroom bathroom, String username, HttpServletResponse res,
 			HttpServletRequest req) {
 		try {
@@ -55,6 +56,12 @@ public class BathroomController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	@GetMapping("bathrooms/{reportId}")
+	public List<Bathroom> listMoodByReport(@PathVariable ("reportId") int reportId){
+		List<Bathroom> bathrooms = bathroomServ.bathroomsByReportId(reportId);
+		return bathrooms;
 	}
 
 }
