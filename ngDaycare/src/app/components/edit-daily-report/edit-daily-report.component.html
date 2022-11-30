@@ -1,0 +1,31 @@
+<div>
+  <form>
+    <input
+    type="text"
+    name="timeIn"
+    value="{{report.timeIn}}"/>Check In<br>
+    <input
+    type="text"
+    name="timeOut"
+    value="{{report.timeOut}}"/>Check Out<br>
+    <input
+      type="checkbox"
+      name="wipesLow"
+      [(ngModel)]="report.wipesLow"/>
+    Wipes Low<br>
+    <input
+      type="checkbox"
+      name="diapersLow"
+      [(ngModel)]="report.diapersLow"
+    />Diapers Low<br>
+    <input
+      type="text"
+      name="activities"
+      [(ngModel)]="report.activities"
+    />Activities<br>
+    <textarea
+    rows="4"
+    name="notes"
+    [(ngModel)]="report.notes"></textarea><br>
+  </form>
+</div>
