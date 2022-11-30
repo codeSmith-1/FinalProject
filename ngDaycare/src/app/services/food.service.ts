@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class FoodService {
   private baseUrl = 'http://localhost:8089/';
-  url = environment.baseUrl + 'api.foods';
+  url = environment.baseUrl + 'api/foods';
   constructor(private http: HttpClient, private auth: AuthService) { }
 
 index():Observable<Food[]> {
@@ -34,7 +34,7 @@ create(food: Food): Observable<Food> {
 }
 
 showByReport(reportId: number): Observable<Food[]> {
-  return this.http.get<Food[]>(this.url + 'api/foods/' + reportId, this.getHttpOptions()).pipe(
+  return this.http.get<Food[]>(this.url + '/' + reportId, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(

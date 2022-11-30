@@ -320,7 +320,7 @@ DROP TABLE IF EXISTS `report_image` ;
 
 CREATE TABLE IF NOT EXISTS `report_image` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `image_url` VARCHAR(1500) NULL,
+  `image_url` VARCHAR(2500) NULL,
   `daily_report_id` INT NOT NULL,
   `staff_id` INT NOT NULL,
   `created_at` DATETIME NULL,
@@ -422,6 +422,11 @@ INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VA
 INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (2, 'Sloppy Joe, Chips, Carrots', NULL, NULL, NULL, 1);
 INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (3, NULL, NULL, 'Celery, Peanut Butter, Carrots', NULL, 1);
 INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (4, NULL, 'Apple Slices, Wheat Thins', NULL, NULL, 2);
+INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (5, 'Macaroni & Cheese, Grapes, Cheerios', NULL, NULL, NULL, 2);
+INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (6, NULL, NULL, 'Carrots, Celery, Raisins, Peanut Butter', NULL, 2);
+INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (7, NULL, 'Peaches, Bread & Butter', NULL, NULL, 3);
+INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (8, 'Little Smokies, Hash Browns, Pineapple Chunks', NULL, NULL, NULL, 3);
+INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (9, NULL, NULL, 'Peas, Apple Sauce, Milk', NULL, 3);
 
 COMMIT;
 
@@ -554,6 +559,9 @@ COMMIT;
 START TRANSACTION;
 USE `daycaredb`;
 INSERT INTO `report_image` (`id`, `image_url`, `daily_report_id`, `staff_id`, `created_at`) VALUES (1, 'https://cloudfront-us-east-1.images.arcpublishing.com/coindesk/WMXJCFJ3ERCETA6TJNZ5NQPNKA.webp', 1, 2, '2022-11-20T08:45:12');
+INSERT INTO `report_image` (`id`, `image_url`, `daily_report_id`, `staff_id`, `created_at`) VALUES (2, 'https://winnie.imgix.net/2149cc20-c845-4efc-bc3c-858e9c740821?w=224&h=168&dpr=3&fit=crop&auto=compress', 1, 4, '2022-11-20T10:45:12');
+INSERT INTO `report_image` (`id`, `image_url`, `daily_report_id`, `staff_id`, `created_at`) VALUES (3, 'https://health.clevelandclinic.org/wp-content/uploads/sites/3/2014/09/daycare-901208614-770x553-650x428.jpg', 2, 3, '2022-11-20T14:45:12');
+INSERT INTO `report_image` (`id`, `image_url`, `daily_report_id`, `staff_id`, `created_at`) VALUES (4, 'https://www.mymdnow.com/wp-content/uploads/2015/03/mdn-blog_daycare-vaccines.jpg', 3, 1, '2022-12-20T07:45:12');
 
 COMMIT;
 
