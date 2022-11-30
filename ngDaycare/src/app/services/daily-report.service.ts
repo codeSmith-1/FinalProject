@@ -28,6 +28,19 @@ export class DailyReportService {
     );
   }
 
+
+
+  create(kidId: number): Observable<DailyReport>{
+    return this.http.post<DailyReport>(this.url, kidId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('DailyReport.create(): error creating report: ' + err)
+        );
+      })
+    );
+  }
+
   index(): Observable<DailyReport[]> {
     return this.http.get<DailyReport[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
