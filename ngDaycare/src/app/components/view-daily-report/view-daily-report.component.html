@@ -93,17 +93,17 @@
     <thead class="table-dark">
       <tr>
         <th>Time</th>
-        <th>Description</th>
         <th>Type</th>
         <th>Staff</th>
+        <th>Notes</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let bathroom of bathrooms">
         <td>{{ bathroom.bathroomTime| date: "shortTime" }}</td>
-        <td>{{ bathroom.description }}</td>
         <td>{{ bathroom.type.status }}</td>
         <td>{{ bathroom.staff.firstName }}</td>
+        <td>{{ bathroom.description }}</td>
       </tr>
     </tbody>
   </table>

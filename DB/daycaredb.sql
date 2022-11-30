@@ -491,6 +491,8 @@ USE `daycaredb`;
 INSERT INTO `bathroom` (`id`, `description`, `bathroom_time`, `day_id`, `staff_id`, `bathroom_type_id`) VALUES (1, 'N/A', '2022-11-20T09:17:48', 1, 4, 3);
 INSERT INTO `bathroom` (`id`, `description`, `bathroom_time`, `day_id`, `staff_id`, `bathroom_type_id`) VALUES (2, 'Blowout', '2022-11-21T14:55:12', 2, 2, 1);
 INSERT INTO `bathroom` (`id`, `description`, `bathroom_time`, `day_id`, `staff_id`, `bathroom_type_id`) VALUES (3, 'N/A', '2022-11-21T15:02:55', 2, 1, 2);
+INSERT INTO `bathroom` (`id`, `description`, `bathroom_time`, `day_id`, `staff_id`, `bathroom_type_id`) VALUES (4, 'N/A', '2022-11-22T09:02:55', 3, 3, 3);
+INSERT INTO `bathroom` (`id`, `description`, `bathroom_time`, `day_id`, `staff_id`, `bathroom_type_id`) VALUES (5, 'N/A', '2022-11-22T15:02:55', 3, 4, 2);
 
 COMMIT;
 
