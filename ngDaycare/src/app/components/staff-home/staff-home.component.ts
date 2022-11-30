@@ -37,8 +37,11 @@ export class StaffHomeComponent implements OnInit {
   }
 
   checkIn(kidId: number){
+    console.log(kidId);
     this.dailySvc.create(kidId).subscribe({
       next: (report) => {
+        this.getKids();
+        this.reloadUser();
         console.log(report);
       },
       error: (err) => {

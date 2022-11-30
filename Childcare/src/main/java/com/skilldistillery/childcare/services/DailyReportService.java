@@ -8,7 +8,7 @@ public interface DailyReportService {
 
 	List<DailyReport> listAllReports(String username);
 	
-	DailyReport create(int kidId, String username, DailyReport dailyReport);
+	DailyReport create(int kidId, String username);
 	
 
 }

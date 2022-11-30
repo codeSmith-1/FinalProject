@@ -34,11 +34,11 @@ public class DailyReportServiceImpl implements DailyReportService {
 	}
 
 	@Override
-	public DailyReport create(int kidId, String username, DailyReport dailyReport) {
+	public DailyReport create(int kidId, String username) {
 		Kid kid = kidRepo.queryById(kidId);
+		DailyReport dailyReport = new DailyReport();
 		dailyReport.setKid(kid);
 		return reportRepo.saveAndFlush(dailyReport);
-	
 	}
 	
 	
