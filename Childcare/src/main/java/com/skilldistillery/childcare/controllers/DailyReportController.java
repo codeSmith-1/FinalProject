@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.childcare.entities.DailyReport;
 import com.skilldistillery.childcare.entities.MoodEntry;
+import com.skilldistillery.childcare.entities.Nap;
 import com.skilldistillery.childcare.services.DailyReportService;
 import com.skilldistillery.childcare.services.MoodEntryService;
+import com.skilldistillery.childcare.services.NapService;
 
 @RestController
 @RequestMapping("api/")
@@ -25,6 +27,8 @@ public class DailyReportController {
 	
 	@Autowired
 	public MoodEntryService moodEntryService;
+	@Autowired
+	public NapService napService;
 	
 	@GetMapping("reports")
 	public List<DailyReport> listReports(Principal principal){
@@ -37,6 +41,12 @@ public class DailyReportController {
 	public List<MoodEntry> listMoodByReport(@PathVariable ("reportId") int reportId){
 		List<MoodEntry> moods = moodEntryService.findByDailyReportId(reportId);
 		return moods;
+	}
+	
+	@GetMapping("naps/{reportId}")
+	public Nap showNapByReport(@PathVariable ("reportId") int reportId){
+		Nap nap = napService.napByReportId(reportId);
+		return nap;
 	}
 
 }

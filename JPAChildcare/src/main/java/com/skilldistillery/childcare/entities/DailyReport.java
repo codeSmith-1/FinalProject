@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -62,10 +63,27 @@ public class DailyReport {
 	@JoinColumn(name="kid_id")
 	private Kid kid;
 	
+	@JsonIgnoreProperties({"day"})
+	@OneToOne(mappedBy="day")
+	private Nap nap;
+	
 	public List<MoodEntry> getMoodEntries() {
 		return moodEntries;
 	}
 	
+	
+
+	public Nap getNap() {
+		return nap;
+	}
+
+
+
+	public void setNap(Nap nap) {
+		this.nap = nap;
+	}
+
+
 
 	public List<ReportImage> getImages() {
 		return images;

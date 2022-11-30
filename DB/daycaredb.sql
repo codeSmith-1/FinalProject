@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `kid` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `birthday` DATE NOT NULL,
-  `classroom_id` INT NOT NULL,
+  `classroom_id` INT NULL,
   `image_url` VARCHAR(1500) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_child_classroom1_idx` (`classroom_id` ASC),
