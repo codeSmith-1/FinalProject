@@ -40,6 +40,15 @@ public class DailyReportServiceImpl implements DailyReportService {
 		dailyReport.setKid(kid);
 		return reportRepo.saveAndFlush(dailyReport);
 	}
+
+	@Override
+	public DailyReport update(DailyReport dailyReport) {
+		DailyReport dailyToUpdate = reportRepo.queryById(dailyReport.getId());
+		reportRepo.saveAndFlush(dailyToUpdate);
+		return dailyToUpdate;
+	}
+	
+	
 	
 	
 	

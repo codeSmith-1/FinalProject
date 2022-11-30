@@ -64,14 +64,14 @@ public class DailyReportController {
 		return reportSvc.create(kidId, principal.getName());
 	}
 	
-//	@PutMapping("reports")
-//	public DailyReport create(@RequestBody DailyReport, Principal principal, HttpServletResponse res) {
-//		if (principal.getName().isEmpty()) {
-//			res.setStatus(400);
-//			return null;
-//		}
-//		return reportSvc.update
-//	}
+	@PutMapping("reports")
+	public DailyReport update(@RequestBody DailyReport dailyReport, Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(400);
+			return null;
+		}
+		return reportSvc.update(dailyReport);
+	}
 	
 	
 

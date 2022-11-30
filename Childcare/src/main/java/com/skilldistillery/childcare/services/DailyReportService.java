@@ -10,5 +10,7 @@ public interface DailyReportService {
 	
 	DailyReport create(int kidId, String username);
 	
+	DailyReport update(DailyReport dailyReport);
+	
 
 }
