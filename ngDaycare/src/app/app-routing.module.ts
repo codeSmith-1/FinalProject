@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BathroomCrudComponent } from './components/bathroom-crud/bathroom-crud.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { EditDailyReportComponent } from './components/edit-daily-report/edit-daily-report.component';
 import { FoodCrudComponent } from './components/food-crud/food-crud.component';
 import { GuardianHomeComponent } from './components/guardian-home/guardian-home.component';
 import { HomeComponent } from './components/home/home.component';
@@ -30,7 +31,7 @@ const routes: Routes = [
  { path: 'viewReports', component: ViewDailyReportComponent},
  { path: 'bathroomCrud', component: BathroomCrudComponent},
  { path: 'foodCrud', component: FoodCrudComponent},
-//  { path: 'editReport/:id', component: EditDailyReportComponent},
+ { path: 'editReport/:id', component: EditDailyReportComponent},
  { path: '**', component: NotFoundComponent }
 ];
 

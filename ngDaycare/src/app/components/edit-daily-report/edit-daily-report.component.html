@@ -29,6 +29,8 @@
     [(ngModel)]="report.notes"></textarea><br>
   </form>
 </div>
+<div>
+
 Nap Time:
 <table class="table table-striped table-hover">
   <thead class="table-dark">
@@ -44,6 +46,10 @@ Nap Time:
     </tr>
   </tbody>
 </table>
+
+</div>
+
+<div *ngIf="moods">
 Child's moods: <br>
 <table class="table table-striped table-hover">
   <thead class="table-dark">
@@ -59,6 +65,9 @@ Child's moods: <br>
     </tr>
   </tbody>
 </table>
+</div>
+
+<div *ngIf="food">
 Food:
 <table class="table table-striped table-hover">
   <thead class="table-dark">
@@ -80,6 +89,8 @@ Food:
     </tr>
   </tbody>
 </table>
+</div>
+<div *ngIf="bathrooms">
 Bathroom:
 <table class="table table-striped table-hover">
   <thead class="table-dark">
@@ -99,6 +110,8 @@ Bathroom:
     </tr>
   </tbody>
 </table>
+</div>
+<div *ngIf="images">
 Images: <br>
 <table class="table table-striped table-hover">
   <thead class="table-dark">
@@ -114,6 +127,7 @@ Images: <br>
     </tr>
   </tbody>
 </table>
+</div>
 <!-- <button (click)="update(report)" class="btn btn-secondary">
   Submit Changes
 </button> -->
