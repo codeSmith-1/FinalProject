@@ -6,8 +6,8 @@
       <!-- <div *ngFor="let guaridan of kid.guardians">   -->
       <p class="card-text">filter guardian for Emergency contact, number</p>
       </div>
-      <a class="btn btn-dark" (click)="checkIn(kid.id)">check in</a>
-      <a class="btn btn-primary" (click)="dailyReport(kid)">Daily Report</a>
+      <a *ngIf="!getTodaysReportId(kid)" class="btn btn-dark" (click)="checkIn(kid.id)">check in</a>
+      <a *ngIf="getTodaysReportId(kid)" class="btn btn-primary" (click)="dailyReport(getTodaysReportId(kid))">Daily Report</a>
       <!-- <a class="btn btn-primary" (click)="open(content); selected=kid">Update</a> -->
     </div>
   </div>
