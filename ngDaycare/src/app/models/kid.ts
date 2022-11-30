@@ -2,7 +2,6 @@ import { Classroom } from "./classroom";
 
 export class Kid {
   id: number;
-  classroom: Classroom;
   firstName: string | undefined;
   lastName: string | undefined;
   birthday: Date | undefined;
