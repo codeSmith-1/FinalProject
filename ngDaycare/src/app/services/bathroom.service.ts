@@ -3,15 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Bathroom } from '../models/bathroom';
-import { Kid } from '../models/kid';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BathroomService {
   private baseUrl = 'http://localhost:8089/';
-  url = environment.baseUrl;
-  constructor(private http: HttpClient) { }
+  url = environment.baseUrl + "api/bathrooms";
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   index(): Observable<Bathroom[]> {
     return this.http.get<Bathroom[]>(this.url).pipe(
@@ -23,7 +23,7 @@ export class BathroomService {
   }
 
   show(id: number): Observable<Bathroom> {
-    return this.http.get<Bathroom>(this.url + '/' + id).pipe(
+    return this.http.get<Bathroom>(this.url + '/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -34,7 +34,9 @@ export class BathroomService {
   }
 
   create(bathroom: Bathroom): Observable<Bathroom> {
-    return this.http.post<Bathroom>(this.url + 'bathroom', bathroom).pipe(
+    return this.http
+    .post<Bathroom>(this.url + 'bathroom', bathroom, this.getHttpOptions())
+    .pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -45,7 +47,7 @@ export class BathroomService {
   }
 
   update(id: number, bathroom: Bathroom): Observable<Bathroom> {
-    return this.http.put<Bathroom>(this.url + '/' + id, bathroom).pipe(
+    return this.http.put<Bathroom>(this.url + '/' + id, bathroom, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(() => new Error('bathroom.update(): error updating bathroom.'));
@@ -56,4 +58,15 @@ export class BathroomService {
   destroy(id: number): Observable<void> {
     return this.http.delete<void>(this.url + '/' + id).pipe();
   }
+
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
+
 }

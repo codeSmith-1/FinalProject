@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class FoodService {
   private baseUrl = 'http://localhost:8089/';
-  url = environment.baseUrl;
+  url = environment.baseUrl + 'api.foods';
   constructor(private http: HttpClient, private auth: AuthService) { }
 
 index():Observable<Food[]> {
