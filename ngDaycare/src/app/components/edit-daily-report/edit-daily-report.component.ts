@@ -3,17 +3,22 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Bathroom } from 'src/app/models/bathroom';
+import { BathroomType } from 'src/app/models/bathroom-type';
 import { DailyReport } from 'src/app/models/daily-report';
 import { Food } from 'src/app/models/food';
+import { Mood } from 'src/app/models/mood';
 import { MoodEntry } from 'src/app/models/mood-entry';
 import { Nap } from 'src/app/models/nap';
 import { ReportImage } from 'src/app/models/report-image';
+import { Staff } from 'src/app/models/staff';
 import { AuthService } from 'src/app/services/auth.service';
+import { BathroomTypeService } from 'src/app/services/bathroom-type.service';
 import { BathroomService } from 'src/app/services/bathroom.service';
 import { DailyReportService } from 'src/app/services/daily-report.service';
 import { FoodService } from 'src/app/services/food.service';
 import { NapService } from 'src/app/services/nap.service';
 import { ReportImageService } from 'src/app/services/report-image.service';
+import { StaffService } from 'src/app/services/staff.service';
 
 @Component({
   selector: 'app-edit-daily-report',
@@ -29,6 +34,14 @@ export class EditDailyReportComponent implements OnInit {
   nap: Nap = new Nap();
   bathrooms: Bathroom[] = [];
   closeResult: string = "";
+  selected: DailyReport | null = null;
+  newBathroom: Bathroom = new Bathroom();
+  editBathroom: Bathroom | null = null;
+  selectedBathroom: Bathroom | null = null;
+  bathroomType: BathroomType[] | null = null;
+  allStaff: Staff[] | null = null;
+  newMood: Mood | null = null;
+  newImage: ReportImage| null = null;
 
   constructor(
     private modalService: NgbModal,
@@ -40,6 +53,9 @@ export class EditDailyReportComponent implements OnInit {
     private reportService: DailyReportService,
     private auth: AuthService,
     private imageService: ReportImageService,
+    private bathroomTypeService: BathroomTypeService,
+    private staffService: StaffService,
+    private reportImageService: ReportImageService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +74,8 @@ export class EditDailyReportComponent implements OnInit {
             this.LoadImage(this.report);
             this.LoadMood(this.report);
             this.LoadNap(this.report);
+            this.LoadBathroomType();
+            this.LoadStaff()
           },
           error: (fail) => {
             console.error('edit-report-component.ngOnInit: report not found');
@@ -98,6 +116,29 @@ export class EditDailyReportComponent implements OnInit {
     this.napService.showNapsByReport(report.id).subscribe({
       next: (nap) => {
         this.nap = nap;
+      },
+      error: (error) => {
+        console.error('ShowNapByReport.view-daily-report component: error loading nap'+ error);
+      },
+    })
+  }
+  LoadBathroomType(){
+    this.bathroomTypeService.showBathroomTypes().subscribe({
+      next: (type) => {
+        this.bathroomType = type;
+        console.log(this.bathroomType);
+
+      },
+      error: (error) => {
+        console.error('ShowNapByReport.view-daily-report component: error loading nap'+ error);
+      },
+    })
+  }
+
+  LoadStaff(){
+    this.staffService.index().subscribe({
+      next: (staff) => {
+        this.allStaff = staff;
       },
       error: (error) => {
         console.error('ShowNapByReport.view-daily-report component: error loading nap'+ error);
@@ -170,6 +211,47 @@ export class EditDailyReportComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  addBathroom(bathroom: Bathroom) {
+    this.bathroomService.create(this.newBathroom).subscribe({
+      next: (bathroom) => {
+        this.reload();
+        this.newBathroom = new Bathroom();
+      },
+      error: (fail) => {
+        console.error('Bathroom-crud.addBathroom(): error creating bathroom record:');
+        console.error(fail);
+      },
+    });
+    this.reload();
+  }
+
+
+  deleteBathroom(id: number) {
+    this.bathroomService.destroy(id).subscribe({
+      next: (bathroom) => {
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('Bathroom-crud.deleteBathroom(): error removing bathroom record:');
+        console.error(fail);
+      },
+    });
+  }
+
+  updateBathroom(id: number, bathroom: Bathroom) {
+    this.bathroomService.update(id, bathroom).subscribe({
+      next: (bathroom) => {
+        this.reload();
+        this.selectedBathroom = bathroom;
+        this.editBathroom = null;
+      },
+      error: (fail) => {
+        console.error('Bathroom-crud updateBathroom(): error updating bathroom record:');
+        console.error(fail);
+      },
+    });
   }
 
 }

@@ -45,4 +45,30 @@ export class ReportImageService {
     return options;
   }
 
+  create(reportImage: ReportImage): Observable<ReportImage> {
+    return this.http
+    .post<ReportImage>(this.url + 'reportImage', reportImage, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('report-image.service.create(): error creating report-image.')
+        );
+      })
+    );
+  }
+
+  update(id: number, reportImage: ReportImage): Observable<ReportImage> {
+    return this.http.put<ReportImage>(this.url + '/' + id, reportImage, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(() => new Error('report-image.update(): error updating report-image.'));
+      })
+    );
+  }
+
+  destroy(id: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/' + id).pipe();
+  }
+
 }
