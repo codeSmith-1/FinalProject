@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.childcare.entities.Adult;
 import com.skilldistillery.childcare.entities.Staff;
+import com.skilldistillery.childcare.services.AdultService;
 import com.skilldistillery.childcare.services.StaffService;
+import com.skilldistillery.childcare.services.UserService;
 
 @RestController
 @RequestMapping("api/")
@@ -25,10 +28,26 @@ public class StaffController {
 
 	@Autowired
 	private StaffService staffSvc;
+	@Autowired
+	private UserService userSvc;
+	@Autowired
+	private AdultService adultSvc;
 	
-//	@GetMapping("staff/users")
-//	public List<User>
-//	}
+	@GetMapping("staff/adults")
+	public List<Adult> indexAdults(Principal principal, HttpServletResponse res){
+		String username = principal.getName();
+		if (principal.getName().isEmpty()) {
+			res.setStatus(401);
+			return null;
+		}
+		List<Adult> adults = adultSvc.listAllAdults(principal.getName());
+		if (adults==null) {
+			res.setStatus(401);
+			return null;
+		} else {
+			return adults;
+		}
+	}
 
 	@PostMapping("staff")
 	public Staff registerStaff(@RequestBody Staff staff, HttpServletResponse res) {

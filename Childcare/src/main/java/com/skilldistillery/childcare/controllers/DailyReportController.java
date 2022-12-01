@@ -130,7 +130,7 @@ public class DailyReportController {
 	}
 	
 
-	@DeleteMapping("reports/moods/{moodId}")
+	@DeleteMapping("reports/moods/{moodId}/")
 	public void deleteMood(@PathVariable int moodId, Principal principal, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(401);
