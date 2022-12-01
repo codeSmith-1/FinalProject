@@ -31,7 +31,7 @@ public class MessageController {
 	@PostMapping("messages")
 	public Message createMessage(@RequestBody Message message, HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		try {
-			message = messageSvc.create(principal.getName(), message);
+			message = messageSvc.create(message, principal.getName());
 			res.setStatus(201);
 		} catch (Exception e) {
 			e.printStackTrace();

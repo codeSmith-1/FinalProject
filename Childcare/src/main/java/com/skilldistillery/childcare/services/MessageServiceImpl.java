@@ -25,7 +25,9 @@ public class MessageServiceImpl implements MessageService {
 	}
 	
 	@Override
-	public Message create(Message message) {
+	public Message create(Message message, String username) {
+		User user = userRepo.findByUsername(username);
+		
 		message = messageRepo.saveAndFlush(message);
 		return message;
 	}

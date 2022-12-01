@@ -10,7 +10,7 @@ public interface MessageService {
 	
 	Message show(int messageId);
 	
-	Message create(Message message);
+	Message create(Message message, String username);
 	
 //	Message update(Message message);
 	
