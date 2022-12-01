@@ -1,5 +1,6 @@
 package com.skilldistillery.childcare.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +29,12 @@ public class BathroomController {
 	private BathroomService bathroomServ;
 
 	@GetMapping("bathrooms")
-	public List<Bathroom> listAll(String username) {
-		return bathroomServ.listAllBathrooms(username);
+	public List<Bathroom> listAll(Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(400);
+			return null;
+		}
+		return bathroomServ.listAllBathrooms();
 	}
 
 	@PostMapping("bathrooms")
