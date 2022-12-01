@@ -6,7 +6,7 @@ import com.skilldistillery.childcare.entities.Staff;
 
 public interface StaffService {
 
-	List<Staff> listAllStaff(String username);
+	List<Staff> listAllStaff();
 
 	Staff showStaffByUsername(String username);
 

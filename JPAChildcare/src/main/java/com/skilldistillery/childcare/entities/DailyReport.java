@@ -2,6 +2,7 @@ package com.skilldistillery.childcare.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -68,6 +69,17 @@ public class DailyReport {
 	
 	public List<MoodEntry> getMoodEntries() {
 		return moodEntries;
+	}
+	
+	public void addMoodEntry(MoodEntry moodEntry) {
+		if (moodEntries == null) {
+			moodEntries = new ArrayList<>();
+
+			if (!moodEntries.contains(moodEntry)) {
+				moodEntries.add(moodEntry);
+				moodEntry.setDailyReport(this);
+			}
+		}
 	}
 	
 	

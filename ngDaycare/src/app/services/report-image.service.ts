@@ -25,7 +25,7 @@ export class ReportImageService {
   }
 
   showByReport(reportId: number): Observable<ReportImage[]> {
-    return this.http.get<ReportImage[]>(this.url + '/' + reportId, this.getHttpOptions()).pipe(
+    return this.http.get<ReportImage[]>(this.url + '/reportId/' + reportId, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -43,6 +43,31 @@ export class ReportImageService {
       },
     };
     return options;
+  }
+
+  create(reportImage: ReportImage, reportId: number, staffId: number): Observable<ReportImage> {
+    return this.http
+    .post<ReportImage>(this.url + `/reportImage/reportId/${reportId}/staffId/${staffId}`, reportImage, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('report-image.service.create(): error creating report-image.')
+        );
+      })
+    );
+  }
+
+
+  destroy(imageId: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/reportImage/imageId/' + imageId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('editDailyReport.delete(): error deleting image: ' + err)
+        );
+      })
+    );
   }
 
 }

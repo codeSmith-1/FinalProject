@@ -118,7 +118,7 @@
     <tbody>
       <tr *ngFor="let image of images">
         <td><img src="{{ image.imageUrl }}" /></td>
-        <td>{{ image.staff.firstName }} {{ image.createdAt | date: "shortTime" }}</td>
+        <td *ngIf="image.staff">{{ image.staff.firstName }} {{ image.createdAt | date: "shortTime" }}</td>
       </tr>
     </tbody>
   </table>

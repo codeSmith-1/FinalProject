@@ -26,6 +26,7 @@ export class GuardianHomeComponent implements OnInit {
   relationship: string ='';
 
   ngOnInit(): void {
+    console.log(this.inSessionAdult)
     this.reloadUser();
     this.getKids();
   }

@@ -34,7 +34,7 @@ selected: null | Food = null;
     });
   }
 
-  addKid(food: Food) {
+  addFood(food: Food) {
     this.foodService.create(this.newFood).subscribe({
       next: (food) => {
         this.reload();
@@ -48,7 +48,7 @@ selected: null | Food = null;
     this.reload();
   }
 
-  deleteKid(id: number) {
+  deleteFood(id: number) {
     this.foodService.destroy(id).subscribe({
       next: (food) => {
         this.reload();
@@ -60,11 +60,11 @@ selected: null | Food = null;
     });
   }
 
-  setEditKid(food: Food) {
+  setEditFood(food: Food) {
     this.editFood = Object.assign({}, food);
   }
 
-  getNumberOfKids() {
+  getNumberOfFood() {
     return this.foods.length;
   }
 

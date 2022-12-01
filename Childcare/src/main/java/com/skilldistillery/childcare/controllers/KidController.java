@@ -33,10 +33,15 @@ public class KidController {
 
 	@GetMapping("kids")
 	public List<Kid> listAllKids(Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(401);
+			return null;
+		}
 		User user = userRepo.findByUsername(principal.getName());
 		if (user.getRole().equals("staff")) {
 			return kidServ.listAllKids(principal.getName());
 		}
+		res.setStatus(404);
 		return null;
 	}
 
@@ -57,7 +62,7 @@ public class KidController {
 	@PutMapping("kids")
 	public Kid update(Principal principal, @RequestBody Kid kid, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
-			res.setStatus(400);
+			res.setStatus(401);
 			return null;
 		}
 		kid = kidServ.update(principal.getName(), kid);

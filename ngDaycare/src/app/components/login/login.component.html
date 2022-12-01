@@ -19,7 +19,15 @@
       />
     </div>
     <div class="col-auto">
-      <button class="col form-control" (click)="login(loginUser)">Login</button>
+      <button class="btn btn-primary" (click)="login(loginUser)">Login</button>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-outline-primary" [routerLink]="['/register']">Create Account</button>
     </div>
   </div>
 </form>
+
+<div *ngIf="invalidLogin" class="alert alert-danger" >
+  There was a problem logging in. Please try again.
+</div>
+

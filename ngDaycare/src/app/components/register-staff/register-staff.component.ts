@@ -24,7 +24,7 @@ export class RegisterStaffComponent implements OnInit {
 
   // get list of classrooms
   reload() {
-    this.staff.index().subscribe({
+    this.staff.indexClassroom().subscribe({
       next: (data) => {
         this.classrooms = data;
       },

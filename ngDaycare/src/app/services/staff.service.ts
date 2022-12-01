@@ -71,7 +71,19 @@ export class StaffService {
     };
     return options;
   }
-  index(): Observable<Classroom[]>{
+
+  index(): Observable<Staff[]>{
+    return this.http.get<Staff[]>(this.url, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('TodoService.index(): error retrieving todos: ' + err)
+        );
+      })
+    );
+  }
+
+  indexClassroom(): Observable<Classroom[]>{
     return this.http.get<Classroom[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);

@@ -32,6 +32,10 @@ public class DailyReportServiceImpl implements DailyReportService {
 			return null;
 		}
 	}
+	@Override 
+	public DailyReport findById(int reportId) {
+		return reportRepo.queryById(reportId);
+	}
 
 	@Override
 	public DailyReport create(int kidId, String username) {

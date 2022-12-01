@@ -35,7 +35,6 @@ public class AdultController {
 	@GetMapping("adults")
 	public List<Adult> listAdults(Principal principal){
 		return null;
-		
 	}
 	
 	@GetMapping("adults/kids")

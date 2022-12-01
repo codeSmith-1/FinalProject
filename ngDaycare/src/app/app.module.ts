@@ -24,6 +24,7 @@ import { FoodCrudComponent } from './components/food-crud/food-crud.component';
 import { BathroomCrudComponent } from './components/bathroom-crud/bathroom-crud.component';
 import { EditDailyReportComponent } from './components/edit-daily-report/edit-daily-report.component';
 import { MessageCrudComponent } from './components/message-crud/message-crud.component';
+import { EmergencyContactPipe } from './pipes/emergency-contact.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { MessageCrudComponent } from './components/message-crud/message-crud.com
     FoodCrudComponent,
     BathroomCrudComponent,
     EditDailyReportComponent,
-    MessageCrudComponent
+    MessageCrudComponent,
+    EmergencyContactPipe,
   ],
   imports: [
     BrowserModule,

@@ -5,19 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.childcare.entities.DailyReport;
 import com.skilldistillery.childcare.entities.ReportImage;
+import com.skilldistillery.childcare.entities.Staff;
+import com.skilldistillery.childcare.repositories.DailyReportRepository;
 import com.skilldistillery.childcare.repositories.ReportImageRepository;
+import com.skilldistillery.childcare.repositories.StaffRepository;
 
 @Service
-public class ReportImageServiceImpl implements ReportImageService{
-	
+public class ReportImageServiceImpl implements ReportImageService {
+
 	@Autowired
 	public ReportImageRepository imageRepo;
-
-	@Override
-	public List<ReportImage> showAll(String username) {
-		return imageRepo.findAll();
-	}
+	@Autowired
+	public DailyReportRepository reportRepo;
+	@Autowired
+	public StaffRepository staffRepo;
 
 	@Override
 	public ReportImage show(int imageId) {
@@ -25,20 +28,60 @@ public class ReportImageServiceImpl implements ReportImageService{
 	}
 
 	@Override
-	public ReportImage create(int username, ReportImage ri, int dailyReportId) {
-		// TODO Auto-generated method stub
+	public List<ReportImage> imagesByReportId(int reportId) {
+		List<ReportImage> images = imageRepo.findByDailyReportId(reportId);
+		if (images != null) {
+			return imageRepo.findByDailyReportId(reportId);
+		}
 		return null;
 	}
 
+	@Override
+	public List<ReportImage> showAll(int id) {
+		DailyReport dr = reportRepo.queryById(id);
+		List<ReportImage> reportImages = imageRepo.findByDailyReportId(id);
+		if (reportImages != null) {
+			return reportImages;
+		}
+		return null;
+	}
+
+//	@Override
+//	public ReportImage create(ReportImage ri, int dailyReportId) {
+//		DailyReport dr = reportRepo.queryById(dailyReportId);
+//		List<ReportImage> images = imageRepo.findByDailyReportId(dailyReportId);
+//		ri.setDailyReport(dr);
+//		
+//		images.add(ri);
+//		dr.setImages(images);
+//		
+//		return ri;
+//	}
 
 	@Override
-	public void delete(int username, int rid) {
-		// TODO Auto-generated method stub
+	public boolean delete(int rid) {
+		ReportImage reportImage = imageRepo.queryById(rid);
+		if (reportImage != null) {
+			imageRepo.delete(reportImage);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
-	public List<ReportImage> imageByReportId(int reportId) {
-		return imageRepo.findByDailyReportId(reportId);
+	public ReportImage create(int staffId, ReportImage ri, int dailyReportId) {
+		DailyReport dr = reportRepo.queryById(dailyReportId);
+		Staff staff = staffRepo.queryById(staffId);
+		ri.setDailyReport(dr);
+		ri.setStaff(staff);
+		try {
+			ri = imageRepo.saveAndFlush(ri);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("------------------ error imageServieCreate();");
+			ri = null;
+		}
+		return ri;
 	}
 
 }

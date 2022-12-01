@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.childcare.entities.Bathroom;
-import com.skilldistillery.childcare.entities.Food;
+import com.skilldistillery.childcare.entities.BathroomType;
 import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.repositories.BathroomRepository;
+import com.skilldistillery.childcare.repositories.BathroomTypeRepository;
 import com.skilldistillery.childcare.repositories.UserRepository;
 
 @Service
@@ -19,15 +20,16 @@ public class BathroomServiceImpl implements BathroomService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private BathroomTypeRepository bathroomTypeRepo;
 
 	@Override
-	public List<Bathroom> listAllBathrooms(String username) {
-		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
-			return bathroomRepo.findAll();
-		} else {
-			return null;
+	public List<BathroomType> listAllBathroomTypes() {
+		List<BathroomType> bathrooms = bathroomTypeRepo.findAll();
+		if (bathrooms != null) {
+			return bathroomTypeRepo.findAll();
 		}
+		return null;
 	}
 
 	@Override
@@ -76,6 +78,12 @@ public class BathroomServiceImpl implements BathroomService {
 	public List<Bathroom> bathroomsByReportId(int reportId) {
 		List<Bathroom> bathrooms = bathroomRepo.findByDayId(reportId);
 		return bathrooms;
+	}
+
+	@Override
+	public List<Bathroom> listAllBathrooms() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

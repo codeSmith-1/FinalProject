@@ -13,5 +13,5 @@ public interface AdultRepository extends JpaRepository<Adult, Integer> {
 	public Adult findByUser_Username(String username);
 	
 	public Adult findByGuardians_KidId(int id);
-
+	
 }

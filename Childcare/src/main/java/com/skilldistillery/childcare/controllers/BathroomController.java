@@ -1,5 +1,6 @@
 package com.skilldistillery.childcare.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,20 +17,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.childcare.entities.Bathroom;
-import com.skilldistillery.childcare.entities.MoodEntry;
+import com.skilldistillery.childcare.entities.BathroomType;
 import com.skilldistillery.childcare.services.BathroomService;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost/" })
 public class BathroomController {
 
 	@Autowired
 	private BathroomService bathroomServ;
 
-	@GetMapping("bathrooms")
-	public List<Bathroom> listAll(String username) {
-		return bathroomServ.listAllBathrooms(username);
+	@GetMapping("bathroomTypes")
+	public List<BathroomType> listAll(Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(400);
+			return null;
+		}
+		return bathroomServ.listAllBathroomTypes();
 	}
 
 	@PostMapping("bathrooms")
