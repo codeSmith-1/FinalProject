@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.childcare.entities.DailyReport;
+import com.skilldistillery.childcare.entities.Kid;
 import com.skilldistillery.childcare.entities.Mood;
 import com.skilldistillery.childcare.entities.MoodEntry;
 import com.skilldistillery.childcare.entities.MoodId;
+import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.repositories.DailyReportRepository;
 import com.skilldistillery.childcare.repositories.MoodEntryRepository;
 import com.skilldistillery.childcare.repositories.MoodRepository;
@@ -27,6 +29,16 @@ public class MoodServiceImpl implements MoodService {
 	public List<MoodEntry> moodByReportId(int reportId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public boolean delete(int moodId) {
+			Mood moodToDelete = moodRepo.queryById(moodId);
+			if (moodToDelete != null) {
+				moodRepo.delete(moodToDelete);
+				return true;
+			}
+		return false;
 	}
 	
 //	@Override

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -102,5 +103,22 @@ public class DailyReportController {
 		}
 		return moodSvc.create(principal.getName(), mood, reportId);
 	}
+	
+//	@PostMapping("reports/reportId/{reportId}")
+//	public Food createFood(@RequestBody Food food, @PathVariable int reportId, Principal principal, HttpServletResponse res) {
+//		
+//	}
 
+	@DeleteMapping("reports/moods/{moodId}")
+	public void deleteMood(@PathVariable int moodId, Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(400);
+		}
+		if (moodSvc.delete(moodId)) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(404);
+		}
+		
+	}
 }
