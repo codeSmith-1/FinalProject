@@ -23,6 +23,8 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
+	
+	
 
 	@Override
 	public User showUserById(String username, int id) {
@@ -74,5 +76,12 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return false;
+	}
+
+
+
+	@Override
+	public User findByUsername(String username) {
+		return userRepo.findByUsername(username);
 	}
 }
