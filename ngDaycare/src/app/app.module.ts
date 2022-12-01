@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FoodCrudComponent } from './components/food-crud/food-crud.component';
 import { BathroomCrudComponent } from './components/bathroom-crud/bathroom-crud.component';
 import { EditDailyReportComponent } from './components/edit-daily-report/edit-daily-report.component';
+import { EmergencyContactPipe } from './pipes/emergency-contact.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { EditDailyReportComponent } from './components/edit-daily-report/edit-da
     UpdateAccountComponent,
     FoodCrudComponent,
     BathroomCrudComponent,
-    EditDailyReportComponent
+    EditDailyReportComponent,
+    EmergencyContactPipe
   ],
   imports: [
     BrowserModule,
