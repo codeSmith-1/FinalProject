@@ -59,7 +59,6 @@ Nap Time:
     </tr>
   </tbody>
 </table>
-
 </div>
 
 <div *ngIf="moods">
@@ -73,11 +72,26 @@ Child's moods: <br>
   </thead>
   <tbody>
     <tr *ngFor="let mood of moods">
+      <td *ngIf="!moods">There are no moods yet captured for the day.</td>
       <td>{{mood.mood.description}}</td>
       <td>{{mood.enteredAt | date: "shortTime"}}</td>
+      <!-- <td><button (click)="updateMood(mood.id, mood)" class="btn btn-secondary">Update</button>
+        <button (click)="deleteMood(mood.id)" class="btn btn-danger">X</button></td>
     </tr>
+    <tr>
+    <td><select [(ngModel)]="newMood.type.id" class="form-control">
+        <option *ngFor="let item of moodType" [value]="item.id">{{item.status}}</option>
+      </select></td>
+      <td><input
+        type="datetime-local"
+        class="form-control"
+        name="time"
+        [(ngModel)]="newMood.time" /></td>
+      <td><button (click)="addMood(newBathroom)" class="btn btn-secondary">Add</button></td>
+    </tr> -->
   </tbody>
 </table>
+
 </div>
 
 <div *ngIf="food">
@@ -90,6 +104,7 @@ Food:
     </tr>
   </thead>
   <tbody>
+    <td *ngIf="!food">There are no meals yet captured for the day.</td>
     <tr *ngFor="let meal of food">
       <td *ngIf="meal.amSnack">AM Snack</td>
       <td *ngIf="meal.pmSnack">PM Snack</td>
@@ -102,6 +117,7 @@ Food:
     </tr>
   </tbody>
 </table>
+
 </div>
 <div *ngIf="bathrooms">
 Bathroom:
@@ -112,17 +128,42 @@ Bathroom:
       <th>Type</th>
       <th>Staff</th>
       <th>Notes</th>
+      <th>Update/Delete</th>
     </tr>
   </thead>
   <tbody>
+    <td *ngIf="!bathrooms">There are no potty yet captured for the day.</td>
     <tr *ngFor="let bathroom of bathrooms">
       <td>{{ bathroom.bathroomTime| date: "shortTime" }}</td>
       <td>{{ bathroom.type.status }}</td>
       <td>{{ bathroom.staff.firstName }}</td>
       <td>{{ bathroom.description }}</td>
+      <td><button (click)="updateBathroom(bathroom.id, bathroom)" class="btn btn-secondary">Update</button>
+          <button (click)="deleteBathroom(bathroom.id)" class="btn btn-danger">X</button></td>
+    </tr>
+    <tr>
+      <td><input
+        type="datetime-local"
+        class="form-control"
+        name="time"
+        [(ngModel)]="newBathroom.bathroomTime" /></td>
+
+      <td><select [(ngModel)]="newBathroom.type.id" class="form-control">
+          <option *ngFor="let item of bathroomType" [value]="item.id">{{item.status}}</option>
+        </select></td>
+      <td><select [(ngModel)]="newBathroom.staff.id" class="form-control">
+        <option *ngFor="let item of allStaff" [value]="item.id">{{item.firstName}}</option>
+      </select></td>
+      <td><input
+        type="text"
+        class="form-control"
+        name="notes"
+        [(ngModel)]="newBathroom.description"></td>
+      <td><button (click)="addBathroom(newBathroom)" class="btn btn-secondary">Add</button></td>
     </tr>
   </tbody>
 </table>
+
 </div>
 <div *ngIf="images">
 Images: <br>
@@ -131,96 +172,33 @@ Images: <br>
     <tr>
       <th>Image</th>
       <th>Staff</th>
+      <th>Update/Delete</th>
     </tr>
   </thead>
-  <tbody>
+  <!-- <tbody>
+    <td *ngIf="!images">There are no images yet captured for the day.</td>
     <tr *ngFor="let image of images">
       <td><img src="{{ image.imageUrl }}" /></td>
       <td>{{ image.staff.firstName }} {{ image.createdAt | date: "shortTime" }}</td>
+      <td><button (click)="updateReportImage(image.id, image)" class="btn btn-secondary">Update</button>
+        <button (click)="deleteReportImage(image.id)" class="btn btn-danger">X</button></td>
     </tr>
-  </tbody>
+    <tr>
+      <td><input
+        type="text"
+        class="form-control"
+        name="imageUrl"
+        [(ngModel)]="newBathroom.description"></td>
+      <td><select [(ngModel)]="newImage.staff.id" class="form-control">
+        <option *ngFor="let item of allStaff" [value]="item.id">{{item.firstName}}</option>
+      </select></td>
+      <td><button (click)="addReportImage(newImage)" class="btn btn-secondary">Add</button></td>
+    </tr>
+  </tbody> -->
 </table>
+
 </div>
+<br><br>
 <button (click)="updateReport(report)" class="btn btn-secondary">
   Submit Changes
 </button>
-
-<!--
-<ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 *ngIf="selected" class="modal-title" id="modal-basic-title">Edit Food</h4>
-    <h4 *ngIf="!selected" class="modal-title" id="modal-basic-title">Add Food</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-		<form *ngIf="selected">
-			<div class="mb-3">
-        <label for="amSnack">Morning Snack: </label>
-        <div class="input-group">
-          <div>
-          <input type="text" name="amSnack"  [(ngModel)]="selected.amSnack">
-          </div>
-        </div>
-          <label for="lunch">Lunch</label>
-        <div class="input-group">
-        <div>
-          <input type="text" name="lunch"[(ngModel)]="selected.lunch">
-        </div>
-        </div>
-        <label for="pmSnack">Afternoon Snack</label>
-        <div class="input-group">
-          <div>
-          <input type="img" name="pmSnack" [(ngModel)]="selected.pmSnack">
-				</div>
-        </div>
-        <label for="other">Other</label>
-        <div class="input-group">
-        <div>
-          <input type="text" name="other" [(ngModel)]="selected.other">
-        </div>
-        </div>
-        </div>
-		</form>
-
-
-    <form *ngIf="!selected">
-			<div class="mb-3">
-        <label for="amSnack">Morning Snack</label>
-        <div class="input-group">
-          <div>
-          <input type="text" name="amSnack" [(ngModel)]="newKid.amSnack">
-          </div>
-        </div>
-          <label for="lunch">Lunch</label>
-        <div class="input-group">
-        <div>
-          <input type="text" name="lunch" [(ngModel)]="newKid.lunch">
-        </div>
-        </div>
-        <label for="pmSnack">Afternoon Snack</label>
-        <div class="input-group">
-          <div>
-          <input type="img" name="pmSnack"[(ngModel)]="newKid.pmSnack">
-				</div>
-        </div>
-        <label for="other">Other</label>
-        <div class="input-group">
-        <div>
-          <input type="text" name="other" [(ngModel)]="newKid.other">
-        </div>
-        </div>
-        </div>
-		</form>
-
-	</div>
-  <div *ngIf="selected">
-	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="updateKid(selected)" routerLinkActive="router-link-active" (click)="modal.close('Save click')">Save</button>
-	</div>
-</div>
-  <div *ngIf="!selected">
-	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="addKid(newKid, relationship)" (click)="modal.close('Save click')">Add Kid</button>
-	</div>
-</div>
-</ng-template> -->
