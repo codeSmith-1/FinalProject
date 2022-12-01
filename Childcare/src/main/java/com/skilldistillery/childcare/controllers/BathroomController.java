@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.childcare.entities.Bathroom;
-import com.skilldistillery.childcare.entities.MoodEntry;
 import com.skilldistillery.childcare.services.BathroomService;
 
 @RestController
@@ -28,7 +27,7 @@ public class BathroomController {
 	@Autowired
 	private BathroomService bathroomServ;
 
-	@GetMapping("bathrooms")
+	@GetMapping("bathroomTypes")
 	public List<Bathroom> listAll(Principal principal, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(400);
