@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Message {
@@ -21,7 +23,31 @@ public class Message {
 	
 	private String content;
 	
+	@ManyToOne
+	@JoinColumn(name = "sender_id")
+	private User sender;
 	
+	@ManyToOne
+	@JoinColumn(name = "recipient_id")
+	private User recipient;
+	
+	
+
+	public User getSender() {
+		return sender;
+	}
+
+	public void setSender(User sender) {
+		this.sender = sender;
+	}
+
+	public User getRecipient() {
+		return recipient;
+	}
+
+	public void setRecipient(User recipient) {
+		this.recipient = recipient;
+	}
 
 	public Message() {
 		super();
@@ -51,10 +77,6 @@ public class Message {
 		this.content = content;
 	}
 
-	@Override
-	public String toString() {
-		return "Message [id=" + id + ", messageDate=" + messageDate + ", content=" + content + "]";
-	}
 
 	@Override
 	public int hashCode() {
@@ -72,6 +94,14 @@ public class Message {
 		Message other = (Message) obj;
 		return id == other.id;
 	}
+
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", messageDate=" + messageDate + ", content=" + content + ", sender=" + sender
+				+ ", recipient=" + recipient + "]";
+	}
+	
+	
 	
 	//sender
 	//recipient

@@ -20,4 +20,20 @@ public class NapServiceImpl implements NapService {
 		return nap;
 	}
 
+	@Override
+	public Nap create(Nap nap) {
+		return napRepo.saveAndFlush(nap);
+	}
+
+	@Override
+	public boolean delete(int napId) {
+		Nap nap = napRepo.queryById(napId);
+		if(nap != null) {
+			napRepo.delete(nap);
+		}
+		return !napRepo.existsById(napId);
+	}
+	
+
+
 }

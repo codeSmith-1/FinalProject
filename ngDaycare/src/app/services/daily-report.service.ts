@@ -85,5 +85,34 @@ export class DailyReportService {
     return options;
   }
 
+  createMood(mood: MoodEntry, reportId: number, moodId: number): Observable<MoodEntry> {
+    console.log(mood);
+    return this.http
+    .post<MoodEntry>(this.url + `/reportId/${reportId}/moodId/${moodId}`, mood, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('report-editDailyReportService.createMood(): error creating Mood.')
+        );
+      })
+    );
+  }
+  // reports/reportId/{reportId}/moodId/{moodId}
+
+
+  destroyMood(moodId: number, reportId: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/moods/' + moodId + '/reportId/' + reportId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('editDailyReportService.deleteMood(): error deleting Mood: ' + err)
+        );
+      })
+    );
+  }
+  //reports/moods/{moodId}/reportId/{reportId}
 
 }
+//delete: reports/moods/{moodId}
+//Create: reports/reportId/{reportId} (with Mood obj for RequestBody)

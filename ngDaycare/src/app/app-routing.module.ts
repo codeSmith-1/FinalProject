@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { KidCRUDComponent } from './components/kid-crud/kid-crud.component';
 import { LoginComponent } from './components/login/login.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { MessageCrudComponent } from './components/message-crud/message-crud.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterAdultComponent } from './components/register-adult/register-adult.component';
 import { RegisterStaffComponent } from './components/register-staff/register-staff.component';
@@ -16,6 +17,7 @@ import { StaffHomeComponent } from './components/staff-home/staff-home.component
 import { SuccessComponent } from './components/success/success.component';
 import { UpdateAccountComponent } from './components/update-account/update-account.component';
 import { ViewDailyReportComponent } from './components/view-daily-report/view-daily-report.component';
+import { Message } from './models/message';
 
 const routes: Routes = [
  { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -33,7 +35,7 @@ const routes: Routes = [
  { path: 'bathroomCrud', component: BathroomCrudComponent},
  { path: 'foodCrud', component: FoodCrudComponent},
  { path: 'editReport/:id', component: EditDailyReportComponent},
- { path: 'manageUsers', component: ManageUsersComponent},
+ { path: 'messages', component: MessageCrudComponent},
  { path: '**', component: NotFoundComponent }
 ];
 

@@ -31,14 +31,24 @@ public class MoodServiceImpl implements MoodService {
 		return null;
 	}
 	
+//	@Override
+//	public boolean delete(int moodId, int reportId) {
+//			Mood moodToDelete = moodRepo.queryById(moodId);
+//			if (moodToDelete != null) {
+//				moodRepo.delete(moodToDelete);
+//				return true;
+//			}
+//		return false;
+//	}
 	@Override
-	public boolean delete(int moodId) {
-			Mood moodToDelete = moodRepo.queryById(moodId);
-			if (moodToDelete != null) {
-				moodRepo.delete(moodToDelete);
-				return true;
-			}
-		return false;
+	public boolean delete(int moodId, int reportId) {
+		System.out.println("*****************************************************");
+		System.out.println("this is moodId" + moodId);
+		System.out.println("this is reportID " + reportId);
+		System.out.println("*****************************************************");
+		 MoodId moodToDelete = new MoodId(reportId, moodId);
+		 moodEntryRepo.delete(moodEntryRepo.findById(moodToDelete).get());
+		 return moodEntryRepo.existsById(moodToDelete);
 	}
 	
 //	@Override

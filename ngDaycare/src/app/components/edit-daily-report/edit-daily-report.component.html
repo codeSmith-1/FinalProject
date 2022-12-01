@@ -68,27 +68,26 @@ Child's moods: <br>
     <tr>
       <th>Mood</th>
       <th>Time</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let mood of moods">
-      <td *ngIf="!moods">There are no moods yet captured for the day.</td>
-      <td>{{mood.mood.description}}</td>
-      <td>{{mood.enteredAt | date: "shortTime"}}</td>
-      <!-- <td><button (click)="updateMood(mood.id, mood)" class="btn btn-secondary">Update</button>
-        <button (click)="deleteMood(mood.id)" class="btn btn-danger">X</button></td>
+    <tr *ngFor="let moodEntry of moodEntries">
+      <td>{{moodEntry.mood.description}}</td>
+      <td>{{moodEntry.enteredAt | date: "shortTime"}}</td>
+      <td><button (click)="deleteMood(moodEntry.mood.id)" class="btn btn-danger">X</button></td>
     </tr>
     <tr>
-    <td><select [(ngModel)]="newMood.type.id" class="form-control">
-        <option *ngFor="let item of moodType" [value]="item.id">{{item.status}}</option>
+    <td><select [(ngModel)]="newMoodMoodId" class="form-control">
+        <option *ngFor="let item of moods" [value]="item.id">{{item.description}}</option>
       </select></td>
       <td><input
         type="datetime-local"
         class="form-control"
-        name="time"
-        [(ngModel)]="newMood.time" /></td>
-      <td><button (click)="addMood(newBathroom)" class="btn btn-secondary">Add</button></td>
-    </tr> -->
+        name="enteredAt"
+        [(ngModel)]="newMood.enteredAt"/></td>
+      <td><button (click)="addMood()" class="btn btn-secondary">Add</button></td>
+    </tr>
   </tbody>
 </table>
 
@@ -104,7 +103,6 @@ Food:
     </tr>
   </thead>
   <tbody>
-    <td *ngIf="!food">There are no meals yet captured for the day.</td>
     <tr *ngFor="let meal of food">
       <td *ngIf="meal.amSnack">AM Snack</td>
       <td *ngIf="meal.pmSnack">PM Snack</td>
@@ -128,7 +126,7 @@ Bathroom:
       <th>Type</th>
       <th>Staff</th>
       <th>Notes</th>
-      <th>Update/Delete</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -171,7 +169,7 @@ Images: <br>
     <tr>
       <th>Image</th>
       <th>Staff</th>
-      <th>Update/Delete</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>

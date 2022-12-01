@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FoodCrudComponent } from './components/food-crud/food-crud.component';
 import { BathroomCrudComponent } from './components/bathroom-crud/bathroom-crud.component';
 import { EditDailyReportComponent } from './components/edit-daily-report/edit-daily-report.component';
+import { MessageCrudComponent } from './components/message-crud/message-crud.component';
 import { EmergencyContactPipe } from './pipes/emergency-contact.pipe';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 import { AccountRequestsPipe } from './pipes/account-requests.pipe';
@@ -47,9 +48,10 @@ import { AccountRequestsPipe } from './pipes/account-requests.pipe';
     FoodCrudComponent,
     BathroomCrudComponent,
     EditDailyReportComponent,
+    MessageCrudComponent,
     EmergencyContactPipe,
     ManageUsersComponent,
-    AccountRequestsPipe
+    AccountRequestsPipe,
   ],
   imports: [
     BrowserModule,
