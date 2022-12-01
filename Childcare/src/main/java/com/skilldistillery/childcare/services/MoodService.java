@@ -9,7 +9,7 @@ public interface MoodService {
 
 	List<MoodEntry> moodByReportId(int reportId);
 	
-	Mood create(String username, Mood mood, int dailyReportId);
+	Mood create(MoodEntry moodEntry, int dailyReportId, int moodId);
 	
 	boolean delete(int moodId);
 	

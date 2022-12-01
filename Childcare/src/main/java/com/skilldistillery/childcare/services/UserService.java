@@ -6,8 +6,8 @@ import com.skilldistillery.childcare.entities.User;
 
 public interface UserService {
 	
-	List<User> listAllUsers(String username);
-
+	List<User> index(String username);
+	
 	User showUserById(String username, int id);
 
 	User create(String username, User user);

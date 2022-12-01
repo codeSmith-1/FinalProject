@@ -26,7 +26,9 @@ public class StaffController {
 	@Autowired
 	private StaffService staffSvc;
 	
-
+//	@GetMapping("staff/users")
+//	public List<User>
+//	}
 
 	@PostMapping("staff")
 	public Staff registerStaff(@RequestBody Staff staff, HttpServletResponse res) {

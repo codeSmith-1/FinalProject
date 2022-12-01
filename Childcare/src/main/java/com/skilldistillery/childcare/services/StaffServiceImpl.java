@@ -20,10 +20,9 @@ public class StaffServiceImpl implements StaffService {
 
 	@Override
 	public List<Staff> listAllStaff() {
-		
-			List<Staff> employees = staffRepo.findAll();
-			if (employees.size()>0) {
-				return employees;
+		List<Staff> employees = staffRepo.findAll();
+		if (employees.size() > 0) {
+			return employees;
 		} else {
 			return null;
 		}
@@ -55,7 +54,7 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public Staff update(String username, Staff staff) { 
+	public Staff update(String username, Staff staff) {
 		User user = userRepo.findByUsername(username);
 		Staff staffToUpdate = staffRepo.findByUser_Username(username);
 		if (user.getRole().equals("staff")) {
@@ -84,6 +83,4 @@ public class StaffServiceImpl implements StaffService {
 		return false;
 	}
 
-
-	
 }

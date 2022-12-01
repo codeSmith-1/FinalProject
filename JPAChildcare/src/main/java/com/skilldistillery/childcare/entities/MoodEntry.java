@@ -25,7 +25,6 @@ public class MoodEntry {
 	
 	
 	@Column(name="entered_at")
-	@CreationTimestamp
 	private LocalDateTime enteredAt;
 	
 	@JsonIgnoreProperties({"moodEntries"})

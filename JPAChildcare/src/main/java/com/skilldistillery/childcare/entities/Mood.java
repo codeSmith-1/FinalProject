@@ -1,6 +1,7 @@
 package com.skilldistillery.childcare.entities;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,6 +53,17 @@ public class Mood {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public void addMoodEntry(MoodEntry moodEntry) {
+		if (moodEntries == null) {
+			moodEntries = new ArrayList<>();
+
+			if (!moodEntries.contains(moodEntry)) {
+				moodEntries.add(moodEntry);
+				moodEntry.setMood(this);
+			}
+		}
 	}
 
 	@Override

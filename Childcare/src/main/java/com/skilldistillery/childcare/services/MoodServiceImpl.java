@@ -72,15 +72,20 @@ public class MoodServiceImpl implements MoodService {
 //	}
 
 	@Override
-	public Mood create(String username, Mood mood, int dailyReportId) {
+	public Mood create(MoodEntry moodEntry, int dailyReportId, int moodId) {
+		
 		DailyReport dailyReport = reportRepo.queryById(dailyReportId);
+		Mood mood = moodRepo.queryById(moodId);
+		
 		if (mood != null) {
-			mood.setMoodEntries(null);
-			mood = moodRepo.saveAndFlush(mood);
+			mood.addMoodEntry(moodEntry);
+//			mood = moodRepo.saveAndFlush(mood);
 		}
-		MoodId moodId = new MoodId(dailyReportId, mood.getId());
-		MoodEntry moodEntry = new MoodEntry();
-		moodEntry.setId(moodId);
+		
+		MoodId moodEntryId = new MoodId(dailyReportId, mood.getId());
+		
+		// moodEntry.setDate(date);
+		moodEntry.setId(moodEntryId);
 		moodEntry.setDailyReport(dailyReport);
 		moodEntry.setMood(mood);
 		dailyReport.addMoodEntry(moodEntry);

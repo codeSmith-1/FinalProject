@@ -82,6 +82,7 @@ public class DailyReportController {
 		}
 	}
 
+	
 	@GetMapping("naps/{reportId}")
 	public Nap showNapByReport(@PathVariable int reportId, Principal principal, HttpServletResponse res) {
 		if (principal.getName() == null) {
@@ -118,14 +119,14 @@ public class DailyReportController {
 		return reportSvc.update(dailyReport);
 	}
 
-	@PostMapping("reports/reportId/{reportId}")
-	public Mood createMood(@RequestBody Mood mood, @PathVariable int reportId, Principal principal,
+	@PostMapping("reports/reportId/{reportId}/moodId/{moodId}")
+	public Mood createMood(@RequestBody MoodEntry moodEntry, @PathVariable int moodId, @PathVariable int reportId, Principal principal,
 			HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(401);
 			return null;
 		}
-		return moodSvc.create(principal.getName(), mood, reportId);
+		return moodSvc.create(moodEntry, reportId, moodId);
 	}
 	
 

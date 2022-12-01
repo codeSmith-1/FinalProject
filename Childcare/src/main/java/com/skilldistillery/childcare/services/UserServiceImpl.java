@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 
 	@Override
-	public List<User> listAllUsers(String username) {
+	public List<User> index(String username) {
 		User user = userRepo.findByUsername(username);
 		if (user.getRole().equals("staff")) {
 			return userRepo.findAll();
