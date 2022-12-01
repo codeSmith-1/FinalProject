@@ -53,6 +53,11 @@ export class EditDailyReportComponent implements OnInit {
         this.reportService.show(reportId).subscribe({
           next: (report) => {
             this.report = report;
+            this.LoadBathroom(this.report);
+            this.LoadFood(this.report);
+            this.LoadImage(this.report);
+            this.LoadMood(this.report);
+            this.LoadNap(this.report);
           },
           error: (fail) => {
             console.error('edit-report-component.ngOnInit: report not found');
@@ -61,11 +66,9 @@ export class EditDailyReportComponent implements OnInit {
         });
       }
     }
-    this.LoadBathroom(this.report);
-    this.LoadFood(this.report);
-    this.LoadImage(this.report);
-    this.LoadMood(this.report);
-    this.LoadNap(this.report);
+
+
+
   }
 
   reload() {
@@ -80,8 +83,8 @@ export class EditDailyReportComponent implements OnInit {
     });
   }
 
-  LoadImage(selected: DailyReport){
-    this.imageService.showByReport(selected.id).subscribe({
+  LoadImage(report: DailyReport){
+    this.imageService.showByReport(report.id).subscribe({
       next: (images) => {
         this.images = images;
       },
@@ -91,8 +94,8 @@ export class EditDailyReportComponent implements OnInit {
     })
   }
 
-  LoadNap(selected: DailyReport){
-    this.napService.showNapsByReport(selected.id).subscribe({
+  LoadNap(report: DailyReport){
+    this.napService.showNapsByReport(report.id).subscribe({
       next: (nap) => {
         this.nap = nap;
       },
@@ -102,8 +105,8 @@ export class EditDailyReportComponent implements OnInit {
     })
   }
 
-  LoadFood(selected: DailyReport){
-    this.foodService.showByReport(selected.id).subscribe({
+  LoadFood(report: DailyReport){
+    this.foodService.showByReport(report.id).subscribe({
       next: (food) => {
         this.food = food;
       },
@@ -113,8 +116,8 @@ export class EditDailyReportComponent implements OnInit {
     })
   }
 
-  LoadBathroom(selected: DailyReport){
-    this.bathroomService.showBathroomByReport(selected.id).subscribe({
+  LoadBathroom(report: DailyReport){
+    this.bathroomService.showBathroomByReport(report.id).subscribe({
       next: (bathrooms) => {
         this.bathrooms = bathrooms;
       },
@@ -123,8 +126,8 @@ export class EditDailyReportComponent implements OnInit {
       },
     })
   }
-  LoadMood(selected: DailyReport){
-    this.reportService.showMoodByReport(selected.id).subscribe({
+  LoadMood(report: DailyReport){
+    this.reportService.showMoodByReport(report.id).subscribe({
       next: (moods) => {
         this.moods = moods;
       },

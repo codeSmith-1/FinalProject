@@ -2,26 +2,30 @@
   <form>
     <label for="timeIn">Checked In At:</label><br>
     <input
-    type="text"
+    type="datetime-local"
     class="form-control"
     name="timeIn"
-    placeholder="{{report.timeIn}}"/><br>
+    [(ngModel)]="report.timeIn"/><br>
+
     <label for="timeOut">Checked Out At:</label><br>
     <input
-    type="text"
+    type="datetime-local"
     class="form-control"
     name="timeOut"
-    value="{{report.timeOut}}"/><br>
+    [(ngModel)]="report.timeOut"/><br>
     <label for="wipesLow">Are they low on wipes?</label><br>
     <input
       type="checkbox"
-
+      data-toggle="toggle"
       name="wipesLow"
-      [(ngModel)]="report.wipesLow"/><br>
+      data-on="Low"
+      data-off="In Stock"
+      [(ngModel)]="report.wipesLow"/>
+      <br>
       <label for="diapersLow">Are they low on diapers?</label><br>
     <input
       type="checkbox"
-
+      data-toggle="toggle"
       name="diapersLow"
       [(ngModel)]="report.diapersLow"/><br>
       <label for="activities">Daily Activities:</label><br>
