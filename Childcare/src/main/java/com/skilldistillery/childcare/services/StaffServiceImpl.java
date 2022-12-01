@@ -19,10 +19,11 @@ public class StaffServiceImpl implements StaffService {
 	private UserRepository userRepo;
 
 	@Override
-	public List<Staff> listAllStaff(String username) {
-		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
-			return staffRepo.findAll();
+	public List<Staff> listAllStaff() {
+		
+			List<Staff> employees = staffRepo.findAll();
+			if (employees.size()>0) {
+				return employees;
 		} else {
 			return null;
 		}

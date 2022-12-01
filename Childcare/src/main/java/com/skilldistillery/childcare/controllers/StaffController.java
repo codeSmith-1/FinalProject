@@ -1,6 +1,7 @@
 package com.skilldistillery.childcare.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -64,8 +65,12 @@ public class StaffController {
 	
 	
 	
-//	@GetMapping("staff/classrooms")
-//	public List<Classroom> showAll(Principal principal){
-//		return crSvc.index(principal.getName());
-//	}
+	@GetMapping("staff")
+	public List<Staff> showAll(Principal principal, HttpServletResponse res){
+		if (principal.getName().isEmpty()) {
+			res.setStatus(401);
+			return null;
+		}
+		return staffSvc.listAllStaff();
+	}
 }
