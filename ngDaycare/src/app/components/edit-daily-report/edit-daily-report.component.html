@@ -100,6 +100,7 @@ Food:
     <tr>
       <th>Meal Time</th>
       <th>Food Eaten</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -112,6 +113,22 @@ Food:
       <td *ngIf="meal.pmSnack">{{ meal.pmSnack }}</td>
       <td *ngIf="meal.lunch">{{ meal.lunch }}</td>
       <td *ngIf="meal.other">{{ meal.other }}</td>
+      <td><button (click)="deleteFood(this.meal.id)" class="btn btn-danger">X</button></td>
+    </tr>
+    <tr>
+      <td><select [(ngModel)]="food" class="form-control">
+          <option value="amSnack">AM Snack</option>
+          <option value="lunch">Lunch</option>
+          <option value="pmSnack">PM Snack</option>
+          <option value="other">Other</option>
+        </select>
+      </td>
+      <td><input
+        type="text"
+        class="form-control"
+        name="{{food}}"
+        [(ngModel)]="food"></td>
+      <td><button (click)="addFood()" class="btn btn-secondary">Add</button></td>
     </tr>
   </tbody>
 </table>
@@ -196,4 +213,4 @@ Images: <br>
 <br><br>
 <button (click)="updateReport(report)" class="btn btn-secondary">
   Submit Changes
-</button><br><br>
+</button><br><br><br><br><br><br><br><br>

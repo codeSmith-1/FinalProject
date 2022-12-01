@@ -47,6 +47,7 @@ export class EditDailyReportComponent implements OnInit {
   moodType: Mood = new Mood();
   newMoodMoodId: number = 0;
   moods: Mood[] = [];
+  newFood: Food | null = null;
 
   constructor(
     private modalService: NgbModal,
@@ -218,7 +219,6 @@ export class EditDailyReportComponent implements OnInit {
         console.error(fail);
       },
     });
-    this.reload();
   }
 
   deleteBathroom(id: number) {
@@ -244,7 +244,6 @@ export class EditDailyReportComponent implements OnInit {
         console.error(fail);
       },
     });
-    this.reload();
   }
 
   deleteReportImage(id: number) {
@@ -270,15 +269,39 @@ export class EditDailyReportComponent implements OnInit {
         console.error(fail);
       },
     });
-    this.reload();
 }
-//mood: MoodEntry, reportId: number, moodId: number
 
   deleteMood(moodId: number) {
     this.reportService.destroyMood(moodId, this.report.id).subscribe({
       next: (mood) => {
         this.LoadMoodEntries(this.report);
         this.LoadMoods();
+      },
+      error: (fail) => {
+        console.error('edit-dailyReport.deleteMood(): error removing Mood record:');
+        console.error(fail);
+      },
+    });
+  }
+
+  addFood() {
+    if(this.newFood){
+    this.reportService.createFood(this.newFood, this.report.id).subscribe({
+      next: (image) => {
+        this.LoadFood(this.report);
+        this.newMood = new MoodEntry();
+      },
+      error: (fail) => {
+        console.error('editDailyReport.addMood()): error creating new Mood record:');
+        console.error(fail);
+      },
+    });
+}}
+
+  deleteFood(foodId: number) {
+    this.reportService.destroyFood(foodId).subscribe({
+      next: (food) => {
+        this.LoadFood(this.report);
       },
       error: (fail) => {
         console.error('edit-dailyReport.deleteMood(): error removing Mood record:');
