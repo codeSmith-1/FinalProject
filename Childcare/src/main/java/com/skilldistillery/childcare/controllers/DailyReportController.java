@@ -83,15 +83,15 @@ public class DailyReportController {
 	}
 
 	
-	@GetMapping("naps/{reportId}")
-	public Nap showNapByReport(@PathVariable int reportId, Principal principal, HttpServletResponse res) {
-		if (principal.getName() == null) {
-			res.setStatus(401);
-			return null;
-		}
-		Nap nap = napService.napByReportId(reportId);
-		return nap;
-	}
+//	@GetMapping("naps/{reportId}")
+//	public Nap showNapByReport(@PathVariable int reportId, Principal principal, HttpServletResponse res) {
+//		if (principal.getName() == null) {
+//			res.setStatus(401);
+//			return null;
+//		}
+//		Nap nap = napService.napByReportId(reportId);
+//		return nap;
+//	}
 
 	@GetMapping("reports/{reportId}")
 	public DailyReport loadReportToEdit(@PathVariable int reportId) {
@@ -145,15 +145,15 @@ public class DailyReportController {
 		}
 	}
 	
-	@PutMapping("reports/{reportId}/naps")
-	public Nap createNap(@PathVariable int reportId, @RequestBody Nap nap, Principal principal, HttpServletResponse res) {
-		if (principal.getName().isEmpty()) {
-			res.setStatus(401);
-			return null;
-		}
-		res.setStatus(201);
-		return napService.create(nap, reportId);
-	}
+//	@PutMapping("reports/{reportId}/naps")
+//	public Nap createNap(@PathVariable int reportId, @RequestBody Nap nap, Principal principal, HttpServletResponse res) {
+//		if (principal.getName().isEmpty()) {
+//			res.setStatus(401);
+//			return null;
+//		}
+//		res.setStatus(201);
+//		return napService.create(nap, reportId);
+//	}
 	
 	
 }
