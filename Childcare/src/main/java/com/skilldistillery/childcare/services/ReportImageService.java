@@ -6,14 +6,14 @@ import com.skilldistillery.childcare.entities.ReportImage;
 
 public interface ReportImageService {
 
-	List<ReportImage> showAll(String username);
+	List<ReportImage> showAll(int id);
 
-	ReportImage show(int userId);
+	ReportImage show(int id);
 
-	ReportImage create(int username, ReportImage ri, int dailyReportId);
+	ReportImage create(int staffId, ReportImage ri, int dailyReportId);
 
-	void delete(int username, int rid);
+	boolean delete(int rid);
 	
-	List<ReportImage> imageByReportId(int reportId);
+	List<ReportImage> imagesByReportId(int reportId);
 	
 }

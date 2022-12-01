@@ -24,44 +24,54 @@ import com.skilldistillery.childcare.services.NapService;
 
 @RestController
 @RequestMapping("api/")
-@CrossOrigin({"*", "http://localhost/"})
+@CrossOrigin({ "*", "http://localhost/" })
 public class DailyReportController {
-	
+
 	@Autowired
 	public DailyReportService reportSvc;
-	
+
 	@Autowired
 	public MoodEntryService moodEntryService;
 	@Autowired
 	public NapService napService;
-	
+
 	@GetMapping("reports")
-	public List<DailyReport> listReports(Principal principal){
+	public List<DailyReport> listReports(Principal principal) {
 		List<DailyReport> reports = reportSvc.listAllReports(principal.getName());
 		return reports;
-		
+
 	}
-	
+
 	@GetMapping("reports/mood/{reportId}")
-	public List<MoodEntry> listMoodByReport(@PathVariable ("reportId") int reportId){
+	public List<MoodEntry> listMoodByReport(Principal principal, @PathVariable int reportId, HttpServletResponse res) {
+		if (principal.getName() == null) {
+			res.setStatus(401);
+			return null;
+		}
 		List<MoodEntry> moods = moodEntryService.findByDailyReportId(reportId);
-		return moods;
+		if (moods.isEmpty()) {
+			res.setStatus(404);
+			return null;
+		} else {
+			return moods;
+		}
 	}
-	
+
 	@GetMapping("naps/{reportId}")
-	public Nap showNapByReport(@PathVariable ("reportId") int reportId){
+	public Nap showNapByReport(@PathVariable int reportId) {
 		Nap nap = napService.napByReportId(reportId);
 		return nap;
 	}
-	
+
 	@GetMapping("reports/{reportId}")
-	public DailyReport loadReportToEdit(@PathVariable ("reportId") int reportId){
+	public DailyReport loadReportToEdit(@PathVariable int reportId) {
 		DailyReport reportToEdit = reportSvc.findById(reportId);
 		return reportToEdit;
 	}
-	
+
 	@PostMapping("reports/{kidId}")
-	public DailyReport create(@RequestBody DailyReport dailyreport, @PathVariable int kidId, Principal principal, HttpServletResponse res) {
+	public DailyReport create(@RequestBody DailyReport dailyreport, @PathVariable int kidId, Principal principal,
+			HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(400);
 			return null;
@@ -69,7 +79,7 @@ public class DailyReportController {
 		res.setStatus(201);
 		return reportSvc.create(kidId, principal.getName());
 	}
-	
+
 	@PutMapping("reports")
 	public DailyReport update(@RequestBody DailyReport dailyReport, Principal principal, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
@@ -78,7 +88,5 @@ public class DailyReportController {
 		}
 		return reportSvc.update(dailyReport);
 	}
-	
-	
 
 }
