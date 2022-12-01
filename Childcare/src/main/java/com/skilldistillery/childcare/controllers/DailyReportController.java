@@ -26,7 +26,7 @@ import com.skilldistillery.childcare.services.MoodService;
 import com.skilldistillery.childcare.services.NapService;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost/" })
 public class DailyReportController {
 
@@ -130,15 +130,18 @@ public class DailyReportController {
 	}
 	
 
-	@DeleteMapping("reports/moods/{moodId}")
-	public void deleteMood(@PathVariable int moodId, Principal principal, HttpServletResponse res) {
+	
+	@DeleteMapping("reports/moods/{moodId}/reportId/{reportId}")
+	public void deleteMood(@PathVariable int moodId, @PathVariable int reportId, Principal principal, HttpServletResponse res) {
+		System.out.println("we're in the controller.");
 		if (principal.getName().isEmpty()) {
 			res.setStatus(401);
 		}
-		if (moodSvc.delete(moodId)) {
+		if (!moodSvc.delete(moodId, reportId)) {
 			res.setStatus(204);
 		} else {
 			res.setStatus(404);
+			
 		}
 		
 	}
