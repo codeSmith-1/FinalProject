@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.childcare.entities.DailyReport;
+import com.skilldistillery.childcare.entities.Mood;
 import com.skilldistillery.childcare.entities.MoodEntry;
 import com.skilldistillery.childcare.entities.Nap;
 import com.skilldistillery.childcare.services.DailyReportService;
 import com.skilldistillery.childcare.services.MoodEntryService;
+import com.skilldistillery.childcare.services.MoodService;
 import com.skilldistillery.childcare.services.NapService;
 
 @RestController
@@ -34,6 +36,8 @@ public class DailyReportController {
 	public MoodEntryService moodEntryService;
 	@Autowired
 	public NapService napService;
+	@Autowired
+	public MoodService moodSvc;
 
 	@GetMapping("reports")
 	public List<DailyReport> listReports(Principal principal) {
@@ -87,6 +91,16 @@ public class DailyReportController {
 			return null;
 		}
 		return reportSvc.update(dailyReport);
+	}
+
+	@PostMapping("reports/reportId/{reportId}")
+	public Mood createMood(@RequestBody Mood mood, @PathVariable int reportId, Principal principal,
+			HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(400);
+			return null;
+		}
+		return moodSvc.create(principal.getName(), mood, reportId);
 	}
 
 }
