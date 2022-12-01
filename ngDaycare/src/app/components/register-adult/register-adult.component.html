@@ -1,4 +1,4 @@
-<p>register-adult works!</p>
+<!-- <p>register-adult works!</p>
 <form>
 <label for="username">Username: </label>
 <input type="text" name="username" [(ngModel)]="newUser.username"><br>
@@ -15,7 +15,7 @@
 <input type="text" name="imageUrl" [(ngModel)]="newAdult.imageUrl"><br>
 <label for="phoneNumber">Phone: </label>
 <input type="text" name="phoneNumber" [(ngModel)]="newAdult.phoneNumber"><br>
-<!-- toggle button for e-contact boolean -->
+
 
 
 <input type="checkbox" name="emergencyContact" [(ngModel)]="newAdult.emergencyContact"> Are you the emergency contact? <br>
@@ -30,4 +30,60 @@
 <label for="zip">Zip: </label>
 <input type="text" name="zip" [(ngModel)]="newAddress.zip"><br>
 <button (click)="registerAdult(newAdult, newUser, newAddress)">Register</button>
+</form> --> -->
+
+
+<form>
+  <div class="form-group">
+    <!-- <label for="username">Account Username</label> -->
+    <input class="form-control" type="text" type="text" name="username" [(ngModel)]="newUser.username" placeholder="Enter username">
+    <small id="emailHelp" class="form-text text-muted">You'll use this to login.</small>
+  </div>
+  <br>
+  <div class="form-group">
+    <!-- <label for="password">Password</label> -->
+    <input type="text" class="form-control" type="text" name="password" [(ngModel)]="newUser.password" placeholder="Password">
+  </div>
+  <br>
+  <div class="form-group">
+    <!-- <label for="firstName">First Name</label> -->
+    <input type="text" class="form-control" type="text" name="firstName" [(ngModel)]="newAdult.firstName" placeholder="First name">
+  </div>
+  <br>
+  <div class="form-group">
+    <!-- <label for="lastName">Last Name</label> -->
+    <input type="text" class="form-control" type="text" name="lastName" [(ngModel)]="newAdult.lastName" placeholder="Last name">
+  </div>
+  <br>
+  <div class="form-group">
+    <!-- <label for="phoneNumber">Phone Number</label> -->
+    <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="newAdult.phoneNumber" placeholder="Phone number">
+  </div>
+  <br>
+  <div class="form-group">
+    <!-- <label for="street">Street</label> -->
+    <input class="form-control" type="text" name="street" [(ngModel)]="newAddress.street" placeholder="Street">
+  </div>
+  <br>
+  <div class="form-group">
+    <!-- <label for="city">City</label> -->
+    <input type="text" class="form-control" type="text" name="city" [(ngModel)]="newAddress.city" placeholder="City">
+  </div>
+  <br>
+  <div class="form-group">
+    <!-- <label for="state">State</label> -->
+    <input type="text" class="form-control" type="text" name="state" [(ngModel)]="newAddress.state" placeholder="State">
+  </div>
+  <br>
+  <div class="form-group">
+    <!-- <label for="zip">State</label> -->
+    <input type="text" class="form-control" type="text" name="zip" [(ngModel)]="newAddress.zip" placeholder="Zipcode">
+  </div>
+  <br>
+
+  <button (click)="registerAdult(newAdult, newUser, newAddress)">Register</button>
 </form>
+
+
+
+

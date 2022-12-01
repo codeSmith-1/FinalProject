@@ -21,13 +21,12 @@ public class BathroomServiceImpl implements BathroomService {
 	private UserRepository userRepo;
 
 	@Override
-	public List<Bathroom> listAllBathrooms(String username) {
-		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
+	public List<Bathroom> listAllBathrooms() {
+		List<Bathroom> bathrooms = bathroomRepo.findAll();
+		if (bathrooms != null) {
 			return bathroomRepo.findAll();
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	@Override

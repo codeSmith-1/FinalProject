@@ -5,7 +5,7 @@ import java.util.List;
 import com.skilldistillery.childcare.entities.Bathroom;
 
 public interface BathroomService {
-	List<Bathroom> listAllBathrooms(String username);
+	List<Bathroom> listAllBathrooms();
 	
 	Bathroom create(String username, Bathroom bathroom);
 	

@@ -24,7 +24,7 @@ const routes: Routes = [
  { path: 'success', component: SuccessComponent },
  { path: 'staffHome', component: StaffHomeComponent },
  { path: 'guardianHome', component: GuardianHomeComponent },
- { path: 'registerAdult', component: RegisterAdultComponent },
+ { path: 'register', component: RegisterAdultComponent },
  { path: 'registerStaff', component: RegisterStaffComponent },
  { path: 'success', component: SuccessComponent},
  { path: 'updateAccount', component: UpdateAccountComponent},
