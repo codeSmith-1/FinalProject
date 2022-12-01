@@ -15,10 +15,10 @@ public class FoodServiceImpl implements FoodService {
 
 	@Autowired
 	private FoodRepository foodRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Override
 	public List<Food> listAllFoods(String username) {
 		User user = userRepo.findByUsername(username);
@@ -52,20 +52,17 @@ public class FoodServiceImpl implements FoodService {
 			foodToUpdate.setPmSnack(food.getPmSnack());
 			foodRepo.saveAndFlush(foodToUpdate);
 			return foodToUpdate;
-		}else {
+		} else {
 			return null;
 		}
 	}
 
 	@Override
-	public boolean delete(String username, int foodId) {
-		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
-			Food foodToDelete = foodRepo.queryById(foodId);
-			if (foodToDelete != null) {
-				foodRepo.delete(foodToDelete);
-				return true;
-			}
+	public boolean delete(int foodId) {
+		Food foodToDelete = foodRepo.queryById(foodId);
+		if (foodToDelete != null) {
+			foodRepo.delete(foodToDelete);
+			return true;
 		}
 		return false;
 	}
@@ -75,7 +72,5 @@ public class FoodServiceImpl implements FoodService {
 		List<Food> food = foodRepo.findByDailyReportId(reportId);
 		return food;
 	}
-	
-	
 
 }

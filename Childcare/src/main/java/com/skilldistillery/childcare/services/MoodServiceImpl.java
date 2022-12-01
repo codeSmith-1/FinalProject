@@ -88,4 +88,9 @@ public class MoodServiceImpl implements MoodService {
 		return mood;
 	}
 
+	@Override
+	public List<Mood> index() {
+		return moodRepo.findAll();
+	}
+
 }

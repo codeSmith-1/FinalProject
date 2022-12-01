@@ -41,7 +41,11 @@ public class DailyReportController {
 	public MoodService moodSvc;
 
 	@GetMapping("reports")
-	public List<DailyReport> listReports(Principal principal) {
+	public List<DailyReport> listReports(Principal principal, HttpServletResponse res) {
+		if (principal.getName() == null) {
+			res.setStatus(401);
+			return null;
+		}
 		List<DailyReport> reports = reportSvc.listAllReports(principal.getName());
 		return reports;
 
@@ -61,9 +65,29 @@ public class DailyReportController {
 			return moods;
 		}
 	}
+	
+	@GetMapping("reports/moods")
+	public List<Mood> indexMoods(Principal principal, HttpServletResponse res){
+		if (principal.getName() == null) {
+			res.setStatus(401);
+			return null;
+		}
+		List<Mood> moods = moodSvc.index();
+		if (moods.isEmpty()) {
+			res.setStatus(404);
+			return null;
+		} else {
+			res.setStatus(200);
+			return moods;
+		}
+	}
 
 	@GetMapping("naps/{reportId}")
-	public Nap showNapByReport(@PathVariable int reportId) {
+	public Nap showNapByReport(@PathVariable int reportId, Principal principal, HttpServletResponse res) {
+		if (principal.getName() == null) {
+			res.setStatus(401);
+			return null;
+		}
 		Nap nap = napService.napByReportId(reportId);
 		return nap;
 	}
@@ -78,7 +102,7 @@ public class DailyReportController {
 	public DailyReport create(@RequestBody DailyReport dailyreport, @PathVariable int kidId, Principal principal,
 			HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
-			res.setStatus(400);
+			res.setStatus(401);
 			return null;
 		}
 		res.setStatus(201);
@@ -98,21 +122,17 @@ public class DailyReportController {
 	public Mood createMood(@RequestBody Mood mood, @PathVariable int reportId, Principal principal,
 			HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
-			res.setStatus(400);
+			res.setStatus(401);
 			return null;
 		}
 		return moodSvc.create(principal.getName(), mood, reportId);
 	}
 	
-//	@PostMapping("reports/reportId/{reportId}")
-//	public Food createFood(@RequestBody Food food, @PathVariable int reportId, Principal principal, HttpServletResponse res) {
-//		
-//	}
 
 	@DeleteMapping("reports/moods/{moodId}")
 	public void deleteMood(@PathVariable int moodId, Principal principal, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
-			res.setStatus(400);
+			res.setStatus(401);
 		}
 		if (moodSvc.delete(moodId)) {
 			res.setStatus(204);

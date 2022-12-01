@@ -12,5 +12,7 @@ public interface MoodService {
 	Mood create(String username, Mood mood, int dailyReportId);
 	
 	boolean delete(int moodId);
+	
+	List<Mood> index();
 
 }
