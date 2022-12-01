@@ -41,8 +41,8 @@ export class EditDailyReportComponent implements OnInit {
   bathroomType: BathroomType[] | null = null;
   allStaff: Staff[] | null = null;
   newMood: Mood | null = null;
-  newImage: ReportImage| null = null;
-
+  newImage: ReportImage = new ReportImage();
+  newImageStaffId: number = 0;
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -84,9 +84,6 @@ export class EditDailyReportComponent implements OnInit {
         });
       }
     }
-
-
-
   }
 
   reload() {
@@ -122,6 +119,7 @@ export class EditDailyReportComponent implements OnInit {
       },
     })
   }
+
   LoadBathroomType(){
     this.bathroomTypeService.showBathroomTypes().subscribe({
       next: (type) => {
@@ -192,27 +190,6 @@ export class EditDailyReportComponent implements OnInit {
     })
   }
 
-  open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
-      },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      },
-    );
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
   addBathroom(bathroom: Bathroom) {
     this.bathroomService.create(this.newBathroom).subscribe({
       next: (bathroom) => {
@@ -227,7 +204,6 @@ export class EditDailyReportComponent implements OnInit {
     this.reload();
   }
 
-
   deleteBathroom(id: number) {
     this.bathroomService.destroy(id).subscribe({
       next: (bathroom) => {
@@ -240,15 +216,27 @@ export class EditDailyReportComponent implements OnInit {
     });
   }
 
-  updateBathroom(id: number, bathroom: Bathroom) {
-    this.bathroomService.update(id, bathroom).subscribe({
-      next: (bathroom) => {
-        this.reload();
-        this.selectedBathroom = bathroom;
-        this.editBathroom = null;
+  addReportImage(newImage: ReportImage, reportId: number, staffId: number) {
+    this.reportImageService.create(newImage, reportId, staffId).subscribe({
+      next: (image) => {
+        this.LoadImage(this.report);
+        this.newImage = new ReportImage();
       },
       error: (fail) => {
-        console.error('Bathroom-crud updateBathroom(): error updating bathroom record:');
+        console.error('editDailyReport.addReportImage(): error creating new image record:');
+        console.error(fail);
+      },
+    });
+    this.reload();
+  }
+
+  deleteReportImage(id: number) {
+    this.reportImageService.destroy(id).subscribe({
+      next: (image) => {
+        this.LoadImage(this.report);
+      },
+      error: (fail) => {
+        console.error('edit-dailyReport.deleteReportImage(): error removing report image record:');
         console.error(fail);
       },
     });
