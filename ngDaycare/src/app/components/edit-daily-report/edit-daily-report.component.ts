@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -38,7 +39,7 @@ export class EditDailyReportComponent implements OnInit {
     private napService: NapService,
     private reportService: DailyReportService,
     private auth: AuthService,
-    private imageService: ReportImageService
+    private imageService: ReportImageService,
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +61,11 @@ export class EditDailyReportComponent implements OnInit {
         });
       }
     }
+    this.LoadBathroom(this.report);
+    this.LoadFood(this.report);
+    this.LoadImage(this.report);
+    this.LoadMood(this.report);
+    this.LoadNap(this.report);
   }
 
   reload() {
@@ -74,19 +80,73 @@ export class EditDailyReportComponent implements OnInit {
     });
   }
 
-  // updateReport(report: DailyReport){
-  //   this.reportService.update(report).subscribe({
-  //     next: (report) => {
-  //       console.log("updateReport()" + report)
-  //       this.report = null;
-  //     },
-  //     error: (problem) => {
-  //       console.error(
-  //         'EditDailyReport-compontent.UpdateReport(): Error updating report.'
-  //       );
-  //     },
-  //   })
-  // }
+  LoadImage(selected: DailyReport){
+    this.imageService.showByReport(selected.id).subscribe({
+      next: (images) => {
+        this.images = images;
+      },
+      error: (error) => {
+        console.error('ShowImagesByReport.view-daily-report component: error loading images'+ error);
+      },
+    })
+  }
+
+  LoadNap(selected: DailyReport){
+    this.napService.showNapsByReport(selected.id).subscribe({
+      next: (nap) => {
+        this.nap = nap;
+      },
+      error: (error) => {
+        console.error('ShowNapByReport.view-daily-report component: error loading nap'+ error);
+      },
+    })
+  }
+
+  LoadFood(selected: DailyReport){
+    this.foodService.showByReport(selected.id).subscribe({
+      next: (food) => {
+        this.food = food;
+      },
+      error: (error) => {
+        console.error('ShowFoodByReport.view-daily-report component: error loading food'+ error);
+      },
+    })
+  }
+
+  LoadBathroom(selected: DailyReport){
+    this.bathroomService.showBathroomByReport(selected.id).subscribe({
+      next: (bathrooms) => {
+        this.bathrooms = bathrooms;
+      },
+      error: (error) => {
+        console.error('ShowMoodByReport.view-daily-report component: error loading mood'+ error);
+      },
+    })
+  }
+  LoadMood(selected: DailyReport){
+    this.reportService.showMoodByReport(selected.id).subscribe({
+      next: (moods) => {
+        this.moods = moods;
+      },
+      error: (error) => {
+        console.error('ShowBathroomByReport.view-daily-report component: error loading bathroom'+ error);
+      },
+    })
+  }
+
+  updateReport(report: DailyReport){
+    this.reportService.update(report).subscribe({
+      next: (report) => {
+        console.log("updateReport()" + report)
+        // this.report = null;
+      },
+      error: (problem) => {
+        console.error(
+          'EditDailyReport-compontent.UpdateReport(): Error updating report.'
+        );
+      },
+    })
+  }
 
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(

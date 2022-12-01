@@ -1,30 +1,39 @@
 <div>
   <form>
+    <label for="timeIn">Checked In At:</label><br>
     <input
     type="text"
+    class="form-control"
     name="timeIn"
-    value="{{report.timeIn}}"/>Check In<br>
+    placeholder="{{report.timeIn}}"/><br>
+    <label for="timeOut">Checked Out At:</label><br>
     <input
     type="text"
+    class="form-control"
     name="timeOut"
-    value="{{report.timeOut}}"/>Check Out<br>
+    value="{{report.timeOut}}"/><br>
+    <label for="wipesLow">Are they low on wipes?</label><br>
     <input
       type="checkbox"
+
       name="wipesLow"
-      [(ngModel)]="report.wipesLow"/>
-    Wipes Low<br>
+      [(ngModel)]="report.wipesLow"/><br>
+      <label for="diapersLow">Are they low on diapers?</label><br>
     <input
       type="checkbox"
+
       name="diapersLow"
-      [(ngModel)]="report.diapersLow"
-    />Diapers Low<br>
+      [(ngModel)]="report.diapersLow"/><br>
+      <label for="activities">Daily Activities:</label><br>
     <input
       type="text"
+      class="form-control"
       name="activities"
-      [(ngModel)]="report.activities"
-    />Activities<br>
+      [(ngModel)]="report.activities"><br>
+      <label for="notes">Notes:</label><br>
     <textarea
     rows="4"
+    class="form-control"
     name="notes"
     [(ngModel)]="report.notes"></textarea><br>
   </form>
@@ -128,9 +137,9 @@ Images: <br>
   </tbody>
 </table>
 </div>
-<!-- <button (click)="update(report)" class="btn btn-secondary">
+<button (click)="updateReport(report)" class="btn btn-secondary">
   Submit Changes
-</button> -->
+</button>
 
 <!--
 <ng-template #content let-modal>

@@ -54,6 +54,12 @@ public class DailyReportController {
 		return nap;
 	}
 	
+	@GetMapping("reports/{reportId}")
+	public DailyReport loadReportToEdit(@PathVariable ("reportId") int reportId){
+		DailyReport reportToEdit = reportSvc.findById(reportId);
+		return reportToEdit;
+	}
+	
 	@PostMapping("reports/{kidId}")
 	public DailyReport create(@RequestBody DailyReport dailyreport, @PathVariable int kidId, Principal principal, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
