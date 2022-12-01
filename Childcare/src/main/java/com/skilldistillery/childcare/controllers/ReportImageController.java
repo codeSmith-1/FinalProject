@@ -51,7 +51,7 @@ public class ReportImageController {
 		}
 	}
 
-	@PostMapping("reportImage/reportId/{reportId}/staffId/{staffId}")
+	@PostMapping("images/reportImage/reportId/{reportId}/staffId/{staffId}")
 	public ReportImage create(Principal principal, @RequestBody ReportImage image, @PathVariable int reportId,
 			@PathVariable int staffId, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
@@ -62,7 +62,7 @@ public class ReportImageController {
 		return imageService.create(staffId, image, reportId);
 	}
 
-	@DeleteMapping("reportImage/imageId/{imageId}")
+	@DeleteMapping("images/reportImage/imageId/{imageId}")
 	public void deleteImage(Principal principal, @PathVariable int imageId, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(401);

@@ -3,6 +3,7 @@ package com.skilldistillery.childcare.services;
 import java.util.List;
 
 import com.skilldistillery.childcare.entities.Bathroom;
+import com.skilldistillery.childcare.entities.BathroomType;
 
 public interface BathroomService {
 	List<Bathroom> listAllBathrooms();
@@ -14,5 +15,7 @@ public interface BathroomService {
 	boolean delete(String username, int bathroomId);
 
 	List<Bathroom> bathroomsByReportId(int reportId);
+
+	List<BathroomType> listAllBathroomTypes();
 
 }
