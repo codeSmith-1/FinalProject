@@ -54,20 +54,20 @@ public class FoodController {
 		return food;
 	}
 
-	@PutMapping("foods")
-	public Food update(String username, @PathVariable int foodId, @RequestBody Food food, HttpServletResponse res, Principal principal) {
-		if (principal.getName().isEmpty()) {
-			res.setStatus(401);
-			return null;
-		}
-		try {
-			return foodServ.update(username, food, foodId);
-		} catch (Exception e) {
-			res.setStatus(400);
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	@PutMapping("foods/{foodId}")
+//	public Food update(String username, @PathVariable int foodId, @RequestBody Food food, HttpServletResponse res, Principal principal) {
+//		if (principal.getName().isEmpty()) {
+//			res.setStatus(401);
+//			return null;
+//		}
+//		try {
+//			return foodServ.update(username, food, foodId);
+//		} catch (Exception e) {
+//			res.setStatus(400);
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 	
 	@GetMapping("foods/{reportId}")
 	public List<Food> foodByReportId(@PathVariable int reportId, Principal principal, HttpServletResponse res){
@@ -82,7 +82,7 @@ public class FoodController {
 		return foods;
 	}
 	
-	@DeleteMapping("foods/foodId")
+	@DeleteMapping("foods/{foodId}")
 	public void deleteFood(@PathVariable int foodId, Principal principal, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(401);

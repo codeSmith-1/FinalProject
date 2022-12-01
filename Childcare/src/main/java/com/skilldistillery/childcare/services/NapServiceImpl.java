@@ -1,11 +1,11 @@
 package com.skilldistillery.childcare.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.childcare.entities.DailyReport;
 import com.skilldistillery.childcare.entities.Nap;
+import com.skilldistillery.childcare.repositories.DailyReportRepository;
 import com.skilldistillery.childcare.repositories.NapRepository;
 
 @Service
@@ -13,6 +13,8 @@ public class NapServiceImpl implements NapService {
 	
 	@Autowired
 	public NapRepository napRepo;
+	@Autowired
+	public DailyReportRepository reportRepo;
 
 	@Override
 	public Nap napByReportId(int reportId) {
@@ -21,7 +23,9 @@ public class NapServiceImpl implements NapService {
 	}
 
 	@Override
-	public Nap create(Nap nap) {
+	public Nap create(Nap nap, int reportId) {
+		DailyReport dailyReport = reportRepo.queryById(reportId);
+		nap.setDay(dailyReport);
 		return napRepo.saveAndFlush(nap);
 	}
 
@@ -33,7 +37,4 @@ public class NapServiceImpl implements NapService {
 		}
 		return !napRepo.existsById(napId);
 	}
-	
-
-
 }
