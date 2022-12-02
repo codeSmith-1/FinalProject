@@ -23,7 +23,7 @@ export class MessageService {
   }
 
   create(message: Message): Observable<Message> {
-    return this.http.post<Message>(this.url + 'message', this.getHttpOptions()).pipe(
+    return this.http.post<Message>(this.url, message, this.getHttpOptions()).pipe(
       catchError((err:any) => {
         console.log(err);
         return throwError(() => new Error('MessageSevice.create(): error creating message.' + err)

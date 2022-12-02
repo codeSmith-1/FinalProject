@@ -27,9 +27,13 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public Message create(Message message, String username) {
 		User user = userRepo.findByUsername(username);
-		
-		message = messageRepo.saveAndFlush(message);
-		return message;
+		User recipient = userRepo.findByUsername(message.getRecipient().getUsername());
+		if (user != null) {
+			message.setSender(user);
+			message.setRecipient(recipient);
+			return message = messageRepo.saveAndFlush(message);
+		}
+		return null;
 	}
 
 //	@Override
