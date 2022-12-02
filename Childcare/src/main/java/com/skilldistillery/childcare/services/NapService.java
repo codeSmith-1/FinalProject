@@ -9,4 +9,6 @@ public interface NapService {
 	public Nap create(Nap nap, int reportId);
 	
 	public boolean delete(int napId);
+	
+	public Nap update(Nap nap);
 }
