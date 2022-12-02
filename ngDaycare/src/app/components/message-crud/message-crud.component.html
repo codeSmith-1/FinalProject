@@ -1,42 +1,60 @@
-<p>message-crud works!</p>
+<h1>Welcome to Messaging</h1>
 
+<div class="card">
+  <h5 class="card-header">Add Message</h5>
+  <div class="card-body">
+    <label for="recipient">Recipient</label>
+    <!-- <input
+      type="text"
+      name="recipient"
+      [(ngModel)]="newMessage.recipient.username"
+    /> -->
+    <select [(ngModel)]="newMessage.recipient.username" class="form-select">
+      <option *ngFor="let staff of allStaff" [value]="staff.user?.username">{{staff.firstName}} {{staff.lastName}}</option>
+      <option *ngFor="let adult of allAdults" [value]="adult.user?.username">{{adult.firstName}} {{adult.lastName}}</option>
+    </select>
 
-<form>
-  <h1>Add Message</h1>
-  <!-- <label for="messageDate"></label> -->
-<label for="recipient">Recipient Username</label>
-<input type="text" name="recipient" [(ngModel)]="newMessage.recipient.username"><br>
-  <label for="content">Content</label>
-  <input type="text" name="content" [(ngModel)]="newMessage.content"><br>
-  <button class="btn btn-success" (click)="addMessage(newMessage)">Send</button>
-</form>
-<br><br>
-<table>
-<thead>
-  <tr>
-  <td>Date</td>
-  <td>Sender Username</td>
-  <!-- <td>Delete?</td> -->
-</tr>
-</thead>
-<tbody>
-  <tr *ngFor="let message of messages">
-    <td (click)="displayMessage(message)">{{ message.messageDate }}></td>
-    <td>{{ message.sender.username}}</td>
-    <!-- <td> <button class="btn btn-danger" (click)="deleteMessage(message.id)"> X </button></td> -->
-  </tr>
-</tbody>
-
-<div *ngIf="selected">
-  <p>{{ selected.messageDate}}</p>
-  <p>{{ selected.sender.username }}</p>
-  <p>{{ selected.content }}</p>
-  <!-- <button class="btn btn-outline" (click)="displayTable()">Back</button> -->
-  <button class="btn btn-danger" (click)="deleteMessage(selected.id)">
-    Delete
-  </button>
+    <br />
+    <div class="input-group">
+      <textarea
+        class="form-control"
+        aria-label="content"
+        name="content"
+        [(ngModel)]="newMessage.content"
+      ></textarea>
+    </div>
+    <!-- <label for="content">Content</label>
+  <input type="text" name="content" [(ngModel)]="newMessage.content"><br> -->
+  <br>
+    <button class="btn btn-success" (click)="addMessage(newMessage)">
+      Send
+    </button>
+  </div>
 </div>
+<br /><br />
+<table>
+  <thead>
+    <tr>
+      <td>Date</td>
+      <td>Sender Username</td>
+      <!-- <td>Delete?</td> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let message of messages">
+      <td (click)="displayMessage(message)">{{ message.messageDate }}></td>
+      <td>{{ message.sender.username }}</td>
+      <!-- <td> <button class="btn btn-danger" (click)="deleteMessage(message.id)"> X </button></td> -->
+    </tr>
+  </tbody>
 
-
+  <div *ngIf="selected">
+    <p>{{ selected.messageDate }}</p>
+    <p>{{ selected.sender.username }}</p>
+    <p>{{ selected.content }}</p>
+    <!-- <button class="btn btn-outline" (click)="displayTable()">Back</button> -->
+    <button class="btn btn-danger" (click)="deleteMessage(selected.id)">
+      Delete
+    </button>
+  </div>
 </table>
-

@@ -90,5 +90,16 @@ export class AdultService {
     return options;
   }
 
+  index(): Observable<Adult[]>{
+    return this.http.get<Adult[]>(this.url, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('AdultService.index(): error retrieving adult: ' + err)
+        );
+      })
+    );
+  }
+
 
 }
