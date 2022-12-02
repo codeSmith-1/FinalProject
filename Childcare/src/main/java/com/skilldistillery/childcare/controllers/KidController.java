@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.childcare.entities.DailyReport;
 import com.skilldistillery.childcare.entities.Kid;
 import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.repositories.UserRepository;
@@ -68,6 +69,21 @@ public class KidController {
 		kid = kidServ.update(principal.getName(), kid);
 		res.setStatus(200);
 		return kid;
+	}
+	
+	@GetMapping("kids/reports/kidId/{kidId}")
+	public List<DailyReport> indexReports(Principal principal, @PathVariable int kidId, HttpServletResponse res){
+		if (principal.getName().isEmpty()) {
+			res.setStatus(401);
+			return null;
+		}
+		List<DailyReport> reports = kidServ.findReportsByKidId(kidId);
+		if (reports==null) {
+			res.setStatus(400);
+			return null;
+		}else {
+			return reports;
+		}
 	}
 
 }

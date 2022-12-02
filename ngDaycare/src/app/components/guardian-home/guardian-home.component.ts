@@ -46,6 +46,10 @@ addKid(newKid: Kid, relationship: string){
   });
 }
 
+showReports(kidId: number){
+  this.router.navigateByUrl('/viewReports/' + kidId);
+}
+
 updateKid(selected: Kid){
   this.kidSvc.update(selected).subscribe({
     next: (kid) => {

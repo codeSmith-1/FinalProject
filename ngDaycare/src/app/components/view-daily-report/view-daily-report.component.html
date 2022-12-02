@@ -1,7 +1,8 @@
+<br />
 <h1 *ngIf="tableView">Daily Reports</h1>
 
-<table *ngIf="tableView" class="table table-striped table-hover">
-  <thead class="table-dark">
+<table *ngIf="tableView" class="w-50 p-3 table table-striped table-hover">
+  <thead class="table-light">
     <tr>
       <th>Date</th>
       <th>Notes</th>
@@ -12,11 +13,11 @@
       <td
         (click)="
           displayReport(report);
-          ShowImagesByReport(report);
-          ShowFoodByReport(report);
-          ShowMoodByReport(report);
-          ShowNapByReport(report);
-          ShowBathroomByReport(report)
+          showImagesByReport(report);
+          showFoodByReport(report);
+          showMoodByReport(report);
+          showNapByReport(report);
+          showBathroomByReport(report)
         "
       >
         {{ report.reportDate | date: "longDate" }}
@@ -25,98 +26,134 @@
     </tr>
   </tbody>
 </table>
-<button *ngIf="tableView" class="btn btn-secondary">Back to home</button>
+<div *ngIf="tableView">
+  <button class="btn btn-outline-primary" [routerLink]="['/guardianHome']">
+    Homepage
+  </button>
+</div>
 
 <div *ngIf="selected && reportView">
-  <h1>{{selected.kid?.firstName}}'s {{ selected.reportDate | date: "longDate" }} Daily Report</h1>
-  Checked in at: {{ selected.timeIn | date: "shortTime" }}<br>
-  Checked out at: {{ selected.timeOut | date: "shortTime" }}<br>
-  Diaper inventory: <span *ngIf="selected.diapersLow;else diapersFull"><font color="red">Low</font><br></span>
-                   <ng-template #diapersFull>Full<br></ng-template>
-  Wipes inventory: <span *ngIf="selected.wipesLow;else wipesFull"><font color="red">Low</font><br></span>
-                   <ng-template #wipesFull>Full<br></ng-template>
-  Daily activities: {{ selected.activities }}<br>
-  Caretaker notes: {{ selected.notes }}<br>
-  Nap Time:
+  <h1>
+    {{ selected.kid?.firstName }}'s
+    {{ selected.reportDate | date: "longDate" }} Daily Report
+  </h1>
+  <p>Checked in: {{ selected.timeIn | date: "shortTime" }}</p>
+  <p>Checked out: {{ selected.timeOut | date: "shortTime" }}</p>
+  <p>
+    Diaper inventory:
+    <span *ngIf="selected.diapersLow; else diapersFull"
+      ><font color="red">Low</font></span
+    >
+  </p>
+  <ng-template #diapersFull>Full<br /></ng-template>
+  <p>
+    Wipes inventory:
+    <span *ngIf="selected.wipesLow; else wipesFull"
+      ><font color="red">Low</font></span
+    >
+  </p>
+  <ng-template #wipesFull>Full</ng-template>
+  <p>Daily activities: {{ selected.activities }}</p>
+  <p>Staff notes: {{ selected.notes }}</p>
+  <p></p>
+
+  <div class="container">
+    <div class="row">
+      <table class="col w-25 p-3 table table-striped table-hover">
+        <caption style="text-align: center">
+          Naps
+        </caption>
+        <thead class="table-light">
+          <tr>
+            <th>Started Nap</th>
+            <th>Woke Up</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ nap.timeStart | date: "shortTime" }}</td>
+            <td>{{ nap.timeFinish | date: "shortTime" }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="col table table-striped table-hover">
+        <caption style="text-align: center">
+          Disposition
+        </caption>
+        <thead class="table-light">
+          <tr>
+            <th>Mood</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mood of moods">
+            <td>{{ mood.mood.description }}</td>
+            <td>{{ mood.enteredAt | date: "shortTime" }}</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="row">
+      <table class="col w-25 p-3 table table-striped table-hover">
+        <caption style="text-align: center">
+          Meals
+        </caption>
+
+        <thead class="table-light">
+          <tr>
+            <th>Meal Time</th>
+            <th>Food Eaten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let meal of food">
+            <td>{{ meal.foodType.name }}</td>
+            <td>{{ meal.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-striped table-hover">
+        <caption style="text-align: center">
+          Potty
+        </caption>
+
+        <thead class="table-light">
+          <tr>
+            <th>Time</th>
+            <th>Type</th>
+            <th>Staff</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bathroom of bathrooms">
+            <td>{{ bathroom.bathroomTime | date: "shortTime" }}</td>
+            <td>{{ bathroom.type.status }}</td>
+            <td>{{ bathroom.staff.firstName }}</td>
+            <td>{{ bathroom.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <table class="table table-striped table-hover">
-    <thead class="table-dark">
+    <thead class="table-light">
       <tr>
-        <th>Started Nap</th>
-        <th>Woke Up</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{nap.timeStart | date: "shortTime"}}</td>
-        <td>{{nap.timeFinish | date: "shortTime"}}</td>
-      </tr>
-    </tbody>
-  </table>
-  Child's moods: <br>
-  <table class="table table-striped table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>Mood</th>
-        <th>Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let mood of moods">
-        <td>{{mood.mood.description}}</td>
-        <td>{{mood.enteredAt | date: "shortTime"}}</td>
-      </tr>
-    </tbody>
-  </table>
-  Food:
-  <table class="table table-striped table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>Meal Time</th>
-        <th>Food Eaten</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let meal of food">
-        <td>{{meal.foodType.name}}</td>
-        <td>{{meal.description}}</td>
-      </tr>
-    </tbody>
-  </table>
-  Bathroom:
-  <table class="table table-striped table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>Time</th>
-        <th>Type</th>
-        <th>Staff</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let bathroom of bathrooms">
-        <td>{{ bathroom.bathroomTime| date: "shortTime" }}</td>
-        <td>{{ bathroom.type.status }}</td>
-        <td>{{ bathroom.staff.firstName }}</td>
-        <td>{{ bathroom.description }}</td>
-      </tr>
-    </tbody>
-  </table>
-  Images: <br>
-  <table class="table table-striped table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>Image</th>
-        <th>Staff</th>
+        <th>Pictures from today</th>
+        <th>Uploaded by</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let image of images">
         <td><img src="{{ image.imageUrl }}" /></td>
-        <td *ngIf="image.staff">{{ image.staff.firstName }} {{ image.createdAt | date: "shortTime" }}</td>
+        <td *ngIf="image.staff">
+          {{ image.staff.firstName }} {{ image.createdAt | date: "shortTime" }}
+        </td>
       </tr>
     </tbody>
   </table>
-  <button (click)="displayTable()" class="btn btn-secondary">
-    Back to list
-  </button>
+  <button (click)="displayTable()" class="btn btn-outline-primary">Back</button>
 </div>

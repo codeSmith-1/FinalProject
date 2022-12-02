@@ -2,6 +2,7 @@ package com.skilldistillery.childcare.services;
 
 import java.util.List;
 
+import com.skilldistillery.childcare.entities.DailyReport;
 import com.skilldistillery.childcare.entities.Kid;
 
 public interface KidService {
@@ -19,4 +20,6 @@ public interface KidService {
 	List<Kid> listByClassroom(String roomName);
 	
 	List<Kid> findKidsByAdultId(String username);
+	
+	List<DailyReport> findReportsByKidId(int id);
 }

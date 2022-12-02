@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Kid } from '../models/kid';
 import { AuthService } from './auth.service';
 import { buffer } from 'rxjs';
+import { DailyReport } from '../models/daily-report';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,6 +20,14 @@ export class KidService {
       catchError((err: any) => {
         console.log(err);
         return throwError(() => new Error('KidService.index()'));
+      })
+    );
+  }
+  showReportsByKidId(kidId: number): Observable<DailyReport[]>{
+    return this.http.get<DailyReport[]>(this.url + "/reports/kidId/" + kidId , this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(() => new Error('KidService.showReportsByKidId()'));
       })
     );
   }

@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.childcare.entities.Adult;
+import com.skilldistillery.childcare.entities.DailyReport;
 import com.skilldistillery.childcare.entities.Guardian;
 import com.skilldistillery.childcare.entities.GuardianId;
 import com.skilldistillery.childcare.entities.Kid;
 import com.skilldistillery.childcare.entities.User;
 import com.skilldistillery.childcare.repositories.AdultRepository;
+import com.skilldistillery.childcare.repositories.DailyReportRepository;
 import com.skilldistillery.childcare.repositories.GuardianRepository;
 import com.skilldistillery.childcare.repositories.KidRepository;
 import com.skilldistillery.childcare.repositories.UserRepository;
@@ -26,6 +28,8 @@ public class KidServiceImpl implements KidService {
 	private AdultRepository adultRepo;
 	@Autowired
 	private GuardianRepository guardRepo;
+	@Autowired
+	private DailyReportRepository reportRepo;
 
 	@Override
 	public List<Kid> listAllKids(String username) {
@@ -114,6 +118,15 @@ public class KidServiceImpl implements KidService {
 		Adult adult = adultRepo.findByUser_Username(username);
 		List<Kid> kids = kidRepo.findByGuardians_AdultId(adult.getId());
 		return kids;
+	}
+
+	@Override
+	public List<DailyReport> findReportsByKidId(int id) {
+		List<DailyReport> reports = reportRepo.findByKidId(id);
+		if (reports!=null) {
+			return reports;
+		}
+		return null;
 	}
 
 }

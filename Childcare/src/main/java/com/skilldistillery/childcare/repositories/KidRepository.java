@@ -10,4 +10,5 @@ public interface KidRepository extends JpaRepository<Kid, Integer> {
 	public Kid queryById(int id);
 	public List<Kid> findByClassroom_roomName(String roomName);
 	public List<Kid> findByGuardians_AdultId(int id);
+	
 }

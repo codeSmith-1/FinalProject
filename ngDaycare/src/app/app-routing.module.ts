@@ -31,7 +31,7 @@ const routes: Routes = [
  { path: 'registerStaff', component: RegisterStaffComponent },
  { path: 'success', component: SuccessComponent},
  { path: 'updateAccount', component: UpdateAccountComponent},
- { path: 'viewReports', component: ViewDailyReportComponent},
+ { path: 'viewReports/:kidId', component: ViewDailyReportComponent},
  { path: 'bathroomCrud', component: BathroomCrudComponent},
  { path: 'foodCrud', component: FoodCrudComponent},
  { path: 'editReport/:id', component: EditDailyReportComponent},
