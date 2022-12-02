@@ -28,6 +28,7 @@
 		<class>com.skilldistillery.childcare.entities.GuardianId</class>
 		<class>com.skilldistillery.childcare.entities.MoodId</class>
 		<class>com.skilldistillery.childcare.entities.MoodEntry</class>
+		<class>com.skilldistillery.childcare.entities.FoodType</class>
 
 		<!-- end entities -->
 

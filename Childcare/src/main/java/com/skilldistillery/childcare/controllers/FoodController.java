@@ -18,10 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.childcare.entities.Food;
+import com.skilldistillery.childcare.entities.FoodType;
 import com.skilldistillery.childcare.services.FoodService;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost/" })
 public class FoodController {
 
@@ -37,14 +38,14 @@ public class FoodController {
 		return foodServ.listAllFoods(username);
 	}
 
-	@PostMapping("foods")
-	public Food create(@RequestBody Food food, String username, HttpServletResponse res, HttpServletRequest req, Principal principal) {
+	@PostMapping("foods/{reportId}")
+	public Food create(@RequestBody Food food, @PathVariable int reportId, HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(401);
 			return null;
 		}
 		try {
-			food = foodServ.create(username, food);
+			food = foodServ.create(principal.getName(), food, reportId);
 			res.setStatus(201);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,20 +55,20 @@ public class FoodController {
 		return food;
 	}
 
-//	@PutMapping("foods/{foodId}")
-//	public Food update(String username, @PathVariable int foodId, @RequestBody Food food, HttpServletResponse res, Principal principal) {
-//		if (principal.getName().isEmpty()) {
-//			res.setStatus(401);
-//			return null;
-//		}
-//		try {
-//			return foodServ.update(username, food, foodId);
-//		} catch (Exception e) {
-//			res.setStatus(400);
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+	@PutMapping("foods/{foodId}")
+	public Food update(@PathVariable int foodId, @RequestBody Food food, HttpServletResponse res, Principal principal) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(401);
+			return null;
+		}
+		try {
+			return foodServ.update(principal.getName(), food, foodId);
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	@GetMapping("foods/{reportId}")
 	public List<Food> foodByReportId(@PathVariable int reportId, Principal principal, HttpServletResponse res){
@@ -93,5 +94,9 @@ public class FoodController {
 			res.setStatus(400);
 		}
 		
+	}
+	@GetMapping("foods/foodTypes")
+	public List<FoodType> getFoodTypes(){
+		return foodServ.getFoodTypes();
 	}
 }

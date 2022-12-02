@@ -5,9 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.childcare.entities.DailyReport;
 import com.skilldistillery.childcare.entities.Food;
+import com.skilldistillery.childcare.entities.FoodType;
 import com.skilldistillery.childcare.entities.User;
+import com.skilldistillery.childcare.repositories.DailyReportRepository;
 import com.skilldistillery.childcare.repositories.FoodRepository;
+import com.skilldistillery.childcare.repositories.FoodTypeRepository;
 import com.skilldistillery.childcare.repositories.UserRepository;
 
 @Service
@@ -18,6 +22,11 @@ public class FoodServiceImpl implements FoodService {
 
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private FoodTypeRepository foodTypeRepo;
+	
+	@Autowired
+	private DailyReportRepository reportRepo;
 
 	@Override
 	public List<Food> listAllFoods(String username) {
@@ -30,10 +39,15 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Override
-	public Food create(String username, Food food) {
+	public Food create(String username, Food food, int reportId) {
 		User user = userRepo.findByUsername(username);
+		DailyReport dailyReport = reportRepo.queryById(reportId);
+		System.out.println(username);
+		System.out.println(user);
+		System.out.println("***********************************************************");
 		if (user.getRole().equals("staff")) {
-			if (food != null) {
+			if (food != null && dailyReport != null) {
+				food.setDailyReport(dailyReport);
 				foodRepo.saveAndFlush(food);
 			}
 			return food;
@@ -41,15 +55,22 @@ public class FoodServiceImpl implements FoodService {
 			return null;
 		}
 	}
+	@Override
+	public List<FoodType> getFoodTypes(){
+		
+		return foodTypeRepo.findAll();
+	}
 
 	@Override
 	public Food update(String username, Food food, int foodId) {
 		User user = userRepo.findByUsername(username);
 		if (user.getRole().equals("staff")) {
 			Food foodToUpdate = foodRepo.queryById(foodId);
-			foodToUpdate.setAmSnack(food.getAmSnack());
-			foodToUpdate.setLunch(food.getLunch());
-			foodToUpdate.setPmSnack(food.getPmSnack());
+			foodToUpdate.setDescription(food.getDescription());
+
+			if (food.getFoodType() != null) {
+				foodToUpdate.setFoodType(food.getFoodType());
+			}
 			foodRepo.saveAndFlush(foodToUpdate);
 			return foodToUpdate;
 		} else {
