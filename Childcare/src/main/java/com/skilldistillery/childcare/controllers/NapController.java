@@ -85,7 +85,7 @@ public class NapController {
 			res.setStatus(200);
 			return nap;
 		} else {
-			res.setStatus(400);
+			res.setStatus(404);
 			return null;
 		}
 	}

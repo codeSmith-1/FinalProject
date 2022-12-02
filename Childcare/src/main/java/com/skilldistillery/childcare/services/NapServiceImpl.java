@@ -50,7 +50,9 @@ public class NapServiceImpl implements NapService {
 	@Override
 	public Nap update(Nap nap) {
 		Nap update = napRepo.queryById(nap.getId());
+		
 		if (update!=null) {
+			update.setDay(nap.getDay());
 			update.setTimeFinish(nap.getTimeFinish());
 			update.setTimeStart(nap.getTimeStart());
 			return napRepo.saveAndFlush(update);
