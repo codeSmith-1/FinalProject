@@ -233,11 +233,11 @@ export class EditDailyReportComponent implements OnInit {
   }
 
   addBathroom(bathroom: Bathroom) {
-    console.log(bathroom);
     bathroom.day = this.report;
     this.bathroomService.create(this.newBathroom).subscribe({
       next: (bathroom) => {
-        this.reload();
+        this.loadBathroom(this.report);
+        this.loadBathroomType();
         this.newBathroom = new Bathroom();
       },
       error: (fail) => {
@@ -252,7 +252,8 @@ export class EditDailyReportComponent implements OnInit {
   deleteBathroom(id: number) {
     this.bathroomService.destroy(id).subscribe({
       next: (bathroom) => {
-        this.reload();
+        this.loadBathroom(this.report);
+        this.loadBathroomType();
       },
       error: (fail) => {
         console.error(

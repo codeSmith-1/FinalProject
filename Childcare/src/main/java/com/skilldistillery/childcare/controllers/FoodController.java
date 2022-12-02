@@ -90,7 +90,7 @@ public class FoodController {
 		if (foodServ.delete(foodId)) {
 			res.setStatus(204);
 		} else {
-			res.setStatus(404);
+			res.setStatus(400);
 		}
 		
 	}

@@ -52,6 +52,7 @@ public class BathroomServiceImpl implements BathroomService {
 		System.out.println(bathroom);
 		return bathroomRepo.saveAndFlush(bathroom);
 	}
+	
 
 	@Override
 	public Bathroom update(String username, Bathroom bathroom, int bathroomId) {
