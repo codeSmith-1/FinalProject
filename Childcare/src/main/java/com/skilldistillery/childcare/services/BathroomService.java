@@ -12,7 +12,7 @@ public interface BathroomService {
 	
 	Bathroom update(String username, Bathroom bathroom, int bathroomId);
 	
-	boolean delete(String username, int bathroomId);
+	boolean delete(int bathroomId);
 
 	List<Bathroom> bathroomsByReportId(int reportId);
 

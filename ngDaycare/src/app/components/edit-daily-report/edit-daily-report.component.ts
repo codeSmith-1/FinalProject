@@ -34,7 +34,7 @@ export class EditDailyReportComponent implements OnInit {
   moodEntries: MoodEntry[] = [];
   nap: Nap = new Nap();
   bathrooms: Bathroom[] = [];
-  closeResult: string = "";
+  closeResult: string = '';
   selected: DailyReport | null = null;
   newBathroom: Bathroom = new Bathroom();
   editBathroom: Bathroom | null = null;
@@ -76,14 +76,15 @@ export class EditDailyReportComponent implements OnInit {
         this.reportService.show(reportId).subscribe({
           next: (report) => {
             this.report = report;
-            this.LoadBathroom(this.report);
-            this.LoadFood(this.report);
-            this.LoadImage(this.report);
-            this.LoadMoodEntries(this.report);
-            this.LoadNap(this.report);
-            this.LoadBathroomType();
-            this.LoadStaff();
-            this.LoadMoods();
+            this.loadBathroom(this.report);
+            this.loadFood(this.report);
+            this.loadImage(this.report);
+            this.loadMoodEntries(this.report);
+            this.loadNap(this.report);
+            this.loadBathroomType();
+            this.loadStaff();
+            console.log(this.allStaff);
+            this.loadMoods();
           },
           error: (fail) => {
             console.error('edit-report-component.ngOnInit: report not found');
@@ -106,98 +107,121 @@ export class EditDailyReportComponent implements OnInit {
     });
   }
 
-  LoadImage(report: DailyReport){
+  loadImage(report: DailyReport) {
     this.imageService.showByReport(report.id).subscribe({
       next: (images) => {
         this.images = images;
       },
       error: (error) => {
-        console.error('ShowImagesByReport.view-daily-report component: error loading images'+ error);
+        console.error(
+          'ShowImagesByReport.view-daily-report component: error loading images' +
+            error
+        );
       },
-    })
+    });
   }
-  LoadMoods(){
+  loadMoods() {
     this.moodService.show().subscribe({
       next: (moods) => {
         this.moods = moods;
       },
       error: (error) => {
-        console.error('ShowImagesByReport.view-daily-report component: error loading images'+ error);
+        console.error(
+          'ShowImagesByReport.view-daily-report component: error loading images' +
+            error
+        );
       },
-    })
+    });
   }
 
-  LoadNap(report: DailyReport){
+  loadNap(report: DailyReport) {
     this.napService.showNapsByReport(report.id).subscribe({
       next: (nap) => {
         this.nap = nap;
       },
       error: (error) => {
-        console.error('ShowNapByReport.view-daily-report component: error loading nap'+ error);
+        console.error(
+          'ShowNapByReport.view-daily-report component: error loading nap' +
+            error
+        );
       },
-    })
+    });
   }
 
-  LoadBathroomType(){
+  loadBathroomType() {
     this.bathroomTypeService.showBathroomTypes().subscribe({
       next: (type) => {
         this.bathroomType = type;
         console.log(this.bathroomType);
-
       },
       error: (error) => {
-        console.error('ShowNapByReport.view-daily-report component: error loading nap'+ error);
+        console.error(
+          'ShowNapByReport.view-daily-report component: error loading nap' +
+            error
+        );
       },
-    })
+    });
   }
 
-  LoadStaff(){
+  loadStaff() {
     this.staffService.index().subscribe({
       next: (staff) => {
         this.allStaff = staff;
       },
       error: (error) => {
-        console.error('ShowNapByReport.view-daily-report component: error loading nap'+ error);
+        console.error(
+          'ShowNapByReport.view-daily-report component: error loading staff' +
+            error
+        );
       },
-    })
+    });
   }
 
-  LoadFood(report: DailyReport){
+  loadFood(report: DailyReport) {
     this.foodService.showByReport(report.id).subscribe({
       next: (food) => {
         this.food = food;
       },
       error: (error) => {
-        console.error('ShowFoodByReport.view-daily-report component: error loading food'+ error);
+        console.error(
+          'ShowFoodByReport.view-daily-report component: error loading food' +
+            error
+        );
       },
-    })
+    });
   }
 
-  LoadBathroom(report: DailyReport){
+  loadBathroom(report: DailyReport) {
     this.bathroomService.showBathroomByReport(report.id).subscribe({
       next: (bathrooms) => {
         this.bathrooms = bathrooms;
       },
       error: (error) => {
-        console.error('loadBathroom.view-daily-report component: error loading bathroom'+ error);
+        console.error(
+          'loadBathroom.view-daily-report component: error loading bathroom' +
+            error
+        );
       },
-    })
+    });
   }
-  LoadMoodEntries(report: DailyReport){
+  loadMoodEntries(report: DailyReport) {
     this.reportService.showMoodByReport(report.id).subscribe({
       next: (moodEntries) => {
         this.moodEntries = moodEntries;
       },
       error: (error) => {
-        console.error('ShowBathroomByReport.view-daily-report component: error loading bathroom'+ error);
+        console.error(
+          'ShowBathroomByReport.view-daily-report component: error loading bathroom' +
+            error
+        );
       },
-    })
+    });
   }
 
-  updateReport(report: DailyReport){
+  updateReport(report: DailyReport) {
     this.reportService.update(report).subscribe({
       next: (report) => {
-        console.log("updateReport()" + report)
+        console.log('updateReport()' + report);
         // this.report = null;
       },
       error: (problem) => {
@@ -205,13 +229,10 @@ export class EditDailyReportComponent implements OnInit {
           'EditDailyReport-compontent.UpdateReport(): Error updating report.'
         );
       },
-    })
+    });
   }
 
   addBathroom(bathroom: Bathroom) {
-    // loop through staff array
-    // if bathroom.staff.id === staff.id
-    // bathroom.staff = staff
     console.log(bathroom);
     bathroom.day = this.report;
     this.bathroomService.create(this.newBathroom).subscribe({
@@ -220,7 +241,9 @@ export class EditDailyReportComponent implements OnInit {
         this.newBathroom = new Bathroom();
       },
       error: (fail) => {
-        console.error('Bathroom-crud.addBathroom(): error creating bathroom record:');
+        console.error(
+          'Bathroom-crud.addBathroom(): error creating bathroom record:'
+        );
         console.error(fail);
       },
     });
@@ -232,7 +255,9 @@ export class EditDailyReportComponent implements OnInit {
         this.reload();
       },
       error: (fail) => {
-        console.error('Bathroom-crud.deleteBathroom(): error removing bathroom record:');
+        console.error(
+          'Bathroom-crud.deleteBathroom(): error removing bathroom record:'
+        );
         console.error(fail);
       },
     });
@@ -241,11 +266,13 @@ export class EditDailyReportComponent implements OnInit {
   addReportImage(newImage: ReportImage, reportId: number, staffId: number) {
     this.reportImageService.create(newImage, reportId, staffId).subscribe({
       next: (image) => {
-        this.LoadImage(this.report);
+        this.loadImage(this.report);
         this.newImage = new ReportImage();
       },
       error: (fail) => {
-        console.error('editDailyReport.addReportImage(): error creating new image record:');
+        console.error(
+          'editDailyReport.addReportImage(): error creating new image record:'
+        );
         console.error(fail);
       },
     });
@@ -254,65 +281,77 @@ export class EditDailyReportComponent implements OnInit {
   deleteReportImage(id: number) {
     this.reportImageService.destroy(id).subscribe({
       next: (image) => {
-        this.LoadImage(this.report);
+        this.loadImage(this.report);
       },
       error: (fail) => {
-        console.error('edit-dailyReport.deleteReportImage(): error removing report image record:');
+        console.error(
+          'edit-dailyReport.deleteReportImage(): error removing report image record:'
+        );
         console.error(fail);
       },
     });
   }
 
   addMood() {
-    this.reportService.createMood(this.newMood, this.report.id, this.newMoodMoodId).subscribe({
-      next: (image) => {
-        this.LoadMoodEntries(this.report);
-        this.newMood = new MoodEntry();
-      },
-      error: (fail) => {
-        console.error('editDailyReport.addMood()): error creating new Mood record:');
-        console.error(fail);
-      },
-    });
-}
+    this.reportService
+      .createMood(this.newMood, this.report.id, this.newMoodMoodId)
+      .subscribe({
+        next: (image) => {
+          this.loadMoodEntries(this.report);
+          this.newMood = new MoodEntry();
+        },
+        error: (fail) => {
+          console.error(
+            'editDailyReport.addMood()): error creating new Mood record:'
+          );
+          console.error(fail);
+        },
+      });
+  }
 
   deleteMood(moodId: number) {
     this.reportService.destroyMood(moodId, this.report.id).subscribe({
       next: (mood) => {
-        this.LoadMoodEntries(this.report);
-        this.LoadMoods();
+        this.loadMoodEntries(this.report);
+        this.loadMoods();
       },
       error: (fail) => {
-        console.error('edit-dailyReport.deleteMood(): error removing Mood record:');
+        console.error(
+          'edit-dailyReport.deleteMood(): error removing Mood record:'
+        );
         console.error(fail);
       },
     });
   }
 
   addFood() {
-    if(this.newFood){
-    this.reportService.createFood(this.newFood, this.report.id).subscribe({
-      next: (image) => {
-        this.LoadFood(this.report);
-        this.newMood = new MoodEntry();
-      },
-      error: (fail) => {
-        console.error('editDailyReport.addMood()): error creating new Mood record:');
-        console.error(fail);
-      },
-    });
-}}
+    if (this.newFood) {
+      this.reportService.createFood(this.newFood, this.report.id).subscribe({
+        next: (image) => {
+          this.loadFood(this.report);
+          this.newMood = new MoodEntry();
+        },
+        error: (fail) => {
+          console.error(
+            'editDailyReport.addMood()): error creating new Mood record:'
+          );
+          console.error(fail);
+        },
+      });
+    }
+  }
 
   deleteFood(foodId: number) {
     this.reportService.destroyFood(foodId).subscribe({
       next: (food) => {
-        this.LoadFood(this.report);
+        this.loadFood(this.report);
       },
       error: (fail) => {
-        console.error('edit-dailyReport.deleteMood(): error removing Mood record:');
+        console.error(
+          'edit-dailyReport.deleteMood(): error removing Mood record:'
+        );
         console.error(fail);
       },
     });
   }
-
 }

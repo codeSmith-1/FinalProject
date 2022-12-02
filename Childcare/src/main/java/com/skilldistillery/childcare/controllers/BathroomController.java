@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,7 @@ public class BathroomController {
 		System.err.println("------------------------------");
 		System.out.println(bathroom.getDay().getId());
 		bathroom = bathroomServ.create(username, bathroom);
+		System.out.println(bathroom);
 		res.setStatus(201);
 		return bathroom;
 	}
@@ -75,6 +77,19 @@ public class BathroomController {
 		}
 		res.setStatus(200);
 		return bathrooms;
+	}
+	
+	@DeleteMapping("bathrooms/{bathroomId}")
+	public void deleteBathroom(@PathVariable int bathroomId, Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(401);
+		}
+		if (bathroomServ.delete(bathroomId)) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(404);
+		}
+		
 	}
 
 }

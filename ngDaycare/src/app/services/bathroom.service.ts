@@ -57,8 +57,12 @@ export class BathroomService {
   }
 
   destroy(id: number): Observable<void> {
-        // send http Options
-    return this.http.delete<void>(this.url + '/' + id).pipe();
+    return this.http.delete<void>(this.url + '/' + id, this.getHttpOptions()).pipe(
+      catchError((err: any)=>{
+        console.error(err);
+        return throwError(() => new Error ('bathroomSvc.destroy(): error deleting bathroom'));
+      })
+    );
   }
 
   getHttpOptions() {
