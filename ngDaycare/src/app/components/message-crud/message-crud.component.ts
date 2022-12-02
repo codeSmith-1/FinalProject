@@ -23,6 +23,7 @@ export class MessageCrudComponent implements OnInit {
   ngOnInit(): void {
     this.reload();
     this.loadStaff();
+    this.loadAdults();
   }
 
   reload():void {

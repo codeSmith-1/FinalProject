@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -22,6 +25,30 @@ public class User {
 
 	private String role;
 	
+	@JsonIgnoreProperties({"user"})
+	@OneToOne(mappedBy="user")
+	private Adult adult;
+	
+	@JsonIgnoreProperties({"user"})
+	@OneToOne(mappedBy="user")
+	private Staff staff;
+	
+	public Adult getAdult() {
+		return adult;
+	}
+
+	public void setAdult(Adult adult) {
+		this.adult = adult;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
 	public User() {};
 
 	public User(int id, String username, String password, Boolean enabled, String role) {
