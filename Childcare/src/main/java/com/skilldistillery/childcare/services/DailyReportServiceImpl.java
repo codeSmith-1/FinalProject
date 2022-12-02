@@ -47,9 +47,18 @@ public class DailyReportServiceImpl implements DailyReportService {
 
 	@Override
 	public DailyReport update(DailyReport dailyReport) {
-		DailyReport dailyToUpdate = reportRepo.queryById(dailyReport.getId());
-		reportRepo.saveAndFlush(dailyToUpdate);
-		return dailyToUpdate;
+		DailyReport update = reportRepo.queryById(dailyReport.getId());
+		
+		update.setTimeIn(dailyReport.getTimeIn());
+		update.setTimeOut(dailyReport.getTimeOut());
+		update.setDiapersLow(dailyReport.isDiapersLow());
+		update.setWipesLow(dailyReport.isWipesLow());
+		update.setNotes(dailyReport.getNotes());
+		update.setActivities(dailyReport.getActivities());
+		if(update!=null) {
+		return reportRepo.saveAndFlush(update);
+		} else {
+		return null;
 	}
 	
 	
