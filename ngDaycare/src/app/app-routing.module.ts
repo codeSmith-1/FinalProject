@@ -36,6 +36,7 @@ const routes: Routes = [
  { path: 'foodCrud', component: FoodCrudComponent},
  { path: 'editReport/:id', component: EditDailyReportComponent},
  { path: 'messages', component: MessageCrudComponent},
+ { path: 'manageUsers', component: ManageUsersComponent },
  { path: '**', component: NotFoundComponent }
 ];
 

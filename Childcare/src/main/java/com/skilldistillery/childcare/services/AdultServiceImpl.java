@@ -77,6 +77,8 @@ public class AdultServiceImpl implements AdultService {
 			return null;
 		}
 	}
+	
+	
 
 	@Override
 	public boolean delete(String username, int adultId) {
@@ -99,5 +101,17 @@ public class AdultServiceImpl implements AdultService {
 	@Override
 	public Adult showAdultByUsername(String username) {
 		return adultRepo.findByUser_Username(username);
+	}
+
+	@Override
+	public Adult editEnableSpecific(Adult adult, String username, int adultId) {
+		User user = userRepo.findByUsername(username);
+		Adult adultToUpdate = null;
+		adultToUpdate = adultRepo.queryById(adultId);
+		if(adultToUpdate != null) {
+			adultToUpdate.getUser().setEnabled(adult.getUser().getEnabled());
+			return adultRepo.saveAndFlush(adultToUpdate);
+		}
+		return adultToUpdate;
 	}
 }

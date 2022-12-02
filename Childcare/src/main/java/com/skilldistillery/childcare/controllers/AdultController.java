@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -76,6 +77,18 @@ public class AdultController {
 	
 	@PutMapping("adults")
 	public Adult update(@RequestBody Adult adult, Principal principal, HttpServletResponse res) {
+		try {
+			return adultService.update(principal.getName(), adult);
+			
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@PutMapping("adults/{adultId}")
+	public Adult update(@RequestBody Adult adult, Principal principal, HttpServletResponse res, @PathVariable int adultId) {
 		try {
 			return adultService.update(principal.getName(), adult);
 			
