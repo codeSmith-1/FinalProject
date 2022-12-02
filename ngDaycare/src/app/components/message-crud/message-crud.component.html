@@ -1,3 +1,5 @@
+<div padding="100px">
+
 <h1>Welcome to Messaging</h1>
 
 <div class="card">
@@ -10,8 +12,8 @@
       [(ngModel)]="newMessage.recipient.username"
     /> -->
     <select [(ngModel)]="newMessage.recipient.username" class="form-select">
-      <option *ngFor="let staff of allStaff" [value]="staff.user?.username">{{staff.firstName}} {{staff.lastName}}</option>
-      <option *ngFor="let adult of allAdults" [value]="adult.user?.username">{{adult.firstName}} {{adult.lastName}}</option>
+      <option *ngFor="let staff of allStaff" [value]="staff.user?.username">{{staff.user?.username}} : {{staff.firstName}} {{staff.lastName}}</option>
+      <option *ngFor="let adult of allAdults" [value]="adult.user?.username">{{adult.user?.username}} : {{adult.firstName}} {{adult.lastName}}</option>
     </select>
 
     <br />
@@ -32,29 +34,41 @@
   </div>
 </div>
 <br /><br />
-<table>
-  <thead>
+
+
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
     <tr>
       <td>Date</td>
       <td>Sender Username</td>
-      <!-- <td>Delete?</td> -->
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let message of messages">
       <td (click)="displayMessage(message)">{{ message.messageDate }}></td>
       <td>{{ message.sender.username }}</td>
-      <!-- <td> <button class="btn btn-danger" (click)="deleteMessage(message.id)"> X </button></td> -->
     </tr>
   </tbody>
-
-  <div *ngIf="selected">
-    <p>{{ selected.messageDate }}</p>
-    <p>{{ selected.sender.username }}</p>
-    <p>{{ selected.content }}</p>
-    <!-- <button class="btn btn-outline" (click)="displayTable()">Back</button> -->
-    <button class="btn btn-danger" (click)="deleteMessage(selected.id)">
-      Delete
-    </button>
-  </div>
 </table>
+<br>
+
+
+<div *ngIf="selected">
+<div class="card">
+  <h5 class="card-header">Message Contents</h5>
+  <div class="card-body">
+  <h3 *ngIf="selected.sender.staff"><strong>Sender: {{ selected.sender.staff.firstName }} {{ selected.sender.staff.lastName }}</strong></h3>
+  <h3 *ngIf="selected.sender.adult"><strong>Sender: {{ selected.sender.adult.firstName }} {{ selected.sender.adult.lastName }}</strong></h3>
+  <h4>Date: {{ selected.messageDate }}</h4>
+<div class="input-group">
+  <p> {{selected.content}}</p>
+</div><br>
+  <!-- <p>{{ selected.content }}</p> -->
+  <!-- <button class="btn btn-outline" (click)="displayTable()">Back</button> -->
+  <button class="btn btn-danger" (click)="deleteMessage(selected.id)">
+    Delete
+  </button>
+</div>
+</div>
+</div>
+</div>
