@@ -209,6 +209,11 @@ export class EditDailyReportComponent implements OnInit {
   }
 
   addBathroom(bathroom: Bathroom) {
+    // loop through staff array
+    // if bathroom.staff.id === staff.id
+    // bathroom.staff = staff
+    console.log(bathroom);
+    bathroom.day = this.report;
     this.bathroomService.create(this.newBathroom).subscribe({
       next: (bathroom) => {
         this.reload();

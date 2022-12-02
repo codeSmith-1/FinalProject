@@ -44,6 +44,8 @@ public class BathroomController {
 			res.setStatus(400);
 			return null;
 		}
+		System.err.println("------------------------------");
+		System.out.println(bathroom.getDay().getId());
 		bathroom = bathroomServ.create(username, bathroom);
 		res.setStatus(201);
 		return bathroom;
