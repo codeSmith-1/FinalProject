@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Adult } from 'src/app/models/adult';
 import { Message } from 'src/app/models/message';
+import { Staff } from 'src/app/models/staff';
+import { AdultService } from 'src/app/services/adult.service';
 import { MessageService } from 'src/app/services/message.service';
+import { StaffService } from 'src/app/services/staff.service';
 
 @Component({
   selector: 'app-message-crud',
@@ -9,13 +13,16 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class MessageCrudComponent implements OnInit {
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService, private staffService: StaffService, private adultService: AdultService) {}
   newMessage: Message = new Message();
   messages: Message[] = [];
   selected: null | Message = null;
+  allStaff: Staff[] | null = null;
+  allAdults: Adult[] | null = null;
 
   ngOnInit(): void {
     this.reload();
+    this.loadStaff();
   }
 
   reload():void {
@@ -60,6 +67,32 @@ export class MessageCrudComponent implements OnInit {
 
   displayMessage(message: Message){
     this.selected = message;
+  }
+
+  loadStaff() {
+    this.staffService.index().subscribe({
+      next: (staff) => {
+        this.allStaff = staff;
+      },
+      error: (error) => {
+        console.error(
+          'ShowNapByReport.view-daily-report component: error loading staff' +
+            error
+        );
+      },
+    });
+  }
+
+  loadAdults() {
+    this.adultService.index().subscribe({
+      next: (adult) => {
+        this.allAdults = adult;
+      },
+      error: (fail) => {
+        console.error('Message-crud.loadAdults(): error loading adults:');
+        console.error(fail);
+      },
+    });
   }
 
 
