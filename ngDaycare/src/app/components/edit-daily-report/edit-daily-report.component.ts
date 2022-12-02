@@ -6,6 +6,7 @@ import { Bathroom } from 'src/app/models/bathroom';
 import { BathroomType } from 'src/app/models/bathroom-type';
 import { DailyReport } from 'src/app/models/daily-report';
 import { Food } from 'src/app/models/food';
+import { FoodType } from 'src/app/models/food-type';
 import { Mood } from 'src/app/models/mood';
 import { MoodEntry } from 'src/app/models/mood-entry';
 import { Nap } from 'src/app/models/nap';
@@ -48,6 +49,7 @@ export class EditDailyReportComponent implements OnInit {
   newMoodMoodId: number = 0;
   moods: Mood[] = [];
   newFood: Food = new Food();
+  foodTypes: FoodType[] = [];
 
   constructor(
     private modalService: NgbModal,
@@ -85,6 +87,7 @@ export class EditDailyReportComponent implements OnInit {
             this.loadStaff();
             console.log(this.allStaff);
             this.loadMoods();
+            this.loadFoodTypes();
           },
           error: (fail) => {
             console.error('edit-report-component.ngOnInit: report not found' + fail);
@@ -404,7 +407,7 @@ export class EditDailyReportComponent implements OnInit {
   }
 
   addFood(food: Food) {
-    this.foodService.create(food).subscribe({
+    this.foodService.create(food, this.report.id).subscribe({
       next: (food) => {
         this.loadFood(this.report);
         this.newFood = new Food();
@@ -425,6 +428,20 @@ export class EditDailyReportComponent implements OnInit {
       error: (fail) => {
         console.error('Food-crud.deleteKid(): error removing food record:');
         console.error(fail);
+      },
+    });
+  }
+
+  loadFoodTypes() {
+    this.foodService.listFoodType().subscribe({
+      next: (foodTypes) => {
+        this.foodTypes = foodTypes;
+      },
+      error: (error) => {
+        console.error(
+          'EditDailyReport.loadFoodTypes() component: error loading foodTypes' +
+            error
+        );
       },
     });
   }

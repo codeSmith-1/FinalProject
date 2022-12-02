@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Food } from '../models/food';
+import { FoodType } from '../models/food-type';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -21,9 +22,17 @@ index():Observable<Food[]> {
     })
   );
 }
+listFoodType():Observable<FoodType[]> {
+  return this.http.get<FoodType[]>(this.url + '/foodTypes', this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(() => new Error('FoodService.listFoodTypes()' + err));
+    })
+  );
+}
 
-create(food: Food): Observable<Food> {
-  return this.http.post<Food>(this.url + 'food', food, this.getHttpOptions()).pipe(
+create(food: Food, reportId: number): Observable<Food> {
+  return this.http.post<Food>(this.url + '/' + reportId, food, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(

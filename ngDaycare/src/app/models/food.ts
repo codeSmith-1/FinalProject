@@ -1,19 +1,16 @@
 import { DailyReport } from "./daily-report";
+import { FoodType } from "./food-type";
 
 export class Food {
   id: number;
-  lunch: string | undefined;
-  amSnack: string | undefined;
-  pmSnack: string | undefined;
-  other: string | undefined;
+  description: string | undefined;
   day: DailyReport;
+  foodType: FoodType;
 
-  constructor(id: number = 0, day: DailyReport = new DailyReport(), lunch?: string, amSnack?: string, pmSnack?: string, other?: string){
+  constructor(id: number = 0, day: DailyReport = new DailyReport(), description: string = '', foodType: FoodType = new FoodType()){
     this.id = id;
-    this.lunch = lunch;
-    this.amSnack = amSnack;
-    this.pmSnack = pmSnack;
-    this.other = other;
+    this.description = description;
     this.day = day;
+    this.foodType = foodType;
   }
 }

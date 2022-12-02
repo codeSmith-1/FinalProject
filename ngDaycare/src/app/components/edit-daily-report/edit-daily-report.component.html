@@ -151,29 +151,20 @@ Food:
   </thead>
   <tbody>
     <tr *ngFor="let meal of food">
-      <td *ngIf="meal.amSnack">AM Snack</td>
-      <td *ngIf="meal.pmSnack">PM Snack</td>
-      <td *ngIf="meal.lunch">Lunch</td>
-      <td *ngIf="meal.other">Other</td>
-      <td *ngIf="meal.amSnack">{{ meal.amSnack }}</td>
-      <td *ngIf="meal.pmSnack">{{ meal.pmSnack }}</td>
-      <td *ngIf="meal.lunch">{{ meal.lunch }}</td>
-      <td *ngIf="meal.other">{{ meal.other }}</td>
-      <td><button (click)="deleteFood(this.meal.id)" class="btn btn-danger">X</button></td>
+      <td>{{meal.foodType.name}}</td>
+      <td>{{meal.description}}</td>
+      <td><button (click)="deleteFood(meal.id)" class="btn btn-danger">X</button></td>
     </tr>
     <tr>
-      <td><select [(ngModel)]="food" class="form-control">
-          <option value="amSnack">AM Snack</option>
-          <option value="lunch">Lunch</option>
-          <option value="pmSnack">PM Snack</option>
-          <option value="other">Other</option>
+      <td><select [(ngModel)]="newFood.foodType.id" class="form-control">
+          <option *ngFor="let foodType of foodTypes" value="{{foodType.id}}">{{foodType.name}}</option>
         </select>
       </td>
       <td><input
         type="text"
         class="form-control"
-        name="{{food}}"
-        [(ngModel)]="food"></td>
+        name="description"
+        [(ngModel)]="newFood.description"></td>
       <td><button (click)="addFood(newFood)" class="btn btn-success">+</button></td>
     </tr>
   </tbody>

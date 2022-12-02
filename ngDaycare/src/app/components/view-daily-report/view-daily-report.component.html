@@ -77,14 +77,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let meal of food">
-        <td *ngIf="meal.amSnack">AM Snack</td>
-        <td *ngIf="meal.pmSnack">PM Snack</td>
-        <td *ngIf="meal.lunch">Lunch</td>
-        <td *ngIf="meal.other">Other</td>
-        <td *ngIf="meal.amSnack">{{ meal.amSnack }}</td>
-        <td *ngIf="meal.pmSnack">{{ meal.pmSnack }}</td>
-        <td *ngIf="meal.lunch">{{ meal.lunch }}</td>
-        <td *ngIf="meal.other">{{ meal.other }}</td>
+        <td>{{meal.foodType.name}}</td>
+        <td>{{meal.description}}</td>
       </tr>
     </tbody>
   </table>

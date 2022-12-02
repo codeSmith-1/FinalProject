@@ -35,7 +35,7 @@ selected: null | Food = null;
   }
 
   addFood(food: Food) {
-    this.foodService.create(this.newFood).subscribe({
+    this.foodService.create(this.newFood, -1).subscribe({
       next: (food) => {
         this.reload();
         this.newFood = new Food();
