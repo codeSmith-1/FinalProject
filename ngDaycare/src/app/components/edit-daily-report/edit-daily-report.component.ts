@@ -87,7 +87,7 @@ export class EditDailyReportComponent implements OnInit {
             this.loadMoods();
           },
           error: (fail) => {
-            console.error('edit-report-component.ngOnInit: report not found');
+            console.error('edit-report-component.ngOnInit: report not found' + fail);
             this.router.navigateByUrl('reportNotFound');
           },
         });
@@ -346,6 +346,52 @@ export class EditDailyReportComponent implements OnInit {
     this.reportService.destroyFood(foodId).subscribe({
       next: (food) => {
         this.loadFood(this.report);
+      },
+      error: (fail) => {
+        console.error(
+          'edit-dailyReport.deleteMood(): error removing Mood record:'
+        );
+        console.error(fail);
+      },
+    });
+  }
+
+  addNap() {
+    if (this.newFood) {
+      this.napService.createNap(this.nap, this.report.id).subscribe({
+        next: (nap) => {
+          this.loadNap(this.report);
+          this.nap = new Nap();
+        },
+        error: (fail) => {
+          console.error(
+            'editDailyReport.addMood()): error creating new Mood record:'
+          );
+          console.error(fail);
+        },
+      });
+    }
+  }
+
+  updateNap() {
+      this.napService.updateNap(this.nap).subscribe({
+        next: (nap) => {
+          this.loadNap(this.report);
+          this.nap = new Nap();
+        },
+        error: (fail) => {
+          console.error(
+            'editDailyReport.addMood()): error creating new Mood record:'
+          );
+          console.error(fail);
+        },
+      });
+  }
+
+  deleteNap(napId: number) {
+    this.napService.destroyNap(napId).subscribe({
+      next: (nap) => {
+        this.loadNap(this.report);
       },
       error: (fail) => {
         console.error(
