@@ -34,16 +34,11 @@ public class BathroomServiceImpl implements BathroomService {
 
 	@Override
 	public Bathroom create(String username, Bathroom bathroom) {
-		User user = userRepo.findByUsername(username);
-		if (user.getRole().equals("staff")) {
 			if (bathroom != null) {
-				bathroomRepo.saveAndFlush(bathroom);
+				return bathroomRepo.saveAndFlush(bathroom);
 			}
-			return bathroom;
-		} else {
 			return null;
 		}
-	}
 
 	@Override
 	public Bathroom update(String username, Bathroom bathroom, int bathroomId) {

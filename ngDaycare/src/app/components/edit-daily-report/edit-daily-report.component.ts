@@ -179,7 +179,7 @@ export class EditDailyReportComponent implements OnInit {
         this.bathrooms = bathrooms;
       },
       error: (error) => {
-        console.error('ShowMoodByReport.view-daily-report component: error loading mood'+ error);
+        console.error('loadBathroom.view-daily-report component: error loading bathroom'+ error);
       },
     })
   }

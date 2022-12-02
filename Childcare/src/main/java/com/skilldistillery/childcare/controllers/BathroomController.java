@@ -38,16 +38,14 @@ public class BathroomController {
 	}
 
 	@PostMapping("bathrooms")
-	public Bathroom create(@RequestBody Bathroom bathroom, String username, HttpServletResponse res,
-			HttpServletRequest req) {
-		try {
-			bathroom = bathroomServ.create(username, bathroom);
-			res.setStatus(201);
-		} catch (Exception e) {
+	public Bathroom create(@RequestBody Bathroom bathroom, Principal principal, String username,
+			HttpServletResponse res, HttpServletRequest req) {
+		if (principal.getName().isEmpty()) {
 			res.setStatus(400);
-			e.printStackTrace();
-			bathroom = null;
+			return null;
 		}
+		bathroom = bathroomServ.create(username, bathroom);
+		res.setStatus(201);
 		return bathroom;
 	}
 
@@ -62,11 +60,19 @@ public class BathroomController {
 		}
 		return null;
 	}
-	
-//	@GetMapping("bathrooms/{reportId}")
-//	public List<Bathroom> listMoodByReport(@PathVariable ("reportId") int reportId){
-//		List<Bathroom> bathrooms = bathroomServ.bathroomsByReportId(reportId);
-//		return bathrooms;
-//	}
+
+	@GetMapping("bathrooms/{reportId}")
+	public List<Bathroom> listBathroomsByReportId(@PathVariable int reportId, Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(400);
+			return null;
+		}
+		List<Bathroom> bathrooms = bathroomServ.bathroomsByReportId(reportId);
+		if (bathrooms.isEmpty()) {
+			res.setStatus(404);
+		}
+		res.setStatus(200);
+		return bathrooms;
+	}
 
 }

@@ -59,7 +59,7 @@ public class DailyReportController {
 		}
 		List<MoodEntry> moods = moodEntryService.findByDailyReportId(reportId);
 		if (moods.isEmpty()) {
-			res.setStatus(404);
+			res.setStatus(400);
 			return null;
 		} else {
 			return moods;
