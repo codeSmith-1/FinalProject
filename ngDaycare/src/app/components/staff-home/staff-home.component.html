@@ -1,21 +1,42 @@
-
-<div *ngFor="let kid of kids">
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{kid.imageUrl}}" alt="Card image cap">
-    <div class="card-body">
-      <h2 class="card-title">{{kid.firstName}} {{kid.lastName}}</h2>
-      <!-- <div *ngFor="let guaridan of kid.guardians">   -->
-      <p *ngFor="let emergencyContact of (kid.guardians | emergencyContact)" class="card-text">{{emergencyContact.adult?.firstName}} {{emergencyContact.adult?.lastName}}: {{emergencyContact.adult?.phoneNumber}}</p>
+<div class="container">
+  <div class="row">
+      <div class="col" *ngFor="let kid of kids">
+        <div class="card" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="{{ kid.imageUrl }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h2 class="card-title">{{ kid.firstName }} {{ kid.lastName }}</h2>
+            <p
+              *ngFor="let emergencyContact of kid.guardians | emergencyContact"
+              class="card-text"
+            >
+              {{ emergencyContact.adult?.firstName }}
+              {{ emergencyContact.adult?.lastName }}:
+              {{ emergencyContact.adult?.phoneNumber }}
+            </p>
+          </div>
+          <a
+            *ngIf="!getTodaysReportId(kid)"
+            class="btn btn-dark"
+            (click)="checkIn(kid.id)"
+            >check in</a
+          >
+          <a
+            *ngIf="getTodaysReportId(kid)"
+            class="btn btn-primary"
+            (click)="dailyReport(getTodaysReportId(kid))"
+            >Daily Report</a
+          >
+          <!-- <a class="btn btn-primary" (click)="open(content); selected=kid">Update</a> -->
+        </div>
       </div>
-      <a *ngIf="!getTodaysReportId(kid)" class="btn btn-dark" (click)="checkIn(kid.id)">check in</a>
-      <a *ngIf="getTodaysReportId(kid)" class="btn btn-primary" (click)="dailyReport(getTodaysReportId(kid))">Daily Report</a>
-      <!-- <a class="btn btn-primary" (click)="open(content); selected=kid">Update</a> -->
+      <!-- </div> -->
+      <br />
+      <div>
+        <!-- <button class="btn btn-outline-primary btn-rounded btn-icon" (click)="open(content); selected=null">Add Child</button> -->
+      </div>
     </div>
   </div>
-  <!-- </div> -->
-  <br>
-  <div>
-    <!-- <button class="btn btn-outline-primary btn-rounded btn-icon" (click)="open(content); selected=null">Add Child</button> -->
-    </div>
-
-

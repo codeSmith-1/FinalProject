@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Adult } from 'src/app/models/adult';
 import { DailyReport } from 'src/app/models/daily-report';
 import { Kid } from 'src/app/models/kid';
 import { Staff } from 'src/app/models/staff';
@@ -10,7 +11,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DailyReportService } from 'src/app/services/daily-report.service';
 import { KidService } from 'src/app/services/kid.service';
 import { StaffService } from 'src/app/services/staff.service';
-
 @Component({
   selector: 'app-staff-home',
   templateUrl: './staff-home.component.html',
@@ -30,6 +30,7 @@ export class StaffHomeComponent implements OnInit {
   inSessionUser: User = new User();
   kids: Kid[] = [];
   selected: null | Kid = null;
+  emergencyContact: null | Adult = null;
 
   ngOnInit(): void {
     this.reloadUser();
@@ -41,6 +42,10 @@ export class StaffHomeComponent implements OnInit {
   dailyReport(reportId: number) {
     console.log(reportId);
     this.router.navigateByUrl('editReport/' + reportId);
+  }
+
+  getEmergencyContact(kid: Kid){
+
   }
 
   getTodaysReportId(kid: Kid) {
