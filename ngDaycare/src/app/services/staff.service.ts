@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Adult } from '../models/adult';
 import { Classroom } from '../models/classroom';
 import { Staff } from '../models/staff';
 import { User } from '../models/user';
@@ -77,7 +78,7 @@ export class StaffService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('TodoService.index(): error retrieving todos: ' + err)
+          () => new Error('StaffService.index(): error retrieving staff: ' + err)
         );
       })
     );
@@ -88,7 +89,18 @@ export class StaffService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('TodoService.index(): error retrieving todos: ' + err)
+          () => new Error('indexClassroom.index(): error retrieving classrooms: ' + err)
+        );
+      })
+    );
+  }
+
+  getAdults(): Observable<Adult[]>{
+    return this.http.get<Adult[]>(this.url +'/adults', this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('StaffService.index(): error retrieving adults: ' + err)
         );
       })
     );

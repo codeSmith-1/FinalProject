@@ -11,7 +11,7 @@ public interface MoodService {
 	
 	Mood create(MoodEntry moodEntry, int dailyReportId, int moodId);
 	
-	boolean delete(int moodId);
+	boolean delete(int moodId, int reportId);
 	
 	List<Mood> index();
 

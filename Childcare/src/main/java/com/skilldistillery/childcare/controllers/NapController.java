@@ -1,12 +1,16 @@
 package com.skilldistillery.childcare.controllers;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,14 +26,35 @@ public class NapController {
 	@Autowired
 	private NapService napServ;
 	
-//	@GetMapping("naps/{reportId}")
-//	public Nap napByReport(int reportId, HttpServletRequest req, HttpServletResponse res) {
-//		return napServ.napByReportId(reportId);
-//	}
-	
-	@PostMapping("naps")
-	public Nap create(HttpServletRequest req, HttpServletResponse res, @RequestBody Nap nap) {
-		return napServ.create(nap);
+
+	@GetMapping("reports/{reportId}/naps")
+	public Nap showNapByReport(@PathVariable int reportId, Principal principal, HttpServletResponse res) {
+		if (principal.getName() == null) {
+			res.setStatus(401);
+			return null;
+		}
+		Nap nap = napServ.napByReportId(reportId);
+		if (nap!=null) {
+			res.setStatus(200);
+			return nap;
+		}
+		res.setStatus(400);
+		return nap;
 	}
+
+	
+
+	
+	@PutMapping("reports/{reportId}/naps")
+	public Nap createNap(@PathVariable int reportId, @RequestBody Nap nap, Principal principal, HttpServletResponse res) {
+		if (principal.getName().isEmpty()) {
+			res.setStatus(401);
+			return null;
+		}
+		res.setStatus(201);
+		return napServ.create(nap, reportId);
+	}
+	
+	
 
 }

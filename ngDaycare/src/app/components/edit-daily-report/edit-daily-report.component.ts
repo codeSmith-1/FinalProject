@@ -16,6 +16,7 @@ import { BathroomTypeService } from 'src/app/services/bathroom-type.service';
 import { BathroomService } from 'src/app/services/bathroom.service';
 import { DailyReportService } from 'src/app/services/daily-report.service';
 import { FoodService } from 'src/app/services/food.service';
+import { MoodService } from 'src/app/services/mood.service';
 import { NapService } from 'src/app/services/nap.service';
 import { ReportImageService } from 'src/app/services/report-image.service';
 import { StaffService } from 'src/app/services/staff.service';
@@ -30,7 +31,7 @@ export class EditDailyReportComponent implements OnInit {
   reports: DailyReport[] = [];
   images: ReportImage[] = [];
   food: Food[] = [];
-  moods: MoodEntry[] = [];
+  moodEntries: MoodEntry[] = [];
   nap: Nap = new Nap();
   bathrooms: Bathroom[] = [];
   closeResult: string = "";
@@ -40,9 +41,14 @@ export class EditDailyReportComponent implements OnInit {
   selectedBathroom: Bathroom | null = null;
   bathroomType: BathroomType[] | null = null;
   allStaff: Staff[] | null = null;
-  newMood: Mood | null = null;
+  newMood: MoodEntry = new MoodEntry();
   newImage: ReportImage = new ReportImage();
   newImageStaffId: number = 0;
+  moodType: Mood = new Mood();
+  newMoodMoodId: number = 0;
+  moods: Mood[] = [];
+  newFood: Food | null = null;
+
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -55,7 +61,8 @@ export class EditDailyReportComponent implements OnInit {
     private imageService: ReportImageService,
     private bathroomTypeService: BathroomTypeService,
     private staffService: StaffService,
-    private reportImageService: ReportImageService
+    private reportImageService: ReportImageService,
+    private moodService: MoodService
   ) {}
 
   ngOnInit(): void {
@@ -72,10 +79,11 @@ export class EditDailyReportComponent implements OnInit {
             this.LoadBathroom(this.report);
             this.LoadFood(this.report);
             this.LoadImage(this.report);
-            this.LoadMood(this.report);
+            this.LoadMoodEntries(this.report);
             this.LoadNap(this.report);
             this.LoadBathroomType();
-            this.LoadStaff()
+            this.LoadStaff();
+            this.LoadMoods();
           },
           error: (fail) => {
             console.error('edit-report-component.ngOnInit: report not found');
@@ -102,6 +110,16 @@ export class EditDailyReportComponent implements OnInit {
     this.imageService.showByReport(report.id).subscribe({
       next: (images) => {
         this.images = images;
+      },
+      error: (error) => {
+        console.error('ShowImagesByReport.view-daily-report component: error loading images'+ error);
+      },
+    })
+  }
+  LoadMoods(){
+    this.moodService.show().subscribe({
+      next: (moods) => {
+        this.moods = moods;
       },
       error: (error) => {
         console.error('ShowImagesByReport.view-daily-report component: error loading images'+ error);
@@ -165,10 +183,10 @@ export class EditDailyReportComponent implements OnInit {
       },
     })
   }
-  LoadMood(report: DailyReport){
+  LoadMoodEntries(report: DailyReport){
     this.reportService.showMoodByReport(report.id).subscribe({
-      next: (moods) => {
-        this.moods = moods;
+      next: (moodEntries) => {
+        this.moodEntries = moodEntries;
       },
       error: (error) => {
         console.error('ShowBathroomByReport.view-daily-report component: error loading bathroom'+ error);
@@ -201,7 +219,6 @@ export class EditDailyReportComponent implements OnInit {
         console.error(fail);
       },
     });
-    this.reload();
   }
 
   deleteBathroom(id: number) {
@@ -227,7 +244,6 @@ export class EditDailyReportComponent implements OnInit {
         console.error(fail);
       },
     });
-    this.reload();
   }
 
   deleteReportImage(id: number) {
@@ -237,6 +253,58 @@ export class EditDailyReportComponent implements OnInit {
       },
       error: (fail) => {
         console.error('edit-dailyReport.deleteReportImage(): error removing report image record:');
+        console.error(fail);
+      },
+    });
+  }
+
+  addMood() {
+    this.reportService.createMood(this.newMood, this.report.id, this.newMoodMoodId).subscribe({
+      next: (image) => {
+        this.LoadMoodEntries(this.report);
+        this.newMood = new MoodEntry();
+      },
+      error: (fail) => {
+        console.error('editDailyReport.addMood()): error creating new Mood record:');
+        console.error(fail);
+      },
+    });
+}
+
+  deleteMood(moodId: number) {
+    this.reportService.destroyMood(moodId, this.report.id).subscribe({
+      next: (mood) => {
+        this.LoadMoodEntries(this.report);
+        this.LoadMoods();
+      },
+      error: (fail) => {
+        console.error('edit-dailyReport.deleteMood(): error removing Mood record:');
+        console.error(fail);
+      },
+    });
+  }
+
+  addFood() {
+    if(this.newFood){
+    this.reportService.createFood(this.newFood, this.report.id).subscribe({
+      next: (image) => {
+        this.LoadFood(this.report);
+        this.newMood = new MoodEntry();
+      },
+      error: (fail) => {
+        console.error('editDailyReport.addMood()): error creating new Mood record:');
+        console.error(fail);
+      },
+    });
+}}
+
+  deleteFood(foodId: number) {
+    this.reportService.destroyFood(foodId).subscribe({
+      next: (food) => {
+        this.LoadFood(this.report);
+      },
+      error: (fail) => {
+        console.error('edit-dailyReport.deleteMood(): error removing Mood record:');
         console.error(fail);
       },
     });

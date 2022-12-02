@@ -26,19 +26,19 @@ import com.skilldistillery.childcare.services.MoodService;
 import com.skilldistillery.childcare.services.NapService;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost/" })
 public class DailyReportController {
 
 	@Autowired
 	public DailyReportService reportSvc;
-
 	@Autowired
 	public MoodEntryService moodEntryService;
 	@Autowired
 	public NapService napService;
 	@Autowired
 	public MoodService moodSvc;
+	
 
 	@GetMapping("reports")
 	public List<DailyReport> listReports(Principal principal, HttpServletResponse res) {
@@ -83,15 +83,15 @@ public class DailyReportController {
 	}
 
 	
-	@GetMapping("naps/{reportId}")
-	public Nap showNapByReport(@PathVariable int reportId, Principal principal, HttpServletResponse res) {
-		if (principal.getName() == null) {
-			res.setStatus(401);
-			return null;
-		}
-		Nap nap = napService.napByReportId(reportId);
-		return nap;
-	}
+//	@GetMapping("naps/{reportId}")
+//	public Nap showNapByReport(@PathVariable int reportId, Principal principal, HttpServletResponse res) {
+//		if (principal.getName() == null) {
+//			res.setStatus(401);
+//			return null;
+//		}
+//		Nap nap = napService.napByReportId(reportId);
+//		return nap;
+//	}
 
 	@GetMapping("reports/{reportId}")
 	public DailyReport loadReportToEdit(@PathVariable int reportId) {
@@ -116,6 +116,7 @@ public class DailyReportController {
 			res.setStatus(400);
 			return null;
 		}
+		res.setStatus(200);
 		return reportSvc.update(dailyReport);
 	}
 
@@ -126,20 +127,33 @@ public class DailyReportController {
 			res.setStatus(401);
 			return null;
 		}
+		res.setStatus(201);
 		return moodSvc.create(moodEntry, reportId, moodId);
 	}
 	
 
-	@DeleteMapping("reports/moods/{moodId}")
-	public void deleteMood(@PathVariable int moodId, Principal principal, HttpServletResponse res) {
+	
+	@DeleteMapping("reports/moods/{moodId}/reportId/{reportId}")
+	public void deleteMood(@PathVariable int moodId, @PathVariable int reportId, Principal principal, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(401);
 		}
-		if (moodSvc.delete(moodId)) {
+		if (!moodSvc.delete(moodId, reportId)) {
 			res.setStatus(204);
 		} else {
-			res.setStatus(404);
+			res.setStatus(404);	
 		}
-		
 	}
+	
+//	@PutMapping("reports/{reportId}/naps")
+//	public Nap createNap(@PathVariable int reportId, @RequestBody Nap nap, Principal principal, HttpServletResponse res) {
+//		if (principal.getName().isEmpty()) {
+//			res.setStatus(401);
+//			return null;
+//		}
+//		res.setStatus(201);
+//		return napService.create(nap, reportId);
+//	}
+	
+	
 }
