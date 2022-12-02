@@ -411,8 +411,21 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (1, 'Javier', 'Rodriguez', '2018-07-15', 1, NULL);
-INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (2, 'Joe', 'Franklin', '2019-03-06', 2, NULL);
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (1, 'Javier', 'Rodriguez', '2018-07-15', 1, 'https://images.unsplash.com/photo-1630304565761-d6f8d5a0facd?ixlib=rb-4.0.3&ixid=MnwxM[…]DB8MHxzZWFyY2h8NXx8Y3V0ZSUyMGJhYnl8ZW58MHx8MHx8&w=1000&q=80');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (2, 'Joe', 'Franklin', '2019-03-06', 2, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Summer%202016-17/MS_pre-boy-2.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (3, 'Liam', 'Murray', '2019-04-02', 3, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Spring2023/Lifetouch-Preschool-image-spring-kinder-Follow%20Your%20Dreams-4.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (4, 'Noah', 'Ellis', '2020-11-01', 4, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Summer%202016-17/MS_Pre-boy-(3-pose).jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (5, 'Olivia', 'Manning', '2019-06-08', 1, 'https://media.istockphoto.com/id/1007786322/photo/is-it-delicious.jpg?b=1&s=170667a&w=0&k=20&c=hk1MyT4dNX1ophb--pVKvIHtO5tv2BYOnHd1N0Dfeco=');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (6, 'Emma', 'Gaines', '2018-02-04', 2, 'https://media.istockphoto.com/id/1429905621/photo/adorable-and-happy-asian-baby.jpg?b=1[…]7a&w=0&k=20&c=QoQoavGAjyJIII9VfVwiZJ_WW6ayfQhraO2uP-cRGcE=');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (7, 'Charlotte', 'Kirby', '2017-08-25', 3, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Summer%202016-17/MS_Toddler-girl.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (8, 'Ameilia', 'Arak', '2018-04-17', 4, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Summer%202016-17/MS_Infant--non-sit-.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (9, 'Ava', 'Curtis', '2019-12-20', 1, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Fall2022/Teal_3.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (10, 'Elija', 'Welch', '2017-01-01', 2, 'https://images.unsplash.com/photo-1543467214-b247439848dc?ixlib=rb-4.0.3&ixid=MnwxMjA3[…]jBiYWJ5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (11, 'Sophia', 'Davidson', '2018-03-30', 3, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Spring2023/Lifetouch-Preschool-image-spring-kinder-cream%20studio%20color-1.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (12, 'James', 'McPherson', '2016-11-19', 4, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Fall2022/Shiplap_3.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (13, 'William', 'Parks', '2017-10-21', 1, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Fall2022/Teal_2.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (14, 'Lucas', 'Wattles', '2018-02-18', 2, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Holiday2022/Holiday%20Teal_5.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (15, 'Mia', 'Weinberg', '2016-03-27', 3, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Spring2023/Lifetouch-Preschool-image-spring-kinder-Follow%20Your%20Dreams-2.jpg');
 
 COMMIT;
 
@@ -483,6 +496,19 @@ INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (3, 
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (4, 'staff', 'jeremyw', '$2a$10$nmsfDgaAqIkIz2v9T9kau.m9B1yL3uxOUX2URusIGbuOezhCOal/i', 1);
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (5, 'user', 'darlenef', '$2a$10$4QG1VKu2HEFKPbMc6Kyb1uZN18A452vJNmyzE8wAbYu306ObgJh.G', 1);
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (6, 'user', 'guillermor', '$2a$10$OQyN5W8eDCecBT9PHdJ4wOw1u.kVzZig4VttBjkz0bKs4pVYeh2s.', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (7, 'user', 'katem', '$2a$10$FUEuT849M22aENGPk5oCEOkterA3s2BMxP8eRNGj6WBWvFkwyBjmi', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (8, 'user', 'adame', 'broken', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (9, 'user', 'dannym', '$2a$10$FCvB1Qyt9VSnGW56SWndiuA/61gZ5Az6kUaCa0H2thk3HdKq.Mlne', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (10, 'user', 'candiceg', '$2a$10$njluYXPSx./PZ8fEhuvUMeaKjn8WjQu0hpXkYZKXzngWCh064V/ae', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (11, 'user', 'matthewk', '$2a$10$TG3Rj5s3S1kiVPWLbs6fg.e/UTQZfpYcNXBtNwciFLGDQ4lqAAgGu', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (12, 'user', 'jacoba', '$2a$10$7NG50omMR2bF6FG71FuDHuOxVCBTft.50.J6rx3elsBUThZo65M3a', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (13, 'user', 'michaelac', '$2a$10$N/ZHFsXqw8/9k1t/b2stVeEjMVCNhI66bo8iVyFyCpeQLwzpsJNna', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (14, 'user', 'jackiew', '$2a$10$MhDpthRGnyFJ7eo4xoIto.QkBWmZcEEQqxg0wTLwgFS3jE8LdS2x2', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (15, 'user', 'jessicad', '$2a$10$n2P3phT7Ov2Sf4RCKPfnruEq8yTN7bYhioQTTurvmhkal0t/SDqly', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (16, 'user', 'jenw', '$2a$10$KwSOd/H227poI7kuyLBqO.zT0aH174PQTgyh411WpffFTUuSG3x2C', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (17, 'user', 'alexw', '$2a$10$ppuNJrrk8Hd09ffZknzNBuOE4yTycxT/.WCPTHaNYFkvWFtHMvG9C', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (18, 'user', 'sandym', '$2a$10$fQXUiS6JIgyt/FfyxPwZ5O7/WKCWg.YdHEW0iRsqHV2YGnOaqF.7a', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (19, 'user', 'carrolp', '$2a$10$77rT/DI//H0C6oVyLRYeleqEYNSzJLQLB0nl4Cjef4ZPDzZXvZWJK', NULL);
 
 COMMIT;
 
@@ -492,10 +518,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (1, 'Rob', 'Roselius', 2, 1, NULL);
-INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (2, 'Anthony', 'King', 3, 2, NULL);
-INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (3, 'Jeremy', 'Botta', 4, 3, NULL);
-INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (4, 'William', 'Slaunwhite', 1, 4, NULL);
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (1, 'Rob', 'Roselius', 2, 1, 'https://media-exp1.licdn.com/dms/image/C4E03AQHFQsJazXpfSg/profile-displayphoto-shrink_[…]96000&v=beta&t=Bzf3fCNlZ_0tGEuN3PbbCWe-NERIb19WnHgPIVGYUy0');
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (2, 'Anthony', 'King', 3, 2, 'https://media-exp1.licdn.com/dms/image/C4E03AQEvtAjjQLPslA/profile-displayphoto-shrink_[…]96000&v=beta&t=SqlJTn25RraKALDNO5q3Geh8bVG4pHL1kCW-9VgzanA');
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (3, 'Jeremy', 'Botta', 4, 3, 'https://media-exp1.licdn.com/dms/image/C4E03AQGjwpf3Xsprbw/profile-displayphoto-shrink_200_200/0/1532485247024?e=1675296000&v=beta&t=3eScXSdWN-nu7_sWq9uvS8YFZf5HROSNyLem3IUkwJY');
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_id`, `classroom_id`, `image_url`) VALUES (4, 'William', 'Slaunwhite', 1, 4, 'https://media-exp1.licdn.com/dms/image/C5603AQEBJwFVonEv7A/profile-displayphoto-shrink_[…]96000&v=beta&t=qPAekFu6pKLV_7k0huNdaqKqTecM-K7AIvuBMis8xOA');
 
 COMMIT;
 
@@ -533,6 +559,19 @@ START TRANSACTION;
 USE `daycaredb`;
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (1, '379 Washington St.', 'Englewood', 'CO', '80110');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (2, '1413 Downing St.', 'Denver', 'CO', '80209');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (3, '43 S Ogden St', 'Denver', 'CO', '80209');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (4, '1061 S Downing St', 'Denver', 'CO', '80209');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (5, '3901 Elati St', 'Denver', 'CO', '80216');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (6, '2413 Coronado Pkwy', 'Denver', 'CO', '80229');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (7, '1300 S Parker Rd', 'Denver', 'CO', '80321');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (8, '1640 S Quebec Way', 'Denver', 'CO', '80231');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (9, '4725 S Monaco St', 'Denver', 'CO', '80237');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (10, '4550 Kittredge St', 'Denver', 'CO', '80239');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (11, '9100 E Florida Ave', 'Denver', 'CO', '80247');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (12, '1888 N Sherman St', 'Denver', 'CO', '80203');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (13, '1633 Fillmore St', 'Denver', 'CO', '80206');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (14, '9888 E Vassar Dr', 'Denver', 'CO', '80231');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (15, '2825 S Zuni St', 'Denver', 'CO', '80236');
 
 COMMIT;
 
@@ -542,8 +581,21 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (1, 'Darlene', 'Franklin', '303-992-0473', 5, 1, NULL, 1);
-INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (2, 'Guillermo', 'Rodriguez', '720-552-9462', 6, 2, NULL, 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (1, 'Darlene', 'Franklin', '303-992-0473', 5, 1, 'https://media.istockphoto.com/id/1180927418/photo/successful-mature-woman-looking-at-camera.jpg?s=612x612&w=0&k=20&c=h1iJZZqrxe_egI8oWxJJxVNQNsIKGHumyFe5uAcQ1ZI=', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (2, 'Guillermo', 'Rodriguez', '720-552-9462', 6, 2, 'https://media.istockphoto.com/id/1287598154/photo/passport-photo-of-latin-american-man-with-beard.jpg?s=612x612&w=0&k=20&c=P6pxgoITvaBKtsdTvj-ZFwktOZclZ9uJPIN67ynG4Xk=', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (3, 'Kate', 'Murray', '720-542-9282', 7, 3, 'https://cdn.shopify.com/s/files/1/0253/8956/3978/files/passport_photo_Kristina_Pimenova.jpg?v=1592285068', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (4, 'Adam', 'Ellis', '720-737-1623', 8, 4, 'https://atlanticurologyclinics.com/wp-content/uploads/2019/08/Circ-Adult-Men-1024x607.jpg', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (5, 'Danny', 'Manning', '970-554-7980', 9, 5, 'https://media.istockphoto.com/id/470701814/photo/passport-picture-of-a-guy-in-a-checked-shirt.jpg?s=612x612&w=0&k=20&c=n1XK4OstrSq5zXB042d_07U5oISYuGAeDv8vL6MKCGQ=', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (6, 'Candice', 'Gaines', '970-513-0745', 10, 6, 'https://t4.ftcdn.net/jpg/00/79/74/41/360_F_79744147_CwGIjIoViiIAhlVKgXNjqWtrigLqchie.jpg', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (7, 'Matthew', 'Kirby', '720-663-8138', 11, 7, 'https://upload.wikimedia.org/wikipedia/commons/7/76/Russian_passport_photo.JPG', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (8, 'Jacob', 'Arak', '719-628-0641', 12, 8, 'https://us.123rf.com/450wm/kadettmann/kadettmann2011/kadettmann201100074/kadettmann201100074.jpg?ver=6', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (9, 'Michaela', 'Curtis', '303-722-8895', 13, 9, 'https://t4.ftcdn.net/jpg/01/24/75/07/360_F_124750718_HutULxCzG3XOdWjSubNcdqzkebAYBd1J.jpg', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (10, 'Jackie', 'Welch', '303-729-2741', 14, 10, 'https://media.istockphoto.com/id/916523912/photo/portrait-of-young-african-woman-against-white-background.jpg?s=612x612&w=0&k=20&c=2tcLFR73wfWniMzOld2KNHVDIT3CEOFaxblTU-rs7q4=', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (11, 'Jessica', 'Davidson', '303-858-7851', 15, 11, 'https://cdn.shopify.com/s/files/1/0253/8956/3978/files/Gabbie_Hanna_Instagram_Photo.jpg?v=1592284887', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (12, 'Jen', 'Wattles', '303-254-0638', 16, 12, 'https://static.wikia.nocookie.net/fanon/images/f/f1/HanYeSul-min.jpg/revision/latest?cb=20210924153152', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (13, 'Alex', 'Weinberg', '970-514-4997', 17, 13, 'https://us.123rf.com/450wm/olesiabilkei/olesiabilkei1901/olesiabilkei190100003/olesiabilkei190100003.jpg?ver=6', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (14, 'Sandy', 'McPherson', '720-244-8953', 19, 14, 'https://visafoto.com/img/bangladesh-passport-photo-45x55-mm-example.jpg', 1);
+INSERT INTO `adult` (`id`, `first_name`, `last_name`, `phone_number`, `user_id`, `address_id`, `image_url`, `emergency_contact`) VALUES (15, 'Carrol', 'Parks', '303-201-5645', 18, 15, 'https://media.istockphoto.com/id/615279718/photo/businesswoman-portrait-on-white.jpg?s=612x612&w=0&k=20&c=Aa2Vy4faAPe9fAE68Z01jej9YqPqy-RbAteIlF3wcjk=', 1);
 
 COMMIT;
 
@@ -557,6 +609,7 @@ INSERT INTO `mood` (`id`, `description`) VALUES (1, 'Happy');
 INSERT INTO `mood` (`id`, `description`) VALUES (2, 'Fussy');
 INSERT INTO `mood` (`id`, `description`) VALUES (3, 'Tired');
 INSERT INTO `mood` (`id`, `description`) VALUES (4, 'Quiet');
+INSERT INTO `mood` (`id`, `description`) VALUES (5, 'Calm');
 
 COMMIT;
 
@@ -568,6 +621,19 @@ START TRANSACTION;
 USE `daycaredb`;
 INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (1, 2, 'Mother');
 INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (2, 1, 'Father');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (3, 3, 'Aunt');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (4, 4, 'Father');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (5, 5, 'Father');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (6, 6, 'Mother');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (7, 7, 'Mother');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (8, 8, 'Father');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (9, 9, 'Grandma');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (10, 10, 'Mother');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (11, 11, 'Mother');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (12, 14, 'Mother');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (13, 15, 'Uncle');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (14, 12, 'Mother');
+INSERT INTO `guardian` (`adult_id`, `kid_id`, `relationship`) VALUES (15, 13, 'Mother');
 
 COMMIT;
 
