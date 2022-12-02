@@ -35,7 +35,7 @@ public class AdultController {
 	
 	@GetMapping("adults")
 	public List<Adult> listAdults(Principal principal){
-		return null;
+		return adultService.listAllAdults(principal.getName());
 	}
 	
 	@GetMapping("adults/kids")

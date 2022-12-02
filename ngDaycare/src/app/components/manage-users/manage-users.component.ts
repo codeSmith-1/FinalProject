@@ -29,6 +29,7 @@ export class ManageUsersComponent implements OnInit {
   selected: null | Adult = null;
   editAdult: null | Adult = null;
 
+
   loadAdults() {
     this.staff.getAdults().subscribe({
       next: (adults) => {
@@ -68,6 +69,7 @@ export class ManageUsersComponent implements OnInit {
 updateAdult(adult: Adult) {
   this.adult.update(adult).subscribe({
     next: (adult)=> {
+      this.loadAdults();
       this.selected = adult;
       console.log(adult);
     },
@@ -81,6 +83,7 @@ updateAdult(adult: Adult) {
 updateEnableSpecific(adult: Adult, id: number) {
   this.adult.updateEnableSpecific(adult, id).subscribe({
     next: (adult)=> {
+      this.loadAdults();
       this.selected = adult;
       this.editAdult =null;
       console.log(adult);
