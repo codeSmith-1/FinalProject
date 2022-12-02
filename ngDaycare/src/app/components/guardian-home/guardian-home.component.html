@@ -1,52 +1,66 @@
-
-<div *ngFor="let kid of kids">
+<div class="container">
+  <div class="row">
+      <div class="col" *ngFor="let kid of kids">
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="{{kid.imageUrl}}" alt="Card image cap">
   <div class="card-body">
     <h2 class="card-title">{{kid.firstName}} {{kid.lastName}}</h2>
     <p class="card-text">{{inSessionAdult.firstName}} {{inSessionAdult.lastName}}, {{inSessionAdult.phoneNumber}}</p>
-    <a href="#" class="btn btn-primary">Link to daily</a>
-    <a class="btn btn-primary" (click)="open(content); selected=kid">Update</a>
+
+    <!-- need route to view report -->
+    <div class="btn-toolbar">
+    <button href="#" class="btn btn-outline-primary btn-sm">View Report</button>
+    <button class="btn btn-primary btn-sm" (click)="open(content); selected=kid">Update</button>
+  </div>
   </div>
 </div>
 </div>
 <br>
 <div>
-  <button class="btn btn-outline-primary btn-rounded btn-icon" (click)="open(content); selected=null">Add Child</button>
+  <button class="btn btn-outline-success btn-rounded btn-sm" (click)="open(content); selected=null">Add Child</button>
   </div>
+  </div>
+  </div>
+
 
 <ng-template #content let-modal>
 	<div class="modal-header">
-		<h4 *ngIf="selected" class="modal-title" id="modal-basic-title">Edit Child</h4>
-    <h4 *ngIf="!selected" class="modal-title" id="modal-basic-title">Add Child</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+		<h2 *ngIf="selected" class="modal-title" id="modal-basic-title">Edit Child</h2>
+    <h2 *ngIf="!selected" class="modal-title" id="modal-basic-title">Add Child</h2>
+		<button type="button btn-sm" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
 		<form *ngIf="selected">
-			<div class="mb-3">
+        <div class="form-group">
         <label for="firstName">First Name: </label>
         <div class="input-group">
           <div>
           <input type="text" name="firstName" placeholder="Country" [(ngModel)]="selected.firstName">
           </div>
         </div>
+        </div>
+        <div class="form-group">
           <label for="lastName">Last Name:</label>
         <div class="input-group">
         <div>
           <input type="text" name="lastName" placeholder="lastName" [(ngModel)]="selected.lastName">
         </div>
         </div>
+        </div>
+        <div class="form-group">
         <label for="birthday">birthday</label>
         <div class="input-group">
           <div>
           <input type="img" name="birthday" placeholder="birthday"[(ngModel)]="selected.birthday">
 				</div>
         </div>
+        </div>
+        <div class="form-group">
         <label for="imageUrl">Image</label>
         <div class="input-group">
         <div>
+          </div>
           <input type="text" name="imageUrl" placeholder="image" [(ngModel)]="selected.imageUrl">
-        </div>
         </div>
         </div>
 		</form>
@@ -69,7 +83,11 @@
         <label for="birthday">birthday</label>
         <div class="input-group">
           <div>
-          <input type="img" name="birthday" placeholder="birthday"[(ngModel)]="newKid.birthday">
+            <input
+            type="datetime-local"
+            class="form-group"
+            name="timeStart"
+            [(ngModel)]="newKid.birthday"/>
 				</div>
         </div>
         <label for="imageUrl">Image</label>
@@ -95,7 +113,7 @@
 </div>
   <div *ngIf="!selected">
 	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="addKid(newKid, relationship)" (click)="modal.close('Save click')">Add Kid</button>
+		<button type="button" class="btn btn-outline-dark" (click)="addKid(newKid, relationship)" (click)="modal.close('Save click')">Add Child</button>
 	</div>
 </div>
 </ng-template>
