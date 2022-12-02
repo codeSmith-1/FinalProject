@@ -44,7 +44,7 @@ export class DailyReportService {
   }
 
   update(dailyReport: DailyReport): Observable<DailyReport>{
-    return this.http.post<DailyReport>(this.url, dailyReport, this.getHttpOptions()).pipe(
+    return this.http.put<DailyReport>(this.url, dailyReport, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

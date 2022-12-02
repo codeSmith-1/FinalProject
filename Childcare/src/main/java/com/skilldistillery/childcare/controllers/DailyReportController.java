@@ -120,6 +120,7 @@ public class DailyReportController {
 			res.setStatus(400);
 			return null;
 		} else {
+			res.setStatus(201);
 			return report;
 		}
 	}
