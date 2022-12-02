@@ -63,10 +63,10 @@ public class BathroomController {
 		return null;
 	}
 	
-	@GetMapping("bathrooms/{reportId}")
-	public List<Bathroom> listMoodByReport(@PathVariable ("reportId") int reportId){
-		List<Bathroom> bathrooms = bathroomServ.bathroomsByReportId(reportId);
-		return bathrooms;
-	}
+//	@GetMapping("bathrooms/{reportId}")
+//	public List<Bathroom> listMoodByReport(@PathVariable ("reportId") int reportId){
+//		List<Bathroom> bathrooms = bathroomServ.bathroomsByReportId(reportId);
+//		return bathrooms;
+//	}
 
 }
