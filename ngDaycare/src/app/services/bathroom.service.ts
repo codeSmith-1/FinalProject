@@ -36,7 +36,7 @@ export class BathroomService {
 
   create(bathroom: Bathroom): Observable<Bathroom> {
     return this.http
-    .post<Bathroom>(this.url + 'bathroom', bathroom, this.getHttpOptions())
+    .post<Bathroom>(this.url, bathroom, this.getHttpOptions())
     .pipe(
       catchError((err: any) => {
         console.log(err);

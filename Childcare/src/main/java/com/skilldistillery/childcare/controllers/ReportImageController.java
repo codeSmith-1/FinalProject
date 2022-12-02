@@ -44,7 +44,7 @@ public class ReportImageController {
 		}
 		List<ReportImage> images = imageService.imagesByReportId(reportId);
 		if (images.isEmpty()) {
-			res.setStatus(404);
+			res.setStatus(400);
 			return null;
 		} else {
 			return images;

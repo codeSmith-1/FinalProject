@@ -36,9 +36,10 @@ public class NapController {
 		if (nap!=null) {
 			res.setStatus(200);
 			return nap;
+		} else {
+			res.setStatus(400);			
+			return nap;
 		}
-		res.setStatus(400);
-		return nap;
 	}
 
 	

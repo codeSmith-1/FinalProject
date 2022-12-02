@@ -11,12 +11,12 @@ import { AuthService } from './auth.service';
 export class NapService {
 
   private baseUrl = 'http://localhost:8089/';
-  url = environment.baseUrl;
+  url = environment.baseUrl +'api/';
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   showNapsByReport(reportId: number): Observable<Nap> {
-    return this.http.get<Nap>(this.url + 'api/naps/' + reportId, this.getHttpOptions()).pipe(
+    return this.http.get<Nap>(this.url + 'reports/' + reportId + '/naps', this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

@@ -77,7 +77,7 @@ public class FoodController {
 		}
 		List<Food> foods = foodServ.foodByReportId(reportId);
 		if (foods.isEmpty()) {
-			res.setStatus(404);
+			res.setStatus(400);
 		}
 		return foods;
 	}

@@ -101,7 +101,7 @@ export class ViewDailyReportComponent implements OnInit {
         this.moods = moods;
       },
       error: (error) => {
-        console.error('ShowBathroomByReport.view-daily-report component: error loading bathroom'+ error);
+        console.error('showMoodByReport().view-daily-report component: error loading moods'+ error);
       },
     })
   }
