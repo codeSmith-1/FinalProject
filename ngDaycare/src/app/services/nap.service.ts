@@ -28,7 +28,7 @@ export class NapService {
 
   create(nap: Nap, reportId: number): Observable<Nap> {
     return this.http
-    .post<Nap>(this.url + '/' + reportId + '/naps', this.getHttpOptions())
+    .post<Nap>(this.url + '/' + reportId + '/naps', nap, this.getHttpOptions())
     .pipe(
       catchError((err: any) => {
         console.log(err);

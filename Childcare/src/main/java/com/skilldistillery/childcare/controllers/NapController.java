@@ -58,8 +58,7 @@ public class NapController {
 	}
 
 	@PostMapping("reports/{reportId}/naps")
-	public Nap createNap(@PathVariable int reportId, @RequestBody Nap nap, Principal principal,
-			HttpServletResponse res) {
+	public Nap createNap(@PathVariable int reportId, @RequestBody Nap nap, Principal principal, HttpServletResponse res) {
 		if (principal.getName().isEmpty()) {
 			res.setStatus(401);
 			return null;
