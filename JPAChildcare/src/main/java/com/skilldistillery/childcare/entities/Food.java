@@ -16,16 +16,8 @@ public class Food {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private int id;
-	
-	private String lunch;
-	
-	@Column(name="am_snack")
-	private String amSnack;
-	
-	@Column(name="pm_snack")
-	private String pmSnack;
-	
-	private String other;
+		
+	private String description;
 	
 	@ManyToOne
 	@JoinColumn(name="day_id")
@@ -34,6 +26,10 @@ public class Food {
 	public DailyReport getDailyReport() {
 		return dailyReport;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name="food_type_id")
+	private FoodType foodType;
 
 	public void setDailyReport(DailyReport dailyReport) {
 		this.dailyReport = dailyReport;
@@ -55,6 +51,13 @@ public class Food {
 	}
 
 
+
+
+	public Food(int id) {
+		super();
+		this.id = id;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -67,42 +70,33 @@ public class Food {
 		return id == other.id;
 	}
 
+	@Override
+	public String toString() {
+		return "Food [id=" + id + ", description=" + description + ", dailyReport=" + dailyReport + ", foodType="
+				+ foodType + "]";
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public FoodType getFoodType() {
+		return foodType;
+	}
+
+	public void setFoodType(FoodType foodType) {
+		this.foodType = foodType;
+	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getLunch() {
-		return lunch;
-	}
-	public void setLunch(String lunch) {
-		this.lunch = lunch;
-	}
-	public String getAmSnack() {
-		return amSnack;
-	}
-	public void setAmSnack(String amSnack) {
-		this.amSnack = amSnack;
-	}
-	public String getPmSnack() {
-		return pmSnack;
-	}
-	public void setPmSnack(String pmSnack) {
-		this.pmSnack = pmSnack;
-	}
-	public String getOther() {
-		return other;
-	}
-	public void setOther(String other) {
-		this.other = other;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Food [id=" + id + ", lunch=" + lunch + ", amSnack=" + amSnack + ", pmSnack=" + pmSnack + ", other="
-				+ other + "]";
-	}
 	
+
 	
 	
 }

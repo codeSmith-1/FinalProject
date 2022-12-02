@@ -1,6 +1,7 @@
 package com.skilldistillery.childcare.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,11 +13,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class FoodTest {
+class FoodTypeTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Food food;
+	private FoodType ft;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,13 +32,13 @@ class FoodTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		food = em.find(Food.class, 1);
+		ft = em.find(FoodType.class, 1);
 	}
 	
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		food = null;
+		ft = null;
 	}
 	
 //	@Test
@@ -47,16 +48,9 @@ class FoodTest {
 //	}
 	
 	@Test
-	void test() {
-		assertNotNull(food);
-		assertEquals(1, food.getDailyReport().getId());
-		assertEquals("Cheez Its, Cantelope, Grapes", food.getDescription());
-	}
-	
-	@Test
 	void test_ManyToOne_mapping() {
-		assertNotNull(food);
-		assertNotNull(food.getFoodType());
+		assertNotNull(ft);
+		assertEquals("Morning Snack", ft.getName());
 	}
 		
 }
