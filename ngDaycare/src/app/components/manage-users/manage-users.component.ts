@@ -27,6 +27,7 @@ export class ManageUsersComponent implements OnInit {
   inSessionStaff: Staff = new Staff();
   inSessionUser: User = new User();
   selected: null | Adult = null;
+  editAdult: null | Adult = null;
 
   loadAdults() {
     this.staff.getAdults().subscribe({
@@ -77,6 +78,24 @@ updateAdult(adult: Adult) {
   });
 }
 
+updateEnableSpecific(adult: Adult, id: number) {
+  this.adult.updateEnableSpecific(adult, id).subscribe({
+    next: (adult)=> {
+      this.selected = adult;
+      this.editAdult =null;
+      console.log(adult);
+    },
+    error: (fail) => {
+      console.error('Manage-users Component.updateAdult(): error updating adult enable:');
+      console.error(fail);
+    },
+  });
+}
+
   showEnabled: boolean = false;
+
+  setEditAdult() {
+    this.editAdult = Object.assign({}, this.selected);
+  }
 
 }

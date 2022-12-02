@@ -13,7 +13,7 @@
       <td>{{adult.user?.enabled}}</td>
       <td>
             <!-- Show Enabled<input type="checkbox" name="isEnabled" [(ngModel)]="adult.user.enabled" (change)="updateAdult(adult)"> -->
-            <input type="checkbox" name="adult.user.enabled" (change)="updateAdult(adult)" ngModel />
+            <input type="checkbox" name="adult.user.enabled" (change)="updateEnableSpecific(adult, adult.id)" ngModel />
       </td>
     </tr>
   </tbody>

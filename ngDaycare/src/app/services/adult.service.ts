@@ -58,6 +58,17 @@ export class AdultService {
     );
   }
 
+  updateEnableSpecific(adult: Adult, id: number){
+    return this.http.put<Adult>(this.url + '/' + id, adult, this.getHttpOptions()).pipe(
+      catchError((err: any)=> {
+        console.error(err);
+        return throwError(
+          () => new Error('AdultService.updateEnableSpecific(): error updating Adult Enable: ' + err)
+        );
+      })
+    );
+  }
+
   show(): Observable<Adult>{
     return this.http.get<Adult>(this.url +"/loggedInAdult", this.getHttpOptions()).pipe(
       catchError((err: any) => {

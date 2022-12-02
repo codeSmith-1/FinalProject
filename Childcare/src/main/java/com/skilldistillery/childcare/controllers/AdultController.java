@@ -90,7 +90,7 @@ public class AdultController {
 	@PutMapping("adults/{adultId}")
 	public Adult update(@RequestBody Adult adult, Principal principal, HttpServletResponse res, @PathVariable int adultId) {
 		try {
-			return adultService.update(principal.getName(), adult);
+			return adultService.editEnableSpecific(principal.getName(),adult, adultId);
 			
 		} catch (Exception e) {
 			res.setStatus(400);

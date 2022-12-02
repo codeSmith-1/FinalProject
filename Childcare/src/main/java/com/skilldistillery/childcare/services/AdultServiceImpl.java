@@ -20,7 +20,7 @@ public class AdultServiceImpl implements AdultService {
 
 	@Autowired
 	public UserRepository userRepo;
-	
+
 	@Autowired
 	public AddressRepository addressRepo;
 
@@ -77,8 +77,6 @@ public class AdultServiceImpl implements AdultService {
 			return null;
 		}
 	}
-	
-	
 
 	@Override
 	public boolean delete(String username, int adultId) {
@@ -104,14 +102,16 @@ public class AdultServiceImpl implements AdultService {
 	}
 
 	@Override
-	public Adult editEnableSpecific(Adult adult, String username, int adultId) {
+	public Adult editEnableSpecific( String username, Adult adult, int adultId) {
 		User user = userRepo.findByUsername(username);
-		Adult adultToUpdate = null;
-		adultToUpdate = adultRepo.queryById(adultId);
-		if(adultToUpdate != null) {
-			adultToUpdate.getUser().setEnabled(adult.getUser().getEnabled());
-			return adultRepo.saveAndFlush(adultToUpdate);
+		Adult adultToUpdate = adultRepo.queryById(adultId);
+		if (user != null) {
+			adultToUpdate.getUser().setEnabled(!adult.getUser().getEnabled());
+			adultRepo.saveAndFlush(adultToUpdate);
+		} else {
+			return null;
 		}
 		return adultToUpdate;
 	}
+
 }

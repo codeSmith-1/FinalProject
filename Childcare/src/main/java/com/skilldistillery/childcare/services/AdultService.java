@@ -20,7 +20,7 @@ public interface AdultService {
 	
 	Adult showAdultByUsername(String username);
 	
-	Adult editEnableSpecific(Adult adult, String username, int adultId);
+	Adult editEnableSpecific(String username, Adult adult, int adultId);
 	
 	
 }
