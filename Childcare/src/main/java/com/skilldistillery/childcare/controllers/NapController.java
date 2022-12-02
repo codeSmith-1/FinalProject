@@ -22,10 +22,10 @@ public class NapController {
 	@Autowired
 	private NapService napServ;
 	
-	@GetMapping("naps/{reportId}")
-	public Nap napByReport(int reportId, HttpServletRequest req, HttpServletResponse res) {
-		return napServ.napByReportId(reportId);
-	}
+//	@GetMapping("naps/{reportId}")
+//	public Nap napByReport(int reportId, HttpServletRequest req, HttpServletResponse res) {
+//		return napServ.napByReportId(reportId);
+//	}
 	
 	@PostMapping("naps")
 	public Nap create(HttpServletRequest req, HttpServletResponse res, @RequestBody Nap nap) {
