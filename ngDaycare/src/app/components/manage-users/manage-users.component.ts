@@ -5,6 +5,7 @@ import { Staff } from 'src/app/models/staff';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { StaffService } from 'src/app/services/staff.service';
+import { AdultService } from 'src/app/services/adult.service';
 import { FormsModule } from '@angular/forms';
 
 
@@ -15,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ManageUsersComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router, private staff: StaffService) { }
+  constructor(private auth: AuthService, private router: Router, private staff: StaffService, private adult: AdultService) { }
 
   ngOnInit(): void {
     this.loadAdults();
@@ -25,6 +26,8 @@ export class ManageUsersComponent implements OnInit {
   adults: Adult[] | null = null;
   inSessionStaff: Staff = new Staff();
   inSessionUser: User = new User();
+  selected: null | Adult = null;
+  editAdult: null | Adult = null;
 
   loadAdults() {
     this.staff.getAdults().subscribe({
@@ -61,4 +64,38 @@ export class ManageUsersComponent implements OnInit {
       },
     });
   }
+
+updateAdult(adult: Adult) {
+  this.adult.update(adult).subscribe({
+    next: (adult)=> {
+      this.selected = adult;
+      console.log(adult);
+    },
+    error: (fail) => {
+      console.error('Manage-users Component.updateAdult(): error updating adult enable:');
+      console.error(fail);
+    },
+  });
+}
+
+updateEnableSpecific(adult: Adult, id: number) {
+  this.adult.updateEnableSpecific(adult, id).subscribe({
+    next: (adult)=> {
+      this.selected = adult;
+      this.editAdult =null;
+      console.log(adult);
+    },
+    error: (fail) => {
+      console.error('Manage-users Component.updateAdult(): error updating adult enable:');
+      console.error(fail);
+    },
+  });
+}
+
+  showEnabled: boolean = false;
+
+  setEditAdult() {
+    this.editAdult = Object.assign({}, this.selected);
+  }
+
 }

@@ -20,7 +20,7 @@ public class AdultServiceImpl implements AdultService {
 
 	@Autowired
 	public UserRepository userRepo;
-	
+
 	@Autowired
 	public AddressRepository addressRepo;
 
@@ -100,4 +100,18 @@ public class AdultServiceImpl implements AdultService {
 	public Adult showAdultByUsername(String username) {
 		return adultRepo.findByUser_Username(username);
 	}
+
+	@Override
+	public Adult editEnableSpecific( String username, Adult adult, int adultId) {
+		User user = userRepo.findByUsername(username);
+		Adult adultToUpdate = adultRepo.queryById(adultId);
+		if (user != null) {
+			adultToUpdate.getUser().setEnabled(!adult.getUser().getEnabled());
+			adultRepo.saveAndFlush(adultToUpdate);
+		} else {
+			return null;
+		}
+		return adultToUpdate;
+	}
+
 }

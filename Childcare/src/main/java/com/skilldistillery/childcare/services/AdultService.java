@@ -20,5 +20,7 @@ public interface AdultService {
 	
 	Adult showAdultByUsername(String username);
 	
+	Adult editEnableSpecific(String username, Adult adult, int adultId);
+	
 	
 }

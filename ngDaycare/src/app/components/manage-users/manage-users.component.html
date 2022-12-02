@@ -3,37 +3,17 @@
   <thead class="table-dark">
     <tr>
       <th>Name</th>
-      <th>Status</th>
+      <th>Enable current status</th>
+      <th>Disable/Enable</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let adult of adults">
       <td>{{adult.firstName}} {{adult.lastName}} </td>
+      <td>{{adult.user?.enabled}}</td>
       <td>
-
-        <div *ngIf="adult.user?.enabled" class="checkbox">
-          <label>
-            <input type="checkbox" data-toggle="toggle">
-          </label>
-        </div>
-        <div *ngIf="!adult.user?.enabled" class="checkbox disabled">
-          <label>
-            <!-- <input type="checkbox" disabled data-toggle="toggle" name="enabled" [(ngModel)]="adult.user.enabled"> -->
-          </label>
-        </div>
-
-
-        <!-- <input type="checkbox" name="emergencyContact" [(ngModel)]="newAdult.emergencyContact"> -->
-<!--
-        <tr *ngFor="let todo of todos | incomplete : showComplete">
-          <td (click)="displayToDo(todo); selected=todo;" [ngClass]="todo.completed ? 'complete' : 'incomplete'">{{todo.task}}</td>
-          <td><input type="checkbox" name="mark" (change)="updateTodo(todo, false)" [(ngModel)]="todo.completed"/></td>
-          <td>{{todo.description}}</td>
-          <td>{{todo.completed}}</td>
-          <td> -->
-
-
-
+            <!-- Show Enabled<input type="checkbox" name="isEnabled" [(ngModel)]="adult.user.enabled" (change)="updateAdult(adult)"> -->
+            <input type="checkbox" name="adult.user.enabled" (change)="updateEnableSpecific(adult, adult.id)" ngModel />
       </td>
     </tr>
   </tbody>
