@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `kid` (
   `last_name` VARCHAR(45) NOT NULL,
   `birthday` DATE NOT NULL,
   `classroom_id` INT NULL,
-  `image_url` VARCHAR(1500) NULL,
+  `image_url` VARCHAR(2500) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_child_classroom1_idx` (`classroom_id` ASC),
   CONSTRAINT `fk_child_classroom1`
@@ -75,22 +75,38 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `food_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `food_type` ;
+
+CREATE TABLE IF NOT EXISTS `food_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `food`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `food` ;
 
 CREATE TABLE IF NOT EXISTS `food` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `lunch` VARCHAR(250) NULL,
-  `am_snack` VARCHAR(250) NULL,
-  `pm_snack` VARCHAR(250) NULL,
-  `other` VARCHAR(250) NULL,
+  `description` VARCHAR(250) NULL,
   `day_id` INT NOT NULL,
+  `food_type_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_meals_day_idx` (`day_id` ASC),
+  INDEX `fk_food_food_type1_idx` (`food_type_id` ASC),
   CONSTRAINT `fk_meals_day`
     FOREIGN KEY (`day_id`)
     REFERENCES `daily_report` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_food_food_type1`
+    FOREIGN KEY (`food_type_id`)
+    REFERENCES `food_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -233,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `adult` (
   `phone_number` VARCHAR(12) NOT NULL,
   `user_id` INT NOT NULL,
   `address_id` INT NOT NULL,
-  `image_url` VARCHAR(1500) NULL,
+  `image_url` VARCHAR(2500) NULL,
   `emergency_contact` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_guardian_user1_idx` (`user_id` ASC),
@@ -414,19 +430,32 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `food_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `daycaredb`;
+INSERT INTO `food_type` (`id`, `name`) VALUES (1, 'Morning Snack');
+INSERT INTO `food_type` (`id`, `name`) VALUES (2, 'Lunch');
+INSERT INTO `food_type` (`id`, `name`) VALUES (3, 'Afternoon Snack');
+INSERT INTO `food_type` (`id`, `name`) VALUES (4, 'Other');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `food`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `daycaredb`;
-INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (1, NULL, 'Cheez Its, Cantelope, Grapes', NULL, NULL, 1);
-INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (2, 'Sloppy Joe, Chips, Carrots', NULL, NULL, NULL, 1);
-INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (3, NULL, NULL, 'Celery, Peanut Butter, Carrots', NULL, 1);
-INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (4, NULL, 'Apple Slices, Wheat Thins', NULL, NULL, 2);
-INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (5, 'Macaroni & Cheese, Grapes, Cheerios', NULL, NULL, NULL, 2);
-INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (6, NULL, NULL, 'Carrots, Celery, Raisins, Peanut Butter', NULL, 2);
-INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (7, NULL, 'Peaches, Bread & Butter', NULL, NULL, 3);
-INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (8, 'Little Smokies, Hash Browns, Pineapple Chunks', NULL, NULL, NULL, 3);
-INSERT INTO `food` (`id`, `lunch`, `am_snack`, `pm_snack`, `other`, `day_id`) VALUES (9, NULL, NULL, 'Peas, Apple Sauce, Milk', NULL, 3);
+INSERT INTO `food` (`id`, `description`, `day_id`, `food_type_id`) VALUES (1, 'Cheez Its, Cantelope, Grapes', 1, 1);
+INSERT INTO `food` (`id`, `description`, `day_id`, `food_type_id`) VALUES (2, 'Sloppy Joe, Chips, Carrots', 1, 2);
+INSERT INTO `food` (`id`, `description`, `day_id`, `food_type_id`) VALUES (3, 'Celery, Peanut Butter, Carrots', 1, 3);
+INSERT INTO `food` (`id`, `description`, `day_id`, `food_type_id`) VALUES (4, 'Cheez Its, Cantelope, Grapes', 2, 1);
+INSERT INTO `food` (`id`, `description`, `day_id`, `food_type_id`) VALUES (5, 'Sloppy Joe, Chips, Carrots', 2, 2);
+INSERT INTO `food` (`id`, `description`, `day_id`, `food_type_id`) VALUES (6, 'Celery, Peanut Butter, Carrots', 2, 3);
+INSERT INTO `food` (`id`, `description`, `day_id`, `food_type_id`) VALUES (7, 'Cheez Its, Cantelope, Grapes', 3, 1);
+INSERT INTO `food` (`id`, `description`, `day_id`, `food_type_id`) VALUES (8, 'Sloppy Joe, Chips, Carrots', 3, 2);
+INSERT INTO `food` (`id`, `description`, `day_id`, `food_type_id`) VALUES (9, 'Celery, Peanut Butter, Carrots', 3, 3);
 
 COMMIT;
 

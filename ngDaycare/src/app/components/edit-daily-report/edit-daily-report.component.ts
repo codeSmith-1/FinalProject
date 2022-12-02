@@ -47,7 +47,7 @@ export class EditDailyReportComponent implements OnInit {
   moodType: Mood = new Mood();
   newMoodMoodId: number = 0;
   moods: Mood[] = [];
-  newFood: Food | null = null;
+  newFood: Food = new Food();
 
   constructor(
     private modalService: NgbModal,
@@ -87,7 +87,7 @@ export class EditDailyReportComponent implements OnInit {
             this.loadMoods();
           },
           error: (fail) => {
-            console.error('edit-report-component.ngOnInit: report not found');
+            console.error('edit-report-component.ngOnInit: report not found' + fail);
             this.router.navigateByUrl('reportNotFound');
           },
         });
@@ -138,6 +138,7 @@ export class EditDailyReportComponent implements OnInit {
     this.napService.showNapsByReport(report.id).subscribe({
       next: (nap) => {
         this.nap = nap;
+        console.log(nap);
       },
       error: (error) => {
         console.error(
@@ -233,11 +234,11 @@ export class EditDailyReportComponent implements OnInit {
   }
 
   addBathroom(bathroom: Bathroom) {
-    console.log(bathroom);
     bathroom.day = this.report;
     this.bathroomService.create(this.newBathroom).subscribe({
       next: (bathroom) => {
-        this.reload();
+        this.loadBathroom(this.report);
+        this.loadBathroomType();
         this.newBathroom = new Bathroom();
       },
       error: (fail) => {
@@ -252,7 +253,8 @@ export class EditDailyReportComponent implements OnInit {
   deleteBathroom(id: number) {
     this.bathroomService.destroy(id).subscribe({
       next: (bathroom) => {
-        this.reload();
+        this.loadBathroom(this.report);
+        this.loadBathroomType();
       },
       error: (fail) => {
         console.error(
@@ -324,32 +326,104 @@ export class EditDailyReportComponent implements OnInit {
     });
   }
 
-  addFood() {
-    if (this.newFood) {
-      this.reportService.createFood(this.newFood, this.report.id).subscribe({
-        next: (image) => {
-          this.loadFood(this.report);
-          this.newMood = new MoodEntry();
+  // addFood() {
+  //   if (this.newFood) {
+  //     this.reportService.createFood(this.newFood, this.report.id).subscribe({
+  //       next: (image) => {
+  //         this.loadFood(this.report);
+  //         this.newFood = new Food();
+  //       },
+  //       error: (fail) => {
+  //         console.error(
+  //           'editDailyReport.addMood()): error creating new Mood record:'
+  //         );
+  //         console.error(fail);
+  //       },
+  //     });
+  //   }
+  // }
+
+  // deleteFood(foodId: number) {
+  //   this.reportService.destroyFood(foodId).subscribe({
+  //     next: (food) => {
+  //       this.loadFood(this.report);
+  //     },
+  //     error: (fail) => {
+  //       console.error(
+  //         'edit-dailyReport.deleteMood(): error removing Mood record:'
+  //       );
+  //       console.error(fail);
+  //     },
+  //   });
+  // }
+
+  addNap(nap: Nap) {
+      this.napService.create(nap, this.report.id).subscribe({
+        next: (nap) => {
+          console.log(nap)
+          this.loadNap(this.report);
+          this.nap = new Nap();
         },
         error: (fail) => {
           console.error(
-            'editDailyReport.addMood()): error creating new Mood record:'
+            'editDailyReport.addNap()): error creating new Nap record:'
           );
           console.error(fail);
         },
       });
-    }
+  }
+
+  updateNap() {
+      this.napService.update(this.nap).subscribe({
+        next: (nap) => {
+          this.loadNap(this.report);
+          this.nap = new Nap();
+        },
+        error: (fail) => {
+          console.error(
+            'editDailyReport.updateNap()): error updating Nap record:'
+          );
+          console.error(fail);
+        },
+      });
+  }
+
+  deleteNap(napId: number) {
+    this.napService.destroy(napId).subscribe({
+      next: (nap) => {
+        this.loadNap(this.report);
+        this.nap = new Nap();
+      },
+      error: (fail) => {
+        console.error(
+          'edit-dailyReport.deleteNap(): error removing Nap record:'
+        );
+        console.error(fail);
+      },
+    });
+  }
+
+  addFood(food: Food) {
+    this.foodService.create(food).subscribe({
+      next: (food) => {
+        this.loadFood(this.report);
+        this.newFood = new Food();
+      },
+      error: (fail) => {
+        console.error('Food-crud.addFood(): error creating food record:');
+        console.error(fail);
+      },
+    });
+    this.reload();
   }
 
   deleteFood(foodId: number) {
-    this.reportService.destroyFood(foodId).subscribe({
+    this.foodService.destroy(foodId).subscribe({
       next: (food) => {
         this.loadFood(this.report);
       },
       error: (fail) => {
-        console.error(
-          'edit-dailyReport.deleteMood(): error removing Mood record:'
-        );
+        console.error('Food-crud.deleteKid(): error removing food record:');
         console.error(fail);
       },
     });

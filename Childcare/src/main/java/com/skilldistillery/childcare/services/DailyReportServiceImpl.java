@@ -1,6 +1,5 @@
 package com.skilldistillery.childcare.services;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class DailyReportServiceImpl implements DailyReportService {
 	public UserRepository userRepo;
 	@Autowired
 	public KidRepository kidRepo;
-	
+
 	@Override
 	public List<DailyReport> listAllReports(String username) {
 		User user = userRepo.findByUsername(username);
@@ -32,7 +31,8 @@ public class DailyReportServiceImpl implements DailyReportService {
 			return null;
 		}
 	}
-	@Override 
+
+	@Override
 	public DailyReport findById(int reportId) {
 		return reportRepo.queryById(reportId);
 	}
@@ -47,15 +47,15 @@ public class DailyReportServiceImpl implements DailyReportService {
 
 	@Override
 	public DailyReport update(DailyReport dailyReport) {
-		DailyReport dailyToUpdate = reportRepo.queryById(dailyReport.getId());
-		reportRepo.saveAndFlush(dailyToUpdate);
-		return dailyToUpdate;
+		DailyReport update = reportRepo.queryById(dailyReport.getId());
+
+		update.setTimeIn(dailyReport.getTimeIn());
+		update.setTimeOut(dailyReport.getTimeOut());
+		update.setDiapersLow(dailyReport.isDiapersLow());
+		update.setWipesLow(dailyReport.isWipesLow());
+		update.setNotes(dailyReport.getNotes());
+		update.setActivities(dailyReport.getActivities());
+		return reportRepo.saveAndFlush(update);
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }
