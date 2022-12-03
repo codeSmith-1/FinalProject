@@ -1,0 +1,19 @@
+.picsum-img-wrapper {
+  height: 700px;
+
+}
+
+.carousel{
+  margin-top: 70px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.carousel-control-prev,
+.carousel-control-next{
+  color:black;
+}
+
+
+
+
