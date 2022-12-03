@@ -7,7 +7,7 @@ caption{ caption-side: top;
   /* th{text-align: center;} */
   td{text-align: center;}
   .table{
-    --bs-table-bg: hsl(53, 100%, 86%);
+    --bs-table-bg: hsl(0, 0%, 82%);
   }
   table{
     border-collapse: collapse;
@@ -22,7 +22,7 @@ caption{ caption-side: top;
     font-size:17px;}
   td {padding: 12px 15px;
     }
-  tr {border-bottom: 1px solid #dddddd;
+  tr {border-bottom: 1px solid #ffeeee;
   }
 h1{font-family: 'Trocchi', serif;}
 

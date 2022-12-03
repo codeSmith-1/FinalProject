@@ -17,10 +17,10 @@ import com.skilldistillery.childcare.repositories.MoodRepository;
 
 @Service
 public class MoodServiceImpl implements MoodService {
-	
+
 	@Autowired
 	private MoodRepository moodRepo;
-	@Autowired 
+	@Autowired
 	private DailyReportRepository reportRepo;
 	@Autowired
 	private MoodEntryRepository moodEntryRepo;
@@ -30,7 +30,7 @@ public class MoodServiceImpl implements MoodService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 //	@Override
 //	public boolean delete(int moodId, int reportId) {
 //			Mood moodToDelete = moodRepo.queryById(moodId);
@@ -46,16 +46,16 @@ public class MoodServiceImpl implements MoodService {
 		System.out.println("this is moodId" + moodId);
 		System.out.println("this is reportID " + reportId);
 		System.out.println("*****************************************************");
-		 MoodId moodToDelete = new MoodId(reportId, moodId);
-		 moodEntryRepo.delete(moodEntryRepo.findById(moodToDelete).get());
-		 return moodEntryRepo.existsById(moodToDelete);
+		MoodId moodToDelete = new MoodId(reportId, moodId);
+		moodEntryRepo.delete(moodEntryRepo.findById(moodToDelete).get());
+		return moodEntryRepo.existsById(moodToDelete);
 	}
-	
+
 //	@Override
 //	public List<MoodEntry> moodByReportId(int reportId) {
 //		return moodRepo.findByMoodEntries_DailyReportId(reportId);
 //	}
-	
+
 //	@Override
 //	public Kid create(String username, Kid kid, String relationship) {
 //		// get relationship from front end
@@ -83,18 +83,12 @@ public class MoodServiceImpl implements MoodService {
 
 	@Override
 	public Mood create(MoodEntry moodEntry, int dailyReportId, int moodId) {
-		
 		DailyReport dailyReport = reportRepo.queryById(dailyReportId);
 		Mood mood = moodRepo.queryById(moodId);
-		
 		if (mood != null) {
 			mood.addMoodEntry(moodEntry);
-//			mood = moodRepo.saveAndFlush(mood);
 		}
-		
 		MoodId moodEntryId = new MoodId(dailyReportId, mood.getId());
-		
-		// moodEntry.setDate(date);
 		moodEntry.setId(moodEntryId);
 		moodEntry.setDailyReport(dailyReport);
 		moodEntry.setMood(mood);
