@@ -23,11 +23,17 @@
         />
       </div>
     </div>
+    <br />
 
     <div class="row">
       <!-- <label for="wipesLow">Are they low on wipes?</label><br /> -->
-      <mat-slide-toggle [(ngModel)]="report.wipesLow">Wipes Low</mat-slide-toggle> <br><br>
-    <mat-slide-toggle [(ngModel)]="report.diapersLow">Diapers Low</mat-slide-toggle><br><br />
+      <mat-slide-toggle [(ngModel)]="report.wipesLow"
+        >Wipes Low</mat-slide-toggle
+      >
+      <br /><br />
+      <mat-slide-toggle [(ngModel)]="report.diapersLow"
+        >Diapers Low</mat-slide-toggle
+      ><br /><br />
       <!-- <input
         type="checkbox"
         data-toggle="toggle"
@@ -51,6 +57,7 @@
         name="activities"
         [(ngModel)]="report.activities"
       /><br />
+      <br />
       <label for="notes">Notes:</label><br />
       <textarea
         rows="4"
@@ -64,57 +71,20 @@
 </div>
 <div>
   <div class="container">
-    <div class="row">
-      <div *ngIf="!nap.id">
-        <table class="col w-50 p-3 table table-striped table-hover">
-          <caption style="text-align: center">
-            Naps
-          </caption>
-          <thead class="table-light">
-            <tr>
-              <th>Started Nap</th>
-              <th>Woke Up</th>
-              <th>Add Nap</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <input
-                  type="datetime-local"
-                  class="form-control"
-                  name="timeStart"
-                  [(ngModel)]="nap.timeStart"
-                />
-              </td>
-              <td>
-                <input
-                  type="datetime-local"
-                  class="form-control"
-                  name="timeFinish"
-                  [(ngModel)]="nap.timeFinish"
-                />
-              </td>
-              <td>
-                <button (click)="addNap(nap)" class="btn btn-success">+</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div *ngIf="nap.id">
-      <table class="col w-25 p-3 table table-striped table-hover">
+    <div *ngIf="!nap.id">
+      <table class="table table-striped table-hover">
+        <caption style="text-align: center">
+          Naps
+        </caption>
         <thead class="table-light">
           <tr>
             <th>Started Nap</th>
             <th>Woke Up</th>
-            <th>Update/Delete</th>
+            <th>Add Nap</th>
           </tr>
         </thead>
         <tbody>
-              <tr>
+          <tr>
             <td>
               <input
                 type="datetime-local"
@@ -132,252 +102,289 @@
               />
             </td>
             <td>
-              <button (click)="updateNap()" class="btn btn-secondary">Update</button>
-              <button (click)="deleteNap(this.nap.id)" class="btn btn-danger">
-                X
-              </button>
+              <button (click)="addNap(nap)" class="btn btn-success">+</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
-    <div *ngIf="moods">
-      <table class="w-50 p-3 table table-striped table-hover">
-        <caption style="text-align: center">
-          Disposition
-        </caption>
-        <thead class="table-light">
-          <tr>
-            <th>Mood</th>
-            <th>Time</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let moodEntry of moodEntries">
-            <td>{{ moodEntry.mood.description }}</td>
-            <td>{{ moodEntry.enteredAt | date: "shortTime" }}</td>
-            <td>
-              <button
-                (click)="deleteMood(moodEntry.mood.id)"
-                class="btn btn-danger"
-              >
-                X
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <select [(ngModel)]="newMoodMoodId" class="form-control">
-                <option *ngFor="let item of moods" [value]="item.id">
-                  {{ item.description }}
-                </option>
-              </select>
-            </td>
-            <td>
-              <input
-                type="datetime-local"
-                class="form-control"
-                name="enteredAt"
-                [(ngModel)]="newMood.enteredAt"
-              />
-            </td>
-            <td>
-              <button (click)="addMood()" class="btn btn-success">+</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div *ngIf="food">
-      <table class="w-50 p-3 table table-striped table-hover">
-        <caption style="text-align: center">
-          Meals
-        </caption>
-        <thead class="table-light">
-          <tr>
-            <th>Meal Time</th>
-            <th>Food Eaten</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let meal of food">
-            <td>{{ meal.foodType.name }}</td>
-            <td>{{ meal.description }}</td>
-            <td>
-              <button (click)="deleteFood(meal.id)" class="btn btn-danger">
-                X
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <select [(ngModel)]="newFood.foodType.id" class="form-control">
-                <option
-                  *ngFor="let foodType of foodTypes"
-                  value="{{ foodType.id }}"
-                >
-                  {{ foodType.name }}
-                </option>
-              </select>
-            </td>
-            <td>
-              <input
-                type="text"
-                class="form-control"
-                name="description"
-                [(ngModel)]="newFood.description"
-              />
-            </td>
-            <td>
-              <button (click)="addFood(newFood)" class="btn btn-success">
-                +
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div *ngIf="bathrooms">
-      <table class="w-50 p-3 table table-striped table-hover">
-        <caption style="text-align: center">
-          Potty
-        </caption>
-        <thead class="table-dark">
-          <tr>
-            <th>Time</th>
-            <th>Type</th>
-            <th>Staff</th>
-            <th>Notes</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <td *ngIf="!bathrooms">
-            There are no potty yet captured for the day.
-          </td>
-          <tr *ngFor="let bathroom of bathrooms">
-            <td>{{ bathroom.bathroomTime | date: "shortTime" }}</td>
-            <td>{{ bathroom.type.status }}</td>
-            <td>{{ bathroom.staff.firstName }}</td>
-            <td>{{ bathroom.description }}</td>
-            <td>
-              <button
-                (click)="deleteBathroom(bathroom.id)"
-                class="btn btn-danger"
-              >
-                X
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input
-                type="datetime-local"
-                class="form-control"
-                name="time"
-                [(ngModel)]="newBathroom.bathroomTime"
-              />
-            </td>
-
-            <td>
-              <select [(ngModel)]="newBathroom.type.id" class="form-control">
-                <option *ngFor="let item of bathroomType" [value]="item.id">
-                  {{ item.status }}
-                </option>
-              </select>
-            </td>
-            <td>
-              <select [(ngModel)]="newBathroom.staff.id" class="form-control">
-                <option *ngFor="let item of allStaff" [value]="item.id">
-                  {{ item.firstName }}
-                </option>
-              </select>
-            </td>
-            <td>
-              <input
-                type="text"
-                class="form-control"
-                name="notes"
-                [(ngModel)]="newBathroom.description"
-              />
-            </td>
-            <td>
-              <button
-                (click)="addBathroom(newBathroom)"
-                class="btn btn-success"
-              >
-                +
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div *ngIf="images">
-      <table class="table table-striped table-hover">
-        <caption style="text-align: center">
-          Images
-        </caption>
-        <thead class="table-dark">
-          <tr>
-            <th>Image</th>
-            <th>Staff</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input
-                type="text"
-                class="form-control"
-                name="imageUrl"
-                [(ngModel)]="newImage.imageUrl"
-              />
-            </td>
-            <td>
-              <select [(ngModel)]="newImageStaffId" class="form-control">
-                <option *ngFor="let item of allStaff" [value]="item.id">
-                  {{ item.firstName }}
-                </option>
-              </select>
-            </td>
-            <td>
-              <button
-                (click)="
-                  addReportImage(newImage, this.report.id, newImageStaffId)
-                "
-                class="btn btn-success"
-              >
-                +
-              </button>
-            </td>
-          </tr>
-          <tr *ngFor="let image of images">
-            <td><img src="{{ image.imageUrl }}" /></td>
-            <td>
-              {{ image.staff?.firstName }}
-              {{ image.createdAt | date: "shortTime" }}
-            </td>
-            <td>
-              <button
-                (click)="deleteReportImage(image.id)"
-                class="btn btn-danger"
-              >
-                X
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <br /><br />
-    <button (click)="updateReport(report)" class="btn btn-secondary">
-      Submit Changes</button
-    ><br /><br /><br /><br /><br /><br /><br /><br />
   </div>
+
+  <div *ngIf="nap.id">
+    <table class="col w-100 p-3 table table-striped table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Started Nap</th>
+          <th>Woke Up</th>
+          <th>Update/Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="datetime-local"
+              class="form-control"
+              name="timeStart"
+              [(ngModel)]="nap.timeStart"
+            />
+          </td>
+          <td>
+            <input
+              type="datetime-local"
+              class="form-control"
+              name="timeFinish"
+              [(ngModel)]="nap.timeFinish"
+            />
+          </td>
+          <td>
+            <button (click)="updateNap()" class="btn btn-secondary">
+              Update
+            </button>
+            <button (click)="deleteNap(this.nap.id)" class="btn btn-danger">
+              X
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="moods">
+        <div class="row">
+        <table class="col w-50 p-3 h-25 table table-striped table-hover">
+          <caption style="text-align: center">
+            Disposition
+          </caption>
+          <thead class="table-light">
+            <tr>
+              <th>Mood</th>
+              <th>Time</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let moodEntry of moodEntries">
+              <td>{{ moodEntry.mood.description }}</td>
+              <td>{{ moodEntry.enteredAt | date: "shortTime" }}</td>
+              <td>
+                <button
+                  (click)="deleteMood(moodEntry.mood.id)"
+                  class="btn btn-danger"
+                >
+                  X
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <select [(ngModel)]="newMoodMoodId" class="form-control">
+                  <option *ngFor="let item of moods" [value]="item.id">
+                    {{ item.description }}
+                  </option>
+                </select>
+              </td>
+              <td>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  name="enteredAt"
+                  [(ngModel)]="newMood.enteredAt"
+                />
+              </td>
+              <td>
+                <button (click)="addMood()" class="btn btn-success">+</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div *ngIf="food" class="col w-50 p-3 h-25 table table-striped table-hover">
+          <table>
+            <caption style="text-align: center">
+              Meals
+            </caption>
+            <thead class="table-light">
+              <tr>
+                <th>Meal Time</th>
+                <th>Food Eaten</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let meal of food">
+                <td>{{ meal.foodType.name }}</td>
+                <td>{{ meal.description }}</td>
+                <td>
+                  <button (click)="deleteFood(meal.id)" class="btn btn-danger">
+                    X
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <select
+                    [(ngModel)]="newFood.foodType.id"
+                    class="form-control"
+                  >
+                    <option
+                      *ngFor="let foodType of foodTypes"
+                      value="{{ foodType.id }}"
+                    >
+                      {{ foodType.name }}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="description"
+                    [(ngModel)]="newFood.description"
+                  />
+                </td>
+                <td>
+                  <button (click)="addFood(newFood)" class="btn btn-success">
+                    +
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    </div>
+  <div *ngIf="bathrooms">
+    <table class="p-3 table table-striped table-hover">
+      <caption style="text-align: center">
+        Potty
+      </caption>
+      <thead class="table-light">
+        <tr>
+          <th>Time</th>
+          <th>Type</th>
+          <th>Staff</th>
+          <th>Notes</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <td *ngIf="!bathrooms">There are no potty yet captured for the day.</td>
+        <tr *ngFor="let bathroom of bathrooms">
+          <td>{{ bathroom.bathroomTime | date: "shortTime" }}</td>
+          <td>{{ bathroom.type.status }}</td>
+          <td>{{ bathroom.staff.firstName }}</td>
+          <td>{{ bathroom.description }}</td>
+          <td>
+            <button
+              (click)="deleteBathroom(bathroom.id)"
+              class="btn btn-danger"
+            >
+              X
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              type="datetime-local"
+              class="form-control"
+              name="time"
+              [(ngModel)]="newBathroom.bathroomTime"
+            />
+          </td>
+
+          <td>
+            <select [(ngModel)]="newBathroom.type.id" class="form-control">
+              <option *ngFor="let item of bathroomType" [value]="item.id">
+                {{ item.status }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <select [(ngModel)]="newBathroom.staff.id" class="form-control">
+              <option *ngFor="let item of allStaff" [value]="item.id">
+                {{ item.firstName }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              name="notes"
+              [(ngModel)]="newBathroom.description"
+            />
+          </td>
+          <td>
+            <button (click)="addBathroom(newBathroom)" class="btn btn-success">
+              +
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="images">
+    <table class="table table-striped table-hover">
+      <caption style="text-align: center">
+        Images
+      </caption>
+      <thead class="table-light">
+        <tr>
+          <th>Image</th>
+          <th>Staff</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              name="imageUrl"
+              [(ngModel)]="newImage.imageUrl"
+            />
+          </td>
+          <td>
+            <select [(ngModel)]="newImageStaffId" class="form-control">
+              <option *ngFor="let item of allStaff" [value]="item.id">
+                {{ item.firstName }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <button
+              (click)="
+                addReportImage(newImage, this.report.id, newImageStaffId)
+              "
+              class="btn btn-success"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr *ngFor="let image of images">
+          <td><img src="{{ image.imageUrl }}" /></td>
+          <td>
+            {{ image.staff?.firstName }}
+            {{ image.createdAt | date: "shortTime" }}
+          </td>
+          <td>
+            <button
+              (click)="deleteReportImage(image.id)"
+              class="btn btn-danger"
+            >
+              X
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br /><br />
+  <button (click)="updateReport(report)" class="btn btn-outline-primary">
+    Submit Changes</button
+  ><br /><br /><br /><br /><br /><br /><br /><br />
 </div>

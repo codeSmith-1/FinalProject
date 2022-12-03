@@ -1,4 +1,4 @@
-<br/>
+<br />
 <h1 *ngIf="tableView">Daily Reports</h1>
 
 <table *ngIf="tableView" class="w-50 p-3 table table-striped table-hover">
@@ -49,8 +49,7 @@
   <p>
     Wipes inventory:
     <span *ngIf="selected.wipesLow; else wipesFull"
-      ><font color="red">Low</font></span
-    >
+      ><font color="red">Low</font></span>
   </p>
   <ng-template #wipesFull>Full</ng-template>
   <p>Daily activities: {{ selected.activities }}</p>
@@ -59,7 +58,7 @@
 
   <div class="container">
     <div class="row">
-      <table class="col w-25 p-3 h-50  table table-striped table-hover">
+      <table class="col w-25 p-3 h-50 table table-striped table-hover">
         <caption style="text-align: center">
           Naps
         </caption>
@@ -94,9 +93,9 @@
           </tr>
         </tbody>
       </table>
-      </div>
+    </div>
 
-      <div class="row">
+    <div class="row">
       <table class="col w-25 p-3 h-50 table table-striped table-hover">
         <caption style="text-align: center">
           Meals

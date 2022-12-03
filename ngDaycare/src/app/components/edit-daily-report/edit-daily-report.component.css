@@ -1,9 +1,13 @@
 caption{ caption-side: top;
-  font-family: sans-serif;}
+  font-family: 'Trocchi', serif;
+  font-size: 30px;
+  font-weight: bold;
+  color:black;
+}
   /* th{text-align: center;} */
   td{text-align: center;}
   .table{
-    --bs-table-bg: #fff395b5;
+    --bs-table-bg: hsl(53, 100%, 86%);
   }
   table{
     border-collapse: collapse;
@@ -14,12 +18,15 @@ caption{ caption-side: top;
   }
 
   th {padding: 12px 15px;
-      text-align: center;}
+      text-align: center;
+    font-size:17px;}
   td {padding: 12px 15px;
     }
   tr {border-bottom: 1px solid #dddddd;
   }
+h1{font-family: 'Trocchi', serif;}
 
-  tr.active-row{
-    color:antiquewhite;
-  }
+labl{
+  font-family: 'Trocchi', serif;
+  font-size: 15px;
+}
