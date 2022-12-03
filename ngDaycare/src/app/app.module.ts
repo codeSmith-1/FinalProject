@@ -27,6 +27,8 @@ import { MessageCrudComponent } from './components/message-crud/message-crud.com
 import { EmergencyContactPipe } from './pipes/emergency-contact.pipe';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 import { AccountRequestsPipe } from './pipes/account-requests.pipe';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,7 @@ import { AccountRequestsPipe } from './pipes/account-requests.pipe';
     MessageCrudComponent,
     EmergencyContactPipe,
     ManageUsersComponent,
-    AccountRequestsPipe,
+    AccountRequestsPipe
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { AccountRequestsPipe } from './pipes/account-requests.pipe';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

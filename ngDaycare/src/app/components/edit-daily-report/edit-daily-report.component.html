@@ -13,22 +13,23 @@
     class="form-control"
     name="timeOut"
     [(ngModel)]="report.timeOut"/><br>
-    <label for="wipesLow">Are they low on wipes?</label><br>
-    <input type="checkbox" checked data-toggle="toggle">
-    <input
+    <!-- <label for="wipesLow">Are they low on wipes?</label><br> -->
+    <mat-slide-toggle [(ngModel)]="report.wipesLow">Wipes Low</mat-slide-toggle> <br><br>
+    <mat-slide-toggle [(ngModel)]="report.diapersLow">Diapers Low</mat-slide-toggle><br><br>
+    <!-- <input
       type="checkbox"
       data-toggle="toggle"
       name="wipesLow"
       data-on="Low"
       data-off="In Stock"
-      [(ngModel)]="report.wipesLow"/>
+      [(ngModel)]="report.wipesLow"/> -->
       <br>
-      <label for="diapersLow">Are they low on diapers?</label><br>
-    <input
+      <!-- <label for="diapersLow">Are they low on diapers?</label><br> -->
+    <!-- <input
       type="checkbox"
       data-toggle="toggle"
       name="diapersLow"
-      [(ngModel)]="report.diapersLow"/><br>
+      [(ngModel)]="report.diapersLow"/><br> -->
       <label for="activities">Daily Activities:</label><br>
     <input
       type="text"
@@ -84,11 +85,6 @@ Nap Time:
       </tr>
     </thead>
     <tbody>
-      <!-- <tr>
-        <td>{{nap.timeStart | date: "shortTime"}}</td>
-        <td>{{nap.timeFinish | date: "shortTime"}}</td>
-        <td><button (click)="deleteNap(this.nap.id)" class="btn btn-danger">X</button></td>
-      </tr> -->
       <tr>
         <td><input
           type="datetime-local"
@@ -100,7 +96,7 @@ Nap Time:
           class="form-control"
           name="timeFinish"
           [(ngModel)]="nap.timeFinish"/></td>
-        <td><button (click)="updateNap()" class="btn btn-secondary">?</button>
+        <td><button (click)="updateNap()" class="btn btn-secondary">Update</button>
             <button (click)="deleteNap(this.nap.id)" class="btn btn-danger">X</button></td>
       </tr>
     </tbody>

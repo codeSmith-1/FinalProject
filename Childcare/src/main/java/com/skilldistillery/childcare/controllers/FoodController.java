@@ -37,6 +37,7 @@ public class FoodController {
 		}
 		return foodServ.listAllFoods(username);
 	}
+	
 
 	@PostMapping("foods/{reportId}")
 	public Food create(@RequestBody Food food, @PathVariable int reportId, HttpServletResponse res, HttpServletRequest req, Principal principal) {
