@@ -7,7 +7,7 @@ caption{ caption-side: top;
   /* th{text-align: center;} */
   td{text-align: center;}
   .table{
-    --bs-table-bg: hsl(0, 0%, 82%);
+    --bs-table-bg: hsl(194, 100%, 96%);
   }
   table{
     border-collapse: collapse;
@@ -19,14 +19,15 @@ caption{ caption-side: top;
 
   th {padding: 12px 15px;
       text-align: center;
-    font-size:17px;}
+      font-size:17px;}
   td {padding: 12px 15px;
     }
-  tr {border-bottom: 1px solid #ffeeee;
+  tr {border-bottom: 1px solid #dddddd;
   }
-h1{font-family: 'Trocchi', serif;}
-
-labl{
-  font-family: 'Trocchi', serif;
-  font-size: 15px;
+h1{font-family: 'Trocchi', serif;
+  font-size: 30px;
+  font: bold;
+}
+label{
+  font-size: 17px;
 }

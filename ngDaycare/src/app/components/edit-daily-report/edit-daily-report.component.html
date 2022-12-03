@@ -24,16 +24,17 @@
       </div>
     </div>
     <br />
-
-    <div class="row">
+<div class="container">
+  <div class="row w-25">
+    <div class="col w-25">
       <!-- <label for="wipesLow">Are they low on wipes?</label><br /> -->
-      <mat-slide-toggle [(ngModel)]="report.wipesLow"
-        >Wipes Low</mat-slide-toggle
-      >
-      <br /><br />
-      <mat-slide-toggle [(ngModel)]="report.diapersLow"
-        >Diapers Low</mat-slide-toggle
-      ><br /><br />
+      <mat-slide-toggle [(ngModel)]="report.wipesLow">Wipes Low</mat-slide-toggle>
+      </div>
+      <div class="col w-25">
+      <mat-slide-toggle [(ngModel)]="report.diapersLow">Diapers Low</mat-slide-toggle>
+    </div>
+  </div>
+  </div>
       <!-- <input
         type="checkbox"
         data-toggle="toggle"
@@ -66,7 +67,7 @@
         [(ngModel)]="report.notes"
       ></textarea
       ><br />
-    </div>
+
   </form>
 </div>
 <div>
