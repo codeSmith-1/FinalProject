@@ -1,22 +1,46 @@
 .navbar-brand {
   letter-spacing: 3px;
-  color: #c24244;
+  color: #662f30;
 }
 
 .navbar-brand:hover {
-	color: #c24244;
+	color: #562525;
 }
 
 .navbar-scroll .nav-link,
 .navbar-scroll .fa-bars {
   color: #7f4722;
+  font: bold;
+  font-weight: bold;
 }
 
 .navbar-scrolled .nav-link,
 .navbar-scrolled .fa-bars {
   color: #7f4722;
+  font: bold;
+  font-weight: bold;
 }
 
 .navbar-scrolled {
   background-color: #ffede7;
+  font: bold;
+  font-weight: bold;
 }
+
+.navbar{
+  background-image: url("/assets/navbar-bg2.png");
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-size: cover;
+  background-position: center;
+  /* height: 100%; */
+  font: bolder;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+#navbarTogglerDemo01{
+  align-items: baseline;
+}
+
+

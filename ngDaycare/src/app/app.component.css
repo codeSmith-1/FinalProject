@@ -4,4 +4,21 @@
   margin-left: 5px;
 }
 
+#nav-border{
+  /* border-bottom: 5px solid black; */
+
+}
+
+#nav-border::after{
+  content:'';
+  display:block;
+  height: 3px;
+  width: 100%;
+  background-color: #000000ad;
+
+}
+
+#page-top-border{
+  border-top: 5px solid black;
+}
 
