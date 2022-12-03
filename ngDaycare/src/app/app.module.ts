@@ -37,7 +37,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     StaffHomeComponent,
     GuardianHomeComponent,
     NotFoundComponent,
-    HomeComponent,
     NavBarComponent,
     RegisterStaffComponent,
     RegisterAdultComponent,
