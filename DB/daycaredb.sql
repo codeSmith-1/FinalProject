@@ -414,18 +414,18 @@ USE `daycaredb`;
 INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (1, 'Javier', 'Rodriguez', '2018-07-15', 1, 'https://images.unsplash.com/photo-1630304565761-d6f8d5a0facd?ixlib=rb-4.0.3&ixid=MnwxM[…]DB8MHxzZWFyY2h8NXx8Y3V0ZSUyMGJhYnl8ZW58MHx8MHx8&w=1000&q=80');
 INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (2, 'Joe', 'Franklin', '2019-03-06', 2, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Summer%202016-17/MS_pre-boy-2.jpg');
 INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (3, 'Liam', 'Murray', '2019-04-02', 3, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Spring2023/Lifetouch-Preschool-image-spring-kinder-Follow%20Your%20Dreams-4.jpg');
-INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (4, 'Noah', 'Ellis', '2020-11-01', 4, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Summer%202016-17/MS_Pre-boy-(3-pose).jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (4, 'Noah', 'Ellis', '2020-11-01', 4, 'https://www.timeforkids.com/wp-content/uploads/2022/02/KOTY4.jpg?w=1024');
 INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (5, 'Olivia', 'Manning', '2019-06-08', 1, 'https://media.istockphoto.com/id/1007786322/photo/is-it-delicious.jpg?b=1&s=170667a&w=0&k=20&c=hk1MyT4dNX1ophb--pVKvIHtO5tv2BYOnHd1N0Dfeco=');
-INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (6, 'Emma', 'Gaines', '2018-02-04', 2, 'https://media.istockphoto.com/id/1429905621/photo/adorable-and-happy-asian-baby.jpg?b=1[…]7a&w=0&k=20&c=QoQoavGAjyJIII9VfVwiZJ_WW6ayfQhraO2uP-cRGcE=');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (6, 'Emma', 'Gaines', '2018-02-04', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn8A6tKegvGKz4KsnQS1QDWImu3BZjFnxOpQ&usqp=CAU');
 INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (7, 'Charlotte', 'Kirby', '2017-08-25', 3, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Summer%202016-17/MS_Toddler-girl.jpg');
 INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (8, 'Ameilia', 'Arak', '2018-04-17', 4, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Summer%202016-17/MS_Infant--non-sit-.jpg');
-INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (9, 'Ava', 'Curtis', '2019-12-20', 1, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Fall2022/Teal_3.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (9, 'Ava', 'Curtis', '2019-12-20', 1, 'https://media.istockphoto.com/id/1339653641/photo/connecting-kids-and-nature.jpg?b=1&s=170667a&w=0&k=20&c=bbPVdYcWxzlKRFBrl2S9QJxBBnocFc2YgBndP0VmI1I=');
 INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (10, 'Elija', 'Welch', '2017-01-01', 2, 'https://images.unsplash.com/photo-1543467214-b247439848dc?ixlib=rb-4.0.3&ixid=MnwxMjA3[…]jBiYWJ5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
 INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (11, 'Sophia', 'Davidson', '2018-03-30', 3, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Spring2023/Lifetouch-Preschool-image-spring-kinder-cream%20studio%20color-1.jpg');
-INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (12, 'James', 'McPherson', '2016-11-19', 4, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Fall2022/Shiplap_3.jpg');
-INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (13, 'William', 'Parks', '2017-10-21', 1, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Fall2022/Teal_2.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (12, 'James', 'McPherson', '2016-11-19', 4, 'https://clicklovegrow.com/wp-content/uploads/2020/01/Kirsty-Nealon-Advanced-Graduate.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (13, 'William', 'Parks', '2017-10-21', 1, 'https://i.ytimg.com/vi/xRx5nX6sXqo/maxresdefault.jpg');
 INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (14, 'Lucas', 'Wattles', '2018-02-18', 2, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Holiday2022/Holiday%20Teal_5.jpg');
-INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (15, 'Mia', 'Weinberg', '2016-03-27', 3, 'https://preschoolportraits.lifetouch.com/cmsimages/2/PortraitGalleries/Spring2023/Lifetouch-Preschool-image-spring-kinder-Follow%20Your%20Dreams-2.jpg');
+INSERT INTO `kid` (`id`, `first_name`, `last_name`, `birthday`, `classroom_id`, `image_url`) VALUES (15, 'Mia', 'Weinberg', '2016-03-27', 3, 'https://www.incimages.com/uploaded_files/image/1920x1080/getty_168318604_69878.jpg');
 
 COMMIT;
 
@@ -496,19 +496,19 @@ INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (3, 
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (4, 'staff', 'jeremyw', '$2a$10$nmsfDgaAqIkIz2v9T9kau.m9B1yL3uxOUX2URusIGbuOezhCOal/i', 1);
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (5, 'user', 'darlenef', '$2a$10$4QG1VKu2HEFKPbMc6Kyb1uZN18A452vJNmyzE8wAbYu306ObgJh.G', 1);
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (6, 'user', 'guillermor', '$2a$10$OQyN5W8eDCecBT9PHdJ4wOw1u.kVzZig4VttBjkz0bKs4pVYeh2s.', 1);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (7, 'user', 'katem', '$2a$10$FUEuT849M22aENGPk5oCEOkterA3s2BMxP8eRNGj6WBWvFkwyBjmi', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (7, 'user', 'katem', '$2a$10$FUEuT849M22aENGPk5oCEOkterA3s2BMxP8eRNGj6WBWvFkwyBjmi', 1);
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (8, 'user', 'adame', 'broken', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (9, 'user', 'dannym', '$2a$10$FCvB1Qyt9VSnGW56SWndiuA/61gZ5Az6kUaCa0H2thk3HdKq.Mlne', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (10, 'user', 'candiceg', '$2a$10$njluYXPSx./PZ8fEhuvUMeaKjn8WjQu0hpXkYZKXzngWCh064V/ae', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (11, 'user', 'matthewk', '$2a$10$TG3Rj5s3S1kiVPWLbs6fg.e/UTQZfpYcNXBtNwciFLGDQ4lqAAgGu', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (12, 'user', 'jacoba', '$2a$10$7NG50omMR2bF6FG71FuDHuOxVCBTft.50.J6rx3elsBUThZo65M3a', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (13, 'user', 'michaelac', '$2a$10$N/ZHFsXqw8/9k1t/b2stVeEjMVCNhI66bo8iVyFyCpeQLwzpsJNna', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (14, 'user', 'jackiew', '$2a$10$MhDpthRGnyFJ7eo4xoIto.QkBWmZcEEQqxg0wTLwgFS3jE8LdS2x2', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (15, 'user', 'jessicad', '$2a$10$n2P3phT7Ov2Sf4RCKPfnruEq8yTN7bYhioQTTurvmhkal0t/SDqly', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (16, 'user', 'jenw', '$2a$10$KwSOd/H227poI7kuyLBqO.zT0aH174PQTgyh411WpffFTUuSG3x2C', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (17, 'user', 'alexw', '$2a$10$ppuNJrrk8Hd09ffZknzNBuOE4yTycxT/.WCPTHaNYFkvWFtHMvG9C', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (18, 'user', 'sandym', '$2a$10$fQXUiS6JIgyt/FfyxPwZ5O7/WKCWg.YdHEW0iRsqHV2YGnOaqF.7a', NULL);
-INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (19, 'user', 'carrolp', '$2a$10$77rT/DI//H0C6oVyLRYeleqEYNSzJLQLB0nl4Cjef4ZPDzZXvZWJK', NULL);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (9, 'user', 'dannym', '$2a$10$FCvB1Qyt9VSnGW56SWndiuA/61gZ5Az6kUaCa0H2thk3HdKq.Mlne', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (10, 'user', 'candiceg', '$2a$10$njluYXPSx./PZ8fEhuvUMeaKjn8WjQu0hpXkYZKXzngWCh064V/ae', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (11, 'user', 'matthewk', '$2a$10$TG3Rj5s3S1kiVPWLbs6fg.e/UTQZfpYcNXBtNwciFLGDQ4lqAAgGu', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (12, 'user', 'jacoba', '$2a$10$7NG50omMR2bF6FG71FuDHuOxVCBTft.50.J6rx3elsBUThZo65M3a', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (13, 'user', 'michaelac', '$2a$10$N/ZHFsXqw8/9k1t/b2stVeEjMVCNhI66bo8iVyFyCpeQLwzpsJNna', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (14, 'user', 'jackiew', '$2a$10$MhDpthRGnyFJ7eo4xoIto.QkBWmZcEEQqxg0wTLwgFS3jE8LdS2x2', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (15, 'user', 'jessicad', '$2a$10$n2P3phT7Ov2Sf4RCKPfnruEq8yTN7bYhioQTTurvmhkal0t/SDqly', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (16, 'user', 'jenw', '$2a$10$KwSOd/H227poI7kuyLBqO.zT0aH174PQTgyh411WpffFTUuSG3x2C', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (17, 'user', 'alexw', '$2a$10$ppuNJrrk8Hd09ffZknzNBuOE4yTycxT/.WCPTHaNYFkvWFtHMvG9C', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (18, 'user', 'sandym', '$2a$10$fQXUiS6JIgyt/FfyxPwZ5O7/WKCWg.YdHEW0iRsqHV2YGnOaqF.7a', 1);
+INSERT INTO `user` (`id`, `role`, `username`, `password`, `enabled`) VALUES (19, 'user', 'carrolp', '$2a$10$77rT/DI//H0C6oVyLRYeleqEYNSzJLQLB0nl4Cjef4ZPDzZXvZWJK', 1);
 
 COMMIT;
 

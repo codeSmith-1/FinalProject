@@ -54,15 +54,11 @@ public class KidServiceImpl implements KidService {
 
 	@Override
 	public Kid create(String username, Kid kid, String relationship) {
-		// get relationship from front end
 		System.out.println(username);
 		Adult adult = adultRepo.findByUser_Username(username);
-		
 		if (kid != null) {
-//			kid.setClassroom(null);
 			System.out.println(kid.getClassroom());
 			kid = kidRepo.saveAndFlush(kid);
-
 		}
 		GuardianId guardianId = new GuardianId(adult.getId(), kid.getId());
 		Guardian guardian = new Guardian();
@@ -123,7 +119,7 @@ public class KidServiceImpl implements KidService {
 	@Override
 	public List<DailyReport> findReportsByKidId(int id) {
 		List<DailyReport> reports = reportRepo.findByKidId(id);
-		if (reports!=null) {
+		if (reports != null) {
 			return reports;
 		}
 		return null;

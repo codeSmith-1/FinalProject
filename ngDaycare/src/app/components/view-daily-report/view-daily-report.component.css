@@ -7,7 +7,7 @@ caption{ caption-side: top;
   /* th{text-align: center;} */
   td{text-align: center;}
   .table{
-    --bs-table-bg: hsl(53, 100%, 86%);
+    --bs-table-bg: hsl(194, 100%, 96%);
   }
   table{
     border-collapse: collapse;

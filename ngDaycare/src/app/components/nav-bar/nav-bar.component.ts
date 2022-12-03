@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavBarComponent implements OnInit {
   loggedInUser: User | null = null;
+  public isCollapsed:boolean = false;
 
   constructor(private auth: AuthService) {}
 
