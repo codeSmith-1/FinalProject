@@ -1,0 +1,19 @@
+h1 {
+  caption-side: top;
+  margin-top: 20px;
+  font-size: 30px;
+  color: black;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: sans-serif;
+  min-width: 300px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+td {
+  text-align: left;
+}
+.table {
+  --bs-table-bg: hsla(199, 71%, 66%, 0.875);
+}
