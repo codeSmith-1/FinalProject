@@ -10,8 +10,8 @@
         <div class="card-body">
           <h2 class="card-title">{{ kid.firstName }} {{ kid.lastName }}</h2>
           <p class="card-text">
-            {{ inSessionAdult.firstName }} {{ inSessionAdult.lastName }},
-            {{ inSessionAdult.phoneNumber }}
+            {{ inSessionUser.adult?.firstName }} {{ inSessionUser.adult?.lastName }},
+            {{ inSessionUser.adult?.phoneNumber }}
           </p>
           <div class="btn-toolbar">
             <button (click)="showReports(kid.id)" class="btn btn-outline-secondary btn-sm">

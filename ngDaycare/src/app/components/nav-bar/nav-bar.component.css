@@ -28,7 +28,7 @@
 }
 
 .navbar{
-  background-image: url("/assets/navbar-bg2.png");
+  background-image: url("~src/assets/navbar-bg2.png");
   background-repeat: no-repeat;
   /* background-attachment: fixed; */
   background-size: cover;
@@ -102,4 +102,17 @@ li{
       0.05em 0.05em black;
 }
 
+.right {
+  position: absolute;
+  /* top: 50px; */
+  right: 10px;
+}
+.innerRight{
+  position: absolute;
+  right: 80px;
+}
+
+#unorderedList{
+  height: 100%;
+}
 

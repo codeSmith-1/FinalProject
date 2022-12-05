@@ -20,13 +20,13 @@ export class GuardianHomeComponent implements OnInit {
   closeResult: string = "";
   newKid: Kid = new Kid();
   inSessionUser: User = new User();
-  inSessionAdult: Adult = new Adult();
+  // inSessionAdult: Adult = new Adult();
   kids: Kid[] = [];
   selected: null | Kid = null;
   relationship: string ='';
 
   ngOnInit(): void {
-    console.log(this.inSessionAdult)
+    // console.log(this.inSessionAdult)
     this.reloadUser();
     this.getKids();
   }
@@ -85,6 +85,19 @@ reloadUser(){
       // route to success page
       this.inSessionUser = loggedInUser;
       console.log(this.inSessionUser)
+
+      // this.adultSvc.show().subscribe({
+      //   next: (loggedInAdult) => {
+      //     this.inSessionAdult = loggedInAdult;
+      //     console.log(this.inSessionAdult);
+      //   },
+      //   error: (problem) => {
+      //     console.error(
+      //       'UpdateAccountComponenet error(): showing adult'
+      //       );
+      //       console.error(problem);
+      //     },
+      //   });
     },
     error: (problem) => {
       console.error(
@@ -93,18 +106,7 @@ reloadUser(){
     },
   });
 
-  this.adultSvc.show().subscribe({
-    next: (loggedInAdult) => {
-      this.inSessionAdult = loggedInAdult;
-      console.log(this.inSessionAdult);
-    },
-    error: (problem) => {
-      console.error(
-        'UpdateAccountComponenet error(): showing adult'
-        );
-        console.error(problem);
-      },
-    });
+
 
     // this.staffSvc.show().subscribe({
     //   next: (loggedInStaff) => {

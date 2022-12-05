@@ -64,10 +64,10 @@ public class AdultController {
 	}
 
 	@GetMapping("adults/loggedInAdult")
-	public Adult show(Principal principal, HttpSession session, HttpServletResponse res) {
-		User user = (User) session.getAttribute("loggedInUser");
+	public User show(Principal principal, HttpSession session, HttpServletResponse res) {
+//		User user = (User) session.getAttribute("loggedInUser");
 		try {
-			return adultService.showAdultByUsername(principal.getName());
+			return adultService.showUserByUsername(principal.getName());
 		} catch (Exception e) {
 			res.setStatus(400);
 			e.printStackTrace();

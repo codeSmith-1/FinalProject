@@ -3,6 +3,7 @@ package com.skilldistillery.childcare.services;
 import java.util.List;
 
 import com.skilldistillery.childcare.entities.Adult;
+import com.skilldistillery.childcare.entities.User;
 
 public interface AdultService {
 
@@ -21,6 +22,8 @@ public interface AdultService {
 	Adult showAdultByUsername(String username);
 	
 	Adult editEnableSpecific(String username, Adult adult, int adultId);
+
+	User showUserByUsername(String username);
 	
 	
 }

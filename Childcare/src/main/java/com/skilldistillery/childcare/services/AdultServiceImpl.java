@@ -100,6 +100,10 @@ public class AdultServiceImpl implements AdultService {
 	public Adult showAdultByUsername(String username) {
 		return adultRepo.findByUser_Username(username);
 	}
+	@Override
+	public User showUserByUsername(String username) {
+		return userRepo.findByUsername(username);
+	}
 
 	@Override
 	public Adult editEnableSpecific( String username, Adult adult, int adultId) {

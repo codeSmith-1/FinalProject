@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-    images = ['/assets/exterior.png', `/assets/Daycareint.jpeg`, `/assets/selfportraits.jpeg`];
+    images = ['assets/exterior.png', `assets/Daycareint.jpeg`, `assets/selfportraits.jpeg`];
   }
 
 
