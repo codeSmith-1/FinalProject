@@ -1,5 +1,5 @@
 .btn-secondary {
-  color: #ffffff;
+  color: #fcfcfc;
   background-color:cornflowerblue;
   border-color: cornflowerblue
 }
@@ -7,6 +7,7 @@
 .form-control:valid {
   color: #ffffff;
   background-color: rgb(123, 166, 247);
+  outline: white;
 }
 
 ::placeholder {
