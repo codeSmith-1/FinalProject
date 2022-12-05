@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { windowWhen } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,12 +10,23 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavBarComponent implements OnInit {
   loggedInUser: User | null = null;
-  public isCollapsed:boolean = false;
+  public isCollapsed: boolean = false;
+  roleIsGuardian: boolean = false;
 
   constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.getLoggedInUser();
+    if (this.auth.checkLogin()) {
+      this.getLoggedInUser();
+    }
+
+    this.roleIsGuardian = this.isGuardian();
+
+    window.addEventListener('load', (e) => {
+      if(this.auth.checkLogin()){
+      this.getLoggedInUser();
+      }
+    });
   }
 
   loggedIn() {
@@ -29,8 +41,11 @@ export class NavBarComponent implements OnInit {
     return false;
   }
   isGuardian() {
+    console.log('in isGuardian');
     if (this.loggedInUser) {
+      console.log('in first if statement');
       if (this.loggedInUser.role === 'user') {
+        console.log('in2nd if statemen');
         return true;
       }
     }
@@ -38,12 +53,14 @@ export class NavBarComponent implements OnInit {
   }
 
   getLoggedInUser() {
+    console.warn('In getLoggedInUser()');
     this.auth.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser = user;
+        console.warn(this.loggedInUser);
       },
       error: (err) => {
-        console.error('LoginComponent.login(): error logging in:');
+        console.error('navbar-component.getLoggedInUser(): error logging in:');
         console.error(err);
         return false;
       },

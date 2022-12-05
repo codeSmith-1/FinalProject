@@ -44,6 +44,7 @@ export class AuthService {
         // While credentials are stored in browser localStorage, we consider
         // ourselves logged in.
         localStorage.setItem('credentials', credentials);
+        localStorage.setItem('username', credentials);
         return newUser;
       }),
       catchError((err: any) => {
@@ -98,4 +99,16 @@ export class AuthService {
   getCredentials(): string | null {
     return localStorage.getItem('credentials');
   }
+
+  getUser(username: string): Observable<User> {
+    return this.http.get<User>(`${this.url}/${username}`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error( 'AuthService.getUserById(): error retrieving user: ' + err )
+        );
+      })
+    );
+  }
+
 }

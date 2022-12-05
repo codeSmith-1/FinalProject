@@ -18,12 +18,10 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginUser: User){
-    console.log('user logged in');
     this.auth.login(loginUser.username, loginUser.password).subscribe({
       next:(loggedInUser)=> {
         // add logic for user type
         this.invalidLogin = false;
-        console.log(loggedInUser.username);
         if (loggedInUser.role == ("staff") || loggedInUser.role == ("admin")){
         this.router.navigateByUrl('/staffHome');
         } else if (loggedInUser.role == ("user")){
