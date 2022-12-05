@@ -1,7 +1,8 @@
-.btn-secondary {
+.btn {
   color: #fcfcfc;
   background-color:cornflowerblue;
-  border-color: cornflowerblue
+  border-color: cornflowerblue;
+  outline: white;
 }
 
 .form-control:valid {
