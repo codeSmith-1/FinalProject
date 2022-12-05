@@ -42,5 +42,64 @@
 #navbarTogglerDemo01{
   align-items: baseline;
 }
+li{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.settings{
+  text-align: right;
+  align-items: right;
+}
+
+#home{
+  color: aqua;
+}
+
+.navbar-brand {
+  color: rgb(85, 85, 238);
+  text-shadow: #ffede7;
+  color: white;
+  font-size: 25px;
+      text-shadow:
+      0.05em 0 black,
+      0 0.05em black,
+      -0.05em 0 black,
+      0 -0.05em black,
+      -0.05em -0.05em black,
+      -0.05em 0.05em black,
+      0.05em -0.05em black,
+      0.05em 0.05em black;
+}
+
+.nav-link {
+  color: rgb(85, 85, 238);
+  text-shadow: #ffede7;
+  color: white;
+  font-size: 20px;
+      text-shadow:
+      0.05em 0 black,
+      0 0.05em black,
+      -0.05em 0 black,
+      0 -0.05em black,
+      -0.05em -0.05em black,
+      -0.05em 0.05em black,
+      0.05em -0.05em black,
+      0.05em 0.05em black;
+}
+.icon-edit{
+  text-shadow: #ffede7;
+  color: white;
+  font-size: 20px;
+      text-shadow:
+      0.05em 0 black,
+      0 0.05em black,
+      -0.05em 0 black,
+      0 -0.05em black,
+      -0.05em -0.05em black,
+      -0.05em 0.05em black,
+      0.05em -0.05em black,
+      0.05em 0.05em black;
+}
 
 

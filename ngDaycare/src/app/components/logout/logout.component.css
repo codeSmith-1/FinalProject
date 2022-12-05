@@ -1,5 +1,17 @@
 #logout-button{
-  color:#0000008C;
-  font-weight: bolder;
-  font-size: 16.8px;
+
+  text-shadow: #ffede7;
+  color: white;
+  font-size: 22px;
+      text-shadow:
+      0.05em 0 black,
+      0 0.05em black,
+      -0.05em 0 black,
+      0 -0.05em black,
+      -0.05em -0.05em black,
+      -0.05em 0.05em black,
+      0.05em -0.05em black,
+      0.05em 0.05em black;
 }
+
+

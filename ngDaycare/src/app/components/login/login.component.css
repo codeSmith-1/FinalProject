@@ -1,0 +1,15 @@
+.btn-secondary {
+  color: #ffffff;
+  background-color:cornflowerblue;
+  border-color: cornflowerblue
+}
+
+.form-control:valid {
+  color: #ffffff;
+  background-color: rgb(123, 166, 247);
+}
+
+::placeholder {
+  color: #ffffff;
+}
+
